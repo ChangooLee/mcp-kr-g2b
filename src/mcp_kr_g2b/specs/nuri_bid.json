@@ -1,0 +1,5056 @@
+{
+ "module": "nuri_bid",
+ "serviceId": "PrvtBidNtceService",
+ "serviceNameKo": "누리장터 민간입찰공고서비스",
+ "baseUrl": "http://apis.data.go.kr/1230000/ao/PrvtBidNtceService",
+ "description": "누리장터에 등록된 민간입찰공고정보를 제공하는 서비스로 용역, 물품, 공사, 기타 업무로 구분하여 입찰공고번호, 게시일시, 공고명, 입찰방식명, 개찰일시, 기준금액, 공고규격서, 아파트정보 등의 정보를 제공",
+ "updateCycle": "수시",
+ "operations": [
+  {
+   "opNameEn": "getPrvtBidPblancListInfoServc",
+   "opNameKo": "민간입찰공고정보에 대한 용역조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 조회구분, 등록일범위, 공고일범위, 개찰일범위, 입찰공고번호를 입력하여 입찰공고번호, 입찰공고차수, 입찰공고분류, 게시일시, 참조번호, 공고명, 공고구분명, 공고기관명, 입찰방식명, 계약방법명, 낙찰방법명, 재입찰구분명, 입찰자격명, 담당자명, 담당자전화번호, 담당자이메일, 입찰개시일시, 입찰마감일시, 개찰일시, 개찰장소, 입찰보증서접수마감일시, 현장설명일시, 현장설명장소, 부가가치세포함여부명, 기준금액사용여부, 기준금액공개여부, 기준금액, 배정예산금액, 기준금액설명, 지역제한구분명, 용역상세목록, 공고서URL, 아파트정보, 등록일시 등의 누리장터시스템에 등록된 용역 입찰공고 정보 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분, 1:등록일시 , 2.공고게시일시, 3. 개찰일시, 4.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201605010000",
+     "desc": "검색하고자하는 조회시작일시 \"YYYYMMDDHHMM\",(조회구분 1,2,3 선택시 필수)"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201605052359",
+     "desc": "검색하고자하는 조회종료일시 \"YYYYMMDDHHMM\",(조회구분 1,2,3 선택시 필수)"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "required": false,
+     "sample": "20160430911",
+     "desc": "검색하고자 하는 입찰공고번호 (조회구분 '4' 선택시 필수)"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고번호"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수"
+    },
+    {
+     "nameEn": "bidNtceClsfc",
+     "nameKo": "입찰공고분류",
+     "size": "30",
+     "desc": "누리장터 입찰공고의 공고분류 (물품, 공사, 용역, 기타)"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "입찰공고 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "desc": "입찰공고 등과 관련하여 참조가 되는 관리번호(사용자 문서번호) 나라장터 중앙조달 물품/일반용역/외자 : 구매관리번호, 조달요청번호 나라장터 중앙조달 공사/기술용역 : 관리번호 나라장터 자체조달 : 사용자 문서번호(연계된 문서의 번호) 자체전자조달시스템 : 해당기관에서 관리하는 사용자 문서번호"
+    },
+    {
+     "nameEn": "ntceNm",
+     "nameKo": "공고명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고명"
+    },
+    {
+     "nameEn": "ntceDivNm",
+     "nameKo": "공고구분명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고구분명[긴급공고,재공고,정정공고,취소공고]등으로 표기"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 공고기관명으로 민간발주자기관명"
+    },
+    {
+     "nameEn": "bidMethdNm",
+     "nameKo": "입찰방식명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 입찰방식명[수기입찰, 전자입찰, 역경매]"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 계약방식명 [일반경쟁, 제한경쟁,지명경쟁]"
+    },
+    {
+     "nameEn": "sucsfbidMthdNm",
+     "nameKo": "낙찰방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 낙찰방식명 [최저가, 최고가, 일적격심사최저가, 적격심사최고가]"
+    },
+    {
+     "nameEn": "rbidDivNm",
+     "nameKo": "재입찰구분명",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 재입찰 허용여부명"
+    },
+    {
+     "nameEn": "bidQlfctNm",
+     "nameKo": "입찰자격명",
+     "size": "20",
+     "desc": "\"공고규격서 참조\"로 고정되어 있음"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "35",
+     "desc": "누리장터 입찰공고의 담당자명"
+    },
+    {
+     "nameEn": "ofclTelNo",
+     "nameKo": "담당자전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 담당자 전화번호"
+    },
+    {
+     "nameEn": "ofclEmail",
+     "nameKo": "담당자이메일",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 담당자 메일주소"
+    },
+    {
+     "nameEn": "bidBeginDt",
+     "nameKo": "입찰개시일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰개시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "bidClseDt",
+     "nameKo": "입찰마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 개찰(입찰)일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengPlce",
+     "nameKo": "개찰장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 개찰장소"
+    },
+    {
+     "nameEn": "bidWgrnteeRcptClseDt",
+     "nameKo": "입찰보증서접수마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 접수마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptDt",
+     "nameKo": "현장설명일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 현장설명일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptPlce",
+     "nameKo": "현장설명장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 현장설명장소"
+    },
+    {
+     "nameEn": "vatInclsnYnNm",
+     "nameKo": "부가가치세포함여부명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 부가가치세여부명"
+    },
+    {
+     "nameEn": "refAmtUseYn",
+     "nameKo": "기준금액사용여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격사용여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmtOpenYn",
+     "nameKo": "기준금액공개여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격공개여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmt",
+     "nameKo": "기준금액",
+     "size": "25",
+     "desc": "투찰의 상한금액(원화,원)"
+    },
+    {
+     "nameEn": "asignBdgtAmt",
+     "nameKo": "배정예산금액",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 배정예산금액(원화,원)"
+    },
+    {
+     "nameEn": "refAmtDscrpt",
+     "nameKo": "기준금액설명",
+     "size": "200",
+     "desc": "고정된 안내 문구"
+    },
+    {
+     "nameEn": "rgnLmtDivNm",
+     "nameKo": "지역제한구분명",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 투찰제한내역으로 투찰제한이나 공고서 참조로 표기"
+    },
+    {
+     "nameEn": "dtchacOpenDt",
+     "nameKo": "역경매공개일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 공개일시, “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "dtchacBgnPrce",
+     "nameKo": "역경매시작가격",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 시작가격을 보여줌"
+    },
+    {
+     "nameEn": "dtchacRmrk",
+     "nameKo": "역경매비고",
+     "size": "1000",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 비고내용"
+    },
+    {
+     "nameEn": "bssAmtDtlScrnUrl",
+     "nameKo": "기초금액상세화면URL",
+     "size": "500",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 기초금액상세화면URL"
+    },
+    {
+     "nameEn": "dtchacMinRdctnRt",
+     "nameKo": "역경매최소인하비율",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 최소인하비율을 보여줌"
+    },
+    {
+     "nameEn": "dtchacBidprcLmtNum",
+     "nameKo": "역경매투찰제한횟수",
+     "size": "100",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 투찰제한횟수을 보여줌(회), 투찰제한회수가 0일 경우는 “제한없음”"
+    },
+    {
+     "nameEn": "dtchacAutoEtTm",
+     "nameKo": "역경매자동연장시각",
+     "size": "20",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 자동연장시간(분), 자동연장시각:입찰마감일시 10분 전에 투찰이 이루어질 경우 입찰서마감일시를 해당 분만큼 자동연장합니다. 자동연장시각이 0분 일 경우, 입찰서마감일시 연장이 없는 경우입니다. 자동연장기능은 개찰일시 30분이전까지만 유효합니다. 즉, 입찰서마감일시의 자동연장은 개찰일시 30분 전까지만 최대 연장됩니다"
+    },
+    {
+     "nameEn": "dtchacBeforeBidDocClseDt",
+     "nameKo": "역경매이전입찰서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 이전입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "dtchacEtBidDocClseDt",
+     "nameKo": "역경매연장입찰문서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 연장입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "servcDtlList",
+     "nameKo": "용역상세목록",
+     "size": "4000",
+     "desc": "용역상세목록 [순번^용역명^용역현장명^완수기한일자], [순번^용역명^용역현장명^완수기한일자]"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl1",
+     "nameKo": "공고규격서URL1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl2",
+     "nameKo": "공고규격서URL2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl3",
+     "nameKo": "공고규격서URL3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl4",
+     "nameKo": "공고규격서URL4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl5",
+     "nameKo": "공고규격서URL5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl6",
+     "nameKo": "공고규격서URL6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl7",
+     "nameKo": "공고규격서URL7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl8",
+     "nameKo": "공고규격서URL8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl9",
+     "nameKo": "공고규격서URL9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl10",
+     "nameKo": "공고규격서URL10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocNm1",
+     "nameKo": "공고규격서명1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm2",
+     "nameKo": "공고규격서명2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm3",
+     "nameKo": "공고규격서명3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm4",
+     "nameKo": "공고규격서명4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm5",
+     "nameKo": "공고규격서명5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm6",
+     "nameKo": "공고규격서명6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm7",
+     "nameKo": "공고규격서명7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm8",
+     "nameKo": "공고규격서명8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm9",
+     "nameKo": "공고규격서명9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm10",
+     "nameKo": "공고규격서명10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "aptHsmpNm",
+     "nameKo": "아파트단지명",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 민간발주기관명 (누리장터 화면에는 단지명)"
+    },
+    {
+     "nameEn": "aptCeoAdrs",
+     "nameKo": "아파트대표자주소",
+     "size": "400",
+     "desc": "누리장터 입찰공고 공고기관 아파트 주소"
+    },
+    {
+     "nameEn": "aptMngOfficeTelNo",
+     "nameKo": "아파트관리사무소전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고 공고기관 아파트 전화번호"
+    },
+    {
+     "nameEn": "aptHmpgUrl",
+     "nameKo": "아파트홈페이지URL",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 홈페이지URL"
+    },
+    {
+     "nameEn": "aptTotar",
+     "nameKo": "아파트연면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 연면적(㎡)"
+    },
+    {
+     "nameEn": "aptMngcstLevyArea",
+     "nameKo": "아파트관리비부과면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 관리비부과면적 (㎡)"
+    },
+    {
+     "nameEn": "aptHshldNum",
+     "nameKo": "아파트세대수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 세대수"
+    },
+    {
+     "nameEn": "aptCmplNum",
+     "nameKo": "아파트동수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 동수"
+    },
+    {
+     "nameEn": "aptHeatMethdNm",
+     "nameKo": "아파트난방방식명",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 난방방식"
+    },
+    {
+     "nameEn": "aptSubactLrgeNdCmpnintFclty",
+     "nameKo": "아파트부대및복리시설",
+     "size": "4000",
+     "desc": "누리장터 입찰공고 공고기관 아파트 부대 및 복리시설 등"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "공고의 등록일시 “YYYY-MM-DD HH:MM:SS”"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PrvtBidNtceService/getPrvtBidPblancListInfoServc?inqryDiv=1&inqryBgnDt=201606010000&inqryEndDt=201606052359&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrvtBidPblancListInfoThng",
+   "opNameKo": "민간입찰공고정보에 대한 물품조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 조회구분, 등록일범위, 공고일범위, 개찰일범위, 입찰공고번호를 입력하여 입찰공고번호, 입찰공고차수, 입찰공고분류, 게시일시, 참조번호, 공고명, 공고구분명, 공고기관명, 입찰방식명, 계약방법명, 낙찰방법명, 재입찰구분명, 입찰자격명, 담당자명, 담당자전화번호, 담당자이메일, 입찰개시일시, 입찰마감일시, 개찰일시, 개찰장소, 입찰보증서접수마감일시, 현장설명일시, 현장설명장소, 부가가치세포함여부명, 기준금액사용여부, 기준금액공개여부, 기준금액, 배정예산금액, 기준금액설명, 지역제한구분명, 물품목록상세, 공고서URL, 아파트정보, 등록일시 등의 누리장터시스템에 등록된 물품 입찰공고 정보 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:등록일시 , 2.공고게시일시, 3. 개찰일시, 4.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201605010000",
+     "desc": "검색하고자하는 조회시작일시 \"YYYYMMDDHHMM\" (조회구분 1,2,3 선택시 필수)"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201605152359",
+     "desc": "검색하고자하는 조회종료일시 \"YYYYMMDDHHMM\" (조회구분 1,2,3 선택시 필수)"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "required": false,
+     "sample": "20160506642",
+     "desc": "검색하고자 하는 입찰공고번호 (조회구분 '4' 선택시 필수)"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고번호"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수"
+    },
+    {
+     "nameEn": "bidNtceClsfc",
+     "nameKo": "입찰공고분류",
+     "size": "30",
+     "desc": "누리장터 입찰공고의 공고분류 (물품,공사,용역,기타)"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "입찰공고 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "desc": "입찰공고 등과 관련하여 참조가 되는 관리번호(사용자 문서번호) 나라장터 중앙조달 물품/일반용역/외자 : 구매관리번호, 조달요청번호 나라장터 중앙조달 공사/기술용역 : 관리번호 나라장터 자체조달 : 사용자 문서번호(연계된 문서의 번호) 자체전자조달시스템 : 해당기관에서 관리하는 사용자 문서번호"
+    },
+    {
+     "nameEn": "ntceNm",
+     "nameKo": "공고명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고명"
+    },
+    {
+     "nameEn": "ntceDivNm",
+     "nameKo": "공고구분명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고구분명[긴급공고,재공고,정정공고,취소공고]등으로 표기"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 공고기관명으로 민간발주자기관명"
+    },
+    {
+     "nameEn": "bidMethdNm",
+     "nameKo": "입찰방식명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 입찰방식명[수기입찰, 전자입찰, 역경매]"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 계약방식명 [일반경쟁, 제한경쟁, 지명경쟁]"
+    },
+    {
+     "nameEn": "sucsfbidMthdNm",
+     "nameKo": "낙찰방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 낙찰방식명 [최저가, 최고가, 일적격심사최저가, 적격심사최고가]"
+    },
+    {
+     "nameEn": "rbidDivNm",
+     "nameKo": "재입찰구분명",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 재입찰 허용여부명"
+    },
+    {
+     "nameEn": "bidQlfctNm",
+     "nameKo": "입찰자격명",
+     "size": "20",
+     "desc": "\"공고규격서 참조\"로 고정되어 있음"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "35",
+     "desc": "누리장터 입찰공고의 담당자명"
+    },
+    {
+     "nameEn": "ofclTelNo",
+     "nameKo": "담당자전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 담당자 전화번호"
+    },
+    {
+     "nameEn": "ofclEmail",
+     "nameKo": "담당자이메일",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 담당자 메일주소"
+    },
+    {
+     "nameEn": "bidBeginDt",
+     "nameKo": "입찰개시일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰개시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "bidClseDt",
+     "nameKo": "입찰마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 개찰(입찰)일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengPlce",
+     "nameKo": "개찰장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 개찰장소"
+    },
+    {
+     "nameEn": "bidWgrnteeRcptClseDt",
+     "nameKo": "입찰보증서접수마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 접수마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptDt",
+     "nameKo": "현장설명일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 현장설명일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptPlce",
+     "nameKo": "현장설명장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 현장설명장소"
+    },
+    {
+     "nameEn": "vatInclsnYnNm",
+     "nameKo": "부가가치세포함여부명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 부가가치세여부명"
+    },
+    {
+     "nameEn": "refAmtUseYn",
+     "nameKo": "기준금액사용여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격사용여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmtOpenYn",
+     "nameKo": "기준금액공개여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격공개여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmt",
+     "nameKo": "기준금액",
+     "size": "25",
+     "desc": "투찰의 상한금액(원화,원)"
+    },
+    {
+     "nameEn": "asignBdgtAmt",
+     "nameKo": "배정예산금액",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 배정예산금액(원화,원)"
+    },
+    {
+     "nameEn": "refAmtDscrpt",
+     "nameKo": "기준금액설명",
+     "size": "200",
+     "desc": "고정된 안내 문구"
+    },
+    {
+     "nameEn": "rgnLmtDivNm",
+     "nameKo": "지역제한구분명",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 투찰제한내역으로 투찰제한이나 공고서 참조로 표기"
+    },
+    {
+     "nameEn": "dtchacOpenDt",
+     "nameKo": "역경매공개일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 공개일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "dtchacBgnPrce",
+     "nameKo": "역경매시작가격",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 시작가격을 보여줌"
+    },
+    {
+     "nameEn": "dtchacRmrk",
+     "nameKo": "역경매비고",
+     "size": "1000",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 비고내용"
+    },
+    {
+     "nameEn": "bssAmtDtlScrnUrl",
+     "nameKo": "기초금액상세화면URL",
+     "size": "500",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 기초금액상세화면URL"
+    },
+    {
+     "nameEn": "dtchacMinRdctnRt",
+     "nameKo": "역경매최소인하비율",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 최소인하비율을 보여줌"
+    },
+    {
+     "nameEn": "dtchacBidprcLmtNum",
+     "nameKo": "역경매투찰제한횟수",
+     "size": "100",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 투찰제한횟수을 보여줌(회) 투찰제한회수가 0일 경우는 “제한없음”"
+    },
+    {
+     "nameEn": "dtchacAutoEtTm",
+     "nameKo": "역경매자동연장시각",
+     "size": "20",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 자동연장시간(분) 자동연장시각:입찰마감일시 10분 전에 투찰이 이루어질 경우 입찰서마감일시를 해당 분만큼 자동연장합니다. 자동연장시각이 0 분 일 경우,입찰서마감일시 연장이 없는 경우입니다. 자동연장기능은 개찰일시 30분이전까지만 유효합니다.즉, 입찰서마감일시의 자동연장은 개찰일시 30분 전까지만 최대 연장됩니다"
+    },
+    {
+     "nameEn": "dtchacBeforeBidDocClseDt",
+     "nameKo": "역경매이전입찰서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 이전입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "dtchacEtBidDocClseDt",
+     "nameKo": "역경매연장입찰문서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 연장입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "prdctDtlList",
+     "nameKo": "물품상세목록",
+     "size": "4000",
+     "desc": "물품상세목록 [순번^물품분류명(품명)^수량^납품기한일자^납품장소명^인도조건], [순번^물품분류명(품명)^수량^납품기한일자^납품장소명^인도조건]"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl1",
+     "nameKo": "공고규격서URL1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl2",
+     "nameKo": "공고규격서URL2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl3",
+     "nameKo": "공고규격서URL3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl4",
+     "nameKo": "공고규격서URL4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl5",
+     "nameKo": "공고규격서URL5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl6",
+     "nameKo": "공고규격서URL6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl7",
+     "nameKo": "공고규격서URL7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl8",
+     "nameKo": "공고규격서URL8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl9",
+     "nameKo": "공고규격서URL9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl10",
+     "nameKo": "공고규격서URL10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocNm1",
+     "nameKo": "공고규격서명1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm2",
+     "nameKo": "공고규격서명2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm3",
+     "nameKo": "공고규격서명3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm4",
+     "nameKo": "공고규격서명4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm5",
+     "nameKo": "공고규격서명5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm6",
+     "nameKo": "공고규격서명6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm7",
+     "nameKo": "공고규격서명7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm8",
+     "nameKo": "공고규격서명8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm9",
+     "nameKo": "공고규격서명9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm10",
+     "nameKo": "공고규격서명10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "aptHsmpNm",
+     "nameKo": "아파트단지명",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 민간발주기관명 (누리장터 화면에는 단지명)"
+    },
+    {
+     "nameEn": "aptCeoAdrs",
+     "nameKo": "아파트대표자주소",
+     "size": "400",
+     "desc": "누리장터 입찰공고 공고기관 아파트 주소"
+    },
+    {
+     "nameEn": "aptMngOfficeTelNo",
+     "nameKo": "아파트관리사무소전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고 공고기관 아파트 연락처"
+    },
+    {
+     "nameEn": "aptHmpgUrl",
+     "nameKo": "아파트홈페이지URL",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 홈페이지URL"
+    },
+    {
+     "nameEn": "aptTotar",
+     "nameKo": "아파트연면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 연면적(㎡)"
+    },
+    {
+     "nameEn": "aptMngcstLevyArea",
+     "nameKo": "아파트관리비부과면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 관리비부과면적 (㎡)"
+    },
+    {
+     "nameEn": "aptHshldNum",
+     "nameKo": "아파트세대수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 세대수"
+    },
+    {
+     "nameEn": "aptCmplNum",
+     "nameKo": "아파트동수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 세대수"
+    },
+    {
+     "nameEn": "aptHeatMethdNm",
+     "nameKo": "아파트난방방식명",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 난방방식"
+    },
+    {
+     "nameEn": "aptSubactLrgeNdCmpnintFclty",
+     "nameKo": "아파트부대및복리시설",
+     "size": "4000",
+     "desc": "누리장터 입찰공고 공고기관 아파트 부대 및 복리시설 등"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "공고의 등록일시 “YYYY-MM-DD HH:MM:SS”"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PrvtBidNtceService/getPrvtBidPblancListInfoThng?inqryDiv=1&inqryBgnDt=201606010000&inqryEndDt=201606052359&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrvtBidPblancListInfoCnstwk",
+   "opNameKo": "민간입찰공고정보에 대한 공사조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 조회구분, 등록일범위, 공고일범위, 개찰일범위, 입찰공고번호를 입력하여 입찰공고번호, 입찰공고차수, 입찰공고분류, 게시일시, 참조번호, 공고명, 공고구분명, 공고기관명, 입찰방식명, 계약방법명, 낙찰방법명, 재입찰구분명, 입찰자격명, 담당자명, 담당자전화번호, 담당자이메일, 입찰개시일시, 입찰마감일시, 개찰일시, 개찰장소, 입찰보증서접수마감일시, 현장설명일시, 현장설명장소, 부가가치세포함여부명, 기준금액사용여부, 기준금액공개여부, 기준금액, 배정예산금액, 기준금액설명, 지역제한구분명, 공사상세목록, 공고서URL, 아파트정보, 등록일시 등의 누리장터시스템에 등록된 공사 입찰공고 정보 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:등록일시 , 2.공고게시일시, 3. 개찰일시, 4.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202410010000",
+     "desc": "검색하고자하는 조회시작일시 \"YYYYMMDDHHMM\" (조회구분 1,2,3 선택시 필수)"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202410302359",
+     "desc": "검색하고자하는 조회종료일시 \"YYYYMMDDHHMM\" (조회구분 1,2,3 선택시 필수)"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "required": false,
+     "sample": "20160430911",
+     "desc": "검색하고자 하는 입찰공고번호 (조회구분 '4' 선택시 필수)"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고번호"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수"
+    },
+    {
+     "nameEn": "bidNtceClsfc",
+     "nameKo": "입찰공고분류",
+     "size": "30",
+     "desc": "누리장터 입찰공고의 공고분류 (물품,공사,용역,기타)"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "입찰공고 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "desc": "입찰공고 등과 관련하여 참조가 되는 관리번호(사용자 문서번호) 나라장터 중앙조달 물품/일반용역/외자 : 구매관리번호, 조달요청번호 나라장터 중앙조달 공사/기술용역 : 관리번호 나라장터 자체조달 : 사용자 문서번호(연계된 문서의 번호) 자체전자조달시스템 : 해당기관에서 관리하는 사용자 문서번호"
+    },
+    {
+     "nameEn": "ntceNm",
+     "nameKo": "공고명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고명"
+    },
+    {
+     "nameEn": "ntceDivNm",
+     "nameKo": "공고구분명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고구분명[긴급공고,재공고,정정공고,취소공고]등으로 표기"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 공고기관명으로 민간발주자기관명"
+    },
+    {
+     "nameEn": "bidMethdNm",
+     "nameKo": "입찰방식명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 입찰방식명[수기입찰, 전자입찰, 역경매]"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 계약방식명 [일반경쟁, 제한경쟁, 지명경쟁]"
+    },
+    {
+     "nameEn": "sucsfbidMthdNm",
+     "nameKo": "낙찰방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 낙찰방식명 [최저가, 최고가, 일적격심사최저가, 적격심사최고가]"
+    },
+    {
+     "nameEn": "rbidDivNm",
+     "nameKo": "재입찰구분명",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 재입찰 허용여부명"
+    },
+    {
+     "nameEn": "bidQlfctNm",
+     "nameKo": "입찰자격명",
+     "size": "20",
+     "desc": "\"공고규격서 참조\"로 고정되어 있음"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "35",
+     "desc": "누리장터 입찰공고의 담당자명"
+    },
+    {
+     "nameEn": "ofclTelNo",
+     "nameKo": "담당자전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 담당자 전화번호"
+    },
+    {
+     "nameEn": "ofclEmail",
+     "nameKo": "담당자이메일",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 담당자 메일주소"
+    },
+    {
+     "nameEn": "bidBeginDt",
+     "nameKo": "입찰개시일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰개시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "bidClseDt",
+     "nameKo": "입찰마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 개찰(입찰)일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengPlce",
+     "nameKo": "개찰장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 개찰장소"
+    },
+    {
+     "nameEn": "bidWgrnteeRcptClseDt",
+     "nameKo": "입찰보증서접수마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 접수마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptDt",
+     "nameKo": "현장설명일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 현장설명일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptPlce",
+     "nameKo": "현장설명장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 현장설명장소"
+    },
+    {
+     "nameEn": "vatInclsnYnNm",
+     "nameKo": "부가가치세포함여부명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 부가가치세여부명"
+    },
+    {
+     "nameEn": "refAmtUseYn",
+     "nameKo": "기준금액사용여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격사용여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmtOpenYn",
+     "nameKo": "기준금액공개여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격공개여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmt",
+     "nameKo": "기준금액",
+     "size": "25",
+     "desc": "투찰의 상한금액 (원화,원)"
+    },
+    {
+     "nameEn": "asignBdgtAmt",
+     "nameKo": "배정예산금액",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 배정예산금액 (원화,원)"
+    },
+    {
+     "nameEn": "refAmtDscrpt",
+     "nameKo": "기준금액설명",
+     "size": "200",
+     "desc": "고정된 안내 문구"
+    },
+    {
+     "nameEn": "rgnLmtDivNm",
+     "nameKo": "지역제한구분명",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 투찰제한내역으로 투찰제한이나 공고서 참조로 표기"
+    },
+    {
+     "nameEn": "dtchacOpenDt",
+     "nameKo": "역경매공개일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 공개일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "dtchacBgnPrce",
+     "nameKo": "역경매시작가격",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 시작가격을 보여줌"
+    },
+    {
+     "nameEn": "dtchacRmrk",
+     "nameKo": "역경매비고",
+     "size": "1000",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 비고내용"
+    },
+    {
+     "nameEn": "bssAmtDtlScrnUrl",
+     "nameKo": "기초금액상세화면URL",
+     "size": "500",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 기초금액상세화면URL"
+    },
+    {
+     "nameEn": "dtchacMinRdctnRt",
+     "nameKo": "역경매최소인하비율",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 최소인하비율을 보여줌"
+    },
+    {
+     "nameEn": "dtchacBidprcLmtNum",
+     "nameKo": "역경매투찰제한횟수",
+     "size": "100",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 투찰제한횟수을 보여줌(회) 투찰제한회수가 0일 경우는 “제한없음”"
+    },
+    {
+     "nameEn": "dtchacAutoEtTm",
+     "nameKo": "역경매자동연장시각",
+     "size": "20",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 자동연장시간(분) 자동연장시각:입찰마감일시 10분 전에 투찰이 이루어질 경우 입찰서마감일시를 해당 분만큼 자동연장합니다. 자동연장시각이 0 분 일 경우,입찰서마감일시 연장이 없는 경우입니다. 자동연장기능은 개찰일시 30분이전까지만 유효합니다.즉, 입찰서마감일시의 자동연장은 개찰일시 30분 전까지만 최대 연장됩니다"
+    },
+    {
+     "nameEn": "dtchacBeforeBidDocClseDt",
+     "nameKo": "역경매이전입찰서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 이전입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "dtchacEtBidDocClseDt",
+     "nameKo": "역경매연장입찰문서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 연장입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "cnstwkDtlList",
+     "nameKo": "공사상세목록",
+     "size": "4000",
+     "desc": "공사상세목록 [순번^공사명^공사현장명^준공기한일자], [순번^공사명^공사현장명^준공기한일자]"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl1",
+     "nameKo": "공고규격서URL1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl2",
+     "nameKo": "공고규격서URL2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl3",
+     "nameKo": "공고규격서URL3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl4",
+     "nameKo": "공고규격서URL4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl5",
+     "nameKo": "공고규격서URL5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl6",
+     "nameKo": "공고규격서URL6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl7",
+     "nameKo": "공고규격서URL7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl8",
+     "nameKo": "공고규격서URL8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl9",
+     "nameKo": "공고규격서URL9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl10",
+     "nameKo": "공고규격서URL10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocNm1",
+     "nameKo": "공고규격서명1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm2",
+     "nameKo": "공고규격서명2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm3",
+     "nameKo": "공고규격서명3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm4",
+     "nameKo": "공고규격서명4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm5",
+     "nameKo": "공고규격서명5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm6",
+     "nameKo": "공고규격서명6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm7",
+     "nameKo": "공고규격서명7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm8",
+     "nameKo": "공고규격서명8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm9",
+     "nameKo": "공고규격서명9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm10",
+     "nameKo": "공고규격서명10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "aptHsmpNm",
+     "nameKo": "아파트단지명",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 민간발주기관명 (누리장터 화면에는 단지명)"
+    },
+    {
+     "nameEn": "aptCeoAdrs",
+     "nameKo": "아파트대표자주소",
+     "size": "400",
+     "desc": "누리장터 입찰공고 공고기관 아파트 주소"
+    },
+    {
+     "nameEn": "aptMngOfficeTelNo",
+     "nameKo": "아파트관리사무소전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고 공고기관 아파트 연락처"
+    },
+    {
+     "nameEn": "aptHmpgUrl",
+     "nameKo": "아파트홈페이지URL",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 홈페이지URL"
+    },
+    {
+     "nameEn": "aptTotar",
+     "nameKo": "아파트연면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 연면적(㎡)"
+    },
+    {
+     "nameEn": "aptMngcstLevyArea",
+     "nameKo": "아파트관리비부과면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 관리비부과면적 (㎡)"
+    },
+    {
+     "nameEn": "aptHshldNum",
+     "nameKo": "아파트세대수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 세대수"
+    },
+    {
+     "nameEn": "aptCmplNum",
+     "nameKo": "아파트동수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 동수"
+    },
+    {
+     "nameEn": "aptHeatMethdNm",
+     "nameKo": "아파트난방방식",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 난방방식"
+    },
+    {
+     "nameEn": "aptSubactLrgeNdCmpnintFclty",
+     "nameKo": "아파트부대및복리시설",
+     "size": "4000",
+     "desc": "누리장터 입찰공고 공고기관 아파트 부대 및 복리시설 등"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "공고의 등록일시 “YYYY-MM-DD HH:MM:SS”"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PrvtBidNtceService/getPrvtBidPblancListInfoCnstwk?inqryDiv=1&inqryBgnDt=201606010000&inqryEndDt=201606052359&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrvtBidPblancListInfoEtc",
+   "opNameKo": "민간입찰공고정보에 대한 기타조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 조회구분, 등록일범위, 공고일범위, 개찰일범위, 입찰공고번호를 입력하여 입찰공고번호, 입찰공고차수, 입찰공고분류, 게시일시, 참조번호, 공고명, 공고구분명, 공고기관명, 입찰방식명, 계약방법명, 낙찰방법명, 재입찰구분명, 입찰자격명, 담당자명, 담당자전화번호, 담당자이메일, 입찰개시일시, 입찰마감일시, 개찰일시, 개찰장소, 입찰보증서접수마감일시, 현장설명일시, 현장설명장소, 부가가치세포함여부명, 기준금액사용여부, 기준금액공개여부, 기준금액, 배정예산금액, 기준금액설명, 지역제한구분명, 공고서URL, 아파트정보, 등록일시 등의 누리장터시스템에 등록된 기타 입찰공고 정보 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:등록일시 , 2.공고게시일시, 3. 개찰일시, 4.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201605010000",
+     "desc": "검색하고자하는 조회시작일시 \"YYYYMMDDHHMM\" (조회구분 1,2,3 선택시 필수)"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201605052359",
+     "desc": "검색하고자하는 조회종료일시 \"YYYYMMDDHHMM\" (조회구분 1,2,3 선택시 필수)"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "required": false,
+     "sample": "20160430911",
+     "desc": "검색하고자 하는 입찰공고번호 (조회구분 '4' 선택시 필수)"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고번호"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수"
+    },
+    {
+     "nameEn": "bidNtceClsfc",
+     "nameKo": "입찰공고분류",
+     "size": "30",
+     "desc": "누리장터 입찰공고의 공고분류 (물품,공사,용역,기타)"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "입찰공고 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "desc": "입찰공고 등과 관련하여 참조가 되는 관리번호(사용자 문서번호) 나라장터 중앙조달 물품/일반용역/외자 : 구매관리번호, 조달요청번호 나라장터 중앙조달 공사/기술용역 : 관리번호 나라장터 자체조달 : 사용자 문서번호(연계된 문서의 번호) 자체전자조달시스템 : 해당기관에서 관리하는 사용자 문서번호"
+    },
+    {
+     "nameEn": "ntceNm",
+     "nameKo": "공고명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고명"
+    },
+    {
+     "nameEn": "ntceDivNm",
+     "nameKo": "공고구분명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고구분명[긴급공고,재공고,정정공고,취소공고]등으로 표기"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 공고기관명으로 민간발주자기관명"
+    },
+    {
+     "nameEn": "bidMethdNm",
+     "nameKo": "입찰방식명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 입찰방식명[수기입찰, 전자입찰, 역경매]"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 계약방식명 [일반경쟁, 제한경쟁, 지명경쟁]"
+    },
+    {
+     "nameEn": "sucsfbidMthdNm",
+     "nameKo": "낙찰방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 낙찰방식명 [최저가, 최고가, 일적격심사최저가, 적격심사최고가]"
+    },
+    {
+     "nameEn": "rbidDivNm",
+     "nameKo": "재입찰구분명",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 재입찰 허용여부명"
+    },
+    {
+     "nameEn": "bidQlfctNm",
+     "nameKo": "입찰자격명",
+     "size": "20",
+     "desc": "\"공고규격서 참조\"로 고정되어 있음"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "35",
+     "desc": "누리장터 입찰공고의 담당자명"
+    },
+    {
+     "nameEn": "ofclTelNo",
+     "nameKo": "담당자전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 담당자 전화번호"
+    },
+    {
+     "nameEn": "ofclEmail",
+     "nameKo": "담당자이메일",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 담당자 메일주소"
+    },
+    {
+     "nameEn": "bidBeginDt",
+     "nameKo": "입찰개시일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰개시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "bidClseDt",
+     "nameKo": "입찰마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 개찰(입찰)일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengPlce",
+     "nameKo": "개찰장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 개찰장소"
+    },
+    {
+     "nameEn": "bidWgrnteeRcptClseDt",
+     "nameKo": "입찰보증서접수마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 접수마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptDt",
+     "nameKo": "현장설명일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 현장설명일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptPlce",
+     "nameKo": "현장설명장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 현장설명장소"
+    },
+    {
+     "nameEn": "vatInclsnYnNm",
+     "nameKo": "부가가치세포함여부명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 부가가치세여부명"
+    },
+    {
+     "nameEn": "refAmtUseYn",
+     "nameKo": "기준금액사용여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격사용여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmtOpenYn",
+     "nameKo": "기준금액공개여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격공개여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmt",
+     "nameKo": "기준금액",
+     "size": "25",
+     "desc": "투찰의 상한금액 (원화,원)"
+    },
+    {
+     "nameEn": "asignBdgtAmt",
+     "nameKo": "배정예산금액",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 배정예산금액"
+    },
+    {
+     "nameEn": "refAmtDscrpt",
+     "nameKo": "기준금액설명",
+     "size": "200",
+     "desc": "고정된 안내 문구"
+    },
+    {
+     "nameEn": "rgnLmtDivNm",
+     "nameKo": "지역제한구분명",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 투찰제한내역"
+    },
+    {
+     "nameEn": "dtchacOpenDt",
+     "nameKo": "역경매공개일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 공개일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "dtchacBgnPrce",
+     "nameKo": "역경매시작가격",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우누리장터 입찰공고의 시작가격을 보여줌"
+    },
+    {
+     "nameEn": "dtchacRmrk",
+     "nameKo": "역경매비고",
+     "size": "1000",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 비고내용"
+    },
+    {
+     "nameEn": "bssAmtDtlScrnUrl",
+     "nameKo": "기초금액상세화면URL",
+     "size": "500",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 기초금액상세화면URL"
+    },
+    {
+     "nameEn": "dtchacMinRdctnRt",
+     "nameKo": "역경매최소인하비율",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 최소인하비율을 보여줌"
+    },
+    {
+     "nameEn": "dtchacBidprcLmtNum",
+     "nameKo": "역경매투찰제한횟수",
+     "size": "100",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 투찰제한횟수을 보여줌(회) 투찰제한회수가 0일 경우는 “제한없음”"
+    },
+    {
+     "nameEn": "dtchacAutoEtTm",
+     "nameKo": "역경매자동연장시각",
+     "size": "20",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 자동연장시간(분) 자동연장시각:입찰마감일시 10분 전에 투찰이 이루어질 경우 입찰서마감일시를 해당 분만큼 자동연장합니다. 자동연장시각이 0 분 일 경우,입찰서마감일시 연장이 없는 경우입니다. 자동연장기능은 개찰일시 30분이전까지만 유효합니다.즉, 입찰서마감일시의 자동연장은 개찰일시 30분 전까지만 최대 연장됩니다"
+    },
+    {
+     "nameEn": "dtchacBeforeBidDocClseDt",
+     "nameKo": "역경매이전입찰서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 이전입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "dtchacEtBidDocClseDt",
+     "nameKo": "역경매연장입찰문서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 연장입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "ntceSpecDocUrl1",
+     "nameKo": "공고규격서URL1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl2",
+     "nameKo": "공고규격서URL2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl3",
+     "nameKo": "공고규격서URL3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl4",
+     "nameKo": "공고규격서URL4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl5",
+     "nameKo": "공고규격서URL5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl6",
+     "nameKo": "공고규격서URL6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl7",
+     "nameKo": "공고규격서URL7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl8",
+     "nameKo": "공고규격서URL8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl9",
+     "nameKo": "공고규격서URL9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl10",
+     "nameKo": "공고규격서URL10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocNm1",
+     "nameKo": "공고규격서명1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm2",
+     "nameKo": "공고규격서명2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm3",
+     "nameKo": "공고규격서명3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm4",
+     "nameKo": "공고규격서명4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm5",
+     "nameKo": "공고규격서명5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm6",
+     "nameKo": "공고규격서명6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm7",
+     "nameKo": "공고규격서명7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm8",
+     "nameKo": "공고규격서명8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm9",
+     "nameKo": "공고규격서명9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm10",
+     "nameKo": "공고규격서명10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "aptHsmpNm",
+     "nameKo": "아파트단지명",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 민간발주기관명 (누리장터 화면에는 단지명)"
+    },
+    {
+     "nameEn": "aptCeoAdrs",
+     "nameKo": "아파트대표자주소",
+     "size": "400",
+     "desc": "누리장터 입찰공고 공고기관 아파트 주소"
+    },
+    {
+     "nameEn": "aptMngOfficeTelNo",
+     "nameKo": "아파트관리사무소전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고 공고기관 아파트 연락처"
+    },
+    {
+     "nameEn": "aptHmpgUrl",
+     "nameKo": "아파트홈페이지URL",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 홈페이지URL"
+    },
+    {
+     "nameEn": "aptTotar",
+     "nameKo": "아파트연면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 연면적(㎡)"
+    },
+    {
+     "nameEn": "aptMngcstLevyArea",
+     "nameKo": "아파트관리비부과면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 관리비부과면적 (㎡)"
+    },
+    {
+     "nameEn": "aptHshldNum",
+     "nameKo": "아파트세대수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 세대수"
+    },
+    {
+     "nameEn": "aptCmplNum",
+     "nameKo": "아파트동수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 동수"
+    },
+    {
+     "nameEn": "aptHeatMethdNm",
+     "nameKo": "아파트난방방식",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 난방방식"
+    },
+    {
+     "nameEn": "aptSubactLrgeNdCmpnintFclty",
+     "nameKo": "아파트부대및복리시설",
+     "size": "4000",
+     "desc": "누리장터 입찰공고 공고기관 아파트 부대 및 복리시설 등"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "공고의 등록일시 “YYYY-MM-DD HH:MM:SS”"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PrvtBidNtceService/getPrvtBidPblancListInfoEtc?inqryDiv=1&inqryBgnDt=201606010000&inqryEndDt=201606052359&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrvtBidPblancListInfoLicenseLimit",
+   "opNameKo": "민간입찰공고정보에 대한 면허제한정보조회",
+   "opType": "조회(목록)",
+   "description": "검색조건에 등록일시범위(통합입찰공고)와 입찰공고번호를 입력하여 입찰공고번호, 입찰공고차수, 제한그룹번호, 제한순번, 면허제한명, 허용업종목록, 등록일시를 포함한 면허제한정보 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:등록일시 , 2.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201605010000",
+     "desc": "등록일시 조회시작일시 \"YYYYMMDDHHMM\" (조회구분 '1' 선택시 필수)"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201605052359",
+     "desc": "등록일시 조회종료일시 \"YYYYMMDDHHMM\" (조회구분 '1' 선택시 필수)"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "required": false,
+     "sample": "20160508820",
+     "desc": "검색하고자 하는 입찰공고번호 (조회구분이 '2'인 경우 필수)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "required": false,
+     "sample": "000",
+     "desc": "검색하고자 하는 입찰공고차수 (조회구분이 2인 경우 필수)"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "민간입찰공고를 관리하기 위한 번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : 테스트여부(1)+년도(2)+번호구분(2)+순번(8) 총 13자리 구성 (테스트여부 : T(모의)/R(실제), 번호구분 : BK(입찰공고번호)/TA(계약번호) 예시 : R24TA00000001 ☞ `24년 실제 계약번호이며 순번은 00000001)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "lmtGrpNo",
+     "nameKo": "제한그룹번호",
+     "size": "3",
+     "desc": "제한면허의 제한그룹번호"
+    },
+    {
+     "nameEn": "lmtSno",
+     "nameKo": "제한순번",
+     "size": "6",
+     "desc": "제한면허의 제한순번"
+    },
+    {
+     "nameEn": "lcnsLmtNm",
+     "nameKo": "면허제한명",
+     "size": "200",
+     "desc": "면허제한명"
+    },
+    {
+     "nameEn": "permsnIndstrytyList",
+     "nameKo": "허용업종목록",
+     "size": "4000",
+     "desc": "공고의 제한되는 면허에서 허용되는 업종 전체 목록 [허용업종명1/허용업종코드1],[허용업종명2/허용업종코드2]"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시(통합입찰공고의 등록일시) “YYYY-MM-DD HH:MM:SS”"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PrvtBidNtceService/getPrvtBidPblancListInfoLicenseLimit?inqryDiv=2&bidNtceNo=20160508820&bidNtceOrd=00&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrvtBidPblancListInfoPrtcptPsblRgn",
+   "opNameKo": "민간입찰공고정보에 대한 참가가능지역정보조회",
+   "opType": "조회(목록)",
+   "description": "검색조건에 등록일시범위(통합입찰공고)와 입찰공고번호를 입력하여 입찰공고번호, 입찰공고차수, 제한그룹번호, 참가가능지역명, 등록일시 등 참가가능지역정보조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:등록일시 , 2.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202401010000",
+     "desc": "등록일시 조회시작일시 \"YYYYMMDDHHMM\" (조회구분 '1' 선택시 필수)"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202407312359",
+     "desc": "등록일시 조회종료일시 \"YYYYMMDDHHMM\" (조회구분 '1' 선택시 필수)"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "required": false,
+     "sample": "20240100391",
+     "desc": "검색하고자 하는 입찰공고번호 (조회구분이 '2'인 경우 필수)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "required": false,
+     "sample": "000",
+     "desc": "검색하고자 하는 입찰공고차수 (조회구분이 2인 경우 필수)"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고를 관리하기 위한 번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : 테스트여부(1)+년도(2)+번호구분(2)+순번(8) 총 13자리 구성 (테스트여부 : T(모의)/R(실제), 번호구분 : BK(입찰공고번호)/TA(계약번호) 예시 : R24TA00000001 ☞ `24년 실제 계약번호이며 순번은 00000001)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "lmtSno",
+     "nameKo": "제한순번",
+     "size": "6",
+     "desc": "참가가능지역의 제한순번"
+    },
+    {
+     "nameEn": "prtcptPsblRgnNm",
+     "nameKo": "참가가능지역명",
+     "size": "200",
+     "desc": "참가가능지역의 명"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시(통합입찰공고의 등록일시) “YYYY-MM-DD HH:MM:SS”"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PrvtBidNtceService/getPrvtBidPblancListInfoPrtcptPsblRgn?inqryDiv=2&bidNtceNo=20160502746&bidNtceOrd=00&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrvtBidPblancListInfoServcPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 민간입찰공고정보에 대한 용역조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 조회구분, 공고일시범위, 개찰일시범위를 입력하여 입찰공고번호, 입찰공고차수, 입찰공고분류, 게시일시, 참조번호, 공고명, 공고구분명, 공고기관명, 입찰방식명, 계약방법명, 낙찰방법명, 재입찰구분명, 입찰자격명, 담당자명, 담당자전화번호, 담당자이메일, 입찰개시일시, 입찰마감일시, 개찰일시, 개찰장소, 입찰보증서접수마감일시, 현장설명일시, 현장설명장소, 부가가치세포함여부명, 기준금액사용여부, 기준금액공개여부, 기준금액, 배정예산금액, 기준금액설명, 지역제한구분명, 용역상세목록, 공고서URL, 아파트정보, 등록일시 등의 누리장터시스템에 등록된 용역 입찰공고 정보 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:공고게시일시, 2:개찰일시"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "200201010000",
+     "desc": "검색하고자 하는 조회시작일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "200201012359",
+     "desc": "검색하고자 하는 조회종료일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "100",
+     "required": false,
+     "sample": "회진초등학교 다목적강당 증축공사",
+     "desc": "검색하고자하는 공고명 ※ 공고명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "1230000",
+     "desc": "검색하고자하는 공고기관코드"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "required": false,
+     "sample": "조달청",
+     "desc": "검색하고자하는 공고기관명 ※ 공고기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "8620000",
+     "desc": "검색하고자하는 수요기관코드 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드 입력 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드 입력"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "전라남도장흥교육청",
+     "desc": "검색하고자하는 수요기관명 ※ 수요기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "required": false,
+     "sample": "200208",
+     "desc": "검색하고자하는 참조번호 (참조번호 : 입찰공고 등과 관련하여 참조가 되는 관리번호(사용자 문서번호) 나라장터 중앙조달 물품/일반용역/외자 : 구매관리번호, 조달요청번호 나라장터 중앙조달 공사/기술용역 : 관리번호 나라장터 자체조달 : 사용자 문서번호(연계된 문서의 번호) 자체전자조달시스템 : 해당기관에서 관리하는 사용자 문서번호)"
+    },
+    {
+     "nameEn": "prtcptLmtRgnCd",
+     "nameKo": "참가제한지역코드",
+     "size": "2",
+     "required": false,
+     "sample": "11",
+     "desc": "검색하고자하는 참가제한지역코드 11 : 서울특별시 26 : 부산광역시 27 : 대구광역시 28 : 인천광역시 29 : 광주광역시 30 : 대전광역시 31 : 울산광역시 36 : 세종특별자치시 41 : 경기도 42 : 강원도 43 : 충청북도 44 : 충청남도 45 : 전라북도 46 : 전라남도 47 : 경상북도 48 : 경상남도 50 : 제주도 51 : 강원특별자치도 52 : 전북특별자치도 99 : 기타"
+    },
+    {
+     "nameEn": "prtcptLmtRgnNm",
+     "nameKo": "참가제한지역명",
+     "size": "100",
+     "required": false,
+     "sample": "서울",
+     "desc": "검색하고자하는 참가제한지역명 ※ 참가제한지역명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "indstrytyCd",
+     "nameKo": "업종코드",
+     "size": "100",
+     "required": false,
+     "sample": "4119",
+     "desc": "검색하고자하는 업종코드"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "100",
+     "required": false,
+     "sample": "토목공사업",
+     "desc": "검색하고자하는 업종명 ※ 업종명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "presmptPrceBgn",
+     "nameKo": "추정가격시작",
+     "size": "25",
+     "required": false,
+     "sample": "120000",
+     "desc": "검색하고자하는 추정가격범위시작금액이상"
+    },
+    {
+     "nameEn": "presmptPrceEnd",
+     "nameKo": "추정가격종료",
+     "size": "25",
+     "required": false,
+     "sample": "120000",
+     "desc": "검색하고자하는 추정가격범위종료금액이하"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "required": false,
+     "sample": "1012159801",
+     "desc": "검색하고자하는 세부품명번호"
+    },
+    {
+     "nameEn": "masYn",
+     "nameKo": "다수공급경쟁자여부",
+     "size": "1",
+     "required": false,
+     "sample": "Y",
+     "desc": "검색하고자하는 다수공급경쟁자여부"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "800",
+     "desc": "검색하고자하는 조달요청번호"
+    },
+    {
+     "nameEn": "bidClseExcpYn",
+     "nameKo": "입찰마감제외여부",
+     "size": "1",
+     "required": false,
+     "sample": "Y",
+     "desc": "검색하고자하는 입찰마감제외여부"
+    },
+    {
+     "nameEn": "intrntnlDivCd",
+     "nameKo": "국제구분코드",
+     "size": "1",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 국제구분코드 국내:1, 국제:2"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고번호"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수"
+    },
+    {
+     "nameEn": "bidNtceClsfc",
+     "nameKo": "입찰공고분류",
+     "size": "30",
+     "desc": "누리장터 입찰공고의 공고분류 (물품, 공사, 용역, 기타)"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "입찰공고 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "desc": "입찰공고 등과 관련하여 참조가 되는 관리번호(사용자 문서번호) 나라장터 중앙조달 물품/일반용역/외자 : 구매관리번호, 조달요청번호 나라장터 중앙조달 공사/기술용역 : 관리번호 나라장터 자체조달 : 사용자 문서번호(연계된 문서의 번호) 자체전자조달시스템 : 해당기관에서 관리하는 사용자 문서번호"
+    },
+    {
+     "nameEn": "ntceNm",
+     "nameKo": "공고명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고명"
+    },
+    {
+     "nameEn": "ntceDivNm",
+     "nameKo": "공고구분명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고구분명[긴급공고,재공고,정정공고,취소공고]등으로 표기"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 공고기관명으로 민간발주자기관명"
+    },
+    {
+     "nameEn": "bidMethdNm",
+     "nameKo": "입찰방식명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 입찰방식명[수기입찰, 전자입찰, 역경매]"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 계약방식명 [일반경쟁, 제한경쟁,지명경쟁]"
+    },
+    {
+     "nameEn": "sucsfbidMthdNm",
+     "nameKo": "낙찰방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 낙찰방식명 [최저가, 최고가, 일적격심사최저가, 적격심사최고가]"
+    },
+    {
+     "nameEn": "rbidDivNm",
+     "nameKo": "재입찰구분명",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 재입찰 허용여부명"
+    },
+    {
+     "nameEn": "bidQlfctNm",
+     "nameKo": "입찰자격명",
+     "size": "20",
+     "desc": "\"공고규격서 참조\"로 고정되어 있음"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "35",
+     "desc": "누리장터 입찰공고의 담당자명"
+    },
+    {
+     "nameEn": "ofclTelNo",
+     "nameKo": "담당자전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 담당자 전화번호"
+    },
+    {
+     "nameEn": "ofclEmail",
+     "nameKo": "담당자이메일",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 담당자 메일주소"
+    },
+    {
+     "nameEn": "bidBeginDt",
+     "nameKo": "입찰개시일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰개시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "bidClseDt",
+     "nameKo": "입찰마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 개찰(입찰)일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengPlce",
+     "nameKo": "개찰장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 개찰장소"
+    },
+    {
+     "nameEn": "bidWgrnteeRcptClseDt",
+     "nameKo": "입찰보증서접수마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 접수마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptDt",
+     "nameKo": "현장설명일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 현장설명일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptPlce",
+     "nameKo": "현장설명장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 현장설명장소"
+    },
+    {
+     "nameEn": "vatInclsnYnNm",
+     "nameKo": "부가가치세포함여부명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 부가가치세여부명"
+    },
+    {
+     "nameEn": "refAmtUseYn",
+     "nameKo": "기준금액사용여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격사용여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmtOpenYn",
+     "nameKo": "기준금액공개여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격공개여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmt",
+     "nameKo": "기준금액",
+     "size": "25",
+     "desc": "투찰의 상한금액(원화,원)"
+    },
+    {
+     "nameEn": "asignBdgtAmt",
+     "nameKo": "배정예산금액",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 배정예산금액(원화,원)"
+    },
+    {
+     "nameEn": "refAmtDscrpt",
+     "nameKo": "기준금액설명",
+     "size": "200",
+     "desc": "고정된 안내 문구"
+    },
+    {
+     "nameEn": "rgnLmtDivNm",
+     "nameKo": "지역제한구분명",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 투찰제한내역으로 투찰제한이나 공고서 참조로 표기"
+    },
+    {
+     "nameEn": "dtchacOpenDt",
+     "nameKo": "역경매공개일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 공개일시"
+    },
+    {
+     "nameEn": "dtchacBgnPrce",
+     "nameKo": "역경매시작가격",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 시작가격을 보여줌"
+    },
+    {
+     "nameEn": "dtchacRmrk",
+     "nameKo": "역경매비고",
+     "size": "1000",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 비고내용"
+    },
+    {
+     "nameEn": "bssAmtDtlScrnUrl",
+     "nameKo": "기초금액상세화면URL",
+     "size": "500",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 기초금액상세화면URL"
+    },
+    {
+     "nameEn": "dtchacMinRdctnRt",
+     "nameKo": "역경매최소인하비율",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 최소인하비율을 보여줌"
+    },
+    {
+     "nameEn": "dtchacBidprcLmtNum",
+     "nameKo": "역경매투찰제한횟수",
+     "size": "100",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 투찰제한횟수을 보여줌(회)"
+    },
+    {
+     "nameEn": "dtchacAutoEtTm",
+     "nameKo": "역경매자동연장시각",
+     "size": "20",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 자동연장시간(분)"
+    },
+    {
+     "nameEn": "dtchacBeforeBidDocClseDt",
+     "nameKo": "역경매이전입찰서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 이전입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "dtchacEtBidDocClseDt",
+     "nameKo": "역경매연장입찰문서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 연장입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "servcDtlList",
+     "nameKo": "용역상세목록",
+     "size": "4000",
+     "desc": "용역상세목록"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl1",
+     "nameKo": "공고규격서URL1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl2",
+     "nameKo": "공고규격서URL2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl3",
+     "nameKo": "공고규격서URL3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl4",
+     "nameKo": "공고규격서URL4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl5",
+     "nameKo": "공고규격서URL5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl6",
+     "nameKo": "공고규격서URL6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl7",
+     "nameKo": "공고규격서URL7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl8",
+     "nameKo": "공고규격서URL8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl9",
+     "nameKo": "공고규격서URL9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl10",
+     "nameKo": "공고규격서URL10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocNm1",
+     "nameKo": "공고규격서명1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm2",
+     "nameKo": "공고규격서명2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm3",
+     "nameKo": "공고규격서명3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm4",
+     "nameKo": "공고규격서명4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm5",
+     "nameKo": "공고규격서명5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm6",
+     "nameKo": "공고규격서명6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm7",
+     "nameKo": "공고규격서명7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm8",
+     "nameKo": "공고규격서명8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm9",
+     "nameKo": "공고규격서명9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm10",
+     "nameKo": "공고규격서명10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "aptHsmpNm",
+     "nameKo": "아파트단지명",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 민간발주기관명 (누리장터 화면에는 단지명)"
+    },
+    {
+     "nameEn": "aptCeoAdrs",
+     "nameKo": "아파트대표자주소",
+     "size": "400",
+     "desc": "누리장터 입찰공고 공고기관 아파트 주소"
+    },
+    {
+     "nameEn": "aptMngOfficeTelNo",
+     "nameKo": "아파트관리사무소전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고 공고기관 아파트 전화번호"
+    },
+    {
+     "nameEn": "aptHmpgUrl",
+     "nameKo": "아파트홈페이지URL",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 홈페이지URL"
+    },
+    {
+     "nameEn": "aptTotar",
+     "nameKo": "아파트연면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 연면적(㎡)"
+    },
+    {
+     "nameEn": "aptMngcstLevyArea",
+     "nameKo": "아파트관리비부과면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 관리비부과면적 (㎡)"
+    },
+    {
+     "nameEn": "aptHshldNum",
+     "nameKo": "아파트세대수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 세대수"
+    },
+    {
+     "nameEn": "aptCmplNum",
+     "nameKo": "아파트동수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 동수"
+    },
+    {
+     "nameEn": "aptHeatMethdNm",
+     "nameKo": "아파트난방방식명",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 난방방식"
+    },
+    {
+     "nameEn": "aptSubactLrgeNdCmpnintFclty",
+     "nameKo": "아파트부대및복리시설",
+     "size": "4000",
+     "desc": "누리장터 입찰공고 공고기관 아파트 부대 및 복리시설 등"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "공고의 등록일시 “YYYY-MM-DD HH:MM:SS”"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PrvtBidNtceService/getPrvtBidPblancListInfoCnstwkPPSSrch?inqryDiv=1&inqryBgnDt=201605010000&inqryEndDt=201605052359&refNo=공고 2016-21&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrvtBidPblancListInfoThngPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 민간입찰공고정보에 대한 물품조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 조회구분, 공고일시범위, 개찰일시범위를 입력하여 입찰공고번호, 입찰공고차수, 입찰공고분류, 게시일시, 참조번호, 공고명, 공고구분명, 공고기관명, 입찰방식명, 계약방법명, 낙찰방법명, 재입찰구분명, 입찰자격명, 담당자명, 담당자전화번호, 담당자이메일, 입찰개시일시, 입찰마감일시, 개찰일시, 개찰장소, 입찰보증서접수마감일시, 현장설명일시, 현장설명장소, 부가가치세포함여부명, 기준금액사용여부, 기준금액공개여부, 기준금액, 배정예산금액, 기준금액설명, 지역제한구분명, 물품목록상세, 공고서URL, 아파트정보, 등록일시 등의 누리장터시스템에 등록된 물품 입찰공고 정보 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:공고게시일시, 2:개찰일시"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201605010000",
+     "desc": "검색하고자 하는 조회시작일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201605152359",
+     "desc": "검색하고자 하는 조회종료일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "100",
+     "required": false,
+     "sample": "정보시스템 고도화 및 노후 시스템 교체",
+     "desc": "검색하고자하는 공고명 ※ 공고명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "M006727",
+     "desc": "검색하고자하는 공고기관코드"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "required": false,
+     "sample": "(사)한국여신전문금융업협회",
+     "desc": "검색하고자하는 공고기관명 ※ 공고기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "M006727",
+     "desc": "검색하고자하는 수요기관코드 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드 입력 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드 입력"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "(사)한국여신전문금융업협회",
+     "desc": "검색하고자하는 수요기관명 ※ 수요기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "required": false,
+     "sample": "여협정2016-01",
+     "desc": "검색하고자하는 참조번호 (참조번호 : 입찰공고 등과 관련하여 참조가 되는 관리번호(사용자 문서번호) 나라장터 중앙조달 물품/일반용역/외자 : 구매관리번호, 조달요청번호 나라장터 중앙조달 공사/기술용역 : 관리번호 나라장터 자체조달 : 사용자 문서번호(연계된 문서의 번호) 자체전자조달시스템 : 해당기관에서 관리하는 사용자 문서번호)"
+    },
+    {
+     "nameEn": "prtcptLmtRgnCd",
+     "nameKo": "참가제한지역코드",
+     "size": "2",
+     "required": false,
+     "sample": "11",
+     "desc": "검색하고자하는 참가제한지역코드 11 : 서울특별시 26 : 부산광역시 27 : 대구광역시 28 : 인천광역시 29 : 광주광역시 30 : 대전광역시 31 : 울산광역시 36 : 세종특별자치시 41 : 경기도 42 : 강원도 43 : 충청북도 44 : 충청남도 45 : 전라북도 46 : 전라남도 47 : 경상북도 48 : 경상남도 50 : 제주도 51 : 강원특별자치도 52 : 전북특별자치도 99 : 기타"
+    },
+    {
+     "nameEn": "prtcptLmtRgnNm",
+     "nameKo": "참가제한지역명",
+     "size": "100",
+     "required": false,
+     "sample": "서울",
+     "desc": "검색하고자하는 참가제한지역명 ※ 참가제한지역명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "indstrytyCd",
+     "nameKo": "업종코드",
+     "size": "100",
+     "required": false,
+     "sample": "4119",
+     "desc": "검색하고자하는 업종코드"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "100",
+     "required": false,
+     "sample": "토목공사업",
+     "desc": "검색하고자하는 업종명 ※ 업종명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "presmptPrceBgn",
+     "nameKo": "추정가격시작",
+     "size": "25",
+     "required": false,
+     "sample": "120000",
+     "desc": "검색하고자하는 추정가격범위시작금액이상"
+    },
+    {
+     "nameEn": "presmptPrceEnd",
+     "nameKo": "추정가격종료",
+     "size": "25",
+     "required": false,
+     "sample": "120000",
+     "desc": "검색하고자하는 추정가격범위종료금액이하"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "required": false,
+     "sample": "1012159801",
+     "desc": "검색하고자하는 세부품명번호"
+    },
+    {
+     "nameEn": "masYn",
+     "nameKo": "다수공급경쟁자여부",
+     "size": "1",
+     "required": false,
+     "sample": "N",
+     "desc": "검색하고자하는 다수공급경쟁자여부"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "800",
+     "desc": "검색하고자하는 조달요청번호"
+    },
+    {
+     "nameEn": "bidClseExcpYn",
+     "nameKo": "입찰마감제외여부",
+     "size": "1",
+     "required": false,
+     "sample": "N",
+     "desc": "검색하고자하는 입찰마감제외여부"
+    },
+    {
+     "nameEn": "intrntnlDivCd",
+     "nameKo": "국제구분코드",
+     "size": "1",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 국제구분코드 국내:1, 국제:2"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고번호"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수"
+    },
+    {
+     "nameEn": "bidNtceClsfc",
+     "nameKo": "입찰공고분류",
+     "size": "30",
+     "desc": "누리장터 입찰공고의 공고분류 (물품,공사,용역,기타)"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "입찰공고 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "desc": "입찰공고 등과 관련하여 참조가 되는 관리번호(사용자 문서번호) 나라장터 중앙조달 물품/일반용역/외자 : 구매관리번호, 조달요청번호 나라장터 중앙조달 공사/기술용역 : 관리번호 나라장터 자체조달 : 사용자 문서번호(연계된 문서의 번호) 자체전자조달시스템 : 해당기관에서 관리하는 사용자 문서번호"
+    },
+    {
+     "nameEn": "ntceNm",
+     "nameKo": "공고명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고명"
+    },
+    {
+     "nameEn": "ntceDivNm",
+     "nameKo": "공고구분명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고구분명[긴급공고,재공고,정정공고,취소공고]등으로 표기"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 공고기관명으로 민간발주자기관명"
+    },
+    {
+     "nameEn": "bidMethdNm",
+     "nameKo": "입찰방식명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 입찰방식명[수기입찰, 전자입찰, 역경매]"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 계약방식명 [일반경쟁, 제한경쟁, 지명경쟁]"
+    },
+    {
+     "nameEn": "sucsfbidMthdNm",
+     "nameKo": "낙찰방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 낙찰방식명 [최저가, 최고가, 일적격심사최저가, 적격심사최고가]"
+    },
+    {
+     "nameEn": "rbidDivNm",
+     "nameKo": "재입찰구분명",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 재입찰 허용여부명"
+    },
+    {
+     "nameEn": "bidQlfctNm",
+     "nameKo": "입찰자격명",
+     "size": "20",
+     "desc": "\"공고규격서 참조\"로 고정되어 있음"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "35",
+     "desc": "누리장터 입찰공고의 담당자명"
+    },
+    {
+     "nameEn": "ofclTelNo",
+     "nameKo": "담당자전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 담당자 전화번호"
+    },
+    {
+     "nameEn": "ofclEmail",
+     "nameKo": "담당자이메일",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 담당자 메일주소"
+    },
+    {
+     "nameEn": "bidBeginDt",
+     "nameKo": "입찰개시일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰개시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "bidClseDt",
+     "nameKo": "입찰마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 개찰(입찰)일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengPlce",
+     "nameKo": "개찰장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 개찰장소"
+    },
+    {
+     "nameEn": "bidWgrnteeRcptClseDt",
+     "nameKo": "입찰보증서접수마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 접수마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptDt",
+     "nameKo": "현장설명일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 현장설명일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptPlce",
+     "nameKo": "현장설명장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 현장설명장소"
+    },
+    {
+     "nameEn": "vatInclsnYnNm",
+     "nameKo": "부가가치세포함여부명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 부가가치세여부명"
+    },
+    {
+     "nameEn": "refAmtUseYn",
+     "nameKo": "기준금액사용여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격사용여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmtOpenYn",
+     "nameKo": "기준금액공개여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격공개여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmt",
+     "nameKo": "기준금액",
+     "size": "25",
+     "desc": "투찰의 상한금액(원화,원)"
+    },
+    {
+     "nameEn": "asignBdgtAmt",
+     "nameKo": "배정예산금액",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 배정예산금액(원화,원)"
+    },
+    {
+     "nameEn": "refAmtDscrpt",
+     "nameKo": "기준금액설명",
+     "size": "200",
+     "desc": "고정된 안내 문구"
+    },
+    {
+     "nameEn": "rgnLmtDivNm",
+     "nameKo": "지역제한구분명",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 투찰제한내역으로 투찰제한이나 공고서 참조로 표기"
+    },
+    {
+     "nameEn": "dtchacOpenDt",
+     "nameKo": "역경매공개일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 공개일시"
+    },
+    {
+     "nameEn": "dtchacBgnPrce",
+     "nameKo": "역경매시작가격",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 시작가격을 보여줌"
+    },
+    {
+     "nameEn": "dtchacRmrk",
+     "nameKo": "역경매비고",
+     "size": "1000",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 비고내용"
+    },
+    {
+     "nameEn": "bssAmtDtlScrnUrl",
+     "nameKo": "기초금액상세화면URL",
+     "size": "500",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 기초금액상세화면URL"
+    },
+    {
+     "nameEn": "dtchacMinRdctnRt",
+     "nameKo": "역경매최소인하비율",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 최소인하비율을 보여줌"
+    },
+    {
+     "nameEn": "dtchacBidprcLmtNum",
+     "nameKo": "역경매투찰제한횟수",
+     "size": "100",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 투찰제한횟수을 보여줌(회)"
+    },
+    {
+     "nameEn": "dtchacAutoEtTm",
+     "nameKo": "역경매자동연장시각",
+     "size": "20",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 자동연장시간(분)"
+    },
+    {
+     "nameEn": "dtchacBeforeBidDocClseDt",
+     "nameKo": "역경매이전입찰서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 이전입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "dtchacEtBidDocClseDt",
+     "nameKo": "역경매연장입찰문서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 연장입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "prdctDtlList",
+     "nameKo": "물품상세목록",
+     "size": "4000",
+     "desc": "물품상세목록"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl1",
+     "nameKo": "공고규격서URL1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl2",
+     "nameKo": "공고규격서URL2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl3",
+     "nameKo": "공고규격서URL3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl4",
+     "nameKo": "공고규격서URL4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl5",
+     "nameKo": "공고규격서URL5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl6",
+     "nameKo": "공고규격서URL6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl7",
+     "nameKo": "공고규격서URL7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl8",
+     "nameKo": "공고규격서URL8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl9",
+     "nameKo": "공고규격서URL9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl10",
+     "nameKo": "공고규격서URL10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocNm1",
+     "nameKo": "공고규격서명1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm2",
+     "nameKo": "공고규격서명2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm3",
+     "nameKo": "공고규격서명3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm4",
+     "nameKo": "공고규격서명4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm5",
+     "nameKo": "공고규격서명5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm6",
+     "nameKo": "공고규격서명6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm7",
+     "nameKo": "공고규격서명7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm8",
+     "nameKo": "공고규격서명8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm9",
+     "nameKo": "공고규격서명9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm10",
+     "nameKo": "공고규격서명10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "aptHsmpNm",
+     "nameKo": "아파트단지명",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 민간발주기관명 (누리장터 화면에는 단지명)"
+    },
+    {
+     "nameEn": "aptCeoAdrs",
+     "nameKo": "아파트대표자주소",
+     "size": "400",
+     "desc": "누리장터 입찰공고 공고기관 아파트 주소"
+    },
+    {
+     "nameEn": "aptMngOfficeTelNo",
+     "nameKo": "아파트관리사무소전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고 공고기관 아파트 연락처"
+    },
+    {
+     "nameEn": "aptHmpgUrl",
+     "nameKo": "아파트홈페이지URL",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 홈페이지URL"
+    },
+    {
+     "nameEn": "aptTotar",
+     "nameKo": "아파트연면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 연면적(㎡)"
+    },
+    {
+     "nameEn": "aptMngcstLevyArea",
+     "nameKo": "아파트관리비부과면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 관리비부과면적 (㎡)"
+    },
+    {
+     "nameEn": "aptHshldNum",
+     "nameKo": "아파트세대수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 세대수"
+    },
+    {
+     "nameEn": "aptCmplNum",
+     "nameKo": "아파트동수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 세대수"
+    },
+    {
+     "nameEn": "aptHeatMethdNm",
+     "nameKo": "아파트난방방식명",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 난방방식"
+    },
+    {
+     "nameEn": "aptSubactLrgeNdCmpnintFclty",
+     "nameKo": "아파트부대및복리시설",
+     "size": "4000",
+     "desc": "누리장터 입찰공고 공고기관 아파트 부대 및 복리시설 등"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "공고의 등록일시 “YYYY-MM-DD HH:MM:SS”"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PrvtBidNtceService/getPrvtBidPblancListInfoThngPPSSrch?inqryDiv=1&inqryBgnDt=201605010000&inqryEndDt=201605052359&ntceInsttCd=M002321&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrvtBidPblancListInfoCnstwkPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 민간입찰공고정보에 대한 공사조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 조회구분, 공고일시범위, 개찰일시범위를 입력하여 입찰공고번호, 입찰공고차수, 입찰공고분류, 게시일시, 참조번호, 공고명, 공고구분명, 공고기관명, 입찰방식명, 계약방법명, 낙찰방법명, 재입찰구분명, 입찰자격명, 담당자명, 담당자전화번호, 담당자이메일, 입찰개시일시, 입찰마감일시, 개찰일시, 개찰장소, 입찰보증서접수마감일시, 현장설명일시, 현장설명장소, 부가가치세포함여부명, 기준금액사용여부, 기준금액공개여부, 기준금액, 배정예산금액, 기준금액설명, 지역제한구분명, 공사상세목록, 공고서URL, 아파트정보, 등록일시 등의 누리장터시스템에 등록된 공사 입찰공고 정보 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:공고게시일시, 2:개찰일시"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201605010000",
+     "desc": "검색하고자 하는 조회시작일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201605052359",
+     "desc": "검색하고자 하는 조회종료일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "100",
+     "required": false,
+     "sample": "2016년 숲가꾸기사업(어린나무가꾸기)",
+     "desc": "검색하고자하는 공고명 ※ 공고명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "5680000",
+     "desc": "검색하고자하는 공고기관코드"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "required": false,
+     "sample": "충청남도 당진시",
+     "desc": "검색하고자하는 공고기관명 ※ 공고기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "100",
+     "required": false,
+     "sample": "5680000",
+     "desc": "검색하고자하는 수요기관코드 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드 입력 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드 입력"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "충청남도 당진시",
+     "desc": "검색하고자하는 수요기관명 ※ 수요기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "required": false,
+     "sample": "당진시 공고 제2016-737호",
+     "desc": "검색하고자하는 참조번호 (참조번호 : 입찰공고 등과 관련하여 참조가 되는 관리번호(사용자 문서번호) 나라장터 중앙조달 물품/일반용역/외자 : 구매관리번호, 조달요청번호 나라장터 중앙조달 공사/기술용역 : 관리번호 나라장터 자체조달 : 사용자 문서번호(연계된 문서의 번호) 자체전자조달시스템 : 해당기관에서 관리하는 사용자 문서번호)"
+    },
+    {
+     "nameEn": "prtcptLmtRgnCd",
+     "nameKo": "참가제한지역코드",
+     "size": "2",
+     "required": false,
+     "sample": "44",
+     "desc": "검색하고자하는 참가제한지역코드 11 : 서울특별시 26 : 부산광역시 27 : 대구광역시 28 : 인천광역시 29 : 광주광역시 30 : 대전광역시 31 : 울산광역시 36 : 세종특별자치시 41 : 경기도 42 : 강원도 43 : 충청북도 44 : 충청남도 45 : 전라북도 46 : 전라남도 47 : 경상북도 48 : 경상남도 50 : 제주도 51 : 강원특별자치도 52 : 전북특별자치도 99 : 기타"
+    },
+    {
+     "nameEn": "prtcptLmtRgnNm",
+     "nameKo": "참가제한지역명",
+     "size": "100",
+     "required": false,
+     "sample": "충청남도 당진시",
+     "desc": "검색하고자하는 참가제한지역명 ※ 참가제한지역명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "indstrytyCd",
+     "nameKo": "업종코드",
+     "size": "100",
+     "required": false,
+     "sample": "4119",
+     "desc": "검색하고자하는 업종코드"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "100",
+     "required": false,
+     "sample": "산림조합중앙회",
+     "desc": "검색하고자하는 업종명 ※ 업종명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "presmptPrceBgn",
+     "nameKo": "추정가격시작",
+     "size": "25",
+     "required": false,
+     "sample": "68773000",
+     "desc": "검색하고자하는 추정가격범위시작금액이상"
+    },
+    {
+     "nameEn": "presmptPrceEnd",
+     "nameKo": "추정가격종료",
+     "size": "25",
+     "required": false,
+     "sample": "68773000",
+     "desc": "검색하고자하는 추정가격범위종료금액이하"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "required": false,
+     "sample": "1012159801",
+     "desc": "검색하고자하는 세부품명번호"
+    },
+    {
+     "nameEn": "masYn",
+     "nameKo": "다수공급경쟁자여부",
+     "size": "1",
+     "required": false,
+     "sample": "Y",
+     "desc": "검색하고자하는 다수공급경쟁자여부"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "800",
+     "desc": "검색하고자하는 조달요청번호"
+    },
+    {
+     "nameEn": "bidClseExcpYn",
+     "nameKo": "입찰마감제외여부",
+     "size": "1",
+     "required": false,
+     "sample": "Y",
+     "desc": "검색하고자하는 입찰마감제외여부"
+    },
+    {
+     "nameEn": "intrntnlDivCd",
+     "nameKo": "국제구분코드",
+     "size": "1",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 국제구분코드 국내:1, 국제:2"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고번호"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수"
+    },
+    {
+     "nameEn": "bidNtceClsfc",
+     "nameKo": "입찰공고분류",
+     "size": "30",
+     "desc": "누리장터 입찰공고의 공고분류 (물품,공사,용역,기타)"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "입찰공고 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "desc": "입찰공고 등과 관련하여 참조가 되는 관리번호(사용자 문서번호) 나라장터 중앙조달 물품/일반용역/외자 : 구매관리번호, 조달요청번호 나라장터 중앙조달 공사/기술용역 : 관리번호 나라장터 자체조달 : 사용자 문서번호(연계된 문서의 번호) 자체전자조달시스템 : 해당기관에서 관리하는 사용자 문서번호"
+    },
+    {
+     "nameEn": "ntceNm",
+     "nameKo": "공고명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고명"
+    },
+    {
+     "nameEn": "ntceDivNm",
+     "nameKo": "공고구분명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고구분명[긴급공고,재공고,정정공고,취소공고]등으로 표기"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 공고기관명으로 민간발주자기관명"
+    },
+    {
+     "nameEn": "bidMethdNm",
+     "nameKo": "입찰방식명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 입찰방식명[수기입찰, 전자입찰, 역경매]"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 계약방식명 [일반경쟁, 제한경쟁, 지명경쟁]"
+    },
+    {
+     "nameEn": "sucsfbidMthdNm",
+     "nameKo": "낙찰방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 낙찰방식명 [최저가, 최고가, 일적격심사최저가, 적격심사최고가]"
+    },
+    {
+     "nameEn": "rbidDivNm",
+     "nameKo": "재입찰구분명",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 재입찰 허용여부명"
+    },
+    {
+     "nameEn": "bidQlfctNm",
+     "nameKo": "입찰자격명",
+     "size": "20",
+     "desc": "\"공고규격서 참조\"로 고정되어 있음"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "35",
+     "desc": "누리장터 입찰공고의 담당자명"
+    },
+    {
+     "nameEn": "ofclTelNo",
+     "nameKo": "담당자전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 담당자 전화번호"
+    },
+    {
+     "nameEn": "ofclEmail",
+     "nameKo": "담당자이메일",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 담당자 메일주소"
+    },
+    {
+     "nameEn": "bidBeginDt",
+     "nameKo": "입찰개시일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰개시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "bidClseDt",
+     "nameKo": "입찰마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 개찰(입찰)일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengPlce",
+     "nameKo": "개찰장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 개찰장소"
+    },
+    {
+     "nameEn": "bidWgrnteeRcptClseDt",
+     "nameKo": "입찰보증서접수마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 접수마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptDt",
+     "nameKo": "현장설명일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 현장설명일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptPlce",
+     "nameKo": "현장설명장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 현장설명장소"
+    },
+    {
+     "nameEn": "vatInclsnYnNm",
+     "nameKo": "부가가치세포함여부명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 부가가치세여부명"
+    },
+    {
+     "nameEn": "refAmtUseYn",
+     "nameKo": "기준금액사용여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격사용여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmtOpenYn",
+     "nameKo": "기준금액공개여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격공개여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmt",
+     "nameKo": "기준금액",
+     "size": "25",
+     "desc": "투찰의 상한금액 (원화,원)"
+    },
+    {
+     "nameEn": "asignBdgtAmt",
+     "nameKo": "배정예산금액",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 배정예산금액 (원화,원)"
+    },
+    {
+     "nameEn": "refAmtDscrpt",
+     "nameKo": "기준금액설명",
+     "size": "200",
+     "desc": "고정된 안내 문구"
+    },
+    {
+     "nameEn": "rgnLmtDivNm",
+     "nameKo": "지역제한구분명",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 투찰제한내역으로 투찰제한이나 공고서 참조로 표기"
+    },
+    {
+     "nameEn": "dtchacOpenDt",
+     "nameKo": "역경매공개일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 공개일시"
+    },
+    {
+     "nameEn": "dtchacBgnPrce",
+     "nameKo": "역경매시작가격",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 시작가격을 보여줌"
+    },
+    {
+     "nameEn": "dtchacRmrk",
+     "nameKo": "역경매비고",
+     "size": "1000",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 비고내용"
+    },
+    {
+     "nameEn": "bssAmtDtlScrnUrl",
+     "nameKo": "기초금액상세화면URL",
+     "size": "500",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 기초금액상세화면URL"
+    },
+    {
+     "nameEn": "dtchacMinRdctnRt",
+     "nameKo": "역경매최소인하비율",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 최소인하비율을 보여줌"
+    },
+    {
+     "nameEn": "dtchacBidprcLmtNum",
+     "nameKo": "역경매투찰제한횟수",
+     "size": "100",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 투찰제한횟수을 보여줌(회)"
+    },
+    {
+     "nameEn": "dtchacAutoEtTm",
+     "nameKo": "역경매자동연장시각",
+     "size": "20",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 자동연장시간(분)"
+    },
+    {
+     "nameEn": "dtchacBeforeBidDocClseDt",
+     "nameKo": "역경매이전입찰서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 이전입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "dtchacEtBidDocClseDt",
+     "nameKo": "역경매연장입찰문서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 연장입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "cnstwkDtlList",
+     "nameKo": "공사상세목록",
+     "size": "4000",
+     "desc": "공사상세목록"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl1",
+     "nameKo": "공고규격서URL1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl2",
+     "nameKo": "공고규격서URL2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl3",
+     "nameKo": "공고규격서URL3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl4",
+     "nameKo": "공고규격서URL4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl5",
+     "nameKo": "공고규격서URL5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl6",
+     "nameKo": "공고규격서URL6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl7",
+     "nameKo": "공고규격서URL7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl8",
+     "nameKo": "공고규격서URL8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl9",
+     "nameKo": "공고규격서URL9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl10",
+     "nameKo": "공고규격서URL10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocNm1",
+     "nameKo": "공고규격서명1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm2",
+     "nameKo": "공고규격서명2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm3",
+     "nameKo": "공고규격서명3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm4",
+     "nameKo": "공고규격서명4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm5",
+     "nameKo": "공고규격서명5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm6",
+     "nameKo": "공고규격서명6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm7",
+     "nameKo": "공고규격서명7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm8",
+     "nameKo": "공고규격서명8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm9",
+     "nameKo": "공고규격서명9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm10",
+     "nameKo": "공고규격서명10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "aptHsmpNm",
+     "nameKo": "아파트단지명",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 민간발주기관명 (누리장터 화면에는 단지명)"
+    },
+    {
+     "nameEn": "aptCeoAdrs",
+     "nameKo": "아파트대표자주소",
+     "size": "400",
+     "desc": "누리장터 입찰공고 공고기관 아파트 주소"
+    },
+    {
+     "nameEn": "aptMngOfficeTelNo",
+     "nameKo": "아파트관리사무소전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고 공고기관 아파트 연락처"
+    },
+    {
+     "nameEn": "aptHmpgUrl",
+     "nameKo": "아파트홈페이지URL",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 홈페이지URL"
+    },
+    {
+     "nameEn": "aptTotar",
+     "nameKo": "아파트연면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 연면적(㎡)"
+    },
+    {
+     "nameEn": "aptMngcstLevyArea",
+     "nameKo": "아파트관리비부과면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 관리비부과면적 (㎡)"
+    },
+    {
+     "nameEn": "aptHshldNum",
+     "nameKo": "아파트세대수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 세대수"
+    },
+    {
+     "nameEn": "aptCmplNum",
+     "nameKo": "아파트동수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 동수"
+    },
+    {
+     "nameEn": "aptHeatMethdNm",
+     "nameKo": "아파트난방방식",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 난방방식"
+    },
+    {
+     "nameEn": "aptSubactLrgeNdCmpnintFclty",
+     "nameKo": "아파트부대및복리시설",
+     "size": "4000",
+     "desc": "누리장터 입찰공고 공고기관 아파트 부대 및 복리시설 등"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "공고의 등록일시 “YYYY-MM-DD HH:MM:SS”"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PrvtBidNtceService/getPrvtBidPblancListInfoCnstwkPPSSrch?inqryDiv=1&inqryBgnDt=201605010000&inqryEndDt=201605052359&refNo=공고 2016-21&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrvtBidPblancListInfoEtcPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 민간입찰공고정보에 대한 기타조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 조회구분, 공고일시범위, 개찰일시범위를 입력하여 입찰공고번호, 입찰공고차수, 입찰공고분류, 게시일시, 참조번호, 공고명, 공고구분명, 공고기관명, 입찰방식명, 계약방법명, 낙찰방법명, 재입찰구분명, 입찰자격명, 담당자명, 담당자전화번호, 담당자이메일, 입찰개시일시, 입찰마감일시, 개찰일시, 개찰장소, 입찰보증서접수마감일시, 현장설명일시, 현장설명장소, 부가가치세포함여부명, 기준금액사용여부, 기준금액공개여부, 기준금액, 배정예산금액, 기준금액설명, 지역제한구분명, 공사상세목록, 공고서URL, 아파트정보, 등록일시 등의 누리장터시스템에 등록된 기타 입찰공고 정보 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:공고게시일시, 2:개찰일시"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "200201010000",
+     "desc": "검색하고자 하는 조회시작일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "200201012359",
+     "desc": "검색하고자 하는 조회종료일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "100",
+     "required": false,
+     "sample": "회진초등학교 다목적강당 증축공사",
+     "desc": "검색하고자하는 공고명 ※ 공고명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "1230000",
+     "desc": "검색하고자하는 공고기관코드"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "required": false,
+     "sample": "조달청",
+     "desc": "검색하고자하는 공고기관명 ※ 공고기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "8620000",
+     "desc": "검색하고자하는 수요기관코드 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드 입력 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드 입력"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "전라남도장흥교육청",
+     "desc": "검색하고자하는 수요기관명 ※ 수요기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "required": false,
+     "sample": "200208",
+     "desc": "검색하고자하는 참조번호 (참조번호 : 입찰공고 등과 관련하여 참조가 되는 관리번호(사용자 문서번호) 나라장터 중앙조달 물품/일반용역/외자 : 구매관리번호, 조달요청번호 나라장터 중앙조달 공사/기술용역 : 관리번호 나라장터 자체조달 : 사용자 문서번호(연계된 문서의 번호) 자체전자조달시스템 : 해당기관에서 관리하는 사용자 문서번호)"
+    },
+    {
+     "nameEn": "prtcptLmtRgnCd",
+     "nameKo": "참가제한지역코드",
+     "size": "2",
+     "required": false,
+     "sample": "11",
+     "desc": "검색하고자하는 참가제한지역코드 11 : 서울특별시 26 : 부산광역시 27 : 대구광역시 28 : 인천광역시 29 : 광주광역시 30 : 대전광역시 31 : 울산광역시 36 : 세종특별자치시 41 : 경기도 42 : 강원도 43 : 충청북도 44 : 충청남도 45 : 전라북도 46 : 전라남도 47 : 경상북도 48 : 경상남도 50 : 제주도 51 : 강원특별자치도 52 : 전북특별자치도 99 : 기타"
+    },
+    {
+     "nameEn": "prtcptLmtRgnNm",
+     "nameKo": "참가제한지역명",
+     "size": "100",
+     "required": false,
+     "sample": "서울",
+     "desc": "검색하고자하는 참가제한지역명 ※ 참가제한지역명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "indstrytyCd",
+     "nameKo": "업종코드",
+     "size": "100",
+     "required": false,
+     "sample": "4119",
+     "desc": "검색하고자하는 업종코드"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "100",
+     "required": false,
+     "sample": "토목공사업",
+     "desc": "검색하고자하는 업종명 ※ 업종명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "presmptPrceBgn",
+     "nameKo": "추정가격시작",
+     "size": "25",
+     "required": false,
+     "sample": "120000",
+     "desc": "검색하고자하는 추정가격범위시작금액이상"
+    },
+    {
+     "nameEn": "presmptPrceEnd",
+     "nameKo": "추정가격종료",
+     "size": "25",
+     "required": false,
+     "sample": "120000",
+     "desc": "검색하고자하는 추정가격범위종료금액이하"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "required": false,
+     "sample": "1012159801",
+     "desc": "검색하고자하는 세부품명번호"
+    },
+    {
+     "nameEn": "masYn",
+     "nameKo": "다수공급경쟁자여부",
+     "size": "1",
+     "required": false,
+     "sample": "Y",
+     "desc": "검색하고자하는 다수공급경쟁자여부"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "800",
+     "desc": "검색하고자하는 조달요청번호"
+    },
+    {
+     "nameEn": "bidClseExcpYn",
+     "nameKo": "입찰마감제외여부",
+     "size": "1",
+     "required": false,
+     "sample": "Y",
+     "desc": "검색하고자하는 입찰마감제외여부"
+    },
+    {
+     "nameEn": "intrntnlDivCd",
+     "nameKo": "국제구분코드",
+     "size": "1",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 국제구분코드 국내:1, 국제:2"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고번호"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수"
+    },
+    {
+     "nameEn": "bidNtceClsfc",
+     "nameKo": "입찰공고분류",
+     "size": "30",
+     "desc": "누리장터 입찰공고의 공고분류 (물품,공사,용역,기타)"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "입찰공고 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "desc": "입찰공고 등과 관련하여 참조가 되는 관리번호(사용자 문서번호) 나라장터 중앙조달 물품/일반용역/외자 : 구매관리번호, 조달요청번호 나라장터 중앙조달 공사/기술용역 : 관리번호 나라장터 자체조달 : 사용자 문서번호(연계된 문서의 번호) 자체전자조달시스템 : 해당기관에서 관리하는 사용자 문서번호"
+    },
+    {
+     "nameEn": "ntceNm",
+     "nameKo": "공고명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고명"
+    },
+    {
+     "nameEn": "ntceDivNm",
+     "nameKo": "공고구분명",
+     "size": "2000",
+     "desc": "누리장터 입찰공고의 공고구분명[긴급공고,재공고,정정공고,취소공고]등으로 표기"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 공고기관명으로 민간발주자기관명"
+    },
+    {
+     "nameEn": "bidMethdNm",
+     "nameKo": "입찰방식명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 입찰방식명[수기입찰, 전자입찰, 역경매]"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 계약방식명 [일반경쟁, 제한경쟁, 지명경쟁]"
+    },
+    {
+     "nameEn": "sucsfbidMthdNm",
+     "nameKo": "낙찰방법명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 낙찰방식명 [최저가, 최고가, 일적격심사최저가, 적격심사최고가]"
+    },
+    {
+     "nameEn": "rbidDivNm",
+     "nameKo": "재입찰구분명",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 재입찰 허용여부명"
+    },
+    {
+     "nameEn": "bidQlfctNm",
+     "nameKo": "입찰자격명",
+     "size": "20",
+     "desc": "\"공고규격서 참조\"로 고정되어 있음"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "35",
+     "desc": "누리장터 입찰공고의 담당자명"
+    },
+    {
+     "nameEn": "ofclTelNo",
+     "nameKo": "담당자전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 담당자 전화번호"
+    },
+    {
+     "nameEn": "ofclEmail",
+     "nameKo": "담당자이메일",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 담당자 메일주소"
+    },
+    {
+     "nameEn": "bidBeginDt",
+     "nameKo": "입찰개시일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰개시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "bidClseDt",
+     "nameKo": "입찰마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 입찰마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 개찰(입찰)일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "opengPlce",
+     "nameKo": "개찰장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 개찰장소"
+    },
+    {
+     "nameEn": "bidWgrnteeRcptClseDt",
+     "nameKo": "입찰보증서접수마감일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 접수마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptDt",
+     "nameKo": "현장설명일시",
+     "size": "19",
+     "desc": "누리장터 입찰공고의 현장설명일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "sptDscrptPlce",
+     "nameKo": "현장설명장소",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 현장설명장소"
+    },
+    {
+     "nameEn": "vatInclsnYnNm",
+     "nameKo": "부가가치세포함여부명",
+     "size": "200",
+     "desc": "누리장터 입찰공고의 부가가치세여부명"
+    },
+    {
+     "nameEn": "refAmtUseYn",
+     "nameKo": "기준금액사용여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격사용여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmtOpenYn",
+     "nameKo": "기준금액공개여부",
+     "size": "20",
+     "desc": "누리장터 입찰공고의 기준가격공개여부[Y,N]"
+    },
+    {
+     "nameEn": "refAmt",
+     "nameKo": "기준금액",
+     "size": "25",
+     "desc": "투찰의 상한금액 (원화,원)"
+    },
+    {
+     "nameEn": "asignBdgtAmt",
+     "nameKo": "배정예산금액",
+     "size": "25",
+     "desc": "누리장터 입찰공고의 배정예산금액"
+    },
+    {
+     "nameEn": "refAmtDscrpt",
+     "nameKo": "기준금액설명",
+     "size": "200",
+     "desc": "고정된 안내 문구"
+    },
+    {
+     "nameEn": "rgnLmtDivNm",
+     "nameKo": "지역제한구분명",
+     "size": "100",
+     "desc": "누리장터 입찰공고의 투찰제한내역"
+    },
+    {
+     "nameEn": "dtchacOpenDt",
+     "nameKo": "역경매공개일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 공개일시"
+    },
+    {
+     "nameEn": "dtchacBgnPrce",
+     "nameKo": "역경매시작가격",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우누리장터 입찰공고의 시작가격을 보여줌"
+    },
+    {
+     "nameEn": "dtchacRmrk",
+     "nameKo": "역경매비고",
+     "size": "1000",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 비고내용"
+    },
+    {
+     "nameEn": "bssAmtDtlScrnUrl",
+     "nameKo": "기초금액상세화면URL",
+     "size": "500",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 기초금액상세화면URL"
+    },
+    {
+     "nameEn": "dtchacMinRdctnRt",
+     "nameKo": "역경매최소인하비율",
+     "size": "25",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 최소인하비율을 보여줌"
+    },
+    {
+     "nameEn": "dtchacBidprcLmtNum",
+     "nameKo": "역경매투찰제한횟수",
+     "size": "100",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 투찰제한횟수을 보여줌(회)"
+    },
+    {
+     "nameEn": "dtchacAutoEtTm",
+     "nameKo": "역경매자동연장시각",
+     "size": "20",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 누리장터 입찰공고의 자동연장시간(분)"
+    },
+    {
+     "nameEn": "dtchacBeforeBidDocClseDt",
+     "nameKo": "역경매이전입찰서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 이전입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "dtchacEtBidDocClseDt",
+     "nameKo": "역경매연장입찰문서마감일시",
+     "size": "19",
+     "desc": "낙찰방법이 복수견적(역경매)일 경우 연장입찰문서마감일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "ntceSpecDocUrl1",
+     "nameKo": "공고규격서URL1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl2",
+     "nameKo": "공고규격서URL2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl3",
+     "nameKo": "공고규격서URL3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl4",
+     "nameKo": "공고규격서URL4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl5",
+     "nameKo": "공고규격서URL5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl6",
+     "nameKo": "공고규격서URL6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl7",
+     "nameKo": "공고규격서URL7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl8",
+     "nameKo": "공고규격서URL8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl9",
+     "nameKo": "공고규격서URL9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocUrl10",
+     "nameKo": "공고규격서URL10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표 파일URL"
+    },
+    {
+     "nameEn": "ntceSpecDocNm1",
+     "nameKo": "공고규격서명1",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm2",
+     "nameKo": "공고규격서명2",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm3",
+     "nameKo": "공고규격서명3",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm4",
+     "nameKo": "공고규격서명4",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm5",
+     "nameKo": "공고규격서명5",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm6",
+     "nameKo": "공고규격서명6",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm7",
+     "nameKo": "공고규격서명7",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm8",
+     "nameKo": "공고규격서명8",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm9",
+     "nameKo": "공고규격서명9",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "ntceSpecDocNm10",
+     "nameKo": "공고규격서명10",
+     "size": "256",
+     "desc": "누리장터 입찰공고에 점부되는 공고규격서, 규격서, 적격심사표"
+    },
+    {
+     "nameEn": "aptHsmpNm",
+     "nameKo": "아파트단지명",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 민간발주기관명 (누리장터 화면에는 단지명)"
+    },
+    {
+     "nameEn": "aptCeoAdrs",
+     "nameKo": "아파트대표자주소",
+     "size": "400",
+     "desc": "누리장터 입찰공고 공고기관 아파트 주소"
+    },
+    {
+     "nameEn": "aptMngOfficeTelNo",
+     "nameKo": "아파트관리사무소전화번호",
+     "size": "25",
+     "desc": "누리장터 입찰공고 공고기관 아파트 연락처"
+    },
+    {
+     "nameEn": "aptHmpgUrl",
+     "nameKo": "아파트홈페이지URL",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 홈페이지URL"
+    },
+    {
+     "nameEn": "aptTotar",
+     "nameKo": "아파트연면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 연면적(㎡)"
+    },
+    {
+     "nameEn": "aptMngcstLevyArea",
+     "nameKo": "아파트관리비부과면적",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 관리비부과면적 (㎡)"
+    },
+    {
+     "nameEn": "aptHshldNum",
+     "nameKo": "아파트세대수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 세대수"
+    },
+    {
+     "nameEn": "aptCmplNum",
+     "nameKo": "아파트동수",
+     "size": "10",
+     "desc": "누리장터 입찰공고 공고기관 아파트 동수"
+    },
+    {
+     "nameEn": "aptHeatMethdNm",
+     "nameKo": "아파트난방방식",
+     "size": "100",
+     "desc": "누리장터 입찰공고 공고기관 아파트 난방방식"
+    },
+    {
+     "nameEn": "aptSubactLrgeNdCmpnintFclty",
+     "nameKo": "아파트부대및복리시설",
+     "size": "4000",
+     "desc": "누리장터 입찰공고 공고기관 아파트 부대 및 복리시설 등"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "공고의 등록일시 “YYYY-MM-DD HH:MM:SS”"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PrvtBidNtceService/getPrvtBidPblancListInfoEtcPPSSrch?inqryDiv=1&inqryBgnDt=201605010000&inqryEndDt=201605052359&dminsttCd=M004953&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  }
+ ]
+}

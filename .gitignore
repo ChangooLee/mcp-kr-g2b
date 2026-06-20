@@ -1,0 +1,68 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+
+# Environments
+.env
+.env.*
+!.env.example
+.venv/
+.venv310/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Cache / data (런타임 생성물)
+src/mcp_kr_g2b/utils/cache/raw_data/*
+!src/mcp_kr_g2b/utils/cache/raw_data/.gitkeep
+src/mcp_kr_g2b/utils/data/*
+!src/mcp_kr_g2b/utils/data/.gitkeep
+
+# Lock files
+uv.lock
+poetry.lock

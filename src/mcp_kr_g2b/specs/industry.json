@@ -1,0 +1,203 @@
+{
+ "module": "industry",
+ "serviceId": "IndstrytyBaseLawrgltInfoService",
+ "serviceNameKo": "나라장터 업종 및 근거법규서비스",
+ "baseUrl": "http://apis.data.go.kr/1230000/ao/IndstrytyBaseLawrgltInfoService",
+ "description": "나라장터 업종 및 근거법규를 조회한다. 법제처가 분류하고 있는 법 분야에 따라 업종이 분류되어 있으며 법 분야별로 업종을 코드화하여 제공한다. 법령의 제정∙개정∙폐지 등으로 업종이 추가/수정/삭제될 경우 조회시점에 유효한 업종 정보만 제공한다.",
+ "updateCycle": "수시",
+ "operations": [
+  {
+   "opNameEn": "getIndstrytyBaseLawrgltInfoList",
+   "opNameKo": "업종 및 근거법규 정보 조회",
+   "opType": "조회(목록)",
+   "description": "업종 및 근거법규 정보 목록을 조회할 수 있다. - 조건 입력을 하지 않을 경우 전체 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "indstrytyClsfcCd",
+     "nameKo": "업종분류코드",
+     "size": "23",
+     "required": false,
+     "sample": "41",
+     "desc": "검색하고자하는 업종을 분류하는 코드"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "200",
+     "required": false,
+     "sample": "나무병원(1종)",
+     "desc": "검색하고자하는 업종에 대한 분류 명"
+    },
+    {
+     "nameEn": "indstrytyCd",
+     "nameKo": "업종코드",
+     "size": "4",
+     "required": false,
+     "sample": "4161",
+     "desc": "검색하고자하는 업종을 분류하는 코드 코드값)"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201801010000",
+     "desc": "검색하고자하는 업종등록일 기준 조회시작일시"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201807312359",
+     "desc": "검색하고자하는 업종등록일 기준 조회종료일시"
+    },
+    {
+     "nameEn": "indstrytyUseYn",
+     "nameKo": "업종사용여부",
+     "size": "1",
+     "required": false,
+     "sample": "Y",
+     "desc": "업종사용여부, 값이 없을 경우 전체 조회"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "indstrytyClsfcCd",
+     "nameKo": "업종분류코드",
+     "size": "3",
+     "desc": "분류코드는 법제처의 「법분야」에 따라 업종 분류(단,분류코드 ='99' : 근거법령 및 관련규정이 없는 임의로 부여한 업종)"
+    },
+    {
+     "nameEn": "indstrytyClsfcNm",
+     "nameKo": "업종분류명",
+     "size": "100",
+     "desc": "업종에 대한 분류 명"
+    },
+    {
+     "nameEn": "indstrytyCd",
+     "nameKo": "업종코드",
+     "size": "20",
+     "desc": "업종코드: 국가종합전자조달시스템(나라장터) 입찰참가자격등록규정에 따라 조달청이 업종DB분류체계에 의하여 법령분야별로 업종을 분류한 4자리 숫자 코드"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "200",
+     "desc": "업종에 대한 명"
+    },
+    {
+     "nameEn": "baseLawordNm",
+     "nameKo": "근거법령명",
+     "size": "220",
+     "desc": "근거법령"
+    },
+    {
+     "nameEn": "baseLawordArtclClauseNm",
+     "nameKo": "근거법령조항명",
+     "size": "220",
+     "desc": "근거법령"
+    },
+    {
+     "nameEn": "baseLawordUrl",
+     "nameKo": "근거법령URL",
+     "size": "250",
+     "desc": "관련법령PDF 파일 URL링크"
+    },
+    {
+     "nameEn": "rltnRgltCntnts",
+     "nameKo": "관련규정내용",
+     "size": "500",
+     "desc": "관련 규정 내용"
+    },
+    {
+     "nameEn": "inclsnLcns",
+     "nameKo": "포함면허",
+     "size": "2000",
+     "desc": "업종의 제한업종과 허용업종에 관한 서브데이터셋 [순번^제한업종코드^제한업종명^허용업종코드^허용업종명]"
+    },
+    {
+     "nameEn": "indstrytyUseYn",
+     "nameKo": "업종사용여부",
+     "size": "1",
+     "desc": "업종사용여부"
+    },
+    {
+     "nameEn": "indstrytyRgstDt",
+     "nameKo": "업종등록일시",
+     "size": "20",
+     "desc": "업종의 등록일시 \"YYYY-MM-DD HH:MM\""
+    },
+    {
+     "nameEn": "indstrytyChgDt",
+     "nameKo": "업종변경일시",
+     "size": "20",
+     "desc": "업종의 변경일시 \"YYYY-MM-DD HH:MM\""
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/IndstrytyBaseLawrgltInfoService/getIndstrytyBaseLawrgltInfoList?indstrytyClsfcCd=49&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  }
+ ]
+}

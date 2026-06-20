@@ -1,0 +1,968 @@
+{
+ "module": "nuri_contract",
+ "serviceId": "PrvtCntrctInfoService",
+ "serviceNameKo": "누리장터 민간계약정보서비스",
+ "baseUrl": "http://apis.data.go.kr/1230000/ao/PrvtCntrctInfoService",
+ "description": "누리장터에 등록된 민간계약정보를 제공하는 서비스로 조회구분, 조회시작일자, 조회종료일자에 따른 계약현황정보를 제공한다.",
+ "updateCycle": "수시",
+ "operations": [
+  {
+   "opNameEn": "getPrvtCntrctInfoList",
+   "opNameKo": "계약현황 민간조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 등록일시, 통합계약번호로 하여 통합계약번호, 업무구분명, 확정계약번호, 계약참조번호, 계약명, 공동계약여부, 계약체결일자, 계약기간, 총계약금액 등의 누리장터시스템에 등록된 계약 정보 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:등록일시, 2:통합계약번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201608310000",
+     "desc": "검색하고자하는 등록일시 범위 시작 'YYYYMMDDHHMM' 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201608312359",
+     "desc": "검색하고자하는 등록일시범위 종료 'YYYYMMDDHHMM' 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "untyCntrctNo",
+     "nameKo": "통합계약번호",
+     "size": "13",
+     "required": false,
+     "sample": "2016050000077",
+     "desc": "검색하고자하는 통합계약번호 조회구분이 2인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "untyCntrctNo",
+     "nameKo": "통합계약번호",
+     "size": "13",
+     "desc": "연계 데이터 입력시 등록되는 계약번호로 계약현황 데이터의 식별자"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "30",
+     "desc": "누리장터 업무를 구분하는 명으로 물품, 용역, 공사, 기타로 구분함"
+    },
+    {
+     "nameEn": "dcsnCntrctNo",
+     "nameKo": "확정계약번호",
+     "size": "35",
+     "desc": "(a) 공사, 기술용역, 외자 중앙 : 계약번호(8)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수 (b) 물품 , 일반용역 중앙 : 계약번호(9)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수(2) 차세대 나라장터 계약번호체계 개편 - 테스트여부(1)+년도(2)+번호구분(2)+순번(8) 총 13자리 구성 * 테스트여부 : T(모의)/R(실제), 번호구분 : BK(입찰공고번호)/TA(계약번호) ** 예시 : R24TA00000001 ☞ `24년 실제 계약번호이며 순번은 00000001"
+    },
+    {
+     "nameEn": "cntrctRefNo",
+     "nameKo": "계약참조번호",
+     "size": "35",
+     "desc": "(a) 공사, 기술용역 중앙 : 조달요청번호 자체 : 계약번호(11)+ 계약수정차수(2) (b) 물품, 일반용역 중앙 : 계약번호(9)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수(2) (c) 외자 중앙 : 계약번호(8)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수(2) 차세대 나라장터 계약번호체계 개편 - 테스트여부(1)+년도(2)+번호구분(2)+순번(8) 총 13자리 구성 * 테스트여부 : T(모의)/R(실제), 번호구분 : BK(입찰공고번호)/TA(계약번호) ** 예시 : R24TA00000001 ☞ `24년 실제 계약번호이며 순번은 00000001"
+    },
+    {
+     "nameEn": "cntrctNm",
+     "nameKo": "계약명",
+     "size": "100",
+     "desc": "공사명 또는 사업명이라고도 하며 계약내용을 요약한 이름"
+    },
+    {
+     "nameEn": "cmmnCntrctYn",
+     "nameKo": "공동계약여부",
+     "size": "1",
+     "desc": "공동계약의 경우 공사/제조 기타의 계약에 있어서 필요하다고 인정할 때 계약 상대자를 2인 이상과 체결하는 계약이며 단독계약은 계약상대자를 1인으로 하는 통상적인 계약을 미함.(Y/N)"
+    },
+    {
+     "nameEn": "cntrctCnclsDate",
+     "nameKo": "계약체결일자",
+     "size": "10",
+     "desc": "계약이 성립된 체결일자 ”YYYY-MM-DD”"
+    },
+    {
+     "nameEn": "cntrctPrd",
+     "nameKo": "계약기간",
+     "size": "70",
+     "desc": "계약의 효력이 있는 기간"
+    },
+    {
+     "nameEn": "totCntrctAmt",
+     "nameKo": "총계약금액",
+     "size": "25",
+     "desc": "장기계속계약의 경우에만 발생되며 장기계속계약 전체 계약금액(총부기금액) 을 의미함(원화,원)"
+    },
+    {
+     "nameEn": "thtmCntrctAmt",
+     "nameKo": "금차계약금액",
+     "size": "25",
+     "desc": "계약의 금차계약금액(원화,원)"
+    },
+    {
+     "nameEn": "grntymnyRate",
+     "nameKo": "보증금률",
+     "size": "25",
+     "desc": "계약의 보증금율(%)"
+    },
+    {
+     "nameEn": "dfctGrntymnyRate",
+     "nameKo": "하자보증금률",
+     "size": "25",
+     "desc": "계약의 하자보증금율(%)"
+    },
+    {
+     "nameEn": "cntrctInfoUrl",
+     "nameKo": "계약정보URL",
+     "size": "500",
+     "desc": "계약정보가 등록 되어 있는 사이트URL"
+    },
+    {
+     "nameEn": "payDivNm",
+     "nameKo": "지급구분명",
+     "size": "30",
+     "desc": "계약의 지급구분명"
+    },
+    {
+     "nameEn": "cntrctInsttCd",
+     "nameKo": "계약기관코드",
+     "size": "7",
+     "desc": "누리장터 계약건의 계약기관정보(민간수요자코드)"
+    },
+    {
+     "nameEn": "cntrctInsttNm",
+     "nameKo": "계약기관명",
+     "size": "200",
+     "desc": "누리장터 계약건의 계약기관명(민간수요자명)"
+    },
+    {
+     "nameEn": "cntrctInsttChrgDeptNm",
+     "nameKo": "계약담당부서명",
+     "size": "100",
+     "desc": "누리장터 계약건의 계약기관 담당 부서명(민간수요자담당부서명)"
+    },
+    {
+     "nameEn": "cntrctInsttOfclNm",
+     "nameKo": "계약담당자명",
+     "size": "100",
+     "desc": "누리장터 계약건의 계약기관 담당자명(민간수요자담당자명)"
+    },
+    {
+     "nameEn": "cntrctInsttOfclTelNo",
+     "nameKo": "계약담당자전화번호",
+     "size": "25",
+     "desc": "계약기관의 담당자 전화번호 핸드폰번호일 경우 '*'처리"
+    },
+    {
+     "nameEn": "cntrctInsttOfclFaxNo",
+     "nameKo": "계약담당자팩스번호",
+     "size": "25",
+     "desc": "계약기관담당자팩스번호 핸드폰번호일 경우 '*'처리"
+    },
+    {
+     "nameEn": "corpList",
+     "nameKo": "업체목록",
+     "size": "4000",
+     "desc": "업체목록 [순번^업체구분^공동도급방식구분^업체명^대표자명^국적명^지분율^채권자명^담당자성명],[순번^업체구분^공동도급방식구분^업체명^대표자명^국적명^지분율^채권자명^담당자성명],"
+    },
+    {
+     "nameEn": "cntrctDtlInfoUrl",
+     "nameKo": "계약상세정보URL",
+     "size": "500",
+     "desc": "나라장터화면에서 계약상세정보를 확인 할 수 있는 URL"
+    },
+    {
+     "nameEn": "crdtrNm",
+     "nameKo": "채권자명",
+     "size": "200",
+     "desc": "계약의 채권자명"
+    },
+    {
+     "nameEn": "cntrctCnclsMthdNm",
+     "nameKo": "계약체결방법명",
+     "size": "30",
+     "desc": "계약체결의 방법을 구분하는 명 *일반경쟁계약은 계약 대상 물품의 규격 및 시방서와 계약조건 등을 널리 공고하여 일정한 자격을 가진 불특정 다수인의 입찰희망자를 모두 경쟁 입찰하는 계약방법 *제한경쟁계약은 일반•지명경쟁계약제도의 단점을 보완하기 위해 실적제한, 기술보유제한, 특정물품제한, 지역제한 등을 두는 계약방법 *지명경쟁계약은 계약상대자의 신용과 실적 등에 있어 적당하다고 인정하는 특정 다수의 경쟁 참가자를 지명하여 계약 상대방을 결정하는 계약방법 *수의계약은 계약상대자를 결정함에 있어 경쟁방법에 하지 않고 특정인을 선정하여 계약하는 계약방법"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "chgDt",
+     "nameKo": "변경일시",
+     "size": "19",
+     "desc": "변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PrvtCntrctInfoService/getPrvtCntrctInfoList?inqryDiv=1&inqryBgnDt=201605010000&inqryEndDt=201605052359&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrvtCntrctInfoListPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 계약현황 민간조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 계약일자, 기관코드, 기관명, 계약번호, 공고번호로하여 통합계약번호, 업무구분명, 확정계약번호, 계약참조번호, 계약명, 공동계약여부, 계약체결일자, 계약기간, 총계약금액 등의 누리장터시스템에 등록된 계약 정보 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:계약일자, 2:계약번호, 3:공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDate",
+     "nameKo": "조회시작일자",
+     "size": "8",
+     "required": false,
+     "sample": "20160830",
+     "desc": "검색하고자하는 일자 범위 시작 'YYYYMMDD\" 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDate",
+     "nameKo": "조회종료일자",
+     "size": "8",
+     "required": false,
+     "sample": "20160831",
+     "desc": "검색하고자하는 일자범위 종료 'YYYYMMDD\" 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "insttCd",
+     "nameKo": "기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "1230000",
+     "desc": "검색하고자하는 민간수요자코드"
+    },
+    {
+     "nameEn": "insttNm",
+     "nameKo": "기관명",
+     "size": "200",
+     "required": false,
+     "sample": "조달청",
+     "desc": "검색하고자하는 민간수요자명"
+    },
+    {
+     "nameEn": "cntrctNm",
+     "nameKo": "계약명",
+     "size": "100",
+     "required": false,
+     "sample": "서울특별시지방경찰청 면수건 구매",
+     "desc": "검색하고자하는 계약명 (조회구분 1인 경우 선택)"
+    },
+    {
+     "nameEn": "cntrctRefNo",
+     "nameKo": "계약참조번호",
+     "size": "35",
+     "required": false,
+     "sample": "00163142600",
+     "desc": "검색하고자하는 계약참조번호 (조회구분 1인 경우 선택) * 나라장터화면에서 계약번호"
+    },
+    {
+     "nameEn": "cntrctNo",
+     "nameKo": "계약번호",
+     "size": "35",
+     "required": false,
+     "sample": "2016090002306",
+     "desc": "검색하고자하는 계약번호 조회구분이 2인 경우 필수"
+    },
+    {
+     "nameEn": "ntceNo",
+     "nameKo": "공고번호",
+     "size": "40",
+     "required": false,
+     "sample": "20151109261",
+     "desc": "검색하고자하는 공고번호(입찰공고번호) 조회구분이 3인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "untyCntrctNo",
+     "nameKo": "통합계약번호",
+     "size": "13",
+     "desc": "연계 데이터 입력시 등록되는 계약번호로 계약현황 데이터의 식별자"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "30",
+     "desc": "누리장터 업무를 구분하는 명으로 물품, 용역, 공사, 기타로 구분함"
+    },
+    {
+     "nameEn": "dcsnCntrctNo",
+     "nameKo": "확정계약번호",
+     "size": "35",
+     "desc": "(a) 공사, 기술용역, 외자 중앙 : 계약번호(8)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수 (b) 물품 , 일반용역 중앙 : 계약번호(9)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수(2) 차세대 나라장터 계약번호체계 개편 - 테스트여부(1)+년도(2)+번호구분(2)+순번(8) 총 13자리 구성 * 테스트여부 : T(모의)/R(실제), 번호구분 : BK(입찰공고번호)/TA(계약번호) ** 예시 : R24TA00000001 ☞ `24년 실제 계약번호이며 순번은 00000001"
+    },
+    {
+     "nameEn": "cntrctRefNo",
+     "nameKo": "계약참조번호",
+     "size": "35",
+     "desc": "(a) 공사, 기술용역 중앙 : 조달요청번호 자체 : 계약번호(11)+ 계약수정차수(2) (b) 물품, 일반용역 중앙 : 계약번호(9)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수(2) (c) 외자 중앙 : 계약번호(8)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수(2) 차세대 나라장터 계약번호체계 개편 - 테스트여부(1)+년도(2)+번호구분(2)+순번(8) 총 13자리 구성 * 테스트여부 : T(모의)/R(실제), 번호구분 : BK(입찰공고번호)/TA(계약번호) ** 예시 : R24TA00000001 ☞ `24년 실제 계약번호이며 순번은 00000001"
+    },
+    {
+     "nameEn": "cntrctNm",
+     "nameKo": "계약명",
+     "size": "100",
+     "desc": "공사명 또는 사업명이라고도 하며 계약내용을 요약한 이름"
+    },
+    {
+     "nameEn": "cmmnCntrctYn",
+     "nameKo": "공동계약여부",
+     "size": "1",
+     "desc": "공동계약의 경우 공사/제조 기타의 계약에 있어서 필요하다고 인정할 때 계약 상대자를 2인 이상과 체결하는 계약이며 단독계약은 계약상대자를 1인으로 하는 통상적인 계약을 미함.(Y/N)"
+    },
+    {
+     "nameEn": "cntrctCnclsDate",
+     "nameKo": "계약체결일자",
+     "size": "10",
+     "desc": "계약이 성립된 체결일자 ”YYYY-MM-DD”"
+    },
+    {
+     "nameEn": "cntrctPrd",
+     "nameKo": "계약기간",
+     "size": "70",
+     "desc": "계약의 효력이 있는 기간"
+    },
+    {
+     "nameEn": "totCntrctAmt",
+     "nameKo": "총계약금액",
+     "size": "25",
+     "desc": "장기계속계약의 경우에만 발생되며 장기계속계약 전체 계약금액(총부기금액) 을 의미함(원화,원)"
+    },
+    {
+     "nameEn": "thtmCntrctAmt",
+     "nameKo": "금차계약금액",
+     "size": "25",
+     "desc": "계약의 금차계약금액(원화,원)"
+    },
+    {
+     "nameEn": "grntymnyRate",
+     "nameKo": "보증금률",
+     "size": "25",
+     "desc": "계약의 보증금율(%)"
+    },
+    {
+     "nameEn": "dfctGrntymnyRate",
+     "nameKo": "하자보증금률",
+     "size": "25",
+     "desc": "계약의 하자보증금율(%)"
+    },
+    {
+     "nameEn": "cntrctInfoUrl",
+     "nameKo": "계약정보URL",
+     "size": "500",
+     "desc": "계약정보가 등록 되어 있는 사이트URL"
+    },
+    {
+     "nameEn": "payDivNm",
+     "nameKo": "지급구분명",
+     "size": "30",
+     "desc": "계약의 지급구분명"
+    },
+    {
+     "nameEn": "cntrctInsttCd",
+     "nameKo": "계약기관코드",
+     "size": "7",
+     "desc": "누리장터 계약건의 계약기관정보(민간수요자코드)"
+    },
+    {
+     "nameEn": "cntrctInsttNm",
+     "nameKo": "계약기관명",
+     "size": "200",
+     "desc": "누리장터 계약건의 계약기관명(민간수요자명)"
+    },
+    {
+     "nameEn": "cntrctInsttChrgDeptNm",
+     "nameKo": "계약담당부서명",
+     "size": "100",
+     "desc": "누리장터 계약건의 계약기관 담당 부서명(민간수요자담당부서명)"
+    },
+    {
+     "nameEn": "cntrctInsttOfclNm",
+     "nameKo": "계약담당자명",
+     "size": "100",
+     "desc": "누리장터 계약건의 계약기관 담당자명(민간수요자담당자명)"
+    },
+    {
+     "nameEn": "cntrctInsttOfclTelNo",
+     "nameKo": "계약담당자전화번호",
+     "size": "25",
+     "desc": "계약기관의 담당자 전화번호 핸드폰번호일 경우 '*'처리"
+    },
+    {
+     "nameEn": "cntrctInsttOfclFaxNo",
+     "nameKo": "계약담당자팩스번호",
+     "size": "25",
+     "desc": "계약기관담당자팩스번호 핸드폰번호일 경우 '*'처리"
+    },
+    {
+     "nameEn": "corpList",
+     "nameKo": "업체목록",
+     "size": "4000",
+     "desc": "업체목록 [순번^업체구분^공동도급방식구분^업체명^대표자명^국적명^지분율^채권자명^담당자성명],[순번^업체구분^공동도급방식구분^업체명^대표자명^국적명^지분율^채권자명^담당자성명],"
+    },
+    {
+     "nameEn": "cntrctDtlInfoUrl",
+     "nameKo": "계약상세정보URL",
+     "size": "500",
+     "desc": "나라장터화면에서 계약상세정보를 확인 할 수 있는 URL"
+    },
+    {
+     "nameEn": "crdtrNm",
+     "nameKo": "채권자명",
+     "size": "200",
+     "desc": "계약의 채권자명"
+    },
+    {
+     "nameEn": "cntrctCnclsMthdNm",
+     "nameKo": "계약체결방법명",
+     "size": "30",
+     "desc": "계약체결의 방법을 구분하는 명 *일반경쟁계약은 계약 대상 물품의 규격 및 시방서와 계약조건 등을 널리 공고하여 일정한 자격을 가진 불특정 다수인의 입찰희망자를 모두 경쟁 입찰하는 계약방법 *제한경쟁계약은 일반•지명경쟁계약제도의 단점을 보완하기 위해 실적제한, 기술보유제한, 특정물품제한, 지역제한 등을 두는 계약방법 *지명경쟁계약은 계약상대자의 신용과 실적 등에 있어 적당하다고 인정하는 특정 다수의 경쟁 참가자를 지명하여 계약 상대방을 결정하는 계약방법 *수의계약은 계약상대자를 결정함에 있어 경쟁방법에 하지 않고 특정인을 선정하여 계약하는 계약방법"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "chgDt",
+     "nameKo": "변경일시",
+     "size": "19",
+     "desc": "변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PrvtCntrctInfoService/getPrvtCntrctInfoListPPSSrch?inqryDiv=2&cntrctNo=P201600015500&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrvtCntrctInfoListChgHstry",
+   "opNameKo": "계약현황에 대한 민간변경이력조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 변경일시, 통합계약번호로 하여 통합계약번호, 업무구분명, 확정계약번호, 계약참조번호, 계약명, 공동계약여부, 계약체결일자, 계약기간, 총계약금액 등의 누리장터시스템에 등록된 계약변경정보 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "Json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:변경일시, 2:통합계약번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201608310000",
+     "desc": "검색하고자하는 변경일시 범위 시작 'YYYYMMDDHHMM' 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201608312359",
+     "desc": "검색하고자하는 변경일시범위 종료 'YYYYMMDDHHMM' 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "untyCntrctNo",
+     "nameKo": "통합계약번호",
+     "size": "13",
+     "required": false,
+     "sample": "2016050000077",
+     "desc": "검색하고자하는 통합계약번호 조회구분이 2인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "untyCntrctNo",
+     "nameKo": "통합계약번호",
+     "size": "13",
+     "desc": "연계 데이터 입력시 등록되는 계약번호로 계약현황 데이터의 식별자"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "30",
+     "desc": "누리장터 업무를 구분하는 명으로 물품, 용역, 공사, 기타로 구분함"
+    },
+    {
+     "nameEn": "dcsnCntrctNo",
+     "nameKo": "확정계약번호",
+     "size": "35",
+     "desc": "(a) 공사, 기술용역, 외자 중앙 : 계약번호(8)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수 (b) 물품 , 일반용역 중앙 : 계약번호(9)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수(2) 차세대 나라장터 계약번호체계 개편 - 테스트여부(1)+년도(2)+번호구분(2)+순번(8) 총 13자리 구성 * 테스트여부 : T(모의)/R(실제), 번호구분 : BK(입찰공고번호)/TA(계약번호) ** 예시 : R24TA00000001 ☞ `24년 실제 계약번호이며 순번은 00000001"
+    },
+    {
+     "nameEn": "cntrctRefNo",
+     "nameKo": "계약참조번호",
+     "size": "35",
+     "desc": "(a) 공사, 기술용역 중앙 : 조달요청번호 자체 : 계약번호(11)+ 계약수정차수(2) (b) 물품, 일반용역 중앙 : 계약번호(9)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수(2) (c) 외자 중앙 : 계약번호(8)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수(2) 차세대 나라장터 계약번호체계 개편 - 테스트여부(1)+년도(2)+번호구분(2)+순번(8) 총 13자리 구성 * 테스트여부 : T(모의)/R(실제), 번호구분 : BK(입찰공고번호)/TA(계약번호) ** 예시 : R24TA00000001 ☞ `24년 실제 계약번호이며 순번은 00000001"
+    },
+    {
+     "nameEn": "cntrctNm",
+     "nameKo": "계약명",
+     "size": "100",
+     "desc": "공사명 또는 사업명이라고도 하며 계약내용을 요약한 이름"
+    },
+    {
+     "nameEn": "cmmnCntrctYn",
+     "nameKo": "공동계약여부",
+     "size": "1",
+     "desc": "공동계약의 경우 공사/제조 기타의 계약에 있어서 필요하다고 인정할 때 계약 상대자를 2인 이상과 체결하는 계약이며 단독계약은 계약상대자를 1인으로 하는 통상적인 계약을 미함.(Y/N)"
+    },
+    {
+     "nameEn": "cntrctCnclsDate",
+     "nameKo": "계약체결일자",
+     "size": "10",
+     "desc": "계약이 성립된 체결일자 ”YYYY-MM-DD”"
+    },
+    {
+     "nameEn": "cntrctPrd",
+     "nameKo": "계약기간",
+     "size": "70",
+     "desc": "계약의 효력이 있는 기간"
+    },
+    {
+     "nameEn": "totCntrctAmt",
+     "nameKo": "총계약금액",
+     "size": "25",
+     "desc": "장기계속계약의 경우에만 발생되며 장기계속계약 전체 계약금액(총부기금액) 을 의미함(원화,원)"
+    },
+    {
+     "nameEn": "thtmCntrctAmt",
+     "nameKo": "금차계약금액",
+     "size": "25",
+     "desc": "계약의 금차계약금액(원화,원)"
+    },
+    {
+     "nameEn": "grntymnyRate",
+     "nameKo": "보증금률",
+     "size": "25",
+     "desc": "계약의 보증금율(%)"
+    },
+    {
+     "nameEn": "dfctGrntymnyRate",
+     "nameKo": "하자보증금률",
+     "size": "25",
+     "desc": "계약의 하자보증금율(%)"
+    },
+    {
+     "nameEn": "cntrctInfoUrl",
+     "nameKo": "계약정보URL",
+     "size": "500",
+     "desc": "계약정보가 등록 되어 있는 사이트URL"
+    },
+    {
+     "nameEn": "payDivNm",
+     "nameKo": "지급구분명",
+     "size": "30",
+     "desc": "계약의 지급구분명"
+    },
+    {
+     "nameEn": "cntrctInsttCd",
+     "nameKo": "계약기관코드",
+     "size": "7",
+     "desc": "누리장터 계약건의 계약기관정보(민간수요자코드)"
+    },
+    {
+     "nameEn": "cntrctInsttNm",
+     "nameKo": "계약기관명",
+     "size": "200",
+     "desc": "누리장터 계약건의 계약기관명(민간수요자명)"
+    },
+    {
+     "nameEn": "cntrctInsttChrgDeptNm",
+     "nameKo": "계약담당부서명",
+     "size": "100",
+     "desc": "누리장터 계약건의 계약기관 담당 부서명(민간수요자담당부서명)"
+    },
+    {
+     "nameEn": "cntrctInsttOfclNm",
+     "nameKo": "계약담당자명",
+     "size": "100",
+     "desc": "누리장터 계약건의 계약기관 담당자명(민간수요자담당자명)"
+    },
+    {
+     "nameEn": "cntrctInsttOfclTelNo",
+     "nameKo": "계약담당자전화번호",
+     "size": "25",
+     "desc": "계약기관의 담당자 전화번호 핸드폰번호일 경우 '*'처리"
+    },
+    {
+     "nameEn": "cntrctInsttOfclFaxNo",
+     "nameKo": "계약담당자팩스번호",
+     "size": "25",
+     "desc": "계약기관담당자팩스번호 핸드폰번호일 경우 '*'처리"
+    },
+    {
+     "nameEn": "corpList",
+     "nameKo": "업체목록",
+     "size": "4000",
+     "desc": "업체목록 [순번^업체구분^공동도급방식구분^업체명^대표자명^국적명^지분율^채권자명^담당자성명],[순번^업체구분^공동도급방식구분^업체명^대표자명^국적명^지분율^채권자명^담당자성명],"
+    },
+    {
+     "nameEn": "cntrctDtlInfoUrl",
+     "nameKo": "계약상세정보URL",
+     "size": "500",
+     "desc": "나라장터화면에서 계약상세정보를 확인 할 수 있는 URL"
+    },
+    {
+     "nameEn": "crdtrNm",
+     "nameKo": "채권자명",
+     "size": "200",
+     "desc": "계약의 채권자명"
+    },
+    {
+     "nameEn": "cntrctCnclsMthdNm",
+     "nameKo": "계약체결방법명",
+     "size": "30",
+     "desc": "계약체결의 방법을 구분하는 명 *일반경쟁계약은 계약 대상 물품의 규격 및 시방서와 계약조건 등을 널리 공고하여 일정한 자격을 가진 불특정 다수인의 입찰희망자를 모두 경쟁 입찰하는 계약방법 *제한경쟁계약은 일반•지명경쟁계약제도의 단점을 보완하기 위해 실적제한, 기술보유제한, 특정물품제한, 지역제한 등을 두는 계약방법 *지명경쟁계약은 계약상대자의 신용과 실적 등에 있어 적당하다고 인정하는 특정 다수의 경쟁 참가자를 지명하여 계약 상대방을 결정하는 계약방법 *수의계약은 계약상대자를 결정함에 있어 경쟁방법에 하지 않고 특정인을 선정하여 계약하는 계약방법"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "chgDt",
+     "nameKo": "변경일시",
+     "size": "19",
+     "desc": "변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PrvtCntrctInfoService/getPrvtCntrctInfoListChgHstry?inqryDiv=1&inqryBgnDt=201605010000&inqryEndDt=201605052359&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrvtCntrctInfoListDltHstry",
+   "opNameKo": "계약현황에 대한 민간삭제이력조회",
+   "opType": "조회(목록)",
+   "description": "검색조건에 삭제일시, 통합계약번호를 입력하여 민간 계약삭제이력정보(삭제일시, 변경구분명, 통합계약번호, 확정계약번호, 계약참조번호) 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:삭제일시, 2:통합계약번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201701010000",
+     "desc": "검색하고자하는 삭제일시 범위 시작 'YYYYMMDDHHMM' 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201701302359",
+     "desc": "검색하고자하는 삭제일시 범위 종료 'YYYYMMDDHHMM' 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "untyCntrctNo",
+     "nameKo": "통합계약번호",
+     "size": "13",
+     "required": false,
+     "sample": "2016120232843",
+     "desc": "검색하고자하는 통합계약번호 조회구분이 2인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "dltDt",
+     "nameKo": "삭제일시",
+     "size": "19",
+     "desc": "삭제일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "chgDivNm",
+     "nameKo": "변경구분명",
+     "size": "20",
+     "desc": "데이터의 변경구분명 (DEL : 삭제)"
+    },
+    {
+     "nameEn": "untyCntrctNo",
+     "nameKo": "통합계약번호",
+     "size": "13",
+     "desc": "연계 데이터 입력시 등록되는 계약번호로 계약현황 데이터의 식별자"
+    },
+    {
+     "nameEn": "dcsnCntrctNo",
+     "nameKo": "확정계약번호",
+     "size": "35",
+     "desc": "(a) 공사, 기술용역, 외자 중앙 : 계약번호(8)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수 (b) 물품 , 일반용역 중앙 : 계약번호(9)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수(2) 차세대 나라장터 계약번호체계 개편 - 테스트여부(1)+년도(2)+번호구분(2)+순번(8) 총 13자리 구성 * 테스트여부 : T(모의)/R(실제), 번호구분 : BK(입찰공고번호)/TA(계약번호) ** 예시 : R24TA00000001 ☞ `24년 실제 계약번호이며 순번은 00000001"
+    },
+    {
+     "nameEn": "cntrctRefNo",
+     "nameKo": "계약참조번호",
+     "size": "35",
+     "desc": "(a) 공사, 기술용역 중앙 : 조달요청번호 자체 : 계약번호(11)+ 계약수정차수(2) (b) 물품, 일반용역 중앙 : 계약번호(9)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수(2) (c) 외자 중앙 : 계약번호(8)+ 계약수정차수(2) 자체 : 계약번호(11)+ 계약수정차수(2) 차세대 나라장터 계약번호체계 개편 - 테스트여부(1)+년도(2)+번호구분(2)+순번(8) 총 13자리 구성 * 테스트여부 : T(모의)/R(실제), 번호구분 : BK(입찰공고번호)/TA(계약번호) ** 예시 : R24TA00000001 ☞ `24년 실제 계약번호이며 순번은 00000001"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PrvtCntrctInfoService/getPrvtCntrctInfoListDltHstry?inqryDiv=1&inqryBgnDt=201605010000&inqryEndDt=201605052359&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  }
+ ]
+}

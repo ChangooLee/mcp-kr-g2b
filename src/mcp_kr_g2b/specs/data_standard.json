@@ -1,0 +1,1111 @@
+{
+ "module": "data_standard",
+ "serviceId": "PubDataOpnStdService",
+ "serviceNameKo": "나라장터 공공데이터개방표준서비스",
+ "baseUrl": "http://apis.data.go.kr/1230000/ao/PubDataOpnStdService",
+ "description": "나라장터 입찰, 낙찰, 계약정보 데이터를 행안부 고시 공공데이터 개방표준에 따라 제공하는 공공데이터개방표준서비스.",
+ "updateCycle": "수시",
+ "operations": [
+  {
+   "opNameEn": "getDataSetOpnStdBidPblancInfo",
+   "opNameKo": "데이터셋 개방표준에 따른 입찰공고정보",
+   "opType": "조회(목록)",
+   "description": "검색조건을 입찰공고일시로 하여 입찰공고번호, 입찰공고차수, 나라장터공고여부, 입찰공고명, 입찰공고상태명, 입찰공고일자, 입찰공고시각, 업무구분명, 국제입찰여부 등 나라장터에 등록된 입찰공고정보 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": false,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": false,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "bidNtceBgnDt",
+     "nameKo": "입찰공고시작일시",
+     "size": "12",
+     "required": true,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 입찰공고일시범위 시작 'YYYYMMDDHHMM' (입찰공고일시 범위는 1개월 로 제한)"
+    },
+    {
+     "nameEn": "bidNtceEndDt",
+     "nameKo": "입찰공고종료일시",
+     "size": "12",
+     "required": true,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 입찰공고일시범위 종료 'YYYYMMDDHHMM' (입찰공고일시 범위는 1개월 로 제한)"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "13",
+     "desc": "입찰공고를 관리하기 위한 번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 나라장터 외 (자체)전자조달시스템(이하 이 표에서 “기타 전자조달시스템”이라 함) 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 :R+년도(2)+BK+순번(8) 총 13자리 구성 적용 *2025년 공고건부터 적용"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "2",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 정정(변경)공고 및 재공고 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "refNtceNo",
+     "nameKo": "참조공고번호",
+     "size": "40",
+     "desc": "조달청 입찰공고의 경우 참조공고번호는 기타 전자조달시스템에서 관리하는 공고번호를 의미하며 기타 전자조달시스템의 경우 참조공고번호는 나라장터(G2B) 입찰공고번호를 의미함"
+    },
+    {
+     "nameEn": "refNtceOrd",
+     "nameKo": "참조공고차수",
+     "size": "3",
+     "desc": "참조공고번호에 대한 공고 차수"
+    },
+    {
+     "nameEn": "ppsNtceYn",
+     "nameKo": "나라장터공고여부",
+     "size": "1",
+     "desc": "조달청에서 관리하는 나라장터 (https://www.g2b.go.kr)를 통해서도 입찰공고를 하는지의 여부"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "bidNtceSttusNm",
+     "nameKo": "입찰공고상태명",
+     "size": "100",
+     "desc": "해당 공고의 상태가 일반 또는 긴급공고, 정정(또는 연기)공고, 재공고입찰, 취소공고를 구분하기 위한 명"
+    },
+    {
+     "nameEn": "bidNtceDate",
+     "nameKo": "입찰공고일자",
+     "size": "10",
+     "desc": "입찰공고서를 공고한 일자"
+    },
+    {
+     "nameEn": "bidNtceBgn",
+     "nameKo": "입찰공고시각",
+     "size": "5",
+     "desc": "입찰공고서를 공고한 시각"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "20",
+     "desc": "입찰업무를 구분하는 명으로 물품, 용역, 공사, 외자로 구분함"
+    },
+    {
+     "nameEn": "intrntnlBidYn",
+     "nameKo": "국제입찰여부",
+     "size": "1",
+     "desc": "국제입찰대상인지의 여부를 나타내며 국제입찰 대상은 내외국인 또는 외국인을 대상으로 하여 물품, 공사 및 용역을 조달하기 위하여 행하는 입찰을 말하며 수의계약을 포함한다. 국가계약법 제4조(지방계약법 제5조)에 의해 추정가격이 고시금액(국제입찰 적용 대상 기준금액으로 기획재정부장관 및 행정안전부장관이 매 2년마다 고시한 금액을 말하며 WTO 또는 양자간(FTA) 정부조달협정에 따르면 국제입찰 대상 기준 금액이 SDR(Special Drawing Rights:특별인출권) 통화단위로 되어 있어 주무부 장관이 이를 2년마다 원화로 환산하여 고시) 이상일 경우 국제입찰대상이 됨"
+    },
+    {
+     "nameEn": "cmmnCntrctYn",
+     "nameKo": "공동계약여부",
+     "size": "1",
+     "desc": "공동계약의 경우 공사/제조 기타의 계약에 있어서 필요하다고 인정할 때 계약 상대자를 2인 이상과 체결하는 계약이며 단독계약은 계약상대자를 1인으로 하는 통상적인 계약을 의미함."
+    },
+    {
+     "nameEn": "cmmnReciptMethdNm",
+     "nameKo": "공동수급방식명",
+     "size": "100",
+     "desc": "공동수급이라 함은 구성원을 2인 이상으로 하여 수급인이 해당계약을 공동으로 수행하기 위하여 잠정적으로 결성한 실체를 의미하며 공동수급체가도급을 받아 이행하는 방식을 구분하는 명임"
+    },
+    {
+     "nameEn": "elctrnBidYn",
+     "nameKo": "전자입찰여부",
+     "size": "1",
+     "desc": "입찰의 방식이 전자입찰방식인지 일반입찰(직접입찰 및 우편)방식인지의 여부"
+    },
+    {
+     "nameEn": "cntrctCnclsSttusNm",
+     "nameKo": "계약체결형태명",
+     "size": "30",
+     "desc": "계약체결형태를 구분하는 명 *총액계약은 계약목적물 전체에 대하여 단가가 아닌 총액으로 체결하는 계약형태 *단가계약은 수요 빈도가 많은 품목에 대하여 단가에 의해 예정수량을 명시하고 체결하는 계약형태, *제3자단가계약은 각 수요기관에서 공통적으로 필요로 하는 수요물자를 계약시 미리 단가만을 정하여 계약을 체결하고 각 수요기관에서 직접 납품요구하여 구매하는 계약형태"
+    },
+    {
+     "nameEn": "cntrctCnclsMthdNm",
+     "nameKo": "계약체결방법명",
+     "size": "30",
+     "desc": "계약체결의 방법을 구분하는 명 *일반경쟁계약은 계약 대상 물품의 규격 및 시방서와 계약조건 등을 널리 공고하여 일정한 자격을 가진 불특정 다수인의 입찰희망자를 모두 경쟁 입찰하는 계약방법 *제한경쟁계약은 일반·지명경쟁계약제도의 단점을 보완하기 위해 실적제한, 기술보유제한, 특정물품제한, 지역제한 등을 두는 계약방법 *지명경쟁계약은 계약상대자의 신용과 실적 등에 있어 적당하다고 인정하는 특정 다수의 경쟁 참가자를 지명하여 계약 상대방을 결정하는 계약방법 *수의계약은 계약상대자를 결정함에 있어 경쟁방법에 의하지 않고 특정인을 선정하여 계약하는 계약방법"
+    },
+    {
+     "nameEn": "bidwinrDcsnMthdNm",
+     "nameKo": "낙찰자결정방법명",
+     "size": "30",
+     "desc": "해당 공고건에 대해 낙찰자를 결정하는 방법"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "수요기관의 의뢰를 받아 공고하는 기관의 명"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "desc": "공고를 하는 기관의 코드로 행정안전부에서 부여한 기관코드임"
+    },
+    {
+     "nameEn": "ntceInsttOfclDeptNm",
+     "nameKo": "공고기관담당자부서명",
+     "size": "100",
+     "desc": "공고기관의 공고를 담당하는 담당부서의 명"
+    },
+    {
+     "nameEn": "ntceInsttOfclNm",
+     "nameKo": "공고기관담당자명",
+     "size": "35",
+     "desc": "공고기관의 공고를 담당하는 담당자의 명"
+    },
+    {
+     "nameEn": "ntceInsttOfclTel",
+     "nameKo": "공고기관담당자전화번호",
+     "size": "13",
+     "desc": "공고기관의 공고를 담당하는 담당자의 전화번호"
+    },
+    {
+     "nameEn": "ntceInsttOfclEmailAdrs",
+     "nameKo": "공고기관담당자이메일주소",
+     "size": "100",
+     "desc": "공고기관의 공고를 담당하는 담당자의 이메일주소"
+    },
+    {
+     "nameEn": "dmndInsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 기타 전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "dmndInsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행정안전부에서 부여한 기관코드임"
+    },
+    {
+     "nameEn": "dmndInsttOfclDeptNm",
+     "nameKo": "수요기관담당자부서명",
+     "size": "100",
+     "desc": "수요기관의 공고를 담당하는 담당부서의 명"
+    },
+    {
+     "nameEn": "dmndInsttOfclNm",
+     "nameKo": "수요기관담당자명",
+     "size": "35",
+     "desc": "수요기관의 공고를 담당하는 담당자의 명"
+    },
+    {
+     "nameEn": "dmndInsttOfclTel",
+     "nameKo": "수요기관담당자전화번호",
+     "size": "13",
+     "desc": "수요기관의 공고를 담당하는 담당자의 전화번호"
+    },
+    {
+     "nameEn": "dmndInsttOfclEmailAdrs",
+     "nameKo": "수요기관담당자이메일주소",
+     "size": "100",
+     "desc": "수요기관의 공고를 담당하는 담당자의 이메일주소"
+    },
+    {
+     "nameEn": "presnatnOprtnYn",
+     "nameKo": "설명회실시여부",
+     "size": "1",
+     "desc": "해당 공고에 대한 현장/입찰/과업 설명회를 실시하는지의 여부"
+    },
+    {
+     "nameEn": "presnatnOprtnDate",
+     "nameKo": "설명회실시일자",
+     "size": "10",
+     "desc": "해당 공고에 대한 현장/입찰/과업 설명회를 실시하는 일자"
+    },
+    {
+     "nameEn": "presnatnOprtnTm",
+     "nameKo": "설명회실시시각",
+     "size": "5",
+     "desc": "해당 공고에 대한 현장/입찰/과업 설명회를 실시하는 시각"
+    },
+    {
+     "nameEn": "presnatnOprtnPlce",
+     "nameKo": "설명회실시장소",
+     "size": "100",
+     "desc": "해당 공고에 대한 설명회를 실시하는 경우 현장/입찰/과업 설명회를 실시하는 장소"
+    },
+    {
+     "nameEn": "bidPrtcptQlfctRgstClseDate",
+     "nameKo": "입찰참가자격등록마감일자",
+     "size": "10",
+     "desc": "입찰참가등록이란 입찰사무를 효과적으로 집행하기 위하여 사전에 입찰참가자격등록을 해두었다가 필요 시 입찰에 참여하는 제도로 해당 공고에 대한 입찰참가자격의 등록이 완료되어야 하는 시점(일자)을 의미함"
+    },
+    {
+     "nameEn": "bidPrtcptQlfctRgstClseTm",
+     "nameKo": "입찰참가자격등록마감시각",
+     "size": "5",
+     "desc": "입찰참가등록이란 입찰사무를 효과적으로 집행하기 위하여 사전에 입찰참가자격등록을 해두었다가 필요 시 입찰에 참여하는 제도로 해당 공고에 대한 입찰참가자격의 등록이 완료되어야 하는 시점(시각)을 의미함"
+    },
+    {
+     "nameEn": "cmmnReciptAgrmntClseDate",
+     "nameKo": "공동수급협정마감일자",
+     "size": "10",
+     "desc": "공동계약이 허용된 공고에 대해 공동수급체를 구성하여 입찰에 참여하고자 할 경우 구성원이 일정 분담내용에 따라 나누어 공동으로 이행하는 약속을 한 공동수급협정서를 작성하여야 하며 이때 공동수급협정서의 등록(작성) 마감 시점(일자)을 의미함"
+    },
+    {
+     "nameEn": "cmmnReciptAgrmntClseTm",
+     "nameKo": "공동수급협정마감시각",
+     "size": "5",
+     "desc": "공동계약이 허용된 공고에 대해 공동수급체를 구성하여 입찰에 참여하고자 할 경우 구성원이 일정 분담내용에 따라 나누어 공동으로 이행하는 약속을 한 공동수급협정서를 작성하여야 하며 이때 공동수급협정서의 등록(작성) 마감 시점(시각)을 의미함"
+    },
+    {
+     "nameEn": "bidBeginDate",
+     "nameKo": "입찰개시일자",
+     "size": "10",
+     "desc": "입찰서의 제출을 개시하는 일자"
+    },
+    {
+     "nameEn": "bidBeginTm",
+     "nameKo": "입찰개시시각",
+     "size": "5",
+     "desc": "입찰서의 제출을 개시하는 시각"
+    },
+    {
+     "nameEn": "bidClseDate",
+     "nameKo": "입찰마감일자",
+     "size": "10",
+     "desc": "입찰서의 제출을 마감하는 일자"
+    },
+    {
+     "nameEn": "bidClseTm",
+     "nameKo": "입찰마감시각",
+     "size": "5",
+     "desc": "입찰서의 제출을 마감하는 시각"
+    },
+    {
+     "nameEn": "opengDate",
+     "nameKo": "개찰일자",
+     "size": "10",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 일자"
+    },
+    {
+     "nameEn": "opengTm",
+     "nameKo": "개찰시각",
+     "size": "5",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 시각"
+    },
+    {
+     "nameEn": "opengPlce",
+     "nameKo": "개찰장소",
+     "size": "100",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 장소"
+    },
+    {
+     "nameEn": "asignBdgtAmt",
+     "nameKo": "배정예산금액(설계금액)",
+     "size": "22",
+     "desc": "사업목적물을 달성하기 위하여 배정된 예산액 또는 설계금액(원화,원)"
+    },
+    {
+     "nameEn": "presmptPrce",
+     "nameKo": "추정가격",
+     "size": "25",
+     "desc": "물품/공사/용역 등의 조달 계약을 체결함에 있어 국제입찰 대상여부를 판단하는 기준 등으로 삼기 위하여 예정가격이 결정되기 전에 국가계약법 시행령 등에서 정한 ‘추정가격의 산정’ 규정에 의하여 산정된 가격으로 부가가치세 및 관급자재비를 제외한 금액(원화,원)"
+    },
+    {
+     "nameEn": "rsrvtnPrceDcsnMthdNm",
+     "nameKo": "예정가격결정방법명",
+     "size": "20",
+     "desc": "예정가격의 결정을 위해 복수예정가격방식으로 산정하는지 단일 예정가격으로 산정하는지를 구분하는 명"
+    },
+    {
+     "nameEn": "rgnLmtYn",
+     "nameKo": "지역제한여부",
+     "size": "1",
+     "desc": "해당 공고 입찰 시 지역제한을 두는지의 여부"
+    },
+    {
+     "nameEn": "prtcptPsblRgnNm",
+     "nameKo": "참가가능지역명",
+     "size": "200",
+     "desc": "지역제한이 Y일 경우 참여가능한 지역의 명칭을 콤마(,)로 나열함"
+    },
+    {
+     "nameEn": "indstrytyLmtYn",
+     "nameKo": "업종제한여부",
+     "size": "1",
+     "desc": "해당 공고 입찰 시 업종(면허)제한을 두는지의 여부"
+    },
+    {
+     "nameEn": "bidprcPsblIndstrytyNm",
+     "nameKo": "투찰가능업종명",
+     "size": "4000",
+     "desc": "업종제한이 Y일 경우 제한되는 업종의 명칭을 콤마(,)로 나열함"
+    },
+    {
+     "nameEn": "bidNtceUrl",
+     "nameKo": "입찰공고URL",
+     "size": "500",
+     "desc": "해당 입찰공고를 인터넷상에서 확인할 수 있는 URL주소"
+    },
+    {
+     "nameEn": "dataBssDate",
+     "nameKo": "데이터기준일자",
+     "size": "10",
+     "desc": "데이터 작성 기준일자"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PubDataOpnStdService/getDataSetOpnStdBidPblancInfo?numOfRows=10&pageNo=1&bidNtceBgnDt=202507010000&bidNtceEndDt=202507010000&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getDataSetOpnStdScsbidInfo",
+   "opNameKo": "데이터셋 개방표준에 따른 낙찰정보",
+   "opType": "조회(목록)",
+   "description": "검색조건을 개찰일시, 업무구분명으로 입찰공고번호, 입찰공고차수, 입찰공고명, 업무구분명, 계약체결형태명, 계약체결방법명, 낙찰자결정방법명, 공고기관명, 공고기관코드 등 나라장터에 등록된 낙찰정보 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": false,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": false,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "required": true,
+     "sample": "3",
+     "desc": "업무구분코드가 1이면 물품, 2면 외자, 3이면 공사, 5면 용역"
+    },
+    {
+     "nameEn": "opengBgnDt",
+     "nameKo": "개찰시작일시",
+     "size": "12",
+     "required": true,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 개찰일시범위 시작 'YYYYMMDDHHMM' (개찰일시 범위는 1주일로 제한)"
+    },
+    {
+     "nameEn": "opengEndDt",
+     "nameKo": "개찰종료일시",
+     "size": "12",
+     "required": true,
+     "sample": "202507022359",
+     "desc": "검색하고자하는 개찰일시범위 종료 'YYYYMMDDHHMM' (개찰일시 범위는 1주일로 제한)"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "13",
+     "desc": "입찰공고를 관리하기 위한 번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 나라장터 외 (자체)전자조달시스템(이하 이 표에서 “기타 전자조달시스템”이라 함) 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 :R+년도(2)+BK+순번(8) 총 13자리 구성 적용 *2025년 공고건부터 적용"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 정정(변경)공고 및 재공고 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "20",
+     "desc": "입찰업무를 구분하는 명으로 물품, 용역, 공사, 외자로 구분함"
+    },
+    {
+     "nameEn": "cntrctCnclsSttusNm",
+     "nameKo": "계약체결형태명",
+     "size": "30",
+     "desc": "계약체결형태를 구분하는 명 *총액계약은 계약목적물 전체에 대하여 단가가 아닌 총액으로 체결하는 계약형태 *단가계약은 수요 빈도가 많은 품목에 대하여 단가에 의해 예정수량을 명시하고 체결하는 계약형태, *제3자단가계약은 각 수요기관에서 공통적으로 필요로 하는 수요물자를 계약시 미리 단가만을 정하여 계약을 체결하고 각 수요기관에서 직접 납품요구하여 구매하는 계약형태"
+    },
+    {
+     "nameEn": "cntrctCnclsMthdNm",
+     "nameKo": "계약체결방법명",
+     "size": "30",
+     "desc": "계약체결의 방법을 구분하는 명 *일반경쟁계약은 계약 대상 물품의 규격 및 시방서와 계약조건 등을 널리 공고하여 일정한 자격을 가진 불특정 다수인의 입찰희망자를 모두 경쟁 입찰하는 계약방법 *제한경쟁계약은 일반·지명경쟁계약제도의 단점을 보완하기 위해 실적제한, 기술보유제한, 특정물품제한, 지역제한 등을 두는 계약방법 *지명경쟁계약은 계약상대자의 신용과 실적 등에 있어 적당하다고 인정하는 특정 다수의 경쟁 참가자를 지명하여 계약 상대방을 결정하는 계약방법 *수의계약은 계약상대자를 결정함에 있어 경쟁방법에 의하지 않고 특정인을 선정하여 계약하는 계약방법"
+    },
+    {
+     "nameEn": "bidwinrDcsnMthdNm",
+     "nameKo": "낙찰자결정방법명",
+     "size": "30",
+     "desc": "해당 공고건에 대해 낙찰자를 결정하는 방법"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "수요기관의 의뢰를 받아 공고하는 기관의 명"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "desc": "공고를 하는 기관의 코드로 행정안전부에서 부여한 기관코드임"
+    },
+    {
+     "nameEn": "dmndInsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 기타 전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "dmndInsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행정안전부에서 부여한 기관코드임"
+    },
+    {
+     "nameEn": "sucsfLwstlmtRt",
+     "nameKo": "낙찰하한율",
+     "size": "22",
+     "desc": "적격심사제도나 중소기업간경쟁물품에 대한 계약이행능력심사시 입찰가격을 제외한 다른 항목은 모두 만점을 받을 경우를 가정하여 낙찰가능한 최소한의 예정가격 대비 가격 투찰율을 말하며 이 하한율 아래로 투찰하면 낙찰되지 못하는 비율을 말함"
+    },
+    {
+     "nameEn": "presmptPrce",
+     "nameKo": "추정가격",
+     "size": "25",
+     "desc": "물품/공사/용역 등의 조달 계약을 체결함에 있어 국제입찰 대상여부를 판단하는 기준 등으로 삼기 위하여 예정가격이 결정되기 전에 국가계약법 시행령 등에서 정한 ‘추정가격의 산정’ 규정에 의하여 산정된 가격으로 부가가치세 및 관급자재비를 제외한 금액(원화,원)"
+    },
+    {
+     "nameEn": "rsrvtnPrce",
+     "nameKo": "예정가격",
+     "size": "21",
+     "desc": "입찰 또는 계약 체결 전에 낙찰자 및 계약금액의 결정기준으로 삼기 위하여 미리 작성/비치하여 두는 가액(원화,원)"
+    },
+    {
+     "nameEn": "bssAmt",
+     "nameKo": "기초금액",
+     "size": "21",
+     "desc": "예정가격 작성 과정에서 거래실례가격, 원가계산가격 등에 의하여 조사한 가격이나 설계가격에 대하여 계약담당공무원이 그 적정여부를 검토조정한 가격(복수 예비가격 산정을 위한 기준금액)(원화,원)"
+    },
+    {
+     "nameEn": "opengDate",
+     "nameKo": "개찰일자",
+     "size": "10",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 일자"
+    },
+    {
+     "nameEn": "opengTm",
+     "nameKo": "개찰시각",
+     "size": "5",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 시각"
+    },
+    {
+     "nameEn": "opengRsltDivNm",
+     "nameKo": "개찰결과구분명",
+     "size": "30",
+     "desc": "해당 공고건에 대한 개찰결과를 구분하는 것으로 개찰이 완료되었는지, 유찰되었는지, 재입찰 할것인지 등을 구분하는 명"
+    },
+    {
+     "nameEn": "opengRank",
+     "nameKo": "개찰순위",
+     "size": "4",
+     "desc": "개찰순위는 낙찰자결정방법에 따라 개찰한 결과에 대한 업체별 순위이며, 협상에 의한 계약의 경우 협상기술능력 평가점수와 입찰가격 평가점수의 합산하여 고득점 순에 따라 결정되며 협상순위를 의미함"
+    },
+    {
+     "nameEn": "bidprcCorpBizrno",
+     "nameKo": "투찰업체사업자등록번호",
+     "size": "12",
+     "desc": "투찰한 업체의 사업자등록번호"
+    },
+    {
+     "nameEn": "bidprcCorpNm",
+     "nameKo": "투찰업체명",
+     "size": "100",
+     "desc": "투찰한 업체의 명"
+    },
+    {
+     "nameEn": "bidprcCorpCeoNm",
+     "nameKo": "투찰업체대표자명",
+     "size": "35",
+     "desc": "투찰한 업체의 대표자의 명"
+    },
+    {
+     "nameEn": "bidprcAmt",
+     "nameKo": "투찰금액",
+     "size": "21",
+     "desc": "투찰한 금액(원화,원)"
+    },
+    {
+     "nameEn": "bidprcRt",
+     "nameKo": "투찰율",
+     "size": "10",
+     "desc": "예정가격에 대한 투찰금액의 비율로 투찰금액/예정가격 *100 임(%)"
+    },
+    {
+     "nameEn": "bidprcDate",
+     "nameKo": "투찰일자",
+     "size": "10",
+     "desc": "투찰업체가 투찰한 일자"
+    },
+    {
+     "nameEn": "bidprcTm",
+     "nameKo": "투찰시각",
+     "size": "5",
+     "desc": "투찰업체가 투찰한 시각"
+    },
+    {
+     "nameEn": "sucsfYn",
+     "nameKo": "낙찰여부",
+     "size": "1",
+     "desc": "투찰업체의 해당 입찰공고건에 대한 낙찰여부"
+    },
+    {
+     "nameEn": "dqlfctnRsn",
+     "nameKo": "부적격사유",
+     "size": "30",
+     "desc": "투찰업체에 대한 개찰 결과가 부적격으로 판명될 경우 그 부적격으로 판명된 사유"
+    },
+    {
+     "nameEn": "fnlSucsfAmt",
+     "nameKo": "최종낙찰금액",
+     "size": "21",
+     "desc": "최종낙찰은 개찰순위 순서대로 협상등을 통해 최종 낙찰된정보를 의미하며 최종낙찰금액은 최종낙찰된 금액으로 개찰결과구분명이 “개찰완료”일 경우 필수 입력 항목임 (원화,원)"
+    },
+    {
+     "nameEn": "fnlSucsfRt",
+     "nameKo": "최종낙찰율",
+     "size": "10",
+     "desc": "예정가격대비 최종낙찰금액으로 최종낙찰금액/예정가격 * 100 으로 계산되며 개찰결과구분명이 “개찰완료”일 경우 필수 입력 항목임 (%)"
+    },
+    {
+     "nameEn": "fnlSucsfDate",
+     "nameKo": "최종낙찰일자",
+     "size": "10",
+     "desc": "최종낙찰된 일자로 개찰결과구분명이 “개찰완료”일 경우 필수 입력 항목임"
+    },
+    {
+     "nameEn": "fnlSucsfCorpNm",
+     "nameKo": "최종낙찰업체명",
+     "size": "100",
+     "desc": "최종낙찰된 업체의 명으로 개찰결과구분명이 “개찰완료”일 경우 필수 입력 항목임"
+    },
+    {
+     "nameEn": "fnlSucsfCorpCeoNm",
+     "nameKo": "최종낙찰업체대표자명",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 대표자명으로 개찰결과구분명이 “개찰완료”일 경우 필수 입력 항목임"
+    },
+    {
+     "nameEn": "fnlSucsfCorpOfclNm",
+     "nameKo": "최종낙찰업체담당자명",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 담당자명으로 개찰결과구분명이 “개찰완료”일 경우 필수 입력 항목임"
+    },
+    {
+     "nameEn": "fnlSucsfCorpBizrno",
+     "nameKo": "최종낙찰업체사업자등록번호",
+     "size": "12",
+     "desc": "최종낙찰된 업체의 사업자등록번호임"
+    },
+    {
+     "nameEn": "fnlSucsfCorpAdrs",
+     "nameKo": "최종낙찰업체주소",
+     "size": "200",
+     "desc": "최종낙찰된 업체의 주소임"
+    },
+    {
+     "nameEn": "fnlSucsfCorpContactTel",
+     "nameKo": "최종낙찰업체연락전화번호",
+     "size": "13",
+     "desc": "최종낙찰된 업체의 연락 전화번호임"
+    },
+    {
+     "nameEn": "dataBssDate",
+     "nameKo": "데이터기준일자",
+     "size": "10",
+     "desc": "데이터 작성 기준일자"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PubDataOpnStdService/getDataSetOpnStdScsbidInfo?numOfRows=10&pageNo=1&opengBgnDt=201701010000&opengEndDt=201701062359&bsnsDivCd=1&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getDataSetOpnStdCntrctInfo",
+   "opNameKo": "데이터셋 개방표준에 따른 계약정보",
+   "opType": "조회(목록)",
+   "description": "검색조건을 계약체결일자로 계약번호, 통합계약번호, 계약차수, 계약명, 업무구분명, 계약체결형태명, 계약체결방법명, 장기계속구분명, 공동계약여부, 계약체결일자, 계약기간, 계약금액 등 나라장터에 등록된 계약정보 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "cntrctCnclsBgnDate",
+     "nameKo": "계약체결시작일자",
+     "size": "8",
+     "required": true,
+     "sample": "20250305",
+     "desc": "검색하고자하는 계약체결일자 시작 'YYYYMMDD' (계약체결일자 범위는 1주일 로 제한)"
+    },
+    {
+     "nameEn": "cntrctCnclsEndDate",
+     "nameKo": "계약체결종료일자",
+     "size": "8",
+     "required": true,
+     "sample": "20250305",
+     "desc": "검색하고자하는 계약체결일자 종료 'YYYYMMDD' (계약체결일자 범위는 1주일 로 제한)"
+    },
+    {
+     "nameEn": "insttDivCd",
+     "nameKo": "기관구분값",
+     "size": "1",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자 하는 기관구분값 1인 경우 계약기관, 2인 경우 수요기관"
+    },
+    {
+     "nameEn": "insttCd",
+     "nameKo": "기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "4490000",
+     "desc": "기관구분코드이 1 일경우 계약기관코드 기관구분코드 2일경우 수요기관코드"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "cntrctNo",
+     "nameKo": "계약번호",
+     "size": "35",
+     "desc": "계약서를 식별하기 위한 관리번호"
+    },
+    {
+     "nameEn": "untyCntrctNo",
+     "nameKo": "통합계약번호",
+     "size": "13",
+     "desc": "조달청 나라장터g2b.go.kr)에서 조달청에서 발주하는 중앙조달과 자체조달기관에서 발생되는 자체조달 계약의 통합 관리를 위해 채번되는 번호"
+    },
+    {
+     "nameEn": "cntrctOrd",
+     "nameKo": "계약차수",
+     "size": "2",
+     "desc": "계약의 변경 시 변경된 차수"
+    },
+    {
+     "nameEn": "cntrctNm",
+     "nameKo": "계약명",
+     "size": "500",
+     "desc": "공사명 또는 사업명이라고도 하며 계약내용을 요약한 이름"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "20",
+     "desc": "입찰업무를 구분하는 명으로 물품, 용역, 공사, 외자, 비축으로 구분함"
+    },
+    {
+     "nameEn": "cntrctCnclsSttusNm",
+     "nameKo": "계약체결형태명",
+     "size": "30",
+     "desc": "계약체결형태를 구분하는 명 *총액계약은 계약목적물 전체에 대하여 단가가 아닌 총액으로 체결하는 계약형태 *단가계약은 수요 빈도가 많은 품목에 대하여 단가에 의해 예정수량을 명시하고 체결하는 계약형태, *제3자단가계약은 각 수요기관에서 공통적으로 필요로 하는 수요물자를 계약시 미리 단가만을 정하여 계약을 체결하고 각 수요기관에서 직접 납품요구하여 구매하는 계약형태"
+    },
+    {
+     "nameEn": "cntrctCnclsMthdNm",
+     "nameKo": "계약체결방법명",
+     "size": "30",
+     "desc": "계약체결의 방법을 구분하는 명 *일반경쟁계약은 계약 대상 물품의 규격 및 시방서와 계약조건 등을 널리 공고하여 일정한 자격을 가진 불특정 다수인의 입찰희망자를 모두 경쟁 입찰하는 계약방법 *제한경쟁계약은 일반·지명경쟁계약제도의 단점을 보완하기 위해 실적제한, 기술보유제한, 특정물품제한, 지역제한 등을 두는 계약방법 *지명경쟁계약은 계약상대자의 신용과 실적 등에 있어 적당하다고 인정하는 특정 다수의 경쟁 참가자를 지명하여 계약 상대방을 결정하는 계약방법 *수의계약은 계약상대자를 결정함에 있어 경쟁방법에 의하지 않고 특정인을 선정하여 계약하는 계약방법"
+    },
+    {
+     "nameEn": "lngtrmCtnuDivNm",
+     "nameKo": "장기계속구분명",
+     "size": "30",
+     "desc": "계약이행에 수년을 요하는 계약을 장기계속계약이라 하며 해당 계약이 단기계약인지 장기계속계약 또는 계속비계약인지를 구분하는 명"
+    },
+    {
+     "nameEn": "cmmnCntrctYn",
+     "nameKo": "공동계약여부",
+     "size": "1",
+     "desc": "공동계약의 경우 공사/제조 기타의 계약에 있어서 필요하다고 인정할 때 계약 상대자를 2인 이상과 체결하는 계약이며 단독계약은 계약상대자를 1인으로 하는 통상적인 계약을 의미함."
+    },
+    {
+     "nameEn": "cntrctCnclsDate",
+     "nameKo": "계약체결일자",
+     "size": "10",
+     "desc": "계약이 성립된 체결일자"
+    },
+    {
+     "nameEn": "cntrctPrd",
+     "nameKo": "계약기간",
+     "size": "70",
+     "desc": "계약의 효력이 있는 기간"
+    },
+    {
+     "nameEn": "cntrctAmt",
+     "nameKo": "계약금액",
+     "size": "25",
+     "desc": "당해연도계약의 경우 계약금액을 의미하며 장기계속계약의 경우 금차계약금액을 의미함(원화,원)"
+    },
+    {
+     "nameEn": "ttalCntrctAmt",
+     "nameKo": "총계약금액",
+     "size": "25",
+     "desc": "장기계속계약의 경우에만 발생되며 장기계속계약 전체 계약금액(총부기금액) 을 의미함(원화,원)"
+    },
+    {
+     "nameEn": "cntrctInfoUrl",
+     "nameKo": "계약정보URL",
+     "size": "500",
+     "desc": "계약정보를 인터넷상에서 확인할 수 있는 URL주소"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "13",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : 테스트여부(1)+년도(2)+번호구분(2)+순번(8) 총 13자리 구성 (테스트여부 : T(모의)/R(실제), 번호구분 : BK(입찰공고번호)/TA(계약번호) 예시 : R24TA00000001 ☞ `24년 실제 계약번호이며 순번은 00000001)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 정정(변경)공고 및 재공고 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "opengDate",
+     "nameKo": "개찰일자",
+     "size": "10",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 일자"
+    },
+    {
+     "nameEn": "opengTm",
+     "nameKo": "개찰시각",
+     "size": "5",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 시각"
+    },
+    {
+     "nameEn": "rsrvtnPrce",
+     "nameKo": "예정가격",
+     "size": "21",
+     "desc": "입찰 또는 계약 체결 전에 낙찰자 및 계약금액의 결정기준으로 삼기 위하여 미리 작성/비치하여 두는 가액"
+    },
+    {
+     "nameEn": "prvtcntrctRsn",
+     "nameKo": "수의계약사유",
+     "size": "1000",
+     "desc": "계약상대자를 결정함에 있어 경쟁입찰방법에 의하지 않고 특정인을 계약상대방으로 선정하여 계약을 체결 시 그 사유내용임[국가계약법 시행령 제26조, 지방계약법 시행령 제25조]"
+    },
+    {
+     "nameEn": "bidNtceUrl",
+     "nameKo": "입찰공고URL",
+     "size": "500",
+     "desc": "해당 입찰공고를 인터넷상에서 확인할 수 있는 URL주소"
+    },
+    {
+     "nameEn": "cntrctInsttDivNm",
+     "nameKo": "계약기관구분명",
+     "size": "200",
+     "desc": "계약기관이 국가기관인지 지자체인지 등을 구분하는 명"
+    },
+    {
+     "nameEn": "cntrctInsttNm",
+     "nameKo": "계약기관명",
+     "size": "200",
+     "desc": "계약의 주체가 되는 기관의 명"
+    },
+    {
+     "nameEn": "cntrctInsttCd",
+     "nameKo": "계약기관코드",
+     "size": "7",
+     "desc": "계약의 주체가 되는 기관의 코드로 행정안전부에서 부여한 기관코드임"
+    },
+    {
+     "nameEn": "cntrctInsttChrgDeptNm",
+     "nameKo": "계약기관담당부서명",
+     "size": "100",
+     "desc": "계약기관의 담당 부서명"
+    },
+    {
+     "nameEn": "cntrctInsttOfclNm",
+     "nameKo": "계약기관담당자명",
+     "size": "100",
+     "desc": "계약기관의 담당자 명"
+    },
+    {
+     "nameEn": "cntrctInsttOfclTel",
+     "nameKo": "계약기관담당자전화번호",
+     "size": "13",
+     "desc": "계약기관의 담당자 전화번호"
+    },
+    {
+     "nameEn": "cntrctInsttOfcl",
+     "nameKo": "계약기관담당자이메일주소",
+     "size": "100",
+     "desc": "계약기관의 담당자 이메일주소"
+    },
+    {
+     "nameEn": "dmndInsttDivNm",
+     "nameKo": "수요기관구분명",
+     "size": "200",
+     "desc": "수요기관이 국가기관인지 지자체인지 등을 구분하는 명"
+    },
+    {
+     "nameEn": "dmndInsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 기타 전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "dmndInsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행정안전부에서 부여한 기관코드임"
+    },
+    {
+     "nameEn": "dmndInsttOfclDeptNm",
+     "nameKo": "수요기관담당자부서명",
+     "size": "100",
+     "desc": "수요기관의 계약을 담당하는 담당자의 명"
+    },
+    {
+     "nameEn": "dmndInsttOfclNm",
+     "nameKo": "수요기관담당자명",
+     "size": "35",
+     "desc": "수요기관의 계약을 담당하는 담당부서의 명"
+    },
+    {
+     "nameEn": "dmndInsttOfclTel",
+     "nameKo": "수요기관담당자전화번호",
+     "size": "13",
+     "desc": "수요기관의 계약을 담당하는 담당자의 전화번호"
+    },
+    {
+     "nameEn": "dmndInsttOfclEmailAdrs",
+     "nameKo": "수요기관담당자이메일주소",
+     "size": "100",
+     "desc": "수요기관의 계약을 담당하는 담당자의 이메일주소"
+    },
+    {
+     "nameEn": "rprsntCorpNm",
+     "nameKo": "대표업체명",
+     "size": "100",
+     "desc": "계약의 상대 중 대표가 되는 업체의 명"
+    },
+    {
+     "nameEn": "dmstcCorpYn",
+     "nameKo": "국내업체여부",
+     "size": "1",
+     "desc": "계약 상대업체가 국내업체인지의 여부"
+    },
+    {
+     "nameEn": "rprsntCorpCeoNm",
+     "nameKo": "대표업체대표자명",
+     "size": "35",
+     "desc": "대표업체의 대표자 성명"
+    },
+    {
+     "nameEn": "rprsntCorpOfclNm",
+     "nameKo": "대표업체담당자명",
+     "size": "35",
+     "desc": "대표업체의 담당자 명"
+    },
+    {
+     "nameEn": "rprsntCorpBizrno",
+     "nameKo": "대표업체사업자등록번호",
+     "size": "12",
+     "desc": "대표업체의 사업자등록번호"
+    },
+    {
+     "nameEn": "rprsntCorpAdrs",
+     "nameKo": "대표업체주소",
+     "size": "200",
+     "desc": "대표업체의 사업장 주소"
+    },
+    {
+     "nameEn": "rprsntCorpContactTel",
+     "nameKo": "대표업체연락전화번호",
+     "size": "13",
+     "desc": "대표업체의 연락 전화번호"
+    },
+    {
+     "nameEn": "dataBssDate",
+     "nameKo": "데이터기준일자",
+     "size": "10",
+     "desc": "데이터 작성 기준일자"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PubDataOpnStdService/getDataSetOpnStdCntrctInfo?numOfRows=10&pageNo=1&cntrctCnclsBgnDate=20250305&cntrctCnclsEndDate=20250305&ServiceKey=인증키"
+  }
+ ]
+}

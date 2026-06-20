@@ -1,0 +1,998 @@
+{
+ "module": "contract_process",
+ "serviceId": "CntrctProcssIntgOpenService",
+ "serviceNameKo": "나라장터 계약과정통합공개서비스",
+ "baseUrl": "http://apis.data.go.kr/1230000/ao/CntrctProcssIntgOpenService",
+ "description": "나라장터에서 제공되는 계약과정통합공개를 구현한 서비스로 물품·외자·용역·공사 업무구분에 대하여 사용자가 [입찰공고번호, 사전규격등록번호, 발주계획번호, 조달요청번호] 중 한 번호를 알고 있는 경우 해당 입찰공고의 진행과정 정보(사전규격정보, 입찰공고정보, 낙찰정보, 계약정보목록 등)를 조회하는 서비스.",
+ "updateCycle": "수시",
+ "operations": [
+  {
+   "opNameEn": "getCntrctProcssIntgOpenFrgcpt",
+   "opNameKo": "계약과정통합공개정보에 대한 외자조회",
+   "opType": "조회(목록)",
+   "description": "사용자가 [입찰공고번호, 사전규격등록번호, 발주계획번호, 조달요청번호] 중 한 번호를 알고 있는 경우 해당 외자입찰공고의 업무 진행과정(발주계획번호, 사업명, 발주기관명, 사전규격등록번호, 입찰공고명, 낙찰업체명, 낙찰금액, 낙찰률, 계약번호, 계약건명 등)을 조회. 단, 입찰공고번호는 입찰공고차수를 입력하지 않아도 관련 공고 정보조회 가능.",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자 하는 조회구분 1.입찰공고번호(선택: 입찰공고차수), 2.사전규격등록번호, 3.발주계획번호, 4.조달요청번호"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "20160312130",
+     "desc": "검색하고자 하는 입찰공고번호(조회구분 1인 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "2",
+     "required": false,
+     "sample": "000",
+     "desc": "검색하고자 하는 입찰공고번호에 따른 공고 차수 (조회구분 1인 경우 선택"
+    },
+    {
+     "nameEn": "bfSpecRgstNo",
+     "nameKo": "사전규격등록번호",
+     "size": "10",
+     "required": false,
+     "sample": "337425",
+     "desc": "검색하고자 하는 입찰공고내역의 사전규격등록번호 (조회구분 2인 경우 필수"
+    },
+    {
+     "nameEn": "orderPlanNo",
+     "nameKo": "발주계획번호",
+     "size": "40",
+     "required": false,
+     "sample": "2-1-2016-1192266-000001",
+     "desc": "검색하고자 하는 입찰공고내역의 발주계획번호 (조회구분 3인 경우 필수"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "16GA0289",
+     "desc": "검색하고자 하는 입찰공고내역의 조달요청번호(조회구분 4인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "orderPlanNo",
+     "nameKo": "발주계획번호",
+     "size": "40",
+     "desc": "발주계획번호는 업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주차수(2)로 구성(발주차수를 제외하면 발주계획통합번호임)"
+    },
+    {
+     "nameEn": "orderBizNm",
+     "nameKo": "발주사업명",
+     "size": "400",
+     "desc": "발주사업에 대한 사업 명"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "desc": "발주기관의 명"
+    },
+    {
+     "nameEn": "orderYm",
+     "nameKo": "발주년월",
+     "size": "7",
+     "desc": "발주 년월 'YYYY-MM'"
+    },
+    {
+     "nameEn": "prcrmntMethdNm",
+     "nameKo": "조달방식명",
+     "size": "200",
+     "desc": "조달 방식에 대한 명"
+    },
+    {
+     "nameEn": "cntrctCnclsMthdNm",
+     "nameKo": "계약체결방법명",
+     "size": "200",
+     "desc": "계약체결방법에 대한 명"
+    },
+    {
+     "nameEn": "bfSpecRgstNo",
+     "nameKo": "사전규격등록번호",
+     "size": "10",
+     "desc": "사전규격 등록번호"
+    },
+    {
+     "nameEn": "bfSpecBizNm",
+     "nameKo": "사전규격사업명",
+     "size": "200",
+     "desc": "사전규격 사업명"
+    },
+    {
+     "nameEn": "bfSpecDminsttNm",
+     "nameKo": "사전규격수요기관명",
+     "size": "200",
+     "desc": "사전규격 수요기관명"
+    },
+    {
+     "nameEn": "bfSpecNtceInsttNm",
+     "nameKo": "사전규격공고기관명",
+     "size": "200",
+     "desc": "사전규격 공고기관명"
+    },
+    {
+     "nameEn": "opninRgstClseDt",
+     "nameKo": "의견등록마감일시",
+     "size": "10",
+     "desc": "의견등록 마감일시 'YYYY-MM-DD HH:MM"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰에 대한 공고번호"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "2",
+     "desc": "입찰공고번호에 따른 공고 차수"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "desc": "조달요청번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "100",
+     "desc": "입찰공고의 명"
+    },
+    {
+     "nameEn": "bidDminsttNm",
+     "nameKo": "입찰수요기관명",
+     "size": "200",
+     "desc": "입찰공고 수요기관 명"
+    },
+    {
+     "nameEn": "bidMthdNm",
+     "nameKo": "입찰방법명",
+     "size": "200",
+     "desc": "입찰방법명 예) 직찰, 우편, 상시"
+    },
+    {
+     "nameEn": "bidNtceDt",
+     "nameKo": "입찰공고일시",
+     "size": "16",
+     "desc": "입찰 공고 일시 'YYYY-MM-DD HH:MM'"
+    },
+    {
+     "nameEn": "bidwinrInfoList",
+     "nameKo": "낙찰자정보목록",
+     "size": "4000",
+     "desc": "낙찰정보 [순번^낙찰업체명^낙찰업체사업자번호^대표자명^낙찰금액(원화,원)^낙찰률^참가업체수^개찰일시(\"YYYY-MM-DD HH:MM\")]"
+    },
+    {
+     "nameEn": "cntrctInfoList",
+     "nameKo": "계약정보목록",
+     "size": "4000",
+     "desc": "입찰공고의 입찰공고번호와 연관된 계약정보목록제공 [순번^계약번호^계약명^계약기관명^계약수요기관명^계약체결방법명^계약금액(원화,원)^계약일자(\"YYYY-MM-DD\")]"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "40",
+     "desc": "발주계획통합번호는 발주계획번호에서 발주차수(2)를 제외한 번호임"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/CntrctProcssIntgOpenService/getCntrctProcssIntgOpenFrgcpt?inqryDiv=1&bidNtceNo=20160312130&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getCntrctProcssIntgOpenThng",
+   "opNameKo": "계약과정통합공개정보에 대한 물품조회",
+   "opType": "조회(목록)",
+   "description": "사용자가 [입찰공고번호, 사전규격등록번호, 발주계획번호, 조달요청번호] 중 한 번호를 알고 있는 경우 해당 물품입찰공고의 업무 진행과정(발주계획번호, 사업명, 발주기관명, 사전규격등록번호, 입찰공고명, 낙찰업체명, 낙찰금액, 낙찰률, 계약번호, 계약건명 등)을 조회. 단, 입찰공고번호는 입찰공고차수를 입력하지 않아도 관련 공고 정보조회 가능.",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자 하는 조회구분 1.입찰공고번호(선택: 입찰공고차수), 2.사전규격등록번호, 3.발주계획번호, 4.조달요청번호"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "00000000138",
+     "desc": "검색하고자 하는 입찰공고번호(조회구분 1인 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "2",
+     "required": false,
+     "sample": "000",
+     "desc": "검색하고자 하는 입찰공고번호에 따른 공고 차수 (조회구분 1인 경우 선택)"
+    },
+    {
+     "nameEn": "bfSpecRgstNo",
+     "nameKo": "사전규격등록번호",
+     "size": "10",
+     "required": false,
+     "sample": "333556",
+     "desc": "검색하고자 하는 입찰공고내역의 사전규격등록번호(조회구분 2인 경우 필수)"
+    },
+    {
+     "nameEn": "orderPlanNo",
+     "nameKo": "발주계획번호",
+     "size": "40",
+     "required": false,
+     "sample": "1-3-2023-Z009268-000004",
+     "desc": "검색하고자하는 입찰공고내역의 발주계획번호 (조회구분 3인 경우 필수)"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "2523304577",
+     "desc": "검색하고자하는 입찰공고내역의 조달요청번호(조회구분 4인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "orderPlanNo",
+     "nameKo": "발주계획번호",
+     "size": "40",
+     "desc": "발주계획번호는 업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주차수(2)로 구성(발주차수를 제외하면 발주계획통합번호임)"
+    },
+    {
+     "nameEn": "orderBizNm",
+     "nameKo": "발주사업명",
+     "size": "400",
+     "desc": "발주사업에 대한 사업 명"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "desc": "발주기관의 명"
+    },
+    {
+     "nameEn": "orderYm",
+     "nameKo": "발주년월",
+     "size": "7",
+     "desc": "발주 년월 'YYYY-MM'"
+    },
+    {
+     "nameEn": "prcrmntMethdNm",
+     "nameKo": "조달방식명",
+     "size": "200",
+     "desc": "조달 방식에 대한 명"
+    },
+    {
+     "nameEn": "cntrctCnclsMthdNm",
+     "nameKo": "계약체결방법명",
+     "size": "200",
+     "desc": "계약체결방법에 대한 명"
+    },
+    {
+     "nameEn": "bfSpecRgstNo",
+     "nameKo": "사전규격등록번호",
+     "size": "10",
+     "desc": "사전규격 등록번호"
+    },
+    {
+     "nameEn": "bfSpecBizNm",
+     "nameKo": "사전규격사업명",
+     "size": "200",
+     "desc": "사전규격 사업명"
+    },
+    {
+     "nameEn": "bfSpecDminsttNm",
+     "nameKo": "사전규격수요기관명",
+     "size": "200",
+     "desc": "사전규격 수요기관명"
+    },
+    {
+     "nameEn": "bfSpecNtceInsttNm",
+     "nameKo": "사전규격공고기관명",
+     "size": "200",
+     "desc": "사전규격 공고기관명"
+    },
+    {
+     "nameEn": "opninRgstClseDt",
+     "nameKo": "의견등록마감일시",
+     "size": "10",
+     "desc": "의견등록 마감일시 'YYYY-MM-DD HH:MM"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰에 대한 공고번호"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "2",
+     "desc": "입찰공고번호에 따른 공고 차수"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "desc": "조달요청번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "100",
+     "desc": "입찰공고의 명"
+    },
+    {
+     "nameEn": "bidDminsttNm",
+     "nameKo": "입찰수요기관명",
+     "size": "200",
+     "desc": "입찰공고 수요기관 명"
+    },
+    {
+     "nameEn": "bidMthdNm",
+     "nameKo": "입찰방법명",
+     "size": "200",
+     "desc": "입찰방법명 예) 직찰, 우편, 상시"
+    },
+    {
+     "nameEn": "bidNtceDt",
+     "nameKo": "입찰공고일시",
+     "size": "16",
+     "desc": "입찰 공고 일시 'YYYY-MM-DD HH:MM'"
+    },
+    {
+     "nameEn": "bidwinrInfoList",
+     "nameKo": "낙찰자정보목록",
+     "size": "4000",
+     "desc": "입찰공고정보의 입찰공고번호와 연결된 낙찰자정보목록 [순번^낙찰업체명^낙찰업체사업자번호^대표자명^낙찰금액(원화,원)^낙찰률^참가업체수^개찰일시(\"YYYY-MM-DD\")]"
+    },
+    {
+     "nameEn": "cntrctInfoList",
+     "nameKo": "계약정보목록",
+     "size": "4000",
+     "desc": "입찰공고의 입찰공고번호와 연관된 계약정보목록제공 [순번^계약번호^계약명^계약기관명^계약수요기관명^계약체결방법명^계약금액(원화,원)^계약일자(\"YYYY-MM-DD\")]"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "40",
+     "desc": "발주계획통합번호는 발주계획번호에서 발주차수(2)를 제외한 번호임"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/CntrctProcssIntgOpenService/getCntrctProcssIntgOpenThng?inqryDiv=1&bidNtceNo=20160234982&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getCntrctProcssIntgOpenServc",
+   "opNameKo": "계약과정통합공개정보에 대한 용역조회",
+   "opType": "조회(목록)",
+   "description": "사용자가 [입찰공고번호, 사전규격등록번호, 발주계획번호, 조달요청번호] 중 한 번호를 알고 있는 경우 해당 용역입찰공고의 업무 진행과정(발주계획번호, 사업명, 발주기관명, 사전규격등록번호, 입찰공고명, 낙찰업체명, 낙찰금액, 낙찰률, 계약번호, 계약건명 등)을 조회. 단, 입찰공고번호는 입찰공고차수를 입력하지 않아도 관련 공고 정보조회 가능.",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자 하는 조회구분 1.입찰공고번호 (선택: 입찰공고차수), 2.사전규격등록번호, 3.발주계획번호, 4.조달요청번호"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "20160318205",
+     "desc": "검색하고자하는 입찰공고번호(조회구분 1인 경우 필수)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "2",
+     "required": false,
+     "sample": "000",
+     "desc": "검색하고자하는 입찰공고번호에 따른 공고 차수 (조회구분 1인 경우 옵션)"
+    },
+    {
+     "nameEn": "bfSpecRgstNo",
+     "nameKo": "사전규격등록번호",
+     "size": "10",
+     "required": false,
+     "sample": "341367",
+     "desc": "검색하고자하는 입찰공고내역의 사전규격등록번호 (조회구분 2인 경우 필수)"
+    },
+    {
+     "nameEn": "orderPlanNo",
+     "nameKo": "발주계획번호",
+     "size": "40",
+     "required": false,
+     "sample": "5-1-2016-8340103-000004",
+     "desc": "검색하고자하는 입찰공고내역의 발주계획번호 (조회구분 3인 경우 필수)"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "3516328049",
+     "desc": "검색하고자하는 입찰공고내역의 조달요청번호 (조회구분 4인 경우 필수)"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "orderPlanNo",
+     "nameKo": "발주계획번호",
+     "size": "40",
+     "desc": "발주계획번호는 업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주차수(2)로 구성(발주차수를 제외하면 발주계획통합번호임)"
+    },
+    {
+     "nameEn": "orderBizNm",
+     "nameKo": "발주사업명",
+     "size": "400",
+     "desc": "발주사업에 대한 사업 명"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "desc": "발주기관의 명"
+    },
+    {
+     "nameEn": "orderYm",
+     "nameKo": "발주년월",
+     "size": "7",
+     "desc": "발주 년월 'YYYY-MM'"
+    },
+    {
+     "nameEn": "prcrmntMethdNm",
+     "nameKo": "조달방식명",
+     "size": "200",
+     "desc": "조달 방식에 대한 명"
+    },
+    {
+     "nameEn": "cntrctCnclsMthdNm",
+     "nameKo": "계약체결방법명",
+     "size": "200",
+     "desc": "계약체결방법에 대한 명"
+    },
+    {
+     "nameEn": "bfSpecRgstNo",
+     "nameKo": "사전규격등록번호",
+     "size": "10",
+     "desc": "사전규격 등록번호"
+    },
+    {
+     "nameEn": "bfSpecBizNm",
+     "nameKo": "사전규격사업명",
+     "size": "200",
+     "desc": "사전규격 사업명"
+    },
+    {
+     "nameEn": "bfSpecDminsttNm",
+     "nameKo": "사전규격수요기관명",
+     "size": "200",
+     "desc": "사전규격 수요기관명"
+    },
+    {
+     "nameEn": "bfSpecNtceInsttNm",
+     "nameKo": "사전규격공고기관명",
+     "size": "200",
+     "desc": "사전규격 공고기관명"
+    },
+    {
+     "nameEn": "opninRgstClseDt",
+     "nameKo": "의견등록마감일시",
+     "size": "10",
+     "desc": "의견등록 마감일시 'YYYY-MM-DD HH:MM"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰에 대한 공고번호"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "2",
+     "desc": "입찰공고번호에 따른 공고 차수"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "desc": "조달요청번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "100",
+     "desc": "입찰공고의 명"
+    },
+    {
+     "nameEn": "bidDminsttNm",
+     "nameKo": "입찰수요기관명",
+     "size": "200",
+     "desc": "입찰공고 수요기관 명"
+    },
+    {
+     "nameEn": "bidMthdNm",
+     "nameKo": "입찰방법명",
+     "size": "200",
+     "desc": "입찰방법명 예) 직찰, 우편, 상시"
+    },
+    {
+     "nameEn": "bidNtceDt",
+     "nameKo": "입찰공고일시",
+     "size": "16",
+     "desc": "입찰 공고 일시 'YYYY-MM-DD HH:MM'"
+    },
+    {
+     "nameEn": "bidwinrInfoList",
+     "nameKo": "낙찰자정보목록",
+     "size": "4000",
+     "desc": "입찰공고정보의 입찰공고번호와 연결된 낙찰자정보목록 [순번^낙찰업체명^낙찰업체사업자번호^대표자명^낙찰금액(원화,원)^낙찰률^참가업체수^개찰일시(\"YYYY-MM-DD\")]"
+    },
+    {
+     "nameEn": "cntrctInfoList",
+     "nameKo": "계약정보목록",
+     "size": "4000",
+     "desc": "입찰공고의 입찰공고번호와 연관된 계약정보목록제공 [순번^계약번호^계약명^계약기관명^계약수요기관명^계약체결방법명^계약금액(원화,원)^계약일자(\"YYYY-MM-DD\")]"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "40",
+     "desc": "발주계획통합번호는 발주계획번호에서 발주차수(2)를 제외한 번호임"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/CntrctProcssIntgOpenService/getCntrctProcssIntgOpenServc?inqryDiv=1&bidNtceNo=20160318205&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getCntrctProcssIntgOpenCnstwk",
+   "opNameKo": "계약과정통합공개정보에 대한 공사조회",
+   "opType": "조회(목록)",
+   "description": "사용자가 [입찰공고번호, 사전규격등록번호, 발주계획번호, 조달요청번호] 중 한 번호를 알고 있는 경우 해당 공사입찰공고 업무 진행과정(발주계획번호, 사업명, 발주기관명, 사전규격등록번호, 입찰공고명, 낙찰업체명, 낙찰금액, 낙찰률, 계약번호, 계약건명 등)을 조회. 단, 입찰공고번호는 입찰공고차수를 입력하지 않아도 관련 공고 정보조회 가능.",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자 하는 조회구분 1.입찰공고번호 (선택: 입찰공고차수), 2.사전규격등록번호, 3.발주계획번호, 4.조달요청번호"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "20160618729",
+     "desc": "검색하고자 하는 입찰공고번호 (조회구분 1인 경우 필수)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "2",
+     "required": false,
+     "sample": "000",
+     "desc": "검색하고자 하는 입찰공고번호에 따른 공고 차수 (조회구분 1인 경우 선택)"
+    },
+    {
+     "nameEn": "bfSpecRgstNo",
+     "nameKo": "사전규격등록번호",
+     "size": "10",
+     "required": false,
+     "sample": "368604",
+     "desc": "검색하고자하는 입찰공고내역의 사전규격등록번호 (조회구분 2인 경우 필수)"
+    },
+    {
+     "nameEn": "orderPlanNo",
+     "nameKo": "발주계획번호",
+     "size": "40",
+     "required": false,
+     "sample": "3-1-2016-8031000-000038",
+     "desc": "검색하고자하는 입찰공고내역의 발주계획번호 (조회구분 3인 경우 필수)"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "2017000200",
+     "desc": "검색하고자하는 입찰공고내역의 조달요청번호 (조회구분 4인 경우 필수)"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "orderPlanNo",
+     "nameKo": "발주계획번호",
+     "size": "40",
+     "desc": "발주계획번호는 업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주차수(2)로 구성(발주차수를 제외하면 발주계획통합번호임)"
+    },
+    {
+     "nameEn": "orderBizNm",
+     "nameKo": "발주사업명",
+     "size": "400",
+     "desc": "발주사업에 대한 사업 명"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "desc": "발주기관의 명"
+    },
+    {
+     "nameEn": "orderYm",
+     "nameKo": "발주년월",
+     "size": "7",
+     "desc": "발주 년월 'YYYY-MM'"
+    },
+    {
+     "nameEn": "prcrmntMethdNm",
+     "nameKo": "조달방식명",
+     "size": "200",
+     "desc": "조달 방식에 대한 명"
+    },
+    {
+     "nameEn": "cntrctCnclsMthdNm",
+     "nameKo": "계약체결방법명",
+     "size": "200",
+     "desc": "계약체결방법에 대한 명"
+    },
+    {
+     "nameEn": "bfSpecRgstNo",
+     "nameKo": "사전규격등록번호",
+     "size": "10",
+     "desc": "사전규격 등록번호"
+    },
+    {
+     "nameEn": "bfSpecBizNm",
+     "nameKo": "사전규격사업명",
+     "size": "200",
+     "desc": "사전규격 사업명"
+    },
+    {
+     "nameEn": "bfSpecDminsttNm",
+     "nameKo": "사전규격수요기관명",
+     "size": "200",
+     "desc": "사전규격 수요기관명"
+    },
+    {
+     "nameEn": "bfSpecNtceInsttNm",
+     "nameKo": "사전규격공고기관명",
+     "size": "200",
+     "desc": "사전규격 공고기관명"
+    },
+    {
+     "nameEn": "opninRgstClseDt",
+     "nameKo": "의견등록마감일시",
+     "size": "10",
+     "desc": "의견등록 마감일시 'YYYY-MM-DD HH:MM"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰에 대한 공고번호"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "2",
+     "desc": "입찰공고번호에 따른 공고 차수"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "desc": "조달요청번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "100",
+     "desc": "입찰공고의 명"
+    },
+    {
+     "nameEn": "bidDminsttNm",
+     "nameKo": "입찰수요기관명",
+     "size": "200",
+     "desc": "입찰공고 수요기관 명"
+    },
+    {
+     "nameEn": "bidMthdNm",
+     "nameKo": "입찰방법명",
+     "size": "200",
+     "desc": "입찰방법명 예) 직찰, 우편, 상시"
+    },
+    {
+     "nameEn": "bidNtceDt",
+     "nameKo": "입찰공고일시",
+     "size": "16",
+     "desc": "입찰 공고 일시 'YYYY-MM-DD HH:MM'"
+    },
+    {
+     "nameEn": "bidwinrInfoList",
+     "nameKo": "낙찰자정보목록",
+     "size": "4000",
+     "desc": "입찰공고정보의 입찰공고번호와 연결된 낙찰정보 [순번^낙찰업체명^낙찰업체사업자번호^대표자명^낙찰금액(원화,원)^낙찰률^참가업체수^개찰일시(\"YYYY-MM-DD\")]"
+    },
+    {
+     "nameEn": "cntrctInfoList",
+     "nameKo": "계약정보목록",
+     "size": "4000",
+     "desc": "입찰공고의 입찰공고번호와 연관된 계약정보목록제공 [순번^계약번호^계약명^계약기관명^계약수요기관명^계약체결방법명^계약금액(원화,원)#계약일자(\"YYYY-MM-DD\")]"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "40",
+     "desc": "발주계획통합번호는 발주계획번호에서 발주차수(2)를 제외한 번호임"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/CntrctProcssIntgOpenService/getCntrctProcssIntgOpenCnstwk?inqryDiv=1&bidNtceNo=20160618729&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  }
+ ]
+}

@@ -1,0 +1,1069 @@
+{
+ "module": "user_info",
+ "serviceId": "UsrInfoService02",
+ "serviceNameKo": "나라장터 사용자정보서비스",
+ "baseUrl": "http://apis.data.go.kr/1230000/ao/UsrInfoService02",
+ "description": "나라장터에 등록된 조달업체와 수요기관에 대한 정보를 제공하는 서비스. 조달업체정보에는 사업자등록번호, 업체명, 업체주소, 업체의 등록업종정보, 업체의 공급물품정보가 포함되며 수요기관정보에는 수요기관코드, 소관구분, 주소, 최상위기관코드, 최상위기관명 등이 포함된다.",
+ "updateCycle": "수시",
+ "operations": [
+  {
+   "opNameEn": "getDminsttInfo02",
+   "opNameKo": "수요기관정보조회",
+   "opType": "조회(목록)",
+   "description": "수요기관코드, 사업자등록번호, 수요기관명을 입력하여 수요기관명, 유효기간, 법인등록번호, 사업자등록번호, 소관구분명, 기관유형명, 업태명, 업종명, 주소, 등록일시 등 수요기관정보 목록을 조회.",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 입력 1: 등록일기준 검색 2: 변경일기준 검색 3: 사업자등록번호 기준검색"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회기준시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201301010000",
+     "desc": "검색하고자하는 검색기준시작일시 입력 \"YYYYMMDDHHMM\" 조회구분 1,2인 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회기준종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201312312359",
+     "desc": "검색하고자하는 검색기준종료일시 입력 \"YYYYMMDDHHMM\" 조회구분 1,2인 경우 필수"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "9111117",
+     "desc": "검색하고자하는 수요기관코드 조회구분 1,2인 경우 선택"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "경상남도교육청 경상남도거제교육지원청 거제장평중학교",
+     "desc": "검색하고자하는 수요기관명 조회구분 1,2인 경우 선택"
+    },
+    {
+     "nameEn": "bizno",
+     "nameKo": "사업자등록번호",
+     "size": "10",
+     "required": false,
+     "sample": "6128306057",
+     "desc": "검색하고자하는 사업자등록번호 조회구분 3인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "수요기관코드 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "vldPrdBgnDt",
+     "nameKo": "유효기간시작일시",
+     "size": "19",
+     "desc": "유효기간시작일시 'YYYY-MM-DD HH:MM:SS'"
+    },
+    {
+     "nameEn": "vldPrdEndDt",
+     "nameKo": "유효기간종료일시",
+     "size": "19",
+     "desc": "유효기간종료일시 'YYYY-MM-DD HH:MM:SS'"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "dminsttAbrvtNm",
+     "nameKo": "수요기관약어명",
+     "size": "100",
+     "desc": "수요기관약어명"
+    },
+    {
+     "nameEn": "dminsttEngNm",
+     "nameKo": "수요기관영문명",
+     "size": "400",
+     "desc": "수요기관영문명"
+    },
+    {
+     "nameEn": "corprtRgstNo",
+     "nameKo": "법인등록번호",
+     "size": "13",
+     "desc": "법인등록번호"
+    },
+    {
+     "nameEn": "bizno",
+     "nameKo": "사업자등록번호",
+     "size": "10",
+     "desc": "사업자등록번호"
+    },
+    {
+     "nameEn": "jrsdctnDivNm",
+     "nameKo": "소관구분명",
+     "size": "200",
+     "desc": "소관구분명"
+    },
+    {
+     "nameEn": "insttTyCdLrgclsfcNm",
+     "nameKo": "기관유형코드대분류명",
+     "size": "200",
+     "desc": "기관유형코드대분류명"
+    },
+    {
+     "nameEn": "insttTyCdMidclsfcNm",
+     "nameKo": "기관유형코드중분류명",
+     "size": "200",
+     "desc": "기관유형코드중분류명"
+    },
+    {
+     "nameEn": "insttTyCdSmlclsfcNm",
+     "nameKo": "기관유형코드소분류명",
+     "size": "200",
+     "desc": "기관유형코드소분류명"
+    },
+    {
+     "nameEn": "bizcndtnNm",
+     "nameKo": "업태명",
+     "size": "50",
+     "desc": "업태명"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "50",
+     "desc": "업종명"
+    },
+    {
+     "nameEn": "ofclFaxNo",
+     "nameKo": "담당자팩스번호",
+     "size": "25",
+     "desc": "담당자팩스번호"
+    },
+    {
+     "nameEn": "rgnCd",
+     "nameKo": "지역코드",
+     "size": "10",
+     "desc": "지역코드"
+    },
+    {
+     "nameEn": "rgnNm",
+     "nameKo": "지역명",
+     "size": "200",
+     "desc": "지역구분명"
+    },
+    {
+     "nameEn": "zip",
+     "nameKo": "우편번호",
+     "size": "6",
+     "desc": "우편번호"
+    },
+    {
+     "nameEn": "adrs",
+     "nameKo": "주소",
+     "size": "100",
+     "desc": "주소"
+    },
+    {
+     "nameEn": "dtlAdrs",
+     "nameKo": "상세주소",
+     "size": "100",
+     "desc": "상세주소"
+    },
+    {
+     "nameEn": "telNo",
+     "nameKo": "전화번호",
+     "size": "25",
+     "desc": "전화번호"
+    },
+    {
+     "nameEn": "faxNo",
+     "nameKo": "팩스번호",
+     "size": "25",
+     "desc": "팩스번호"
+    },
+    {
+     "nameEn": "hmpgAdrs",
+     "nameKo": "홈페이지주소",
+     "size": "255",
+     "desc": "홈페이지주소"
+    },
+    {
+     "nameEn": "dltYn",
+     "nameKo": "삭제여부",
+     "size": "1",
+     "desc": "삭제여부"
+    },
+    {
+     "nameEn": "toplvlInsttCd",
+     "nameKo": "최상위기관코드",
+     "size": "7",
+     "desc": "최상위기관코드"
+    },
+    {
+     "nameEn": "toplvlInsttNm",
+     "nameKo": "최상위기관명",
+     "size": "200",
+     "desc": "최상위기관명"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "chgDt",
+     "nameKo": "변경일시",
+     "size": "19",
+     "desc": "변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/UsrInfoService02/getDminsttInfo02?inqryDiv=1&inqryBgnDt=201301010000&inqryEndDt=201312312359&dminsttCd=9111117&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrcrmntCorpBasicInfo02",
+   "opNameKo": "조달업체 기본정보",
+   "opType": "조회(목록)",
+   "description": "검색조건에 사업자등록번호와 업체명을 입력하여 사업자등록번호, 업체명, 영문업체명, 개업일시, 지역코드, 지역명, 우편번호, 주소, 상세주소, 전화번호, 팩스번호, 국가명, 홈페이지주소, 제조구분코드, 제조구분명, 종업원수, 업체업무구분코드, 업체업무구분명, 본사구분명, 등록일시, 변경일시, 고유번호증명등록여부, 대표자명 등 조달업체 기본정보 목록을 조회.",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 입력 1: 등록일기준 검색 2: 변경일기준검색 3: 사업자등록번호 기준검색"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회기준시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "200101010000",
+     "desc": "검색하고자하는 검색기준시작일시 입력 \"YYYYMMDDHHMM\" 조회구분 1,2인 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회기준종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "200112312359",
+     "desc": "검색하고자하는 검색기준종료일시 입력 \"YYYYMMDDHHMM\" 조회구분 1,2인 경우 필수"
+    },
+    {
+     "nameEn": "corpNm",
+     "nameKo": "업체명",
+     "size": "100",
+     "required": false,
+     "sample": "주식회사청마토건",
+     "desc": "검색하고자 하는 업체명 조회구분 1,2인 경우 선택"
+    },
+    {
+     "nameEn": "bizno",
+     "nameKo": "사업자등록번호",
+     "size": "10",
+     "required": false,
+     "sample": "6168122531",
+     "desc": "검색하고자 하는 사업자등록번호 조회구분 3인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "bizno",
+     "nameKo": "사업자등록번호",
+     "size": "10",
+     "desc": "조달업체의 사업자등록번호"
+    },
+    {
+     "nameEn": "corpNm",
+     "nameKo": "업체명",
+     "size": "100",
+     "desc": "입찰참가자격 등록한 업체명"
+    },
+    {
+     "nameEn": "engCorpNm",
+     "nameKo": "영문업체명",
+     "size": "100",
+     "desc": "영문업체명"
+    },
+    {
+     "nameEn": "opbizDt",
+     "nameKo": "개업일시",
+     "size": "19",
+     "desc": "개업일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "rgnCd",
+     "nameKo": "지역코드",
+     "size": "10",
+     "desc": "조달업체의 지역코드"
+    },
+    {
+     "nameEn": "rgnNm",
+     "nameKo": "지역명",
+     "size": "200",
+     "desc": "조달업체의 지역명"
+    },
+    {
+     "nameEn": "zip",
+     "nameKo": "우편번호",
+     "size": "6",
+     "desc": "조달업체의 우편번호"
+    },
+    {
+     "nameEn": "adrs",
+     "nameKo": "주소",
+     "size": "100",
+     "desc": "조달업체의 주소"
+    },
+    {
+     "nameEn": "dtlAdrs",
+     "nameKo": "상세주소",
+     "size": "100",
+     "desc": "조달업체의 상세주소"
+    },
+    {
+     "nameEn": "telNo",
+     "nameKo": "전화번호",
+     "size": "25",
+     "desc": "조달업체의 전화번호"
+    },
+    {
+     "nameEn": "faxNo",
+     "nameKo": "팩스번호",
+     "size": "25",
+     "desc": "조달업체의 팩스번호"
+    },
+    {
+     "nameEn": "cntryNm",
+     "nameKo": "국가명",
+     "size": "200",
+     "desc": "조달업체의 국가명"
+    },
+    {
+     "nameEn": "hmpgAdrs",
+     "nameKo": "홈페이지주소",
+     "size": "255",
+     "desc": "조달업체의 홈페이지주소"
+    },
+    {
+     "nameEn": "mnfctDivCd",
+     "nameKo": "제조구분코드",
+     "size": "2",
+     "desc": "제조구분코드 제240001:제조 제240002:공급"
+    },
+    {
+     "nameEn": "mnfctDivNm",
+     "nameKo": "제조구분명",
+     "size": "200",
+     "desc": "제조구분명"
+    },
+    {
+     "nameEn": "emplyeNum",
+     "nameKo": "종업원수",
+     "size": "10",
+     "desc": "조달업체의 종업원수"
+    },
+    {
+     "nameEn": "corpBsnsDivCd",
+     "nameKo": "업체업무구분코드",
+     "size": "20",
+     "desc": "업체업무구분코드 01 : 물품 07 : 공사 05 : 용역 03 :일반용역 02,04 : 외자"
+    },
+    {
+     "nameEn": "corpBsnsDivNm",
+     "nameKo": "업체업무구분명",
+     "size": "200",
+     "desc": "업체업무구분명"
+    },
+    {
+     "nameEn": "hdoffceDivNm",
+     "nameKo": "본사구분명",
+     "size": "100",
+     "desc": "본사구분명"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "chgDt",
+     "nameKo": "변경일시",
+     "size": "19",
+     "desc": "변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "esntlNoCertRgstYn",
+     "nameKo": "고유번호증명등록여부",
+     "size": "1",
+     "desc": "고유번호증명등록여부가 'Y'이면 해당 업체의 관련법규(조항조)를 알 수 있음 법령으로 지정된 비영리법인,사회복지사업,금융사업 등 등록여부 ex)장애인복지시설, 국민연금사업, 농업협동조합"
+    },
+    {
+     "nameEn": "ceoNm",
+     "nameKo": "대표자명",
+     "size": "35",
+     "desc": "대표자명"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/UsrInfoService02/getPrcrmntCorpBasicInfo02?inqryDiv=3&bizno=6168122531&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrcrmntCorpIndstrytyInfo02",
+   "opNameKo": "조달업체업종정보조회",
+   "opType": "조회(목록)",
+   "description": "검색조건에 사업자등록번호를 입력하여 사업자등록번호, 업종코드, 업종명, 등록일시, 유효기간만료일시, 시스템등록일시, 변경일시, 업종상태명, 대표업종여부 등 조달업체 업종정보 목록을 조회.",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 입력 1: 사업자등록번호 기준검색 2: 시스템등록일기준 검색 3:시스템변경일기준검색"
+    },
+    {
+     "nameEn": "bizno",
+     "nameKo": "사업자등록번호",
+     "size": "10",
+     "required": false,
+     "sample": "3068134668",
+     "desc": "검색하고자 하는 사업자등록번호 조회구분 1 일경우 필수"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회기준시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201501010000",
+     "desc": "검색하고자하는 검색기준시작일시 입력 \"YYYYMMDDHHMM\" 조회구분 2,3인 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회기준종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201512302359",
+     "desc": "검색하고자하는 검색기준종료일시 입력 \"YYYYMMDDHHMM\" 조회구분 2,3인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "bizno",
+     "nameKo": "사업자등록번호",
+     "size": "10",
+     "desc": "사업자등록번호"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "200",
+     "desc": "업종명"
+    },
+    {
+     "nameEn": "indstrytyCd",
+     "nameKo": "업종코드",
+     "size": "4",
+     "desc": "업종코드"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "vldPrdExprtDt",
+     "nameKo": "유효기간만료일시",
+     "size": "19",
+     "desc": "유효기간만료일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "systmRgstDt",
+     "nameKo": "시스템등록일시",
+     "size": "19",
+     "desc": "시스템등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "chgDt",
+     "nameKo": "변경일시",
+     "size": "19",
+     "desc": "변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "indstrytyStatsNm",
+     "nameKo": "업종상태명",
+     "size": "200",
+     "desc": "업종상태명"
+    },
+    {
+     "nameEn": "rprsntIndstrytyYn",
+     "nameKo": "대표업종여부",
+     "size": "1",
+     "desc": "대표업종여부 [Y/N]"
+    },
+    {
+     "nameEn": "systmChgDt",
+     "nameKo": "시스템변경일시",
+     "size": "19",
+     "desc": "시스템변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/UsrInfoService02/getPrcrmntCorpIndstrytyInfo02?bizno=3068134668&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrcrmntCorpSplyPrdctInfo02",
+   "opNameKo": "조달업체공급물품정보조회",
+   "opType": "조회(목록)",
+   "description": "검색조건에 사업자등록번호를 입력하여 사업자등록번호, 세부품명, 세부품명번호, 등록일시, 변경일시, 대표품명여부 등 조달업체 공급물품정보 목록을 조회.",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 입력 1: 사업자등록번호 기준검색 2: 등록일기준 검색 3: 변경일기준검색"
+    },
+    {
+     "nameEn": "bizno",
+     "nameKo": "사업자등록번호",
+     "size": "10",
+     "required": false,
+     "sample": "8633000223",
+     "desc": "검색하고자 하는 사업자등록번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회기준시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202404010000",
+     "desc": "검색하고자하는 검색기준시작일시 입력 \"YYYYMMDDHHMM\" 조회구분 2,3인 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회기준종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202404302359",
+     "desc": "검색하고자하는 검색기준종료일시 입력 \"YYYYMMDDHHMM\" 조회구분 2,3인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "bizno",
+     "nameKo": "사업자등록번호",
+     "size": "10",
+     "desc": "사업자등록번호"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNoNm",
+     "nameKo": "세부품명",
+     "size": "200",
+     "desc": "세부품명번호 10자리에 대한 한글명"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "desc": "품명에 대한 분류번호로서 10자리로 표시"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "조달업체에 대한 세부품명 등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "chgDt",
+     "nameKo": "변경일시",
+     "size": "19",
+     "desc": "조달업체에 대한 세부품명 변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "rprsntPrdctClsfcNoNmYn",
+     "nameKo": "대표품명여부",
+     "size": "1",
+     "desc": "조달업체에 대한 세부품명의 대표여부 [Y/N]"
+    },
+    {
+     "nameEn": "mnfctYn",
+     "nameKo": "제조여부",
+     "size": "1",
+     "desc": "조달업체에 대한 세부품명의 제조물품여부[Y/N]"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/UsrInfoService02/getPrcrmntCorpSplyPrdctInfo02?bizno=8633000223&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getUnptRsttCorpInfo02",
+   "opNameKo": "부정당재제업체정보조회",
+   "opType": "조회(목록)",
+   "description": "부정당 제재 업체 정보를 사업자등록번호, 재재시작일자 검색조건으로 사업자등록번호, 업체명, 법인등록번호, 제재시작일자, 재재종료일자, 재재기관명, 계약법구분, 제재근거법률, 조항호, 조항호코드, 조항호코드명, 시행규칙코드, 시행규칙코드명 목록을 조회. (나라장터미등록업체, 개인에 대한 부정당제재는 미제공) [국가계약법] 조회시점에 제재만료,해제된 것은 제공되지 않습니다. [지방계약법] 조회시점에 정지,제재만료,해제된 것은 제공되지 않습니다.",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 입력 1: 사업자등록번호 기준검색 2: 재재시작일자 검색"
+    },
+    {
+     "nameEn": "bizno",
+     "nameKo": "사업자등록번호",
+     "size": "10",
+     "required": false,
+     "sample": "1198686612",
+     "desc": "검색하고자 하는 사업자등록번호 조회구분 1인 경우 필수"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회기준시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202508240000",
+     "desc": "검색하고자하는 검색기준시작일시 \"YYYYMMDDHHMM\" 조회구분 2인 경우 필수 국가계약법: 최초제재시작일자(201609030000) 지방계약법: 최초제재시작일자(201609030000)"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회기준종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202511242359",
+     "desc": "검색하고자하는 검색기준종료일시 \"YYYYMMDDHHMM\" 조회구분 2인 경우 필수 국가계약법: 최초제재시작일자(201609030000) 지방계약법: 최초제재시작일자(201609030000)"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "bizno",
+     "nameKo": "사업자등록번호",
+     "size": "10",
+     "desc": "사업자등록번호"
+    },
+    {
+     "nameEn": "corpNm",
+     "nameKo": "업체명",
+     "size": "200",
+     "desc": "부정당업체명"
+    },
+    {
+     "nameEn": "unptRsttDocNm",
+     "nameKo": "제재문서명",
+     "size": "200",
+     "desc": "부정당제재처리 문서명"
+    },
+    {
+     "nameEn": "rsttBgnDate",
+     "nameKo": "제재시작일자",
+     "size": "10",
+     "desc": "제재시작일자(\"YYYY-MM-DD\")"
+    },
+    {
+     "nameEn": "rsttEndDate",
+     "nameKo": "제재종료일자",
+     "size": "10",
+     "desc": "제재종료일자(\"YYYY-MM-DD\")"
+    },
+    {
+     "nameEn": "insttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "제재 통보 수요기관코드"
+    },
+    {
+     "nameEn": "insttNm",
+     "nameKo": "수요기관명",
+     "size": "400",
+     "desc": "제재 통보 수요기관명"
+    },
+    {
+     "nameEn": "lawordNm",
+     "nameKo": "근거법령명",
+     "size": "500",
+     "desc": "재재근거 계약법 구분-근거 법률"
+    },
+    {
+     "nameEn": "lawordArtclClause",
+     "nameKo": "조항호",
+     "size": "50",
+     "desc": "조항호"
+    },
+    {
+     "nameEn": "lawordArtclClauseCd",
+     "nameKo": "조항호코드",
+     "size": "50",
+     "desc": "조항호코드"
+    },
+    {
+     "nameEn": "lawordArtclClauseCdNm",
+     "nameKo": "조항호코드명",
+     "size": "4000",
+     "desc": "조항호코드명"
+    },
+    {
+     "nameEn": "enfcAtcsCd",
+     "nameKo": "시행규칙코드",
+     "size": "200",
+     "desc": "시행령규칙코드"
+    },
+    {
+     "nameEn": "enfcPrvNm",
+     "nameKo": "시행규칙코드명",
+     "size": "500",
+     "desc": "시행령규칙코드명"
+    },
+    {
+     "nameEn": "ntfcnDt",
+     "nameKo": "게재일시",
+     "size": "19",
+     "desc": "부정당 제제 업체 정보 게재한 일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "rsttPrdMonthNum",
+     "nameKo": "제재기간개월수",
+     "size": "22",
+     "desc": "제재시작월과 종료월간의 개월 수"
+    },
+    {
+     "nameEn": "rsttPrdDayNum",
+     "nameKo": "제재기간일수",
+     "size": "22",
+     "desc": "제재시작일과 종료일간의 일수"
+    },
+    {
+     "nameEn": "rsttProgrsNm",
+     "nameKo": "제재상태명",
+     "size": "500",
+     "desc": "부정당 제제 이력의 최종 상태명"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/UsrInfoService02/getUnptRsttCorpInfo02?inqryDiv=1&bizno=1198686612&numOfRows=999&pageNo=1&type=xml&ServiceKey=인증키"
+  }
+ ]
+}

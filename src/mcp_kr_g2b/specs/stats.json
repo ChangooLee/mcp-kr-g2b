@@ -1,0 +1,2672 @@
+{
+ "module": "stats",
+ "serviceId": "PubPrcrmntStatInfoService",
+ "serviceNameKo": "공공조달통계정보서비스",
+ "baseUrl": "http://apis.data.go.kr/1230000/at/PubPrcrmntStatInfoService",
+ "description": "나라장터를 포함 24개 전자조달시스템에서 체결한 전자계약정보와 비전자계약정보를 수집하여 전체 공공조달 규모를 파악할 수 있도록 공공조달통계 정보를 제공하는 서비스. 검색조건을 기준년도, 기준년월 범위로 전체 조달실적, 계약방법별 현황, 지역제한 현황, 기관구분별/기업구분별/계약방법별 조달현황, 수요기관별·조달기업별 각종 실적, 품목 및 서비스별 실적을 유형별로 조회할 수 있음.",
+ "updateCycle": "수시",
+ "operations": [
+  {
+   "opNameEn": "getTotlPubPrcrmntSttus",
+   "opNameKo": "전체 공공조달 현황",
+   "opType": "조회(목록)",
+   "description": "검색조건에 기준년도를 입력하여 기준년월, 공급집계금액 등 전체 공공조달 현황을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "srchBssYear",
+     "nameKo": "검색기준년도",
+     "size": "4",
+     "required": false,
+     "sample": "2016",
+     "desc": "검색하고자하는 기준년도 \"YYYY\""
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bssMnth",
+     "nameKo": "기준월",
+     "size": "2",
+     "desc": "기준월 \"MM\""
+    },
+    {
+     "nameEn": "statDivNm",
+     "nameKo": "통계구분명",
+     "size": "30",
+     "desc": "\"월별\",\"누적\""
+    },
+    {
+     "nameEn": "bssYearAmt",
+     "nameKo": "기준년도금액",
+     "size": "30",
+     "desc": "기준년도 금액(원,원화)"
+    },
+    {
+     "nameEn": "bssYear1Amt",
+     "nameKo": "기준년도+1금액",
+     "size": "30",
+     "desc": "기준년도+1 금액(원,원화)"
+    },
+    {
+     "nameEn": "bssYear2Amt",
+     "nameKo": "기준년도+2금액",
+     "size": "30",
+     "desc": "기준년도+2 금액(원,원화)"
+    },
+    {
+     "nameEn": "bssYear3Amt",
+     "nameKo": "기준년도+3금액",
+     "size": "30",
+     "desc": "기준년도+3 금액(원,원화)"
+    },
+    {
+     "nameEn": "bssYear4Amt",
+     "nameKo": "기준년도+4금액",
+     "size": "30",
+     "desc": "기준년도+4 금액(원,원화)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/at/PubPrcrmntStatInfoService/getTotlPubPrcrmntSttus?srchBssYear=2016&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getInsttDivAccotPrcrmntSttus",
+   "opNameKo": "기관구분별 조달 현황",
+   "opType": "조회(목록)",
+   "description": "검색조건에 기준년도범위를 입력하여 기준년도, 기준월, 통계구분명, 실적합계건수, 실적합계금액, 국가기관실적건수, 국가기관실적금액, 지방자치단체실적건수, 지방자치단체실적금액, 교육행정기관실적건수, 교육행정기관실적금액, 공기업실적건수, 공기업실적금액 등 기관구분별 조달 현황을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "srchBssYmBgn",
+     "nameKo": "검색기준년월시작",
+     "size": "6",
+     "required": false,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월시작 \"YYYYMM\""
+    },
+    {
+     "nameEn": "srchBssYmEnd",
+     "nameKo": "검색기준년월종료",
+     "size": "6",
+     "required": false,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월종료 \"YYYYMM\""
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bssYear",
+     "nameKo": "기준년도",
+     "size": "4",
+     "desc": "기준년도 \"YYYY\" 전체, 누계 일 경우 값 없음"
+    },
+    {
+     "nameEn": "bssMnth",
+     "nameKo": "기준월",
+     "size": "2",
+     "desc": "기준월 \"MM\" 전체, 누계 일 경우 값 없음"
+    },
+    {
+     "nameEn": "statDivNm",
+     "nameKo": "통계구분명",
+     "size": "30",
+     "desc": "\"월별\",\"누계\",\"전체\""
+    },
+    {
+     "nameEn": "arsltSumNum",
+     "nameKo": "실적합계건수",
+     "size": "25",
+     "desc": "실적합계건수 (전체건수)"
+    },
+    {
+     "nameEn": "arsltSumAmt",
+     "nameKo": "실적합계금액",
+     "size": "30",
+     "desc": "실적합계금액 (전체합계금액) (원,원화)"
+    },
+    {
+     "nameEn": "cntryInsttArsltNum",
+     "nameKo": "국가기관실적건수",
+     "size": "25",
+     "desc": "국가기관실적건수"
+    },
+    {
+     "nameEn": "cntryInsttArsltAmt",
+     "nameKo": "국가기관실적금액",
+     "size": "30",
+     "desc": "국가기관실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "lcltyAutnGrpArsltNum",
+     "nameKo": "지방자치단체실적건수",
+     "size": "25",
+     "desc": "지방자치단체실적건수"
+    },
+    {
+     "nameEn": "lcltyAutnGrpArsltAmt",
+     "nameKo": "지방자치단체실적금액",
+     "size": "30",
+     "desc": "지방자치단체실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "eduAdministInsttArsltNum",
+     "nameKo": "교육행정기관실적건수",
+     "size": "25",
+     "desc": "교육행정기관실적건수"
+    },
+    {
+     "nameEn": "eduAdministInsttArsltAmt",
+     "nameKo": "교육행정기관실적금액",
+     "size": "30",
+     "desc": "교육행정기관실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "pblcorpArsltNum",
+     "nameKo": "공기업실적건수",
+     "size": "25",
+     "desc": "공기업실적건수"
+    },
+    {
+     "nameEn": "pblcorpArsltAmt",
+     "nameKo": "공기업실적금액",
+     "size": "30",
+     "desc": "공기업실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "quasiGovInsttArsltNum",
+     "nameKo": "준정부기관실적건수",
+     "size": "25",
+     "desc": "준정부기관실적건수"
+    },
+    {
+     "nameEn": "quasiGovInsttArsltAmt",
+     "nameKo": "준정부기관실적금액",
+     "size": "30",
+     "desc": "준정부기관실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "etcPubInsttArsltNum",
+     "nameKo": "기타공공기관실적건수",
+     "size": "25",
+     "desc": "기타공공기관실적건수"
+    },
+    {
+     "nameEn": "etcPubInsttArsltAmt",
+     "nameKo": "기타공공기관실적금액",
+     "size": "30",
+     "desc": "기타공공기관실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "lcltyPblcorpArsltNum",
+     "nameKo": "지방공기업실적건수",
+     "size": "25",
+     "desc": "지방공기업실적건수"
+    },
+    {
+     "nameEn": "lcltyPblcorpArsltAmt",
+     "nameKo": "지방공기업실적금액",
+     "size": "30",
+     "desc": "지방공기업실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "lcltyMdlcInsttArsltNum",
+     "nameKo": "지방의료기관실적건수",
+     "size": "25",
+     "desc": "지방의료원실적건수"
+    },
+    {
+     "nameEn": "lcltyMdlcInsttArsltAmt",
+     "nameKo": "지방의료기관실적금액",
+     "size": "30",
+     "desc": "지방의료원실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "lcltyAutnGrpDntRsrchArsltNum",
+     "nameKo": "지방자치단체출연연구실적건수",
+     "size": "25",
+     "desc": "지자체출연연구실적건수"
+    },
+    {
+     "nameEn": "lcltyAutnGrpDntRsrchArsltAmt",
+     "nameKo": "지방자치단체출연연구실적금액",
+     "size": "30",
+     "desc": "지자체출연연구실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "spclCorprtArsltNum",
+     "nameKo": "특수법인실적건수",
+     "size": "25",
+     "desc": "특수법인실적건수"
+    },
+    {
+     "nameEn": "spclCorprtArsltAmt",
+     "nameKo": "특수법인실적금액",
+     "size": "30",
+     "desc": "특수법인실적금액 (원,원화)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/at/PubPrcrmntStatInfoService/getInsttDivAccotPrcrmntSttus?srchBssYmBgn=201601&srchBssYmEnd=201601&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getEntrprsDivAccotPrcrmntSttus",
+   "opNameKo": "기업구분별 조달 현황",
+   "opType": "조회(목록)",
+   "description": "검색조건에 기준년월 범위를 입력하여 기준년도, 기준월, 통계구분명, 실적합계건수, 실적합계금액, 대기업실적건수, 대기업실적금액, 중견기업실적건수, 중견기업실적금액, 중소기업실적건수, 중소기업실적금액, 외국기업실적건수, 외국기업실적금액, 기타실적건수, 기타실적금액, 미분류실적건수, 미분류실적금액 등 기업구분별 조달 현황을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "srchBssYmBgn",
+     "nameKo": "검색기준년월시작",
+     "size": "6",
+     "required": false,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월시작 \"YYYYMM\""
+    },
+    {
+     "nameEn": "srchBssYmEnd",
+     "nameKo": "검색기준년월종료",
+     "size": "6",
+     "required": false,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월종료 \"YYYYMM\""
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bssYear",
+     "nameKo": "기준년도",
+     "size": "4",
+     "desc": "기준년도 \"YYYY\" 전체, 누계 일 경우 값 없음"
+    },
+    {
+     "nameEn": "bssMnth",
+     "nameKo": "기준월",
+     "size": "2",
+     "desc": "기준월 \"MM\" 전체, 누계 일 경우 값 없음"
+    },
+    {
+     "nameEn": "statDivNm",
+     "nameKo": "통계구분명",
+     "size": "30",
+     "desc": "\"월별\",\"누계\",\"전체\""
+    },
+    {
+     "nameEn": "arsltSumNum",
+     "nameKo": "실적합계건수",
+     "size": "25",
+     "desc": "실적합계건수 (합계건수)"
+    },
+    {
+     "nameEn": "arsltSumAmt",
+     "nameKo": "실적합계금액",
+     "size": "30",
+     "desc": "실적합계금액 (원,원화) (합계금액)"
+    },
+    {
+     "nameEn": "lrgeEntrprsArsltNum",
+     "nameKo": "대기업실적건수",
+     "size": "25",
+     "desc": "대기업실적건수"
+    },
+    {
+     "nameEn": "lrgeEntrprsArsltAmt",
+     "nameKo": "대기업실적금액",
+     "size": "30",
+     "desc": "대기업실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "entrprsOfMidStdArsltNum",
+     "nameKo": "중견기업실적건수",
+     "size": "25",
+     "desc": "중견기업실적건수"
+    },
+    {
+     "nameEn": "entrprsOfMidStdArsltAmt",
+     "nameKo": "중견기업실적금액",
+     "size": "30",
+     "desc": "중견기업실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "smetprArsltNum",
+     "nameKo": "중소기업실적건수",
+     "size": "25",
+     "desc": "중소기업실적건수"
+    },
+    {
+     "nameEn": "smetprArsltAmt",
+     "nameKo": "중소기업실적금액",
+     "size": "30",
+     "desc": "중소기업실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "frgncntryEntrprsArsltNum",
+     "nameKo": "외국기업실적건수",
+     "size": "25",
+     "desc": "외국기업실적건수"
+    },
+    {
+     "nameEn": "frgncntryEntrprsArsltAmt",
+     "nameKo": "외국기업실적금액",
+     "size": "30",
+     "desc": "외국기업실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "etcArsltNum",
+     "nameKo": "기타실적건수",
+     "size": "25",
+     "desc": "기타실적건수"
+    },
+    {
+     "nameEn": "etcArsltAmt",
+     "nameKo": "기타실적금액",
+     "size": "30",
+     "desc": "기타실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "unClsfcArsltNum",
+     "nameKo": "미분류실적건수",
+     "size": "25",
+     "desc": "미분류실적건수"
+    },
+    {
+     "nameEn": "unClsfcArsltAmt",
+     "nameKo": "미분류실적금액",
+     "size": "30",
+     "desc": "미분류실적금액 (원,원화)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/at/PubPrcrmntStatInfoService/getEntrprsDivAccotPrcrmntSttus?srchBssYmBgn=201601&srchBssYmEnd=201601&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getCntrctMthdAccotSttus",
+   "opNameKo": "계약방법별 현황",
+   "opType": "조회(목록)",
+   "description": "검색조건에 기준년월범위를 입력하여 기준년도, 기준월, 통계구분명, 실적합계건수, 실적합계금액, 일반경쟁실적건수, 일반경쟁실적금액, 제한경쟁실적건수, 제한경쟁실적금액, 지명경쟁실적건수, 지명경쟁실적금액, 수의계약실적건수, 수의계약실적금액, 미분류실적건수, 미분류실적금액 등 계약방법별 현황을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "srchBssYmBgn",
+     "nameKo": "검색기준년월시작",
+     "size": "6",
+     "required": false,
+     "sample": "201601",
+     "desc": "검색하고자하는 기준년월시작 \"YYYYMM\""
+    },
+    {
+     "nameEn": "srchBssYmEnd",
+     "nameKo": "검색기준년월종료",
+     "size": "6",
+     "required": false,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월종료 \"YYYYMM\""
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bssYear",
+     "nameKo": "기준년도",
+     "size": "4",
+     "desc": "기준년도 \"YYYY\" 전체, 누계 일 경우 값 없음"
+    },
+    {
+     "nameEn": "bssMnth",
+     "nameKo": "기준월",
+     "size": "2",
+     "desc": "기준월 \"MM\" 전체, 누계 일 경우 값 없음"
+    },
+    {
+     "nameEn": "statDivNm",
+     "nameKo": "통계구분명",
+     "size": "30",
+     "desc": "\"월별\",\"누계\",\"전체\""
+    },
+    {
+     "nameEn": "arsltSumNum",
+     "nameKo": "실적합계건수",
+     "size": "25",
+     "desc": "실적합계건수 (합계건수)"
+    },
+    {
+     "nameEn": "arsltSumAmt",
+     "nameKo": "실적합계금액",
+     "size": "30",
+     "desc": "실적합계금액 (원,원화) (합계금액)"
+    },
+    {
+     "nameEn": "gnrlCmptArsltNum",
+     "nameKo": "일반경쟁실적건수",
+     "size": "25",
+     "desc": "일반경쟁실적건수"
+    },
+    {
+     "nameEn": "gnrlCmptArsltAmt",
+     "nameKo": "일반경쟁실적금액",
+     "size": "30",
+     "desc": "일반경쟁실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "lmtCmptArsltNum",
+     "nameKo": "제한경쟁실적건수",
+     "size": "25",
+     "desc": "제한경쟁실적건수"
+    },
+    {
+     "nameEn": "lmtCmptArsltAmt",
+     "nameKo": "제한경쟁실적금액",
+     "size": "30",
+     "desc": "제한경쟁실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "dsgntCmptArsltNum",
+     "nameKo": "지명경쟁실적건수",
+     "size": "25",
+     "desc": "지명경쟁실적건수"
+    },
+    {
+     "nameEn": "dsgntCmptArsltAmt",
+     "nameKo": "지명경쟁실적금액",
+     "size": "30",
+     "desc": "지명경쟁실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "prvtcntrctArsltNum",
+     "nameKo": "수의계약실적건수",
+     "size": "25",
+     "desc": "수의계약실적건수"
+    },
+    {
+     "nameEn": "prvtcntrctArsltAmt",
+     "nameKo": "수의계약실적금액",
+     "size": "30",
+     "desc": "수의계약실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "unClsfcArsltNum",
+     "nameKo": "미분류실적건수",
+     "size": "25",
+     "desc": "미분류실적건수"
+    },
+    {
+     "nameEn": "unClsfcArsltAmt",
+     "nameKo": "미분류실적금액",
+     "size": "30",
+     "desc": "미분류실적금액 (원,원화)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/at/PubPrcrmntStatInfoService/getCntrctMthdAccotSttus?srchBssYmBgn=201601&srchBssYmEnd=201601&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getRgnLmtSttus",
+   "opNameKo": "지역제한 현황",
+   "opType": "조회(목록)",
+   "description": "검색조건에 기준년월범위를 입력하여 기준년도, 기준월, 통계구분명, 계약총액, 입찰계약총액, 미입찰계약총액, 지역제한총액, 지역제한총액비율 등 지역제한 현황을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "srchBssYmBgn",
+     "nameKo": "검색기준년월시작",
+     "size": "6",
+     "required": false,
+     "sample": "201601",
+     "desc": "검색하고자하는 기준년월시작 \"YYYYMM\""
+    },
+    {
+     "nameEn": "srchBssYmEnd",
+     "nameKo": "검색기준년월종료",
+     "size": "6",
+     "required": false,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월종료 \"YYYYMM\""
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bssYear",
+     "nameKo": "기준년도",
+     "size": "4",
+     "desc": "기준년도 \"YYYY\" 전체, 누계 일 경우 값 없음"
+    },
+    {
+     "nameEn": "bssMnth",
+     "nameKo": "기준월",
+     "size": "2",
+     "desc": "기준월 \"MM\" 전체, 누계 일 경우 값 없음"
+    },
+    {
+     "nameEn": "statDivNm",
+     "nameKo": "통계구분명",
+     "size": "30",
+     "desc": "\"월별\",\"누계\",\"전체\""
+    },
+    {
+     "nameEn": "cntrctTotamt",
+     "nameKo": "계약총액",
+     "size": "30",
+     "desc": "계약총액(A+B) (원,원화)"
+    },
+    {
+     "nameEn": "bidCntrctTotamt",
+     "nameKo": "입찰계약총액",
+     "size": "30",
+     "desc": "입찰계약총액 화면에서 계약총액(입찰O) (A) (원,원화)"
+    },
+    {
+     "nameEn": "unBidCntrctTotamt",
+     "nameKo": "미입찰계약총액",
+     "size": "30",
+     "desc": "미입찰계약총액 화면에서 계약총액(입찰X) (B) (원,원화)"
+    },
+    {
+     "nameEn": "rgnLmtTotamt",
+     "nameKo": "지역제한총액",
+     "size": "30",
+     "desc": "지역제한총액(C) (원,원화)"
+    },
+    {
+     "nameEn": "rgnLmtTotamtRt",
+     "nameKo": "지역제한총액비율",
+     "size": "10",
+     "desc": "지역제한합계비율 (C/A) (%)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/at/PubPrcrmntStatInfoService/getRgnLmtSttus?srchBssYmBgn=201601&srchBssYmEnd=201601&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getRgnDutyCmmnCntrctSttus",
+   "opNameKo": "지역의무공동계약 현황",
+   "opType": "조회(목록)",
+   "description": "검색조건에 기준년월범위를 입력하여 기준년도, 기준월, 통계구분명, 계약총액, 입찰계약총액, 미입찰계약총액, 지역의무공동계약총액, 지역의무공동계약총액비율 등 지역의무공동계약 현황을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "srchBssYmBgn",
+     "nameKo": "검색기준년월시작",
+     "size": "6",
+     "required": false,
+     "sample": "201601",
+     "desc": "검색하고자하는 기준년월시작 \"YYYYMM\""
+    },
+    {
+     "nameEn": "srchBssYmEnd",
+     "nameKo": "검색기준년월종료",
+     "size": "6",
+     "required": false,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월종료 \"YYYYMM\""
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bssYear",
+     "nameKo": "기준년도",
+     "size": "4",
+     "desc": "기준년도 \"YYYY\" 전체, 누계 일 경우 값 없음"
+    },
+    {
+     "nameEn": "bssMnth",
+     "nameKo": "기준월",
+     "size": "2",
+     "desc": "기준월 \"MM\" 전체, 누계 일 경우 값 없음"
+    },
+    {
+     "nameEn": "statDivNm",
+     "nameKo": "통계구분명",
+     "size": "30",
+     "desc": "\"월별\",\"누계\",\"전체\""
+    },
+    {
+     "nameEn": "cnstwkCntrctTotamt",
+     "nameKo": "공사계약총액",
+     "size": "30",
+     "desc": "공사계약총액(A+B) (원,원화)"
+    },
+    {
+     "nameEn": "bidCntrctTotamt",
+     "nameKo": "입찰계약총액",
+     "size": "30",
+     "desc": "계약총액 (입찰O)(A) (원,원화)"
+    },
+    {
+     "nameEn": "unBidCntrctTotamt",
+     "nameKo": "미입찰계약총액",
+     "size": "30",
+     "desc": "미입찰계약총액(B) (원,원화)"
+    },
+    {
+     "nameEn": "rgnDutyCmmnCntrctTotamt",
+     "nameKo": "지역의무공동계약총액",
+     "size": "30",
+     "desc": "지역의무공동계약총액(C) (원,원화)"
+    },
+    {
+     "nameEn": "rgnDutyCmmnCntrctTotamtRt",
+     "nameKo": "지역의무공동계약총액비율",
+     "size": "10",
+     "desc": "지역의무공동계약총액비율(C/A) (%)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/at/PubPrcrmntStatInfoService/getRgnDutyCmmnCntrctSttus?srchBssYmBgn=201601&srchBssYmEnd=201603&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrcrmntObjectBsnsObjAccotSttus",
+   "opNameKo": "조달목적물(업무대상)별 현황",
+   "opType": "조회(목록)",
+   "description": "검색조건에 기준년월범위를 입력하여 기준년도, 기준월, 통계구분명, 실적합계건수, 실적합계금액, 물품실적건수, 물품실적금액, 공사실적건수, 공사실적금액, 일반용역실적건수, 일반용역실적금액, 기술용역실적건수, 기술용역실적금액, 미분류실적건수, 미분류실적금액 등 조달목적물(업무대상)별 현황을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "srchBssYmBgn",
+     "nameKo": "검색기준년월시작",
+     "size": "6",
+     "required": false,
+     "sample": "201601",
+     "desc": "검색하고자하는 기준년월시작 \"YYYYMM\""
+    },
+    {
+     "nameEn": "srchBssYmEnd",
+     "nameKo": "검색기준년월종료",
+     "size": "6",
+     "required": false,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월종료 \"YYYYMM\""
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bssYear",
+     "nameKo": "기준년도",
+     "size": "4",
+     "desc": "기준년도 \"YYYY\" 전체, 누계 일 경우 값 없음"
+    },
+    {
+     "nameEn": "bssMnth",
+     "nameKo": "기준월",
+     "size": "2",
+     "desc": "기준월 \"MM\" 전체, 누계 일 경우 값 없음"
+    },
+    {
+     "nameEn": "statDivNm",
+     "nameKo": "통계구분명",
+     "size": "30",
+     "desc": "\"월별\",\"누계\",\"전체\""
+    },
+    {
+     "nameEn": "arsltSumNum",
+     "nameKo": "실적합계건수",
+     "size": "25",
+     "desc": "실적합계건수 화면의 합계건수"
+    },
+    {
+     "nameEn": "arsltSumAmt",
+     "nameKo": "실적합계금액",
+     "size": "30",
+     "desc": "실적합계금액 (원,원화) 화면의 합계금액"
+    },
+    {
+     "nameEn": "prdctArsltNum",
+     "nameKo": "물품실적건수",
+     "size": "25",
+     "desc": "물품실적건수"
+    },
+    {
+     "nameEn": "prdctArsltAmt",
+     "nameKo": "물품실적금액",
+     "size": "30",
+     "desc": "물품실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "cnstwkArsltNum",
+     "nameKo": "공사실적건수",
+     "size": "25",
+     "desc": "공사실적건수"
+    },
+    {
+     "nameEn": "cnstwkArsltAmt",
+     "nameKo": "공사실적금액",
+     "size": "30",
+     "desc": "공사실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "gnrlSrvceArsltNum",
+     "nameKo": "일반용역실적건수",
+     "size": "25",
+     "desc": "일반용역실적건수"
+    },
+    {
+     "nameEn": "gnrlSrvceArsltAmt",
+     "nameKo": "일반용역실적금액",
+     "size": "30",
+     "desc": "일반용역실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "techSrvceArsltNum",
+     "nameKo": "기술용역실적건수",
+     "size": "25",
+     "desc": "기술용역실적건수"
+    },
+    {
+     "nameEn": "techSrvceArsltAmt",
+     "nameKo": "기술용역실적금액",
+     "size": "30",
+     "desc": "기술용역실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "unClsfcArsltNum",
+     "nameKo": "미분류실적건수",
+     "size": "25",
+     "desc": "미분류실적건수"
+    },
+    {
+     "nameEn": "unClsfcArsltAmt",
+     "nameKo": "미분류실적금액",
+     "size": "30",
+     "desc": "미분류실적금액 (원,원화)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/at/PubPrcrmntStatInfoService/getPrcrmntObjectBsnsObjAccotSttus?srchBssYmBgn=201601&srchBssYmEnd=201603&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getDminsttAccotEntrprsDivAccotArslt",
+   "opNameKo": "수요기관별 기업구분별 실적",
+   "opType": "조회(목록)",
+   "description": "검색조건에 기준년월범위, 수요기관코드, 수요기관명, 하위기관실적포함여부, 연계시스템코드을 입력하여 수요기관코드, 수요기관명, 실적합계건수, 실적합계금액, 대기업실적건수, 대기업실적금액, 중견기업실적건수, 중견기업실적금액, 중소기업실적건수, 중소기업실적금액, 외국기업실적건수, 외국기업실적금액, 기타실적건수, 기타실적금액, 미분류실적건수, 미분류실적금액 등 수요기관별 기업구분별 실적을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "srchBssYmBgn",
+     "nameKo": "검색기준년월시작",
+     "size": "6",
+     "required": true,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월시작 \"YYYYMM\""
+    },
+    {
+     "nameEn": "srchBssYmEnd",
+     "nameKo": "검색기준년월종료",
+     "size": "6",
+     "required": true,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월종료 \"YYYYMM\""
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "1210000",
+     "desc": "검색하고자하는 수요기관코드"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "국세청",
+     "desc": "검색하고자 하는 수요기관명"
+    },
+    {
+     "nameEn": "lwrInsttArsltInclsnYn",
+     "nameKo": "하위기관실적포함여부",
+     "size": "1",
+     "required": false,
+     "sample": "Y",
+     "desc": "검색하고자하는 하위기관실적포함여부"
+    },
+    {
+     "nameEn": "linkSystmCd",
+     "nameKo": "연계시스템코드",
+     "size": "4",
+     "required": false,
+     "sample": "1000",
+     "desc": "검색하고자하는 연계시스템코드 1000:나라장터(중앙조달) 1100:나라장터(자체조달) 2100:강원랜드 2200:농수산물사이버거래소(학교급식) 2300:한국국토정보공사 2400:방위사업청 2500:인천국제공항공사 2600:학교장터 2700:한국가스공사 2800:한국과학기술연구원 2900:한국국제협력단 3000:한국도로공사 3100:한국마사회 3200:한국석유공사 3300:한국수력원자력 3400:한국수자원공사 3500:한국전기연구원 3600:한국전력공사 3700:한국전자통신연구원 3800:한국조폐공사 3900:한국지역난방공사 4000:한국철도공사 4100:한국철도시설공단 4200:한국토지주택공사 4300:한전KDN 4400:디브레인 9000:수기 * 연계시스템코드를 입력하지 않을 경우는 전체시스템으로부터 수집된 실적이 보임"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "linkSystmNm",
+     "nameKo": "연계시스템명",
+     "size": "100",
+     "desc": "전체로 조회시에는 \"전체\" 연계시스템 코드로 검색시에는 연계시스템명"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "수요기관코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가, 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "arsltSumNum",
+     "nameKo": "실적합계건수",
+     "size": "25",
+     "desc": "합계건수"
+    },
+    {
+     "nameEn": "arsltSumAmt",
+     "nameKo": "실적합계금액",
+     "size": "30",
+     "desc": "합계금액 (원,원화)"
+    },
+    {
+     "nameEn": "lrgeEntrprsArsltNum",
+     "nameKo": "대기업실적건수",
+     "size": "25",
+     "desc": "대기업실적건수"
+    },
+    {
+     "nameEn": "lrgeEntrprsArsltAmt",
+     "nameKo": "대기업실적금액",
+     "size": "30",
+     "desc": "대기업실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "entrprsOfMidStdArsltNum",
+     "nameKo": "중견기업실적건수",
+     "size": "25",
+     "desc": "중견기업실적건수"
+    },
+    {
+     "nameEn": "entrprsOfMidStdArsltAmt",
+     "nameKo": "중견기업실적금액",
+     "size": "30",
+     "desc": "중견기업실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "smetprArsltNum",
+     "nameKo": "중소기업실적건수",
+     "size": "25",
+     "desc": "중소기업실적건수"
+    },
+    {
+     "nameEn": "smetprArsltAmt",
+     "nameKo": "중소기업실적금액",
+     "size": "30",
+     "desc": "중소기업실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "frgncntryEntrprsArsltNum",
+     "nameKo": "외국기업실적건수",
+     "size": "25",
+     "desc": "외국기업실적건수"
+    },
+    {
+     "nameEn": "frgncntryEntrprsArsltAmt",
+     "nameKo": "외국기업실적금액",
+     "size": "30",
+     "desc": "외국기업실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "nonPrftmkCorprtArsltNum",
+     "nameKo": "기타실적건수",
+     "size": "25",
+     "desc": "기타실적건수"
+    },
+    {
+     "nameEn": "nonPrftmkCorprtArsltAmt",
+     "nameKo": "기타실적금액",
+     "size": "30",
+     "desc": "기타실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "unClsfcArsltNum",
+     "nameKo": "미분류실적건수",
+     "size": "25",
+     "desc": "미분류실적건수"
+    },
+    {
+     "nameEn": "unClsfcArsltAmt",
+     "nameKo": "미분류실적금액",
+     "size": "30",
+     "desc": "미분류실적금액 (원,원화)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/at/PubPrcrmntStatInfoService/getDminsttAccotEntrprsDivAccotArslt?srchBssYmBgn=201601&srchBssYmEnd=201601&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getDminsttAccotCntrctMthdAccotArslt",
+   "opNameKo": "수요기관별 계약방법별 실적",
+   "opType": "조회(목록)",
+   "description": "검색조건에 기준년월범위, 수요기관코드, 수요기관명, 하위기관실적포함여부, 연계시스템코드을 입력하여 수요기관코드, 수요기관명, 실적합계건수, 실적합계금액, 일반경쟁실적건수, 일반경쟁실적금액, 제한경쟁실적건수, 제한경쟁실적금액, 지명경쟁실적건수, 지명경쟁실적금액, 수의계약실적건수, 수의계약실적금액, 미분류실적건수, 미분류실적금액, 수기등록실적건수, 수기등록실적금액 등 수요기관별 계약방법별 실적을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "srchBssYmBgn",
+     "nameKo": "검색기준년월시작",
+     "size": "6",
+     "required": false,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월시작 \"YYYYMM\""
+    },
+    {
+     "nameEn": "srchBssYmEnd",
+     "nameKo": "검색기준년월종료",
+     "size": "6",
+     "required": false,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월종료 \"YYYYMM\""
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "1210000",
+     "desc": "검색하고자하는 수요기관코드"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "기획재정부",
+     "desc": "검색하고자하는 수요기관명"
+    },
+    {
+     "nameEn": "lwrInsttArsltInclsnYn",
+     "nameKo": "하위기관실적포함여부",
+     "size": "1",
+     "required": false,
+     "sample": "Y",
+     "desc": "검색하고자하는 하위기관실적포함여부"
+    },
+    {
+     "nameEn": "linkSystmCd",
+     "nameKo": "연계시스템코드",
+     "size": "4",
+     "required": false,
+     "sample": "1000",
+     "desc": "검색하고자하는 연계시스템코드 1000:나라장터(중앙조달) 1100:나라장터(자체조달) 2100:강원랜드 2200:농수산물사이버거래소(학교급식) 2300:한국국토정보공사 2400:방위사업청 2500:인천국제공항공사 2600:학교장터 2700:한국가스공사 2800:한국과학기술연구원 2900:한국국제협력단 3000:한국도로공사 3100:한국마사회 3200:한국석유공사 3300:한국수력원자력 3400:한국수자원공사 3500:한국전기연구원 3600:한국전력공사 3700:한국전자통신연구원 3800:한국조폐공사 3900:한국지역난방공사 4000:한국철도공사 4100:한국철도시설공단 4200:한국토지주택공사 4300:한전KDN 4400:디브레인 9000:수기 * 연계시스템코드를 입력하지 않을 경우는 전체시스템으로부터 수집된 실적이 보임"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "linkSystmNm",
+     "nameKo": "연계시스템명",
+     "size": "100",
+     "desc": "전체로 조회시에는 \"전체\" 연계시스템 코드로 검색시에는 연계시스템명"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "수요기관코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가, 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "arsltSumNum",
+     "nameKo": "실적합계건수",
+     "size": "25",
+     "desc": "합계건수"
+    },
+    {
+     "nameEn": "arsltSumAmt",
+     "nameKo": "실적합계금액",
+     "size": "30",
+     "desc": "합계금액 (원,원화)"
+    },
+    {
+     "nameEn": "gnrlCmptArsltNum",
+     "nameKo": "일반경쟁실적건수",
+     "size": "25",
+     "desc": "일반경쟁실적건수"
+    },
+    {
+     "nameEn": "gnrlCmptArsltAmt",
+     "nameKo": "일반경쟁실적금액",
+     "size": "30",
+     "desc": "일반경쟁실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "lmtCmptArsltNum",
+     "nameKo": "제한경쟁실적건수",
+     "size": "25",
+     "desc": "제한경쟁실적건수"
+    },
+    {
+     "nameEn": "lmtCmptArsltAmt",
+     "nameKo": "제한경쟁실적금액",
+     "size": "30",
+     "desc": "제한경쟁실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "dsgntCmptArsltNum",
+     "nameKo": "지명경쟁실적건수",
+     "size": "25",
+     "desc": "지명경쟁실적건수"
+    },
+    {
+     "nameEn": "dsgntCmptArsltAmt",
+     "nameKo": "지명경쟁실적금액",
+     "size": "30",
+     "desc": "지명경쟁실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "prvtcntrctArsltNum",
+     "nameKo": "수의계약실적건수",
+     "size": "25",
+     "desc": "수의계약실적건수"
+    },
+    {
+     "nameEn": "prvtcntrctArsltAmt",
+     "nameKo": "수의계약실적금액",
+     "size": "30",
+     "desc": "수의계약실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "unClsfcArsltNum",
+     "nameKo": "미분류실적건수",
+     "size": "25",
+     "desc": "미분류실적건수"
+    },
+    {
+     "nameEn": "unClsfcArsltAmt",
+     "nameKo": "미분류실적금액",
+     "size": "30",
+     "desc": "미분류실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "mnllbrRgstArsltNum",
+     "nameKo": "수기등록실적건수",
+     "size": "25",
+     "desc": "수기등록실적건수 비전자계약실적건수"
+    },
+    {
+     "nameEn": "mnllbrRgstArsltAmt",
+     "nameKo": "수기등록실적금액",
+     "size": "30",
+     "desc": "수기등록실적금액 (원,원화) 비전자계약실적금액"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/at/PubPrcrmntStatInfoService/getDminsttAccotCntrctMthdAccotArslt?srchBssYmBgn=201601&srchBssYmEnd=201603&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getDminsttAccotBsnsObjAccotArslt",
+   "opNameKo": "수요기관별 업무대상별 실적",
+   "opType": "조회(목록)",
+   "description": "검색조건에 기준년월범위, 수요기관코드, 수요기관명, 하위기관실적포함여부, 연계시스템코드을 입력하여 수요기관코드, 수요기관명, 실적합계건수, 실적합계금액, 물품실적건수, 물품실적금액, 공사실적건수, 공사실적금액, 일반용역실적건수, 일반용역실적금액, 기술용역실적건수, 기술용역실적금액, 미분류실적건수, 미분류실적금액 등 수요기관별 업무대상별 실적을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "srchBssYmBgn",
+     "nameKo": "검색기준년월시작",
+     "size": "6",
+     "required": false,
+     "sample": "201601",
+     "desc": "검색하고자하는 기준년월시작 \"YYYYMM\""
+    },
+    {
+     "nameEn": "srchBssYmEnd",
+     "nameKo": "검색기준년월종료",
+     "size": "6",
+     "required": false,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월종료 \"YYYYMM\""
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "1230000",
+     "desc": "검색하고자하는 수요기관코드"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "조달청",
+     "desc": "검색하고자하는 수요기관명"
+    },
+    {
+     "nameEn": "lwrInsttArsltInclsnYn",
+     "nameKo": "하위기관실적포함여부",
+     "size": "1",
+     "required": false,
+     "sample": "Y",
+     "desc": "검색하고자하는 하위기관실적포함여부"
+    },
+    {
+     "nameEn": "linkSystmCd",
+     "nameKo": "연계시스템코드",
+     "size": "4",
+     "required": false,
+     "sample": "1000",
+     "desc": "검색하고자하는 연계시스템코드 1000:나라장터(중앙조달) 1100:나라장터(자체조달) 2100:강원랜드 2200:농수산물사이버거래소(학교급식) 2300:한국국토정보공사 2400:방위사업청 2500:인천국제공항공사 2600:학교장터 2700:한국가스공사 2800:한국과학기술연구원 2900:한국국제협력단 3000:한국도로공사 3100:한국마사회 3200:한국석유공사 3300:한국수력원자력 3400:한국수자원공사 3500:한국전기연구원 3600:한국전력공사 3700:한국전자통신연구원 3800:한국조폐공사 3900:한국지역난방공사 4000:한국철도공사 4100:한국철도시설공단 4200:한국토지주택공사 4300:한전KDN 4400:디브레인 9000:수기 * 연계시스템코드를 입력하지 않을 경우는 전체시스템으로부터 수집된 실적이 보임"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "linkSystmNm",
+     "nameKo": "연계시스템명",
+     "size": "100",
+     "desc": "전체로 조회시에는 \"전체\" 연계시스템코드로 검색시에는 연계시스템명"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "수요기관코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가, 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "arsltSumNum",
+     "nameKo": "실적합계건수",
+     "size": "25",
+     "desc": "실적합계건수"
+    },
+    {
+     "nameEn": "arsltSumAmt",
+     "nameKo": "실적합계금액",
+     "size": "30",
+     "desc": "실적합계금액 (원,원화)"
+    },
+    {
+     "nameEn": "prdctArsltNum",
+     "nameKo": "물품실적건수",
+     "size": "25",
+     "desc": "물품실적건수"
+    },
+    {
+     "nameEn": "prdctArsltAmt",
+     "nameKo": "물품실적금액",
+     "size": "30",
+     "desc": "물품실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "cnstwkArsltNum",
+     "nameKo": "공사실적건수",
+     "size": "25",
+     "desc": "공사실적건수"
+    },
+    {
+     "nameEn": "cnstwkArsltAmt",
+     "nameKo": "공사실적금액",
+     "size": "30",
+     "desc": "공사실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "gnrlSrvceArsltNum",
+     "nameKo": "일반용역실적건수",
+     "size": "25",
+     "desc": "일반용역실적건수"
+    },
+    {
+     "nameEn": "gnrlSrvceArsltAmt",
+     "nameKo": "일반용역실적금액",
+     "size": "30",
+     "desc": "일반용역실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "techSrvceArsltNum",
+     "nameKo": "기술용역실적건수",
+     "size": "25",
+     "desc": "기술용역실적건수"
+    },
+    {
+     "nameEn": "techSrvceArsltAmt",
+     "nameKo": "기술용역실적금액",
+     "size": "30",
+     "desc": "기술용역실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "unClsfcArsltNum",
+     "nameKo": "미분류실적건수",
+     "size": "25",
+     "desc": "미분류실적건수"
+    },
+    {
+     "nameEn": "unClsfcArsltAmt",
+     "nameKo": "미분류실적금액",
+     "size": "30",
+     "desc": "미분류실적금액 (원,원화)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/at/PubPrcrmntStatInfoService/getDminsttAccotBsnsObjAccotArslt?srchBssYmBgn=201603&srchBssYmEnd=201603&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getDminsttAccotSystmTyAccotArslt",
+   "opNameKo": "수요기관별 시스템유형별 실적",
+   "opType": "조회(목록)",
+   "description": "검색조건에 기준년월범위, 수요기관코드, 수요기관명, 하위기관실적포함여부, 연계시스템코드을 입력하여 수요기관코드, 수요기관명, 실적합계건수, 실적합계금액, 중앙조달실적건수, 중앙조달실적금액, 자체조달실적건수, 자체조달실적금액, 자체조달시스템실적건수, 자체조달시스템실적금액, 수기조달실적건수, 수기조달실적금액 등 수요기관별 시스템유형별 실적을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "srchBssYmBgn",
+     "nameKo": "검색기준년월시작",
+     "size": "6",
+     "required": false,
+     "sample": "201601",
+     "desc": "검색하고자하는 기준년월시작 \"YYYYMM\""
+    },
+    {
+     "nameEn": "srchBssYmEnd",
+     "nameKo": "검색기준년월종료",
+     "size": "6",
+     "required": false,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월종료 \"YYYYMM\""
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "1210000",
+     "desc": "검색하고자하는 수요기관코드"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "국세청",
+     "desc": "검색하고자하는 수요기관명"
+    },
+    {
+     "nameEn": "lwrInsttArsltInclsnYn",
+     "nameKo": "하위기관실적포함여부",
+     "size": "1",
+     "required": false,
+     "sample": "Y",
+     "desc": "하위기관실적포함여부"
+    },
+    {
+     "nameEn": "linkSystmCd",
+     "nameKo": "연계시스템코드",
+     "size": "4",
+     "required": false,
+     "sample": "1000",
+     "desc": "검색하고자하는 연계시스템코드 1000:나라장터(중앙조달) 1100:나라장터(자체조달) 2100:강원랜드 2200:농수산물사이버거래소(학교급식) 2300:한국국토정보공사 2400:방위사업청 2500:인천국제공항공사 2600:학교장터 2700:한국가스공사 2800:한국과학기술연구원 2900:한국국제협력단 3000:한국도로공사 3100:한국마사회 3200:한국석유공사 3300:한국수력원자력 3400:한국수자원공사 3500:한국전기연구원 3600:한국전력공사 3700:한국전자통신연구원 3800:한국조폐공사 3900:한국지역난방공사 4000:한국철도공사 4100:한국철도시설공단 4200:한국토지주택공사 4300:한전KDN 4400:디브레인 9000:수기 * 연계시스템코드를 입력하지 않을 경우는 전체시스템으로부터 수집된 실적이 보임"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "linkSystmNm",
+     "nameKo": "연계시스템명",
+     "size": "100",
+     "desc": "전체로 조회시에는 \"전체\" 연계시스템코드로 검색시에는 연계시스템명"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "수요기관코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가, 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "arsltSumNum",
+     "nameKo": "실적합계건수",
+     "size": "25",
+     "desc": "실적합계건수"
+    },
+    {
+     "nameEn": "arsltSumAmt",
+     "nameKo": "실적합계금액",
+     "size": "30",
+     "desc": "실적합계금액 (원,원화)"
+    },
+    {
+     "nameEn": "centrPrcrmntArsltNum",
+     "nameKo": "중앙조달실적건수",
+     "size": "25",
+     "desc": "나라장터중앙조달공급건수"
+    },
+    {
+     "nameEn": "centrPrcrmntArsltAmt",
+     "nameKo": "중앙조달실적금액",
+     "size": "30",
+     "desc": "나라장터중앙조달공급금액 (원,원화)"
+    },
+    {
+     "nameEn": "selfPrcrmntArsltNum",
+     "nameKo": "자체조달실적건수",
+     "size": "25",
+     "desc": "나라장터(자체) 나라장터를 통하여 공공기관들이 자체 발주(공고)하여 조달한 건수"
+    },
+    {
+     "nameEn": "selfPrcrmntArsltAmt",
+     "nameKo": "자체조달실적금액",
+     "size": "30",
+     "desc": "나라장터(자체) 나라장터를 통하여 공공기관들이 자체 발주(공고)하여 조달한 금액 (원,원화)"
+    },
+    {
+     "nameEn": "systmPrcrmntArsltNum",
+     "nameKo": "자체조달시스템실적건수",
+     "size": "25",
+     "desc": "자체조달시스템실적건수, 공공기관이 운영하고 있는 전자조달시스템으로, 나라장터 외 23개 자체조달시스템으로 조달한 건수"
+    },
+    {
+     "nameEn": "systmPrcrmntArsltAmt",
+     "nameKo": "자체조달시스템실적금액",
+     "size": "30",
+     "desc": "자체조달시스템실적금액, 공공기관이 운영하고 있는 전자조달시스템으로, 나라장터 외 23개 자체조달시스템으로 조달한 금액(원,원화)"
+    },
+    {
+     "nameEn": "mnllbrPrcrmntArsltNum",
+     "nameKo": "수기조달실적건수",
+     "size": "25",
+     "desc": "수기등록실적건수 전자조달시스템을 이용하지 않은 비전자계약실적건수"
+    },
+    {
+     "nameEn": "mnllbrPrcrmntArsltAmt",
+     "nameKo": "수기조달실적금액",
+     "size": "30",
+     "desc": "수기등록실적금액 전자조달시스템을 이용하지 않은 비전자계약실적금액(원,원화)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/at/PubPrcrmntStatInfoService/getDminsttAccotSystmTyAccotArslt?srchBssYmBgn=201601&srchBssYmEnd=201603&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrcrmntEntrprsAccotCntrctMthdAccotArslt",
+   "opNameKo": "조달기업별 계약방법별 실적",
+   "opType": "조회(목록)",
+   "description": "검색조건에 기준년월범위, 업체통합번호, 업체명, 연계시스템코드을 입력하여 업체통합번호, 업체명, 실적합계건수, 실적합계금액, 일반경쟁실적건수, 일반경쟁실적금액, 제한경쟁실적건수, 제한경쟁실적금액, 지명경쟁실적건수, 지명경쟁실적금액, 수의계약실적건수, 수의계약실적금액, 미분류실적건수, 미분류실적금액, 수기등록실적건수, 수기등록실적금액 등 조달기업별 계약방법별 실적을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "srchBssYmBgn",
+     "nameKo": "검색기준년월시작",
+     "size": "6",
+     "required": true,
+     "sample": "201601",
+     "desc": "검색하고자하는 기준년월시작 \"YYYYMM\""
+    },
+    {
+     "nameEn": "srchBssYmEnd",
+     "nameKo": "검색기준년월종료",
+     "size": "6",
+     "required": true,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월종료 \"YYYYMM\""
+    },
+    {
+     "nameEn": "corpUntyNo",
+     "nameKo": "업체통합번호",
+     "size": "10",
+     "required": false,
+     "sample": "2118620691",
+     "desc": "검색하고자하는 업체통합번호가 없으면 기준년월기준 전체조회"
+    },
+    {
+     "nameEn": "corpNm",
+     "nameKo": "업체명",
+     "size": "100",
+     "required": false,
+     "sample": "태양유니스",
+     "desc": "검색하고자하는 업체명"
+    },
+    {
+     "nameEn": "linkSystmCd",
+     "nameKo": "연계시스템코드",
+     "size": "4",
+     "required": false,
+     "sample": "1000",
+     "desc": "검색하고자하는 연계시스템코드 1000:나라장터(중앙조달) 1100:나라장터(자체조달) 2100:강원랜드 2200:농수산물사이버거래소(학교급식) 2300:한국국토정보공사 2400:방위사업청 2500:인천국제공항공사 2600:학교장터 2700:한국가스공사 2800:한국과학기술연구원 2900:한국국제협력단 3000:한국도로공사 3100:한국마사회 3200:한국석유공사 3300:한국수력원자력 3400:한국수자원공사 3500:한국전기연구원 3600:한국전력공사 3700:한국전자통신연구원 3800:한국조폐공사 3900:한국지역난방공사 4000:한국철도공사 4100:한국철도시설공단 4200:한국토지주택공사 4300:한전KDN 4400:디브레인 9000:수기 * 연계시스템코드를 입력하지 않을 경우는 전체시스템으로부터 수집된 실적이 보임"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "linkSystmNm",
+     "nameKo": "연계시스템명",
+     "size": "100",
+     "desc": "전체로 조회시에는 \"전체\" 연계시스템코드로 검색시에는 연계시스템명"
+    },
+    {
+     "nameEn": "corpUntyNo",
+     "nameKo": "업체통합번호",
+     "size": "10",
+     "desc": "업체통합번호"
+    },
+    {
+     "nameEn": "corpNm",
+     "nameKo": "업체명",
+     "size": "100",
+     "desc": "업체명"
+    },
+    {
+     "nameEn": "arsltSumNum",
+     "nameKo": "실적합계건수",
+     "size": "25",
+     "desc": "실적합계건수"
+    },
+    {
+     "nameEn": "arsltSumAmt",
+     "nameKo": "실적합계금액",
+     "size": "30",
+     "desc": "실적합계금액 (원,원화)"
+    },
+    {
+     "nameEn": "gnrlCmptArsltNum",
+     "nameKo": "일반경쟁실적건수",
+     "size": "25",
+     "desc": "일반경쟁실적건수"
+    },
+    {
+     "nameEn": "gnrlCmptArsltAmt",
+     "nameKo": "일반경쟁실적금액",
+     "size": "30",
+     "desc": "일반경쟁실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "lmtCmptArsltNum",
+     "nameKo": "제한경쟁실적건수",
+     "size": "25",
+     "desc": "제한경쟁실적건수"
+    },
+    {
+     "nameEn": "lmtCmptArsltAmt",
+     "nameKo": "제한경쟁실적금액",
+     "size": "30",
+     "desc": "제한경쟁실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "dsgntCmptArsltNum",
+     "nameKo": "지명경쟁실적건수",
+     "size": "25",
+     "desc": "지명경쟁실적건수"
+    },
+    {
+     "nameEn": "dsgntCmptArsltAmt",
+     "nameKo": "지명경쟁실적금액",
+     "size": "30",
+     "desc": "지명경쟁실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "prvtcntrctArsltNum",
+     "nameKo": "수의계약실적건수",
+     "size": "25",
+     "desc": "수의계약실적건수"
+    },
+    {
+     "nameEn": "prvtcntrctArsltAmt",
+     "nameKo": "수의계약실적금액",
+     "size": "30",
+     "desc": "수의계약실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "unClsfcArsltNum",
+     "nameKo": "미분류실적건수",
+     "size": "25",
+     "desc": "미분류실적건수"
+    },
+    {
+     "nameEn": "unClsfcArsltAmt",
+     "nameKo": "미분류실적금액",
+     "size": "30",
+     "desc": "미분류실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "mnllbrRgstArsltNum",
+     "nameKo": "수기등록실적건수",
+     "size": "25",
+     "desc": "수기등록실적건수 전자조달시스템을 이용하지 않은 비전자계약실적건수"
+    },
+    {
+     "nameEn": "mnllbrRgstArsltAmt",
+     "nameKo": "수기등록실적금액",
+     "size": "30",
+     "desc": "수기등록실적금액 전자조달시스템을 이용하지 않은 비전자계약실적금액(원,원화)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/at/PubPrcrmntStatInfoService/getPrcrmntEntrprsAccotCntrctMthdAccotArslt?srchBssYmBgn=201601&srchBssYmEnd=201601&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrcrmntEntrprsAccotBsnsObjAccotArslt",
+   "opNameKo": "조달기업별 업무대상별 실적",
+   "opType": "조회(목록)",
+   "description": "검색조건에 기준년월범위, 업체통합번호, 업체명, 연계시스템코드을 입력하여 업체통합번호, 업체명, 실적합계건수, 실적합계금액, 물품실적건수, 물품실적금액, 공사실적건수, 공사실적금액, 일반용역실적건수, 일반용역실적금액, 기술용역실적건수, 기술용역실적금액, 미분류실적건수, 미분류실적금액 등 조달기업별 업무대상별 실적을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "srchBssYmBgn",
+     "nameKo": "검색기준년월시작",
+     "size": "6",
+     "required": true,
+     "sample": "201601",
+     "desc": "검색하고자하는 기준년월시작 \"YYYYMM\""
+    },
+    {
+     "nameEn": "srchBssYmEnd",
+     "nameKo": "검색기준년월종료",
+     "size": "6",
+     "required": true,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월종료 \"YYYYMM\""
+    },
+    {
+     "nameEn": "corpUntyNo",
+     "nameKo": "업체통합번호",
+     "size": "10",
+     "required": false,
+     "sample": "1398119223",
+     "desc": "검색하고자하는 업체통합번호가 없으면 기준년월기준 전체조회"
+    },
+    {
+     "nameEn": "corpNm",
+     "nameKo": "업체명",
+     "size": "100",
+     "required": false,
+     "sample": "(사)늘푸름",
+     "desc": "검색하고자하는 업체명"
+    },
+    {
+     "nameEn": "linkSystmCd",
+     "nameKo": "연계시스템코드",
+     "size": "4",
+     "required": false,
+     "sample": "1000",
+     "desc": "검색하고자하는 연계시스템코드 1000:나라장터(중앙조달) 1100:나라장터(자체조달) 2100:강원랜드 2200:농수산물사이버거래소(학교급식) 2300:한국국토정보공사 2400:방위사업청 2500:인천국제공항공사 2600:학교장터 2700:한국가스공사 2800:한국과학기술연구원 2900:한국국제협력단 3000:한국도로공사 3100:한국마사회 3200:한국석유공사 3300:한국수력원자력 3400:한국수자원공사 3500:한국전기연구원 3600:한국전력공사 3700:한국전자통신연구원 3800:한국조폐공사 3900:한국지역난방공사 4000:한국철도공사 4100:한국철도시설공단 4200:한국토지주택공사 4300:한전KDN 4400:디브레인 9000:수기 * 연계시스템코드를 입력하지 않을 경우는 전체시스템으로부터 수집된 실적이 보임"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "linkSystmNm",
+     "nameKo": "연계시스템명",
+     "size": "100",
+     "desc": "전체로 조회시에는 \"전체\" 연계시스템코드로 검색시에는 연계시스템명"
+    },
+    {
+     "nameEn": "corpUntyNo",
+     "nameKo": "업체통합번호",
+     "size": "10",
+     "desc": "업체통합번호"
+    },
+    {
+     "nameEn": "corpNm",
+     "nameKo": "업체명",
+     "size": "100",
+     "desc": "업체명"
+    },
+    {
+     "nameEn": "arsltSumNum",
+     "nameKo": "실적합계건수",
+     "size": "25",
+     "desc": "합계건수"
+    },
+    {
+     "nameEn": "arsltSumAmt",
+     "nameKo": "실적합계금액",
+     "size": "30",
+     "desc": "합계금액 (원,원화)"
+    },
+    {
+     "nameEn": "prdctArsltNum",
+     "nameKo": "물품실적건수",
+     "size": "25",
+     "desc": "물품실적건수"
+    },
+    {
+     "nameEn": "prdctArsltAmt",
+     "nameKo": "물품실적금액",
+     "size": "30",
+     "desc": "물품실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "cnstwkArsltNum",
+     "nameKo": "공사실적건수",
+     "size": "25",
+     "desc": "공사실적건수"
+    },
+    {
+     "nameEn": "cnstwkArsltAmt",
+     "nameKo": "공사실적금액",
+     "size": "30",
+     "desc": "공사실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "gnrlSrvceArsltNum",
+     "nameKo": "일반용역실적건수",
+     "size": "25",
+     "desc": "일반용역실적건수"
+    },
+    {
+     "nameEn": "gnrlSrvceArsltAmt",
+     "nameKo": "일반용역실적금액",
+     "size": "30",
+     "desc": "일반용역실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "techSrvceArsltNum",
+     "nameKo": "기술용역실적건수",
+     "size": "25",
+     "desc": "기술용역실적건수"
+    },
+    {
+     "nameEn": "techSrvceArsltAmt",
+     "nameKo": "기술용역실적금액",
+     "size": "30",
+     "desc": "기술용역실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "unClsfcArsltNum",
+     "nameKo": "미분류실적건수",
+     "size": "25",
+     "desc": "미분류실적건수"
+    },
+    {
+     "nameEn": "unClsfcArsltAmt",
+     "nameKo": "미분류실적금액",
+     "size": "30",
+     "desc": "미분류실적금액 (원,원화)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/at/PubPrcrmntStatInfoService/getPrcrmntEntrprsAccotBsnsObjAccotArslt?srchBssYmBgn=201601&srchBssYmEnd=201601&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPrdctIdntNoServcAccotArslt",
+   "opNameKo": "품목 및 서비스별 실적",
+   "opType": "조회(목록)",
+   "description": "검색조건에 기준년월범위, 물품분류번호, 품명을 입력하여 물품분류번호, 품명, 실적합계건수, 실적합계금액, 일반경쟁실적건수, 일반경쟁실적금액, 제한경쟁실적건수, 제한경쟁실적금액, 지명경쟁실적건수, 지명경쟁실적금액, 수의계약실적건수, 수의계약실적금액, 미분류실적건수, 미분류실적금액 등 품목 및 서비스별 실적을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "srchBssYmBgn",
+     "nameKo": "검색기준년월시작",
+     "size": "6",
+     "required": false,
+     "sample": "201601",
+     "desc": "검색하고자하는 기준년월시작 \"YYYYMM\""
+    },
+    {
+     "nameEn": "srchBssYmEnd",
+     "nameKo": "검색기준년월종료",
+     "size": "6",
+     "required": false,
+     "sample": "201603",
+     "desc": "검색하고자하는 기준년월종료 \"YYYYMM\""
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "10",
+     "required": false,
+     "sample": "72151299",
+     "desc": "검색하고자하는 물품분류번호가 없으면 검색기준년월기준 전체조회"
+    },
+    {
+     "nameEn": "prdctClsfcNm",
+     "nameKo": "품명",
+     "size": "100",
+     "required": false,
+     "sample": "냉난방공조공사",
+     "desc": "검색하고자하는 품명"
+    },
+    {
+     "nameEn": "linkSystmCd",
+     "nameKo": "연계시스템코드",
+     "size": "4",
+     "required": false,
+     "sample": "1000",
+     "desc": "검색하고자하는 연계시스템코드 1000:나라장터(중앙조달) 1100:나라장터(자체조달) 2100:강원랜드 2200:농수산물사이버거래소(학교급식) 2300:한국국토정보공사 2400:방위사업청 2500:인천국제공항공사 2600:학교장터 2700:한국가스공사 2800:한국과학기술연구원 2900:한국국제협력단 3000:한국도로공사 3100:한국마사회 3200:한국석유공사 3300:한국수력원자력 3400:한국수자원공사 3500:한국전기연구원 3600:한국전력공사 3700:한국전자통신연구원 3800:한국조폐공사 3900:한국지역난방공사 4000:한국철도공사 4100:한국철도시설공단 4200:한국토지주택공사 4300:한전KDN 4400:디브레인 9000:수기 * 연계시스템코드를 입력하지 않을 경우는 전체시스템으로부터 수집된 실적이 보임"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "linkSystmNm",
+     "nameKo": "연계시스템명",
+     "size": "100",
+     "desc": "전체로 조회시에는 \"전체\" 연계시스템코드로 검색시에는 연계시스템명"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "10",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNm",
+     "nameKo": "품명",
+     "size": "100",
+     "desc": "물품분류번호 8자리에 해당하는 물품의 한글이름"
+    },
+    {
+     "nameEn": "arsltSumNum",
+     "nameKo": "실적합계건수",
+     "size": "30",
+     "desc": "합계건수"
+    },
+    {
+     "nameEn": "arsltSumAmt",
+     "nameKo": "실적합계금액",
+     "size": "25",
+     "desc": "합계금액 (원,원화)"
+    },
+    {
+     "nameEn": "gnrlCmptArsltNum",
+     "nameKo": "일반경쟁실적건수",
+     "size": "30",
+     "desc": "일반경쟁실적건수"
+    },
+    {
+     "nameEn": "gnrlCmptArsltAmt",
+     "nameKo": "일반경쟁실적금액",
+     "size": "25",
+     "desc": "일반경쟁실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "lmtCmptArsltNum",
+     "nameKo": "제한경쟁실적건수",
+     "size": "30",
+     "desc": "제한경쟁실적건수"
+    },
+    {
+     "nameEn": "lmtCmptArsltAmt",
+     "nameKo": "제한경쟁실적금액",
+     "size": "25",
+     "desc": "제한경쟁실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "dsgntCmptArsltNum",
+     "nameKo": "지명경쟁실적건수",
+     "size": "30",
+     "desc": "지명경쟁실적건수"
+    },
+    {
+     "nameEn": "dsgntCmptArsltAmt",
+     "nameKo": "지명경쟁실적금액",
+     "size": "25",
+     "desc": "지명경쟁실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "prvtcntrctArsltNum",
+     "nameKo": "수의계약실적건수",
+     "size": "30",
+     "desc": "수의계약실적건수"
+    },
+    {
+     "nameEn": "prvtcntrctArsltAmt",
+     "nameKo": "수의계약실적금액",
+     "size": "25",
+     "desc": "수의계약실적금액 (원,원화)"
+    },
+    {
+     "nameEn": "unClsfcArsltNum",
+     "nameKo": "미분류실적건수",
+     "size": "30",
+     "desc": "미분류실적건수"
+    },
+    {
+     "nameEn": "unClsfcArsltAmt",
+     "nameKo": "미분류실적금액",
+     "size": "25",
+     "desc": "미분류실적금액 (원,원화)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/at/PubPrcrmntStatInfoService/getPrdctIdntNoServcAccotArslt?srchBssYmBgn=201601&srchBssYmEnd=201603&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  }
+ ]
+}

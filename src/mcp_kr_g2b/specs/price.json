@@ -1,0 +1,2537 @@
+{
+ "module": "price",
+ "serviceId": "PriceInfoService",
+ "serviceNameKo": "나라장터 가격정보현황서비스",
+ "baseUrl": "http://apis.data.go.kr/1230000/ao/PriceInfoService",
+ "description": "조달청에서 조사된 또는 계약된 조경수목 가격정보, 시설공통자재(토목, 건축, 기계설비, 전기, 정보통신) 가격정보 및, 토목, 건축, 기계설비 분야 시장시공가격 정보를 제공하는 서비스",
+ "updateCycle": "수시",
+ "operations": [
+  {
+   "opNameEn": "getPriceInfoListFcltyCmmnMtrilEngrk",
+   "opNameKo": "시설공통자재(토목) 가격정보",
+   "opType": "조회(목록)",
+   "description": "시설공통자재(토목) 가격정보의 검색조건(물품분류번호,품명,물품식별번호,규격명)을 입력하면 물품분류번호,관련부서정보,관련계약정보,가격 등 조회.",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "required": false,
+     "sample": "30199997",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "100",
+     "required": false,
+     "sample": "복공판",
+     "desc": "물품분류번호 8자리에 대한 한글명"
+    },
+    {
+     "nameEn": "prdctIdntNo",
+     "nameKo": "물품식별번호",
+     "size": "8",
+     "required": false,
+     "sample": "22146252",
+     "desc": "품목에 대한 고유번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "krnPrdctNm",
+     "nameKo": "규격명(한글품목명)",
+     "size": "200",
+     "required": false,
+     "sample": "복공판,MMA,1000",
+     "desc": "세부품명, 제조업체명, 제작국/모델명, 특성값 등 기본적인 규격사항 등이 기록된 품목의 명칭"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "prceNticeNo",
+     "nameKo": "가격게시번호",
+     "size": "20",
+     "desc": "시설공통자재(토목)의 가격게시번호"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "20",
+     "desc": "게시일시 'YYYY-MM-DD HH24:MI'"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "시설공통자재(토목)의 업무구분코드"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "40",
+     "desc": "시설공통자재(토목)의 업무구분명"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctIdntNo",
+     "nameKo": "물품식별번호",
+     "size": "8",
+     "desc": "품목에 대한 고유번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "invstDeptNm",
+     "nameKo": "조사부서명",
+     "size": "30",
+     "desc": "시설공통자재(토목)의 조사부서명"
+    },
+    {
+     "nameEn": "invstDeptTelNo",
+     "nameKo": "조사부서전화번호",
+     "size": "20",
+     "desc": "시설공통자재(토목)의 조사부서전화번호"
+    },
+    {
+     "nameEn": "invstOfclNm",
+     "nameKo": "조사담당자명",
+     "size": "10",
+     "desc": "시설공통자재(토목)의 조사담당자명"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "100",
+     "desc": "물품분류번호 8자리에 대한 한글명"
+    },
+    {
+     "nameEn": "krnPrdctNm",
+     "nameKo": "한글품목명",
+     "size": "200",
+     "desc": "세부품명, 제조업체명, 제작국/모델명, 특성값 등 기본적인 규격사항 등이 기록된 품목의 명칭"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "10",
+     "desc": "시설공통자재(토목)의 단위"
+    },
+    {
+     "nameEn": "prce",
+     "nameKo": "가격",
+     "size": "25",
+     "desc": "시설공통자재(토목)의 가격(원화,단위:원)"
+    },
+    {
+     "nameEn": "splyJrsdctRgnNm",
+     "nameKo": "공급관할지역명",
+     "size": "200",
+     "desc": "시설공통자재(토목)의 공급관할지역명"
+    },
+    {
+     "nameEn": "etcCntnts",
+     "nameKo": "기타내용",
+     "size": "1000",
+     "desc": "시설공통자재(토목)의 기타내용"
+    },
+    {
+     "nameEn": "mtrlcst",
+     "nameKo": "재료비",
+     "size": "22",
+     "desc": "시설공통자재(토목)의 재료비(원화,단위:원)"
+    },
+    {
+     "nameEn": "lbrcst",
+     "nameKo": "노무비",
+     "size": "22",
+     "desc": "시설공통자재(토목)의 노무비(원화,단위:원)"
+    },
+    {
+     "nameEn": "gnrlexpns",
+     "nameKo": "경비",
+     "size": "22",
+     "desc": "시설공통자재(토목)의 경비(원화,단위:원)"
+    },
+    {
+     "nameEn": "vatYnNm",
+     "nameKo": "부가가치세여부명",
+     "size": "100",
+     "desc": "시설공통자재(토목)의 부가가치세여부명"
+    },
+    {
+     "nameEn": "prceDiv",
+     "nameKo": "가격구분",
+     "size": "200",
+     "desc": "시설공통자재(토목)의 가격구분"
+    },
+    {
+     "nameEn": "dlvryCndtnNm",
+     "nameKo": "인도조건명",
+     "size": "200",
+     "desc": "시설공통자재(토목)의 인도조건명"
+    },
+    {
+     "nameEn": "distbStep",
+     "nameKo": "유통단계",
+     "size": "100",
+     "desc": "시설공통자재(토목)의 유통단계"
+    },
+    {
+     "nameEn": "payCndtn",
+     "nameKo": "결제조건",
+     "size": "100",
+     "desc": "시설공통자재(토목)의 결제조건"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PriceInfoService/getPriceInfoListFcltyCmmnMtrilEngrk?prdctClsfcNo=30199997&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPriceInfoListFcltyCmmnMtrilBildng",
+   "opNameKo": "시설공통자재(건축) 가격정보",
+   "opType": "조회(목록)",
+   "description": "시설공통자재(건축) 가격정보의 검색조건(물품분류번호,품명,물품식별번호,규격명)을 입력하면 물품분류번호,관련부서정보,관련계약정보,가격 등 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "required": false,
+     "sample": "30103698",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "100",
+     "required": false,
+     "sample": "각재",
+     "desc": "물품분류번호 8자리에 대한 한글명"
+    },
+    {
+     "nameEn": "prdctIdntNo",
+     "nameKo": "물품식별번호",
+     "size": "8",
+     "required": false,
+     "sample": "20141038",
+     "desc": "품목에 대한 고유번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "krnPrdctNm",
+     "nameKo": "규격명(한글품목명)",
+     "size": "200",
+     "required": false,
+     "sample": "각재",
+     "desc": "세부품명, 제조업체명, 제작국/모델명, 특성값 등 기본적인 규격사항 등이 기록된 품목의 명칭"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "prceNticeNo",
+     "nameKo": "가격게시번호",
+     "size": "20",
+     "desc": "시설공통자재(건축)의 가격게시번호"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "20",
+     "desc": "게시일시 'YYYY-MM-DD HH24:MI'"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "시설공통자재(건축)의 업무구분코드"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "40",
+     "desc": "시설공통자재(건축)의 업무구분명"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctIdntNo",
+     "nameKo": "물품식별번호",
+     "size": "8",
+     "desc": "품목에 대한 고유번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "invstDeptNm",
+     "nameKo": "조사부서명",
+     "size": "30",
+     "desc": "시설공통자재(건축)의 조사부서명"
+    },
+    {
+     "nameEn": "invstDeptTelNo",
+     "nameKo": "조사부서전화번호",
+     "size": "20",
+     "desc": "시설공통자재(건축)의 조사부서전화번호"
+    },
+    {
+     "nameEn": "invstOfclNm",
+     "nameKo": "조사담당자명",
+     "size": "10",
+     "desc": "시설공통자재(건축)의 조사담당자명"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "100",
+     "desc": "물품분류번호 8자리에 대한 한글명"
+    },
+    {
+     "nameEn": "krnPrdctNm",
+     "nameKo": "한글품목명",
+     "size": "200",
+     "desc": "세부품명, 제조업체명, 제작국/모델명, 특성값 등 기본적인 규격사항 등이 기록된 품목의 명칭"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "10",
+     "desc": "시설공통자재(건축)의 단위"
+    },
+    {
+     "nameEn": "prce",
+     "nameKo": "가격",
+     "size": "25",
+     "desc": "시설공통자재(건축)의 가격(원화,단위:원)"
+    },
+    {
+     "nameEn": "splyJrsdctRgnNm",
+     "nameKo": "공급관할지역명",
+     "size": "200",
+     "desc": "시설공통자재(건축)의 공급관할지역명"
+    },
+    {
+     "nameEn": "etcCntnts",
+     "nameKo": "기타내용",
+     "size": "1000",
+     "desc": "시설공통자재(건축)의 기타내용"
+    },
+    {
+     "nameEn": "mtrlcst",
+     "nameKo": "재료비",
+     "size": "22",
+     "desc": "시설공통자재(건축)의 재료비(원화,단위:원)"
+    },
+    {
+     "nameEn": "lbrcst",
+     "nameKo": "노무비",
+     "size": "22",
+     "desc": "시설공통자재(건축)의 노무비(원화,단위:원)"
+    },
+    {
+     "nameEn": "gnrlexpns",
+     "nameKo": "경비",
+     "size": "22",
+     "desc": "시설공통자재(건축)의 경비(원화,단위:원)"
+    },
+    {
+     "nameEn": "vatYnNm",
+     "nameKo": "부가가치세여부명",
+     "size": "100",
+     "desc": "시설공통자재(건축)의 부가가치세여부명"
+    },
+    {
+     "nameEn": "prceDiv",
+     "nameKo": "가격구분",
+     "size": "200",
+     "desc": "시설공통자재(건축)의 가격구분"
+    },
+    {
+     "nameEn": "dlvryCndtnNm",
+     "nameKo": "인도조건명",
+     "size": "200",
+     "desc": "시설공통자재(건축)의 인도조건명"
+    },
+    {
+     "nameEn": "distbStep",
+     "nameKo": "유통단계",
+     "size": "100",
+     "desc": "시설공통자재(건축)의 유통단계"
+    },
+    {
+     "nameEn": "payCndtn",
+     "nameKo": "결제조건",
+     "size": "100",
+     "desc": "시설공통자재(건축)의 결제조건"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PriceInfoService/getPriceInfoListFcltyCmmnMtrilBildng?prdctClsfcNo=30103698&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPriceInfoListFcltyCmmnMtrilMchnEqp",
+   "opNameKo": "시설공통자재(기계설비) 가격정보",
+   "opType": "조회(목록)",
+   "description": "시설공통자재(기계설비) 가격정보의 검색조건(물품분류번호,품명,물품식별번호,규격명)을 입력하면 물품분류번호,관련부서정보,관련계약정보,가격 등 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "required": false,
+     "sample": "46191601",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "100",
+     "required": false,
+     "sample": "소화용기구",
+     "desc": "물품분류번호 8자리에 대한 한글명"
+    },
+    {
+     "nameEn": "prdctIdntNo",
+     "nameKo": "물품식별번호",
+     "size": "8",
+     "required": false,
+     "sample": "20096944",
+     "desc": "품목에 대한 고유번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "krnPrdctNm",
+     "nameKo": "규격명(한글품목명)",
+     "size": "200",
+     "required": false,
+     "sample": "소화용기구",
+     "desc": "세부품명, 제조업체명, 제작국/모델명, 특성값 등 기본적인 규격사항 등이 기록된 품목의 명칭"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "prceNticeNo",
+     "nameKo": "가격게시번호",
+     "size": "20",
+     "desc": "시설공통자재(기계설비)의 가격게시번호"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "20",
+     "desc": "게시일시 'YYYY-MM-DD HH24:MI'"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "시설공통자재(기계설비)의 업무구분코드"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "40",
+     "desc": "시설공통자재(기계설비)의 업무구분명"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctIdntNo",
+     "nameKo": "물품식별번호",
+     "size": "8",
+     "desc": "품목에 대한 고유번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "invstDeptNm",
+     "nameKo": "조사부서명",
+     "size": "30",
+     "desc": "시설공통자재(기계설비)의 조사부서명"
+    },
+    {
+     "nameEn": "invstDeptTelNo",
+     "nameKo": "조사부서전화번호",
+     "size": "20",
+     "desc": "시설공통자재(기계설비)의 조사부서전화번호"
+    },
+    {
+     "nameEn": "invstOfclNm",
+     "nameKo": "조사담당자명",
+     "size": "10",
+     "desc": "시설공통자재(기계설비)의 조사담당자명"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "100",
+     "desc": "물품분류번호 8자리에 대한 한글명"
+    },
+    {
+     "nameEn": "krnPrdctNm",
+     "nameKo": "한글품목명",
+     "size": "200",
+     "desc": "세부품명, 제조업체명, 제작국/모델명, 특성값 등 기본적인 규격사항 등이 기록된 품목의 명칭"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "10",
+     "desc": "시설공통자재(기계설비)의 단위"
+    },
+    {
+     "nameEn": "prce",
+     "nameKo": "가격",
+     "size": "25",
+     "desc": "시설공통자재(기계설비)의 가격(원화,단위:원)"
+    },
+    {
+     "nameEn": "splyJrsdctRgnNm",
+     "nameKo": "공급관할지역명",
+     "size": "200",
+     "desc": "시설공통자재(기계설비)의 공급관할지역명"
+    },
+    {
+     "nameEn": "etcCntnts",
+     "nameKo": "기타내용",
+     "size": "1000",
+     "desc": "시설공통자재(기계설비)의 기타내용"
+    },
+    {
+     "nameEn": "mtrlcst",
+     "nameKo": "재료비",
+     "size": "22",
+     "desc": "시설공통자재(기계설비)의 재료비(원화,단위:원)"
+    },
+    {
+     "nameEn": "lbrcst",
+     "nameKo": "노무비",
+     "size": "22",
+     "desc": "시설공통자재(기계설비)의 노무비(원화,단위:원)"
+    },
+    {
+     "nameEn": "gnrlexpns",
+     "nameKo": "경비",
+     "size": "22",
+     "desc": "시설공통자재(기계설비)의 경비(원화,단위:원)"
+    },
+    {
+     "nameEn": "vatYnNm",
+     "nameKo": "부가가치세여부명",
+     "size": "100",
+     "desc": "시설공통자재(기계설비)의 부가가치세여부명"
+    },
+    {
+     "nameEn": "prceDiv",
+     "nameKo": "가격구분",
+     "size": "200",
+     "desc": "시설공통자재(기계설비)의 가격구분"
+    },
+    {
+     "nameEn": "dlvryCndtnNm",
+     "nameKo": "인도조건명",
+     "size": "200",
+     "desc": "시설공통자재(기계설비)의 인도조건명"
+    },
+    {
+     "nameEn": "distbStep",
+     "nameKo": "유통단계",
+     "size": "100",
+     "desc": "시설공통자재(기계설비)의 유통단계"
+    },
+    {
+     "nameEn": "payCndtn",
+     "nameKo": "결제조건",
+     "size": "100",
+     "desc": "시설공통자재(기계설비)의 결제조건"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PriceInfoService/getPriceInfoListFcltyCmmnMtrilMchnEqp?prdctClsfcNo=46191601&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPriceInfoListFcltyCmmnMtrilElctyIrmc",
+   "opNameKo": "시설공통자재(전기, 정보통신) 가격정보",
+   "opType": "조회(목록)",
+   "description": "시설공통자재(전기,정보통신) 가격정보의 검색조건(물품분류번호,품명,물품식별번호,규격명)을 입력하면 물품분류번호,관련부서정보,관련계약정보,가격 등 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "required": false,
+     "sample": "39131708",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "100",
+     "required": false,
+     "sample": "전선관피팅",
+     "desc": "물품분류번호 8자리에 대한 한글명"
+    },
+    {
+     "nameEn": "prdctIdntNo",
+     "nameKo": "물품식별번호",
+     "size": "8",
+     "required": false,
+     "sample": "20174931",
+     "desc": "품목에 대한 고유번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "krnPrdctNm",
+     "nameKo": "규격명(한글품목명)",
+     "size": "200",
+     "required": false,
+     "sample": "관구밀폐기, 실링가스켓, D150",
+     "desc": "세부품명, 제조업체명, 제작국/모델명, 특성값 등 기본적인 규격사항 등이 기록된 품목의 명칭"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "prceNticeNo",
+     "nameKo": "가격게시번호",
+     "size": "20",
+     "desc": "시설공통자재(전기,정보통신)의 가격게시번호"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "20",
+     "desc": "게시일시 'YYYY-MM-DD HH24:MI'"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "시설공통자재(전기,정보통신)의 업무구분코드"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "40",
+     "desc": "시설공통자재(전기,정보통신)의 업무구분명"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctIdntNo",
+     "nameKo": "물품식별번호",
+     "size": "8",
+     "desc": "품목에 대한 고유번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "invstDeptNm",
+     "nameKo": "조사부서명",
+     "size": "30",
+     "desc": "시설공통자재(전기,정보통신)의 조사부서명"
+    },
+    {
+     "nameEn": "invstDeptTelNo",
+     "nameKo": "조사부서전화번호",
+     "size": "20",
+     "desc": "시설공통자재(전기,정보통신)의 조사부서전화번호"
+    },
+    {
+     "nameEn": "invstOfclNm",
+     "nameKo": "조사담당자명",
+     "size": "10",
+     "desc": "시설공통자재(전기,정보통신)의 조사담당자명"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "100",
+     "desc": "물품분류번호 8자리에 대한 한글명"
+    },
+    {
+     "nameEn": "krnPrdctNm",
+     "nameKo": "한글품목명",
+     "size": "200",
+     "desc": "세부품명, 제조업체명, 제작국/모델명, 특성값 등 기본적인 규격사항 등이 기록된 품목의 명칭"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "10",
+     "desc": "시설공통자재(전기,정보통신)의 단위"
+    },
+    {
+     "nameEn": "prce",
+     "nameKo": "가격",
+     "size": "25",
+     "desc": "시설공통자재(전기,정보통신)의 가격(원화,단위:원)"
+    },
+    {
+     "nameEn": "splyJrsdctRgnNm",
+     "nameKo": "공급관할지역명",
+     "size": "200",
+     "desc": "시설공통자재(전기,정보통신)의 공급관할지역명"
+    },
+    {
+     "nameEn": "etcCntnts",
+     "nameKo": "기타내용",
+     "size": "1000",
+     "desc": "시설공통자재(전기,정보통신)의 기타내용"
+    },
+    {
+     "nameEn": "mtrlcst",
+     "nameKo": "재료비",
+     "size": "22",
+     "desc": "시설공통자재(전기,정보통신)의 재료비(원화,단위:원)"
+    },
+    {
+     "nameEn": "lbrcst",
+     "nameKo": "노무비",
+     "size": "22",
+     "desc": "시설공통자재(전기,정보통신)의 노무비(원화,단위:원)"
+    },
+    {
+     "nameEn": "gnrlexpns",
+     "nameKo": "경비",
+     "size": "22",
+     "desc": "시설공통자재(전기,정보통신)의 경비(원화,단위:원)"
+    },
+    {
+     "nameEn": "vatYnNm",
+     "nameKo": "부가가치세여부명",
+     "size": "100",
+     "desc": "시설공통자재(전기,정보통신)의 부가가치세여부명"
+    },
+    {
+     "nameEn": "prceDiv",
+     "nameKo": "가격구분",
+     "size": "200",
+     "desc": "시설공통자재(전기,정보통신)의 가격구분"
+    },
+    {
+     "nameEn": "dlvryCndtnNm",
+     "nameKo": "인도조건명",
+     "size": "200",
+     "desc": "시설공통자재(전기,정보통신)의 인도조건명"
+    },
+    {
+     "nameEn": "distbStep",
+     "nameKo": "유통단계",
+     "size": "100",
+     "desc": "시설공통자재(전기,정보통신)의 유통단계"
+    },
+    {
+     "nameEn": "payCndtn",
+     "nameKo": "결제조건",
+     "size": "100",
+     "desc": "시설공통자재(전기,정보통신)의 결제조건"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PriceInfoService/getPriceInfoListFcltyCmmnMtrilElctyIrmc?prdctClsfcNo=39131706&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPriceInfoListMrktCnstrctPcEngrk",
+   "opNameKo": "시장시공가격(토목) 가격정보",
+   "opType": "조회(목록)",
+   "description": "시장시공가격(토목) 정보의 검색조건(물품분류번호,품명,물품식별번호,규격명)을 입력하면 물품분류번호,관련부서정보,관련계약정보,시장시공가격 등 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "required": false,
+     "sample": "0",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "100",
+     "required": false,
+     "sample": "ACE JOINT",
+     "desc": "물품분류번호 8자리에 대한 한글명"
+    },
+    {
+     "nameEn": "prdctIdntNo",
+     "nameKo": "물품식별번호",
+     "size": "8",
+     "required": false,
+     "sample": "90000000",
+     "desc": "품목에 대한 고유번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "krnPrdctNm",
+     "nameKo": "규격명(한글품목명)",
+     "size": "200",
+     "required": false,
+     "sample": "NB-T120",
+     "desc": "세부품명, 제조업체명, 제작국/모델명, 특성값 등 기본적인 규격사항 등이 기록된 품목의 명칭"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "prceNticeNo",
+     "nameKo": "가격게시번호",
+     "size": "20",
+     "desc": "시장시공가격(토목)의 가격게시번호"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "20",
+     "desc": "게시일시 'YYYY-MM-DD HH24:MI'"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "시장시공가격(토목)의 업무구분코드"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "40",
+     "desc": "시장시공가격(토목)의 업무구분명"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctIdntNo",
+     "nameKo": "물품식별번호",
+     "size": "8",
+     "desc": "품목에 대한 고유번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "invstDeptNm",
+     "nameKo": "조사부서명",
+     "size": "30",
+     "desc": "시장시공가격(토목)의 조사부서명"
+    },
+    {
+     "nameEn": "invstDeptTelNo",
+     "nameKo": "조사부서전화번호",
+     "size": "20",
+     "desc": "시장시공가격(토목)의 조사부서전화번호"
+    },
+    {
+     "nameEn": "invstOfclNm",
+     "nameKo": "조사담당자명",
+     "size": "10",
+     "desc": "시장시공가격(토목)의 조사담당자명"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "100",
+     "desc": "물품분류번호 8자리에 대한 한글명"
+    },
+    {
+     "nameEn": "krnPrdctNm",
+     "nameKo": "한글품목명",
+     "size": "200",
+     "desc": "세부품명, 제조업체명, 제작국/모델명, 특성값 등 기본적인 규격사항 등이 기록된 품목의 명칭"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "10",
+     "desc": "시장시공가격(토목)의 단위"
+    },
+    {
+     "nameEn": "prce",
+     "nameKo": "가격",
+     "size": "25",
+     "desc": "시장시공가격(토목)의 가격(원화,단위:원)"
+    },
+    {
+     "nameEn": "splyJrsdctRgnNm",
+     "nameKo": "공급관할지역명",
+     "size": "200",
+     "desc": "시장시공가격(토목)의 공급관할지역명"
+    },
+    {
+     "nameEn": "etcCntnts",
+     "nameKo": "기타내용",
+     "size": "1000",
+     "desc": "시장시공가격(토목)의 기타내용"
+    },
+    {
+     "nameEn": "mtrlcst",
+     "nameKo": "재료비",
+     "size": "22",
+     "desc": "시장시공가격(토목)의 재료비(원화,단위:원)"
+    },
+    {
+     "nameEn": "lbrcst",
+     "nameKo": "노무비",
+     "size": "22",
+     "desc": "시장시공가격(토목)의 노무비(원화,단위:원)"
+    },
+    {
+     "nameEn": "gnrlexpns",
+     "nameKo": "경비",
+     "size": "22",
+     "desc": "시장시공가격(토목)의 경비(원화,단위:원)"
+    },
+    {
+     "nameEn": "vatYnNm",
+     "nameKo": "부가가치세여부명",
+     "size": "100",
+     "desc": "시장시공가격(토목)의 부가가치세여부명"
+    },
+    {
+     "nameEn": "prceDiv",
+     "nameKo": "가격구분",
+     "size": "200",
+     "desc": "시장시공가격(토목)의 가격구분"
+    },
+    {
+     "nameEn": "dlvryCndtnNm",
+     "nameKo": "인도조건명",
+     "size": "200",
+     "desc": "시장시공가격(토목)의 인도조건명"
+    },
+    {
+     "nameEn": "distbStep",
+     "nameKo": "유통단계",
+     "size": "100",
+     "desc": "시장시공가격(토목)의 유통단계"
+    },
+    {
+     "nameEn": "payCndtn",
+     "nameKo": "결제조건",
+     "size": "100",
+     "desc": "시장시공가격(토목)의 결제조건"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PriceInfoService/getPriceInfoListMrktCnstrctPcEngrk?prdctClsfcNo=0&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPriceInfoListMrktCnstrctPcBildng",
+   "opNameKo": "시장시공가격(건축) 가격정보",
+   "opType": "조회(목록)",
+   "description": "시장시공가격(건축) 정보의 검색조건(물품분류번호,품명,물품식별번호,규격명)을 입력하면 물품분류번호,관련부서정보,관련계약정보,시장시공가격 등 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "required": false,
+     "sample": "0",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "100",
+     "required": false,
+     "sample": "ACODECK(PIR) 판넬/부자재 포함",
+     "desc": "물품분류번호 8자리에 대한 한글명"
+    },
+    {
+     "nameEn": "prdctIdntNo",
+     "nameKo": "물품식별번호",
+     "size": "8",
+     "required": false,
+     "sample": "90000000",
+     "desc": "품목에 대한 고유번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "krnPrdctNm",
+     "nameKo": "규격명(한글품목명)",
+     "size": "200",
+     "required": false,
+     "sample": "50T(하부:0.6t유공실리콘강판상",
+     "desc": "세부품명, 제조업체명, 제작국/모델명, 특성값 등 기본적인 규격사항 등이 기록된 품목의 명칭"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "prceNticeNo",
+     "nameKo": "가격게시번호",
+     "size": "20",
+     "desc": "시장시공가격(건축)의 가격게시번호"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "20",
+     "desc": "게시일시 'YYYY-MM-DD HH24:MI'"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "시장시공가격(건축)의 업무구분코드"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "40",
+     "desc": "시장시공가격(건축)의 업무구분명"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctIdntNo",
+     "nameKo": "물품식별번호",
+     "size": "8",
+     "desc": "품목에 대한 고유번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "invstDeptNm",
+     "nameKo": "조사부서명",
+     "size": "30",
+     "desc": "시장시공가격(건축)의 조사부서명"
+    },
+    {
+     "nameEn": "invstDeptTelNo",
+     "nameKo": "조사부서전화번호",
+     "size": "20",
+     "desc": "시장시공가격(건축)의 조사부서전화번호"
+    },
+    {
+     "nameEn": "invstOfclNm",
+     "nameKo": "조사담당자명",
+     "size": "10",
+     "desc": "시장시공가격(건축)의 조사담당자명"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "100",
+     "desc": "물품분류번호 8자리에 대한 한글명"
+    },
+    {
+     "nameEn": "krnPrdctNm",
+     "nameKo": "한글품목명",
+     "size": "200",
+     "desc": "세부품명, 제조업체명, 제작국/모델명, 특성값 등 기본적인 규격사항 등이 기록된 품목의 명칭"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "10",
+     "desc": "시장시공가격(건축)의 단위"
+    },
+    {
+     "nameEn": "prce",
+     "nameKo": "가격",
+     "size": "25",
+     "desc": "시장시공가격(건축)의 가격(원화,단위:원)"
+    },
+    {
+     "nameEn": "splyJrsdctRgnNm",
+     "nameKo": "공급관할지역명",
+     "size": "200",
+     "desc": "시장시공가격(건축)의 공급관할지역명"
+    },
+    {
+     "nameEn": "etcCntnts",
+     "nameKo": "기타내용",
+     "size": "1000",
+     "desc": "시장시공가격(건축)의 기타내용"
+    },
+    {
+     "nameEn": "mtrlcst",
+     "nameKo": "재료비",
+     "size": "22",
+     "desc": "시장시공가격(건축)의 재료비(원화,단위:원)"
+    },
+    {
+     "nameEn": "lbrcst",
+     "nameKo": "노무비",
+     "size": "22",
+     "desc": "시장시공가격(건축)의 노무비(원화,단위:원)"
+    },
+    {
+     "nameEn": "gnrlexpns",
+     "nameKo": "경비",
+     "size": "22",
+     "desc": "시장시공가격(건축)의 경비(원화,단위:원)"
+    },
+    {
+     "nameEn": "vatYnNm",
+     "nameKo": "부가가치세여부명",
+     "size": "100",
+     "desc": "시장시공가격(건축)의 부가가치세여부명"
+    },
+    {
+     "nameEn": "prceDiv",
+     "nameKo": "가격구분",
+     "size": "200",
+     "desc": "시장시공가격(건축)의 가격구분"
+    },
+    {
+     "nameEn": "dlvryCndtnNm",
+     "nameKo": "인도조건명",
+     "size": "200",
+     "desc": "시장시공가격(건축)의 인도조건명"
+    },
+    {
+     "nameEn": "distbStep",
+     "nameKo": "유통단계",
+     "size": "100",
+     "desc": "시장시공가격(건축)의 유통단계"
+    },
+    {
+     "nameEn": "payCndtn",
+     "nameKo": "결제조건",
+     "size": "100",
+     "desc": "시장시공가격(건축)의 결제조건"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PriceInfoService/getPriceInfoListMrktCnstrctPcBildng?prdctClsfcNo=0&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPriceInfoListMrktCnstrctPcMchnEqp",
+   "opNameKo": "시장시공가격(기계설비) 가격정보",
+   "opType": "조회(목록)",
+   "description": "시장시공가격(기계설비) 정보의 검색조건(물품분류번호, 품명, 물품식별번호, 규격명)을 입력하면 물품분류번호, 관련부서정보, 관련계약정보, 시장시공가격 등 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "required": false,
+     "sample": "0",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "100",
+     "required": false,
+     "sample": "풍량조절담파",
+     "desc": "물품분류번호 8자리에 대한 한글명"
+    },
+    {
+     "nameEn": "prdctIdntNo",
+     "nameKo": "물품식별번호",
+     "size": "8",
+     "required": false,
+     "sample": "90000000",
+     "desc": "품목에 대한 고유번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "krnPrdctNm",
+     "nameKo": "규격명(한글품목명)",
+     "size": "200",
+     "required": false,
+     "sample": "자동식",
+     "desc": "세부품명, 제조업체명, 제작국/모델명, 특성값 등 기본적인 규격사항 등이 기록된 품목의 명칭"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "prceNticeNo",
+     "nameKo": "가격게시번호",
+     "size": "20",
+     "desc": "시장시공가격(기계설비)의 가격게시번호"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "20",
+     "desc": "게시일시 'YYYY-MM-DD HH24:MI'"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "시장시공가격(기계설비)의 업무구분코드"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "40",
+     "desc": "시장시공가격(기계설비)의 업무구분명"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctIdntNo",
+     "nameKo": "물품식별번호",
+     "size": "8",
+     "desc": "품목에 대한 고유번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "invstDeptNm",
+     "nameKo": "조사부서명",
+     "size": "30",
+     "desc": "시장시공가격(기계설비)의 조사부서명"
+    },
+    {
+     "nameEn": "invstDeptTelNo",
+     "nameKo": "조사부서전화번호",
+     "size": "20",
+     "desc": "시장시공가격(기계설비)의 조사부서전화번호"
+    },
+    {
+     "nameEn": "invstOfclNm",
+     "nameKo": "조사담당자명",
+     "size": "10",
+     "desc": "시장시공가격(기계설비)의 조사담당자명"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "100",
+     "desc": "물품분류번호 8자리에 대한 한글명"
+    },
+    {
+     "nameEn": "krnPrdctNm",
+     "nameKo": "한글품목명",
+     "size": "200",
+     "desc": "세부품명, 제조업체명, 제작국/모델명, 특성값 등 기본적인 규격사항 등이 기록된 품목의 명칭"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "10",
+     "desc": "시장시공가격(기계설비)의 단위"
+    },
+    {
+     "nameEn": "prce",
+     "nameKo": "가격",
+     "size": "25",
+     "desc": "시장시공가격(기계설비)의 가격(원화,단위:원)"
+    },
+    {
+     "nameEn": "splyJrsdctRgnNm",
+     "nameKo": "공급관할지역명",
+     "size": "200",
+     "desc": "시장시공가격(기계설비)의 공급관할지역명"
+    },
+    {
+     "nameEn": "etcCntnts",
+     "nameKo": "기타내용",
+     "size": "1000",
+     "desc": "시장시공가격(기계설비)의 기타내용"
+    },
+    {
+     "nameEn": "mtrlcst",
+     "nameKo": "재료비",
+     "size": "22",
+     "desc": "시장시공가격(기계설비)의 재료비(원화,단위:원)"
+    },
+    {
+     "nameEn": "lbrcst",
+     "nameKo": "노무비",
+     "size": "22",
+     "desc": "시장시공가격(기계설비)의 노무비(원화,단위:원)"
+    },
+    {
+     "nameEn": "gnrlexpns",
+     "nameKo": "경비",
+     "size": "22",
+     "desc": "시장시공가격(기계설비)의 경비(원화,단위:원)"
+    },
+    {
+     "nameEn": "vatYnNm",
+     "nameKo": "부가가치세여부명",
+     "size": "100",
+     "desc": "시장시공가격(기계설비)의 부가가치세여부명"
+    },
+    {
+     "nameEn": "prceDiv",
+     "nameKo": "가격구분",
+     "size": "200",
+     "desc": "시장시공가격(기계설비)의 가격구분"
+    },
+    {
+     "nameEn": "dlvryCndtnNm",
+     "nameKo": "인도조건명",
+     "size": "200",
+     "desc": "시장시공가격(기계설비)의 인도조건명"
+    },
+    {
+     "nameEn": "distbStep",
+     "nameKo": "유통단계",
+     "size": "100",
+     "desc": "시장시공가격(기계설비)의 유통단계"
+    },
+    {
+     "nameEn": "payCndtn",
+     "nameKo": "결제조건",
+     "size": "100",
+     "desc": "시장시공가격(기계설비)의 결제조건"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PriceInfoService/getPriceInfoListMrktCnstrctPcMchnEqp?prdctClsfcNo=0&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getCnsttyClsfcInfoList",
+   "opNameKo": "공종분류및세부공종",
+   "opType": "조회(목록)",
+   "description": "시설공사공종분류 검색조건(공사분류코드)을 입력하면 수량산출공종분류코, 수량산출코드명 등 조회.",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "cnstwkDivCd",
+     "nameKo": "공사구분코드",
+     "size": "1",
+     "desc": "공사를 분류하는 코드"
+    },
+    {
+     "nameEn": "cnstwkDivNm",
+     "nameKo": "공사구분코드명",
+     "size": "200",
+     "desc": "공사를 분류하는 코드명"
+    },
+    {
+     "nameEn": "LvlqtyCalcCtyclCd1",
+     "nameKo": "일레벨수량산출공종분류코드",
+     "size": "8",
+     "desc": "일레벨수량산출분류코드"
+    },
+    {
+     "nameEn": "LvlqtyCalcCtyclNm1",
+     "nameKo": "일레벨수량산출공종분류명",
+     "size": "100",
+     "desc": "일레벨수량산출공종분류명"
+    },
+    {
+     "nameEn": "LvlqtyCalcCtyclDscrpt1",
+     "nameKo": "일레벨수량산출공종분류설명",
+     "size": "200",
+     "desc": "일레벨수량산출설명"
+    },
+    {
+     "nameEn": "LvlqtyCalcCtyclCd2",
+     "nameKo": "이레벨수량산출공종분류코드",
+     "size": "8",
+     "desc": "이레벨수량산출분류코드"
+    },
+    {
+     "nameEn": "LvlqtyCalcCtyclNm2",
+     "nameKo": "이레벨수량산출공종분류명",
+     "size": "100",
+     "desc": "이레벨수량산출공종분류명"
+    },
+    {
+     "nameEn": "LvlqtyCalcCtyclDscrpt2",
+     "nameKo": "이레벨수량산출공종분류설명",
+     "size": "200",
+     "desc": "이레벨수량산출설명"
+    },
+    {
+     "nameEn": "LvlqtyCalcCtyclCd3",
+     "nameKo": "삼레벨수량산출공종분류코드",
+     "size": "8",
+     "desc": "삼레벨수량산출분류코드"
+    },
+    {
+     "nameEn": "LvlqtyCalcCtyclNm3",
+     "nameKo": "삼레벨수량산출공종분류명",
+     "size": "100",
+     "desc": "삼레벨수량산출공종분류명"
+    },
+    {
+     "nameEn": "LvlqtyCalcCtyclDscrpt3",
+     "nameKo": "삼레벨수량산출공종분류설명",
+     "size": "200",
+     "desc": "삼레벨수량산출설명"
+    },
+    {
+     "nameEn": "LvlqtyCalcCtyclCd4",
+     "nameKo": "사레벨수량산출공종분류코드",
+     "size": "8",
+     "desc": "사레벨수량산출분류코드"
+    },
+    {
+     "nameEn": "LvlqtyCalcCtyclNm4",
+     "nameKo": "사레벨수량산출공종분류명",
+     "size": "100",
+     "desc": "사레벨수량산출공종분류명"
+    },
+    {
+     "nameEn": "LvlqtyCalcCtyclDscrpt4",
+     "nameKo": "사레벨수량산출공종분류설명",
+     "size": "200",
+     "desc": "사레벨수량산출설명"
+    },
+    {
+     "nameEn": "LvlqtyCalcCtyclCd5",
+     "nameKo": "오레벨수량산출공종분류코드",
+     "size": "8",
+     "desc": "오레벨수량산출분류코드"
+    },
+    {
+     "nameEn": "LvlqtyCalcCtyclNm5",
+     "nameKo": "오레벨수량산출공종분류명",
+     "size": "100",
+     "desc": "오레벨수량산출공종분류명"
+    },
+    {
+     "nameEn": "LvlqtyCalcCtyclDscrpt5",
+     "nameKo": "오레벨수량산출공종분류설명",
+     "size": "200",
+     "desc": "오레벨수량산출설명"
+    },
+    {
+     "nameEn": "qtyCalcCtyclcd",
+     "nameKo": "수량산출공종코드",
+     "size": "16",
+     "desc": "수량산출공종코드"
+    },
+    {
+     "nameEn": "qtyCalcCtyclNm",
+     "nameKo": "수량산출공종명",
+     "size": "100",
+     "desc": "수량산출공종명"
+    },
+    {
+     "nameEn": "spec",
+     "nameKo": "규격",
+     "size": "200",
+     "desc": "규격"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "20",
+     "desc": "단위"
+    },
+    {
+     "nameEn": "dscrpt",
+     "nameKo": "설명",
+     "size": "4000",
+     "desc": "세부공종 설명"
+    },
+    {
+     "nameEn": "SpectnYn",
+     "nameKo": "규격화여부",
+     "size": "1",
+     "desc": "규격화 여부"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PriceInfoService/getCnsttyClsfcInfoList?pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getStdMarkUprcinfoList",
+   "opNameKo": "표준시장단가및시장시공가격 정보",
+   "opType": "조회(목록)",
+   "description": "시설공사 표준시장단가 공사구분(토목,건축,전기,통신,설비) 발표일에 구성된 세부공종, 품명, 규격,단위, 재료비,노무비,경비 합계",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 입력 1: 공표일자"
+    },
+    {
+     "nameEn": "inqryBgnDate",
+     "nameKo": "조회시작일자",
+     "size": "8",
+     "required": false,
+     "sample": "20220922",
+     "desc": "검색하고자하는 공표일자 \"YYYYMMDD\""
+    },
+    {
+     "nameEn": "inqryEndDate",
+     "nameKo": "조회종료일자",
+     "size": "8",
+     "required": false,
+     "sample": "20220923",
+     "desc": "검색하고자하는 공표일자 \"YYYYMMDD\""
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "pblctDate",
+     "nameKo": "공표일자",
+     "size": "8",
+     "desc": "자원단가 발표일자"
+    },
+    {
+     "nameEn": "cnstwkDivCd",
+     "nameKo": "공사구분코드",
+     "size": "1",
+     "desc": "공사를 분류하는 코드"
+    },
+    {
+     "nameEn": "cnstwkDivCdNm",
+     "nameKo": "공사구분코드명",
+     "size": "200",
+     "desc": "공사를 분류하는 코드명"
+    },
+    {
+     "nameEn": "uprcDivNm",
+     "nameKo": "단가구분명",
+     "size": "200",
+     "desc": "세부공종구분"
+    },
+    {
+     "nameEn": "qtyCalcCtyclcd",
+     "nameKo": "수량산출공종코드",
+     "size": "16",
+     "desc": "시설공사세부공종코드"
+    },
+    {
+     "nameEn": "prdnm",
+     "nameKo": "품명",
+     "size": "100",
+     "desc": "품명"
+    },
+    {
+     "nameEn": "spec",
+     "nameKo": "규격",
+     "size": "200",
+     "desc": "규격"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "20",
+     "desc": "단위"
+    },
+    {
+     "nameEn": "mtrlcstUprc",
+     "nameKo": "재료비단가",
+     "size": "22",
+     "desc": "재료비단가"
+    },
+    {
+     "nameEn": "lbrcstUprc",
+     "nameKo": "노무비단가",
+     "size": "22",
+     "desc": "노무비단가"
+    },
+    {
+     "nameEn": "gnrexpnsUprc",
+     "nameKo": "경비단가",
+     "size": "22",
+     "desc": "경비단가"
+    },
+    {
+     "nameEn": "uprcAplCndtnCntnts",
+     "nameKo": "단가적용조건내용",
+     "size": "4000",
+     "desc": "단가를적용하는조건내용"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PriceInfoService/getStdMarkUprcinfoList?inqryDiv=1&inqryBgnDate=20220922&inqryEndDate=20220923&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getNetRsceinfoList",
+   "opNameKo": "자원분류및순수자원",
+   "opType": "조회(목록)",
+   "description": "조달청 시설공사 가격조사 및 관리업무 규정에 따라 자원분류 및 순수자원을 정기적으로 가격을 조사한 자료",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "rsceTyExtrnlCd",
+     "nameKo": "자원유형외부코드",
+     "size": "1",
+     "desc": "경제 생산에 이용되는 원료의 유형을 구분하는 외부사용 코드"
+    },
+    {
+     "nameEn": "grpUnitCnstwkExtrnlCdNm",
+     "nameKo": "그룹단위공사외부코드명",
+     "size": "200",
+     "desc": "통합코드의 명칭"
+    },
+    {
+     "nameEn": "lvlRsceClsfcNo1",
+     "nameKo": "일레벨자원분류번호",
+     "size": "8",
+     "desc": "자원분류번호"
+    },
+    {
+     "nameEn": "lvlRsceClsfcNm1",
+     "nameKo": "일레벨자원분류명",
+     "size": "100",
+     "desc": "자원분류명"
+    },
+    {
+     "nameEn": "lvlRsceClsfcDscrpt1",
+     "nameKo": "일레벨자원분류설명",
+     "size": "4000",
+     "desc": "자원분류설명"
+    },
+    {
+     "nameEn": "lvlRsceClsfcNo2",
+     "nameKo": "이레벨자원분류번호",
+     "size": "8",
+     "desc": "자원분류번호"
+    },
+    {
+     "nameEn": "lvlRsceClsfcNm2",
+     "nameKo": "이레벨자원분류명",
+     "size": "100",
+     "desc": "자원분류명"
+    },
+    {
+     "nameEn": "lvlRsceClsfcDscrpt2",
+     "nameKo": "이레벨자원분류설명",
+     "size": "4000",
+     "desc": "자원분류설명"
+    },
+    {
+     "nameEn": "lvlRsceClsfcNo3",
+     "nameKo": "삼레벨자원분류번호",
+     "size": "8",
+     "desc": "자원분류번호"
+    },
+    {
+     "nameEn": "lvlRsceClsfcNm3",
+     "nameKo": "삼레벨자원분류명",
+     "size": "100",
+     "desc": "자원분류명"
+    },
+    {
+     "nameEn": "lvlRsceClsfcDscrpt3",
+     "nameKo": "삼레벨자원분류설명",
+     "size": "4000",
+     "desc": "자원분류설명"
+    },
+    {
+     "nameEn": "lvlRsceClsfcNo4",
+     "nameKo": "사레벨자원분류번호",
+     "size": "8",
+     "desc": "자원분류번호"
+    },
+    {
+     "nameEn": "lvlRsceClsfcNm4",
+     "nameKo": "사레벨자원분류명",
+     "size": "100",
+     "desc": "자원분류명"
+    },
+    {
+     "nameEn": "lvlRsceClsfcDscrpt4",
+     "nameKo": "사레벨자원분류설명",
+     "size": "4000",
+     "desc": "자원분류설명"
+    },
+    {
+     "nameEn": "gnrlexpnsItemGrpExtrnCd",
+     "nameKo": "경비항목그룹외부코드",
+     "size": "4",
+     "desc": "물품관리구분코드"
+    },
+    {
+     "nameEn": "prdctMngDivNm",
+     "nameKo": "경비항목그룹외부코드명",
+     "size": "200",
+     "desc": "물품관리구분명"
+    },
+    {
+     "nameEn": "netRsceCd",
+     "nameKo": "순수자원코드",
+     "size": "16",
+     "desc": "순수자원코드"
+    },
+    {
+     "nameEn": "rsceNm",
+     "nameKo": "자원명",
+     "size": "200",
+     "desc": "품명"
+    },
+    {
+     "nameEn": "rsceSpecNm",
+     "nameKo": "자원규격명",
+     "size": "200",
+     "desc": "규격"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "20",
+     "desc": "단위"
+    },
+    {
+     "nameEn": "rsceDscrpt",
+     "nameKo": "자원설명",
+     "size": "4000",
+     "desc": "설명"
+    },
+    {
+     "nameEn": "dlvryCndtnNm",
+     "nameKo": "인도조건명",
+     "size": "200",
+     "desc": "인도조건명"
+    },
+    {
+     "nameEn": "lbrcst",
+     "nameKo": "노무비",
+     "size": "22",
+     "desc": "순수자원의 노무비(원화,단위:원)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PriceInfoService/getNetRsceinfoList?pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getPriceInfoListFcltyCmmnMtrilTotal",
+   "opNameKo": "시설공통자재(종합) 가격정보",
+   "opType": "조회(목록)",
+   "description": "시설공통자재(토목, 건축, 기계설비, 전기·정보통신) 가격정보의 검색조건(물품분류번호,품명,물품식별번호,규격명)을 입력하면 물품분류번호,관련부서정보,관련계약정보,가격 등 조회.",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 입력 1: 가격게시일시"
+    },
+    {
+     "nameEn": "inqryBgnDate",
+     "nameKo": "조회시작일자",
+     "size": "8",
+     "required": true,
+     "sample": "20240701",
+     "desc": "검색하고자하는 가격게시일시 \"YYYYMMDD\""
+    },
+    {
+     "nameEn": "inqryEndDate",
+     "nameKo": "조회종료일자",
+     "size": "8",
+     "required": true,
+     "sample": "20240705",
+     "desc": "검색하고자하는 가격게시일시 \"YYYYMMDD\""
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "전체 결과 수",
+     "size": "4",
+     "desc": "전체 결과 수"
+    },
+    {
+     "nameEn": "prceNticeNo",
+     "nameKo": "가격게시번호",
+     "size": "20",
+     "desc": "시설공통자재 가격게시번호"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "20",
+     "desc": "게시일시 'YYYY-MM-DD HH24:MI'"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "시설공통자재 업무구분코드"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "40",
+     "desc": "시설공통자재 업무구분명"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "prdctIdntNo",
+     "nameKo": "물품식별번호",
+     "size": "8",
+     "desc": "품목에 대한 고유번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "invstDeptNm",
+     "nameKo": "조사부서명",
+     "size": "30",
+     "desc": "시설공통자재 조사부서명"
+    },
+    {
+     "nameEn": "invstDeptTelNo",
+     "nameKo": "조사부서전화번호",
+     "size": "20",
+     "desc": "시설공통자재 조사부서전화번호"
+    },
+    {
+     "nameEn": "invstOfclNm",
+     "nameKo": "조사담당자명",
+     "size": "10",
+     "desc": "시설공통자재 조사담당자명"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "100",
+     "desc": "물품분류번호 8자리에 대한 한글명"
+    },
+    {
+     "nameEn": "krnPrdctNm",
+     "nameKo": "한글품목명",
+     "size": "200",
+     "desc": "세부품명, 제조업체명, 제작국/모델명, 특성값 등 기본적인 규격사항 등이 기록된 품목의 명칭"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "10",
+     "desc": "시설공통자재 단위"
+    },
+    {
+     "nameEn": "prce",
+     "nameKo": "가격",
+     "size": "25",
+     "desc": "시설공통자재 가격(원화,단위:원)"
+    },
+    {
+     "nameEn": "splyJrsdctRgnNm",
+     "nameKo": "공급관할지역명",
+     "size": "200",
+     "desc": "시설공통자재 공급관할지역명"
+    },
+    {
+     "nameEn": "etcCntnts",
+     "nameKo": "기타내용",
+     "size": "1000",
+     "desc": "시설공통자재기타내용"
+    },
+    {
+     "nameEn": "mtrlcst",
+     "nameKo": "재료비",
+     "size": "22",
+     "desc": "시설공통자재 재료비(원화,단위:원)"
+    },
+    {
+     "nameEn": "lbrcst",
+     "nameKo": "노무비",
+     "size": "22",
+     "desc": "시설공통자재 노무비(원화,단위:원)"
+    },
+    {
+     "nameEn": "gnrlexpns",
+     "nameKo": "경비",
+     "size": "22",
+     "desc": "시설공통자재 경비(원화,단위:원)"
+    },
+    {
+     "nameEn": "vatYnNm",
+     "nameKo": "부가가치세여부명",
+     "size": "100",
+     "desc": "시설공통자재 부가가치세여부명"
+    },
+    {
+     "nameEn": "prceDiv",
+     "nameKo": "가격구분",
+     "size": "200",
+     "desc": "시설공통자재 가격구분"
+    },
+    {
+     "nameEn": "dlvryCndtnNm",
+     "nameKo": "인도조건명",
+     "size": "200",
+     "desc": "시설공통자재 인도조건명"
+    },
+    {
+     "nameEn": "distbStep",
+     "nameKo": "유통단계",
+     "size": "100",
+     "desc": "시설공통자재 유통단계"
+    },
+    {
+     "nameEn": "payCndtn",
+     "nameKo": "결제조건",
+     "size": "100",
+     "desc": "시설공통자재 결제조건"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/PriceInfoService/getPriceInfoListFcltyCmmnMtrilTotal?inqryDiv=1&inqryBgnDate=20230101&inqryEndDate=20230613&pageNo=1&numOfRows=1&ServiceKey=인증키"
+  }
+ ]
+}

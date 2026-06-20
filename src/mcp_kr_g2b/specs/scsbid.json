@@ -1,0 +1,5851 @@
+{
+ "module": "scsbid",
+ "serviceId": "ScsbidInfoService",
+ "serviceNameKo": "나라장터 낙찰정보서비스",
+ "baseUrl": "http://apis.data.go.kr/1230000/as/ScsbidInfoService",
+ "description": "나라장터 개찰결과를 물품, 공사, 용역, 외자의 업무별로 제공하는 서비스로 각 업무별로 최종낙찰자, 개찰순위, 복수예비가 및 예비가격 정보를 제공하며 개찰완료목록, 재입찰목록, 유찰목록 또한 제공하는 나라장터 낙찰정보서비스",
+ "updateCycle": "수시",
+ "operations": [
+  {
+   "opNameEn": "getScsbidListSttusThng",
+   "opNameKo": "낙찰된 목록 현황 물품조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 등록일시, 공고일시, 개찰일시, 입찰공고번호로 물품에 대한 나라장터 최종낙찰자 목록(입찰공고번호, 입찰공고명, 참가업체수, 최종낙찰업체명, 사업자번호, 최종낙찰률, 실개찰일시, 수요기관, 최종낙찰일, 최종낙찰업체담당자)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1.등록일시, 2.공고일시,3.개찰일시, 4.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "required": false,
+     "sample": "R25BK00965123",
+     "desc": "검색하고자하는 입찰공고번호 조회구분 4인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 수"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "ntceDivCd",
+     "nameKo": "공고구분코드",
+     "size": "7",
+     "desc": "공고구분 통050001 : 조달청 또는 나라장터 자체 공고건"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "bidwinnrNm",
+     "nameKo": "최종낙찰업체명",
+     "size": "200",
+     "desc": "최종낙찰된 업체의 명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrBizno",
+     "nameKo": "최종낙찰업체사업자등록번호",
+     "size": "10",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 사업자등록번호임"
+    },
+    {
+     "nameEn": "bidwinnrCeoNm",
+     "nameKo": "최종낙찰업체대표자명",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 대표자명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrAdrs",
+     "nameKo": "최종낙찰업체주소",
+     "size": "200",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 주소임"
+    },
+    {
+     "nameEn": "bidwinnrTelNo",
+     "nameKo": "최종낙찰업체전화번호",
+     "size": "25",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 연락 전화번호임 핸드폰번호는 “*”로 표기"
+    },
+    {
+     "nameEn": "sucsfbidAmt",
+     "nameKo": "최종낙찰금액",
+     "size": "21",
+     "desc": "최종낙찰은 개찰순위 순서대로 협상등을 통해 최종 낙찰된정보를 의미하며 최종낙찰금액은 최종낙찰된 금액 (원화,원)으로 개찰완료된건에 대하여 제공"
+    },
+    {
+     "nameEn": "sucsfbidRate",
+     "nameKo": "최종낙찰률",
+     "size": "18",
+     "desc": "예정가격대비 최종낙찰금액으로 최종낙찰금액/예정가격 * 100 으로 계산되며 개찰완료된 건에 대하여 제공 (%)"
+    },
+    {
+     "nameEn": "rlOpengDt",
+     "nameKo": "실개찰일시",
+     "size": "19",
+     "desc": "실제 개찰일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "fnlSucsfDate",
+     "nameKo": "최종낙찰일자",
+     "size": "10",
+     "desc": "최종낙찰된 일자로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "fnlSucsfCorpOfcl",
+     "nameKo": "최종낙찰업체담당자",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 담당자명으로 개찰완료된 건에 대하여 제공"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getScsbidListSttusThng?inqryDiv=4&bidNtceNo=R25BK00965123&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getScsbidListSttusCnstwk",
+   "opNameKo": "낙찰된 목록 현황 공사조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 등록일시, 공고일시, 개찰일시, 입찰공고번호로 공사에대한 나라장터 최종낙찰자 목록(입찰공고번호, 입찰공고명, 참가업체수, 최종낙찰업체명, 사업자번호, 최종낙찰률, 실개찰일시, 수요기관, 최종낙찰일, 최종낙찰업체담당자)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1.등록일시, 2.공고일시,3.개찰일시,4.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "required": false,
+     "sample": "R25BK00922727",
+     "desc": "검색하고자하는 입찰공고번호 조회구분 4인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 수"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "ntceDivCd",
+     "nameKo": "공고구분코드",
+     "size": "7",
+     "desc": "공고구분 통050001 : 조달청 또는 나라장터 자체 공고건"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "bidwinnrNm",
+     "nameKo": "최종낙찰업체명",
+     "size": "200",
+     "desc": "최종낙찰된 업체의 명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrBizno",
+     "nameKo": "최종낙찰업체사업자등록번호",
+     "size": "10",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 사업자등록번호임"
+    },
+    {
+     "nameEn": "bidwinnrCeoNm",
+     "nameKo": "최종낙찰업체대표자명",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 대표자명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrAdrs",
+     "nameKo": "최종낙찰업체주소",
+     "size": "200",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 주소임"
+    },
+    {
+     "nameEn": "bidwinnrTelNo",
+     "nameKo": "최종낙찰업체전화번호",
+     "size": "25",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 연락 전화번호임 핸드폰번호는 “*”로 표기"
+    },
+    {
+     "nameEn": "sucsfbidAmt",
+     "nameKo": "최종낙찰금액",
+     "size": "21",
+     "desc": "최종낙찰은 개찰순위 순서대로 협상등을 통해 최종 낙찰된정보를 의미하며 최종낙찰금액은 최종낙찰된 금액 (원화,원)으로 개찰완료된건에 대하여 제공"
+    },
+    {
+     "nameEn": "sucsfbidRate",
+     "nameKo": "최종낙찰률",
+     "size": "18",
+     "desc": "예정가격대비 최종낙찰금액으로 최종낙찰금액/예정가격 * 100 으로 계산되며 개찰완료된 건에 대하여 제공 (%)"
+    },
+    {
+     "nameEn": "rlOpengDt",
+     "nameKo": "실개찰일시",
+     "size": "19",
+     "desc": "실제 개찰일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "fnlSucsfDate",
+     "nameKo": "최종낙찰일자",
+     "size": "10",
+     "desc": "최종낙찰된 일자로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "fnlSucsfCorpOfcl",
+     "nameKo": "최종낙찰업체담당자",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 담당자명으로 개찰완료된 건에 대하여 제공"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getScsbidListSttusCnstwk?inqryDiv=4&bidNtceNo=R25BK00922727&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getScsbidListSttusServc",
+   "opNameKo": "낙찰된 목록 현황 용역조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 등록일시, 공고일시, 개찰일시, 입찰공고번호로 용역에 대한 나라장터 최종낙찰자 목록(입찰공고번호, 입찰공고명, 참가업체수, 최종낙찰업체명, 사업자번호, 최종낙찰률, 실개찰일시, 수요기관, 최종낙찰일, 최종낙찰업체담당자)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1.등록일시, 2.공고일시, 3.개찰일시, 4.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "required": false,
+     "sample": "R25BK00927163",
+     "desc": "검색하고자하는 입찰공고번호 조회구분 4인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 수"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "ntceDivCd",
+     "nameKo": "공고구분코드",
+     "size": "7",
+     "desc": "공고구분 통050001 : 조달청 또는 나라장터 자체 공고건"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "bidwinnrNm",
+     "nameKo": "최종낙찰업체명",
+     "size": "200",
+     "desc": "최종낙찰된 업체의 명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrBizno",
+     "nameKo": "최종낙찰업체사업자등록번호",
+     "size": "10",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 사업자등록번호임"
+    },
+    {
+     "nameEn": "bidwinnrCeoNm",
+     "nameKo": "최종낙찰업체대표자명",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 대표자명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrAdrs",
+     "nameKo": "최종낙찰업체주소",
+     "size": "200",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 주소임"
+    },
+    {
+     "nameEn": "bidwinnrTelNo",
+     "nameKo": "최종낙찰업체전화번호",
+     "size": "25",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 연락 전화번호임 핸드폰번호는 “*”로 표기"
+    },
+    {
+     "nameEn": "sucsfbidAmt",
+     "nameKo": "최종낙찰금액",
+     "size": "21",
+     "desc": "최종낙찰은 개찰순위 순서대로 협상등을 통해 최종 낙찰된정보를 의미하며 최종낙찰금액은 최종낙찰된 금액 (원화,원)으로 개찰완료된건에 대하여 제공"
+    },
+    {
+     "nameEn": "sucsfbidRate",
+     "nameKo": "최종낙찰률",
+     "size": "18",
+     "desc": "예정가격대비 최종낙찰금액으로 최종낙찰금액/예정가격 * 100 으로 계산되며 개찰완료된 건에 대하여 제공 (%)"
+    },
+    {
+     "nameEn": "rlOpengDt",
+     "nameKo": "실개찰일시",
+     "size": "19",
+     "desc": "실제 개찰일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "fnlSucsfDate",
+     "nameKo": "최종낙찰일자",
+     "size": "10",
+     "desc": "최종낙찰된 일자로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "fnlSucsfCorpOfcl",
+     "nameKo": "최종낙찰업체담당자",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 담당자명으로 개찰완료된 건에 대하여 제공"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getScsbidListSttusServc?inqryDiv=4&bidNtceNo=R25BK00927163&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getScsbidListSttusFrgcpt",
+   "opNameKo": "낙찰된 목록 현황 외자조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 등록일시, 공고일시, 개찰일시, 입찰공고번호로 외자에 대한 나라장터 최종낙찰자 목록(입찰공고번호, 입찰공고명, 참가업체수, 최종낙찰업체명, 사업자번호, 최종낙찰률, 실개찰일시, 수요기관, 최종낙찰일, 최종낙찰업체담당자)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1.등록일시, 2.공고일시,3.개찰일시,4.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507102359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "required": false,
+     "sample": "R25BK00857114",
+     "desc": "검색하고자하는 입찰공고번호 조회구분 4인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 수"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "ntceDivCd",
+     "nameKo": "공고구분코드",
+     "size": "7",
+     "desc": "공고구분 통050001 : 조달청 또는 나라장터 자체 공고건"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "bidwinnrNm",
+     "nameKo": "최종낙찰업체명",
+     "size": "200",
+     "desc": "최종낙찰된 업체의 명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrBizno",
+     "nameKo": "최종낙찰업체사업자등록번호",
+     "size": "10",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 사업자등록번호임"
+    },
+    {
+     "nameEn": "bidwinnrCeoNm",
+     "nameKo": "최종낙찰업체대표자명",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 대표자명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrAdrs",
+     "nameKo": "최종낙찰업체주소",
+     "size": "200",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 주소임"
+    },
+    {
+     "nameEn": "bidwinnrTelNo",
+     "nameKo": "최종낙찰업체전화번호",
+     "size": "25",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 연락 전화번호임 핸드폰번호는 “*”로 표기"
+    },
+    {
+     "nameEn": "sucsfbidAmt",
+     "nameKo": "최종낙찰금액",
+     "size": "21",
+     "desc": "최종낙찰은 개찰순위 순서대로 협상등을 통해 최종 낙찰된정보를 의미하며 최종낙찰금액은 최종낙찰된 금액 (원화,원)으로 개찰완료된건에 대하여 제공"
+    },
+    {
+     "nameEn": "sucsfbidRate",
+     "nameKo": "최종낙찰률",
+     "size": "18",
+     "desc": "예정가격대비 최종낙찰금액으로 최종낙찰금액/예정가격 * 100 으로 계산되며 개찰완료된 건에 대하여 제공 (%)"
+    },
+    {
+     "nameEn": "rlOpengDt",
+     "nameKo": "실개찰일시",
+     "size": "19",
+     "desc": "실제 개찰일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "FnlSucsfDate",
+     "nameKo": "최종낙찰일자",
+     "size": "10",
+     "desc": "최종낙찰된 일자로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "fnlSucsfCorpOfcl",
+     "nameKo": "최종낙찰업체담당자",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 담당자명으로 개찰완료된 건에 대하여 제공"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getScsbidListSttusFrgcpt?inqryDiv=4&bidNtceNo=R25BK00857114&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOpengResultListInfoThng",
+   "opNameKo": "개찰결과 물품 목록 조회",
+   "opType": "조회(목록)",
+   "description": "유찰, 개찰완료, 재입찰건에 대한 개찰결과를 제공하며 검색조건을 입력일시, 공고일시, 개찰일시, 입찰공고번호로하여 물품에 대한 나라장터 개찰결과 목록(입찰공고번호, 입찰공고명, 개찰일시, 참가업체수, 개찰업체정보, 진행구분코드명, 입력일시, 예비가격파일존재여부, 공고기관명, 수요기관명)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1.입력일시, 2.공고일시, 3.개찰일시, 4.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "R25BK00840922",
+     "desc": "검색하고자하는 입찰공고번호 조회구분 4인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "opengCorpInfo",
+     "nameKo": "개찰업체정보",
+     "size": "500",
+     "desc": "개찰업체정보 다수 낙찰자의 경우 ”낙찰예정자 다수”와 개찰순위 1위의 투찰금액과 투찰율 을 보여줌 단일 낙찰자 의 경우 업체명과 사업자번호, 대표자명, 투찰금액, 투찰율을 보여줌 단, 협상에 의한 계약일 경우는 투찰금액,투찰율 안나옴"
+    },
+    {
+     "nameEn": "progrsDivCdNm",
+     "nameKo": "진행구분코드명",
+     "size": "4",
+     "desc": "진행구분이 유찰, 개찰완료, 재입찰로 구분 됨"
+    },
+    {
+     "nameEn": "inptDt",
+     "nameKo": "입력일시",
+     "size": "19",
+     "desc": "입력일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "rsrvtnPrceFileExistnceYn",
+     "nameKo": "예비가격파일존재여부",
+     "size": "1",
+     "desc": "예비가격파일존재여부(Y/N)"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "desc": "공고를 하는 기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "수요기관의 의뢰를 받아 공고하는 기관의 명"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "opengRsltNtcCntnts",
+     "nameKo": "개찰결과공지내용",
+     "size": "4000",
+     "desc": "입찰공고번호, 입찰공고차수, 입찰분류번호, 재입찰번호 에 해당하는 공지사항 내용"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getOpengResultListInfoThng?inqryDiv=4&bidNtceNo=R25BK00840922&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOpengResultListInfoCnstwk",
+   "opNameKo": "개찰결과 공사 목록 조회",
+   "opType": "조회(목록)",
+   "description": "유찰, 개찰완료, 재입찰건에 대한 개찰결과를 제공하며 검색조건을 입력일시, 공고일시, 개찰일시, 입찰공고번호로하여 공사에 대한 나라장터 개찰결과 목록(입찰공고번호, 입찰공고명, 개찰일시, 참가업체수, 개찰업체정보, 진행구분코드명, 입력일시, 예비가격파일존재여부, 공고기관명, 수요기관명)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": false,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": false,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1.입력일시, 2.공고일시,3.개찰일시,4.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "R25BK00926014",
+     "desc": "검색하고자하는 입찰공고번호 조회구분 4인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "opengCorpInfo",
+     "nameKo": "개찰업체정보",
+     "size": "500",
+     "desc": "개찰업체정보 다수 낙찰자의 경우 ”낙찰예정자 다수”와 개찰순위 1위의 투찰금액과 투찰율 을 보여줌 단일 낙찰자 의 경우 업체명과 사업자번호, 대표자명, 투찰금액, 투찰율을 보여줌 단, 협상에 의한 계약일 경우는 투찰금액,투찰율 안나옴"
+    },
+    {
+     "nameEn": "progrsDivCdNm",
+     "nameKo": "진행구분코드명",
+     "size": "4",
+     "desc": "진행구분이 유찰, 개찰완료, 재입찰로 구분 됨"
+    },
+    {
+     "nameEn": "inptDt",
+     "nameKo": "입력일시",
+     "size": "19",
+     "desc": "입력일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "rsrvtnPrceFileExistnceYn",
+     "nameKo": "예비가격파일존재여부",
+     "size": "1",
+     "desc": "예비가격파일존재여부(Y/N)"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "desc": "공고를 하는 기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "수요기관의 의뢰를 받아 공고하는 기관의 명"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "opengRsltNtcCntnts",
+     "nameKo": "개찰결과공지내용",
+     "size": "4000",
+     "desc": "입찰공고번호, 입찰공고차수, 입찰분류번호, 재입찰번호에 해당하는 공지사항 내용"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getOpengResultListInfoCnstwk?inqryDiv=4&bidNtceNo=R25BK00926014&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOpengResultListInfoServc",
+   "opNameKo": "개찰결과 용역 목록 조회",
+   "opType": "조회(목록)",
+   "description": "유찰, 개찰완료, 재입찰건에 대한 개찰결과를 제공하며 검색조건을 입력일시, 공고일시, 개찰일시, 입찰공고번호로하여 용역에 대한 나라장터 개찰결과 목록(입찰공고번호, 입찰공고명, 개찰일시, 참가업체수, 개찰업체정보, 진행구분코드명, 입력일시, 예비가격파일존재여부, 공고기관명, 수요기관명)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": false,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": false,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1.입력일시, 2.공고일시,3.개찰일시,4.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "20250701000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "R25BK00882586",
+     "desc": "검색하고자하는 입찰공고번호 조회구분 4인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "opengCorpInfo",
+     "nameKo": "개찰업체정보",
+     "size": "500",
+     "desc": "개찰업체정보 다수 낙찰자의 경우 ”낙찰예정자 다수”와 개찰순위 1위의 투찰금액과 투찰율을 보여줌 단일 낙찰자 의 경우 업체명과 사업자번호, 대표자명, 투찰금액, 투찰율을 보여줌 단, 협상에 의한 계약일 경우는 투찰금액, 투찰율 안나옴"
+    },
+    {
+     "nameEn": "progrsDivCdNm",
+     "nameKo": "진행구분코드명",
+     "size": "4",
+     "desc": "진행구분이 유찰, 개찰완료, 재입찰로 구분 됨"
+    },
+    {
+     "nameEn": "inptDt",
+     "nameKo": "입력일시",
+     "size": "19",
+     "desc": "입력일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "rsrvtnPrceFileExistnceYn",
+     "nameKo": "예비가격파일존재여부",
+     "size": "1",
+     "desc": "예비가격파일존재여부(Y/N)"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "desc": "공고를 하는 기관의 코드로 행정자치부에서 부여한 기관코드임"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "수요기관의 의뢰를 받아 공고하는 기관의 명"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "opengRsltNtcCntnts",
+     "nameKo": "개찰결과공지내용",
+     "size": "4000",
+     "desc": "입찰공고번호, 입찰공고차수, 입찰분류번호, 재입찰번호에 해당하는 공지사항 내용"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getOpengResultListInfoServc?inqryDiv=4&bidNtceNo=R25BK00882586&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOpengResultListInfoFrgcpt",
+   "opNameKo": "개찰결과 외자 목록 조회",
+   "opType": "조회(목록)",
+   "description": "유찰, 개찰완료, 재입찰건에 대한 개찰결과를 제공하며 검색조건을 입력일시, 공고일시, 개찰일시, 입찰공고번호로하여 외자에 대한 나라장터 개찰결과 목록(입찰공고번호, 입찰공고명, 개찰일시, 참가업체수, 개찰업체정보, 진행구분코드명, 입력일시, 예비가격파일존재여부, 공고기관명, 수요기관명)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": false,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": false,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1.입력일시, 2.공고일시,3.개찰일시,4.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분 1,2,3일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "R25BK00916730",
+     "desc": "검색하고자하는 입찰공고번호 조회구분 4인 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "opengCorpInfo",
+     "nameKo": "개찰업체정보",
+     "size": "500",
+     "desc": "개찰업체정보 다수 낙찰자의 경우 ”낙찰예정자 다수”와 개찰순위 1위의 투찰금액과 투찰율을 보여줌 단일 낙찰자 의 경우 업체명과 사업자번호, 대표자명, 투찰금액, 투찰율을 보여줌 단, 협상에 의한 계약일 경우는 투찰금액,투찰율 안나옴"
+    },
+    {
+     "nameEn": "progrsDivCdNm",
+     "nameKo": "진행구분코드명",
+     "size": "4",
+     "desc": "진행구분이 유찰, 개찰완료, 재입찰로 구분 됨"
+    },
+    {
+     "nameEn": "inptDt",
+     "nameKo": "입력일시",
+     "size": "19",
+     "desc": "입력일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "rsrvtnPrceFileExistnceYn",
+     "nameKo": "예비가격파일존재여부",
+     "size": "1",
+     "desc": "예비가격파일존재여부(Y/N)"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "desc": "공고를 하는 기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "수요기관의 의뢰를 받아 공고하는 기관의 명"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "opengRsltNtcCntnts",
+     "nameKo": "개찰결과공지내용",
+     "size": "4000",
+     "desc": "입찰공고번호, 입찰공고차수, 입찰분류번호, 재입찰번호에 해당하는 공지사항 내용"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getOpengResultListInfoFrgcpt?inqryDiv=4&bidNtceNo=R25BK00916730&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOpengResultListInfoThngPreparPcDetail",
+   "opNameKo": "개찰결과 물품 예비가격상세 목록 조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 입력일시, 입찰공고번호로 물품에 대한 나라장터 개찰결과 예비가격상세 목록(입찰공고번호, 입찰공고명, 예정가격, 기초금액, 총예가건수, 복수예가순번, 기초예정가격, 추첨여부, 추첨횟수, 실개찰일시, 기초금액기준상위건수, 복수예비가격작성일시, 입력일시)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": false,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": false,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1.입력일시, 2.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분이 1일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분이 1일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "R25BK00845027",
+     "desc": "검색하고자하는 입찰공고번호 조회구분이 2일 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "plnprc",
+     "nameKo": "예정가격",
+     "size": "21",
+     "desc": "예정가격은 계약담당공무원이 구매를 위한 경쟁입찰 또는 수의시담을 하기 전에 당해 계약 목적물의 특성 및 계약 여건 등을 고려하여 예산의 범위 내에서 경제적으로 구매가 가능하고 구매가격으로서 적정하다고 판단하여 정한 가격을 말하며 동 가격은 입찰 또는 시담에 의한 낙찰자 선정의 기준이고 계약체결에 대한 최고 상한 금액을 의미함. (원화,원)"
+    },
+    {
+     "nameEn": "bssamt",
+     "nameKo": "기초금액",
+     "size": "21",
+     "desc": "예정가격 작성 과정에서 거래실례가격, 원가계산가격 등에 의하여 조사한 가격이나 설계가격에 대하여 계약담당공무원이 그 적정여부를 검토조정한 가격(원화,원)"
+    },
+    {
+     "nameEn": "totRsrvtnPrceNum",
+     "nameKo": "총예가건수",
+     "size": "2",
+     "desc": "총예가건수"
+    },
+    {
+     "nameEn": "compnoRsrvtnPrceSno",
+     "nameKo": "복수예가순번",
+     "size": "6",
+     "desc": "복수예가순번"
+    },
+    {
+     "nameEn": "bsisPlnprc",
+     "nameKo": "기초예정가격",
+     "size": "21",
+     "desc": "기초예정가격(원화,원)"
+    },
+    {
+     "nameEn": "drwtYn",
+     "nameKo": "추첨여부",
+     "size": "1",
+     "desc": "추첨여부(Y/N)"
+    },
+    {
+     "nameEn": "drwtNum",
+     "nameKo": "추첨횟수",
+     "size": "22",
+     "desc": "추첨횟수"
+    },
+    {
+     "nameEn": "bidwinrSlctnAplBssCntnts",
+     "nameKo": "최종낙찰자선정적용기준내용",
+     "size": "200",
+     "desc": "낙찰자선정적용기준내용"
+    },
+    {
+     "nameEn": "rlOpengDt",
+     "nameKo": "실개찰일시",
+     "size": "19",
+     "desc": "실제 개찰일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "bssamtBssUpNum",
+     "nameKo": "기초금액기준상위건수",
+     "size": "2",
+     "desc": "기초금액기준상위건수"
+    },
+    {
+     "nameEn": "compnoRsrvtnPrceMkngDt",
+     "nameKo": "복수예비가격작성일시",
+     "size": "19",
+     "desc": "복수예비가격작성시각”YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "inptDt",
+     "nameKo": "입력일시",
+     "size": "19",
+     "desc": "입력일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "PrearngPrcePurcnstcst",
+     "nameKo": "예정가격순공사비",
+     "size": "22",
+     "desc": "예정가격 중 순공사 원가(재료비,노무비,경비,및 이에 대한 부가가치세 합산금액)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getOpengResultListInfoThngPreparPcDetail?inqryDiv=2&bidNtceNo=R25BK00845027&bidNtceOrd=000&pageNo=1&numOfRows=15&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOpengResultListInfoCnstwkPreparPcDetail",
+   "opNameKo": "개찰결과 공사 예비가격상세 목록 조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 등록일시, 입찰공고번호로 공사에 대한 나라장터 개찰결과 예비가격상세 목록(입찰공고번호, 입찰공고명, 예정가격, 기초금액, 총예가건수, 복수예가순번, 기초예정가격, 추첨여부, 추첨횟수, 실개찰일시, 기초금액기준상위건수, 복수예비가격작성일시, 입력일시)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1.입력일시, 2.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분이 1일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분이 1일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "R25BK00888538",
+     "desc": "검색하고자하는 입찰공고번호 조회구분이 2일 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "plnprc",
+     "nameKo": "예정가격",
+     "size": "21",
+     "desc": "예정가격은 계약담당공무원이 구매를 위한 경쟁입찰 또는 수의시담을 하기 전에 당해 계약 목적물의 특성 및 계약 여건 등을 고려하여 예산의 범위 내에서 경제적으로 구매가 가능하고 구매가격으로서 적정하다고 판단하여 정한 가격을 말하며 동 가격은 입찰 또는 시담에 의한 낙찰자 선정의 기준이고 계약체결에 대한 최고 상한 금액을 의미함. (원화,원)"
+    },
+    {
+     "nameEn": "bssamt",
+     "nameKo": "기초금액",
+     "size": "21",
+     "desc": "예정가격 작성 과정에서 거래실례가격, 원가계산가격 등에 의하여 조사한 가격이나 설계가격에 대하여 계약담당공무원이 그 적정여부를 검토조정한 가격(원화,원)"
+    },
+    {
+     "nameEn": "totRsrvtnPrceNum",
+     "nameKo": "총예가건수",
+     "size": "2",
+     "desc": "총예가건수"
+    },
+    {
+     "nameEn": "compnoRsrvtnPrceSno",
+     "nameKo": "복수예가순번",
+     "size": "6",
+     "desc": "복수예가순번"
+    },
+    {
+     "nameEn": "bsisPlnprc",
+     "nameKo": "기초예정가격",
+     "size": "21",
+     "desc": "기초예정가격(원화,원)"
+    },
+    {
+     "nameEn": "drwtYn",
+     "nameKo": "추첨여부",
+     "size": "1",
+     "desc": "추첨여부(Y/N)"
+    },
+    {
+     "nameEn": "drwtNum",
+     "nameKo": "추첨횟수",
+     "size": "22",
+     "desc": "추첨횟수"
+    },
+    {
+     "nameEn": "bidwinrSlctnAplBssCntnts",
+     "nameKo": "최종낙찰자선정적용기준내용",
+     "size": "200",
+     "desc": "낙찰자선정적용기준내용"
+    },
+    {
+     "nameEn": "rlOpengDt",
+     "nameKo": "실개찰일시",
+     "size": "19",
+     "desc": "실제 개찰일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "bssamtBssUpNum",
+     "nameKo": "기초금액기준상위건수",
+     "size": "2",
+     "desc": "기초금액기준상위건수"
+    },
+    {
+     "nameEn": "compnoRsrvtnPrceMkngDt",
+     "nameKo": "복수예비가격작성일시",
+     "size": "19",
+     "desc": "복수예비가격작성시각”YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "inptDt",
+     "nameKo": "입력일시",
+     "size": "19",
+     "desc": "입력일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "PrearngPrcePurcnstcst",
+     "nameKo": "예정가격순공사비",
+     "size": "22",
+     "desc": "예정가격 중 순공사 원가(재료비,노무비,경비,및 이에 대한 부가가치세 합산금액)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getOpengResultListInfoCnstwkPreparPcDetail?inqryDiv=2&bidNtceNo=R25BK00888538&bidNtceOrd=003&pageNo=1&numOfRows=15&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOpengResultListInfoServcPreparPcDetail",
+   "opNameKo": "개찰결과 용역 예비가격상세 목록 조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 등록일시, 입찰공고번호로 용역에 대한 나라장터 개찰결과 예비가격상세 목록(입찰공고번호, 입찰공고명, 예정가격, 기초금액, 총예가건수, 복수예가순번, 기초예정가격, 추첨여부, 추첨횟수, 실개찰일시, 기초금액기준상위건수, 복수예비가격작성일시, 입력일시)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1.입력일시, 2.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분이 1일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분이 1일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "R25BK00811340",
+     "desc": "검색하고자하는 입찰공고번호 조회구분이 2일 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "plnprc",
+     "nameKo": "예정가격",
+     "size": "21",
+     "desc": "예정가격은 계약담당공무원이 구매를 위한 경쟁입찰 또는 수의시담을 하기 전에 당해 계약 목적물의 특성 및 계약 여건 등을 고려하여 예산의 범위 내에서 경제적으로 구매가 가능하고 구매가격으로서 적정하다고 판단하여 정한 가격을 말하며 동 가격은 입찰 또는 시담에 의한 낙찰자 선정의 기준이고 계약체결에 대한 최고 상한 금액을 의미함. (원화,원)"
+    },
+    {
+     "nameEn": "bssamt",
+     "nameKo": "기초금액",
+     "size": "21",
+     "desc": "예정가격 작성 과정에서 거래실례가격, 원가계산가격 등에 의하여 조사한 가격이나 설계가격에 대하여 계약담당공무원이 그 적정여부를 검토조정한 가격(원화,원)"
+    },
+    {
+     "nameEn": "totRsrvtnPrceNum",
+     "nameKo": "총예가건수",
+     "size": "2",
+     "desc": "총예가건수"
+    },
+    {
+     "nameEn": "compnoRsrvtnPrceSno",
+     "nameKo": "복수예가순번",
+     "size": "6",
+     "desc": "복수예가순번"
+    },
+    {
+     "nameEn": "bsisPlnprc",
+     "nameKo": "기초예정가격",
+     "size": "21",
+     "desc": "기초예정가격(원화,원)"
+    },
+    {
+     "nameEn": "drwtYn",
+     "nameKo": "추첨여부",
+     "size": "1",
+     "desc": "추첨여부(Y/N)"
+    },
+    {
+     "nameEn": "drwtNum",
+     "nameKo": "추첨횟수",
+     "size": "22",
+     "desc": "추첨횟수"
+    },
+    {
+     "nameEn": "bidwinrSlctnAplBssCntnts",
+     "nameKo": "최종낙찰자선정적용기준내용",
+     "size": "200",
+     "desc": "낙찰자선정적용기준내용"
+    },
+    {
+     "nameEn": "rlOpengDt",
+     "nameKo": "실개찰일시",
+     "size": "19",
+     "desc": "실제 개찰일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "bssamtBssUpNum",
+     "nameKo": "기초금액기준상위건수",
+     "size": "2",
+     "desc": "기초금액기준상위건수"
+    },
+    {
+     "nameEn": "compnoRsrvtnPrceMkngDt",
+     "nameKo": "복수예비가격작성일시",
+     "size": "19",
+     "desc": "복수예비가격작성시각”YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "inptDt",
+     "nameKo": "입력일시",
+     "size": "19",
+     "desc": "입력일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "PrearngPrcePurcnstcst",
+     "nameKo": "예정가격순공사비",
+     "size": "22",
+     "desc": "예정가격 중 순공사 원가(재료비,노무비,경비,및 이에 대한 부가가치세 합산금액)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getOpengResultListInfoServcPreparPcDetail?inqryDiv=2&bidNtceNo=R25BK00811340&bidNtceOrd=000&pageNo=1&numOfRows=15&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOpengResultListInfoFrgcptPreparPcDetail",
+   "opNameKo": "개찰결과 외자 예비가격상세 목록 조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 등록일시, 입찰공고번호로 외자에 대한 나라장터 개찰결과 외자 예비가격상세 목록(입찰공고번호, 입찰공고명, 예정가격, 기초금액, 총예가건수, 복수예가순번, 기초예정가격, 추첨여부, 추첨횟수, 실개찰일시, 기초금액기준상위건수, 복수예비가격작성일시, 입력일시)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1.입력일시, 2.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분이 1일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분이 1일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "R25BK00883422",
+     "desc": "검색하고자하는 입찰공고번호 조회구분이 2일 경우 필수"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "plnprc",
+     "nameKo": "예정가격",
+     "size": "21",
+     "desc": "예정가격은 계약담당공무원이 구매를 위한 경쟁입찰 또는 수의시담을 하기 전에 당해 계약 목적물의 특성 및 계약 여건 등을 고려하여 예산의 범위 내에서 경제적으로 구매가 가능하고 구매가격으로서 적정하다고 판단하여 정한 가격을 말하며 동 가격은 입찰 또는 시담에 의한 낙찰자 선정의 기준이고 계약체결에 대한 최고 상한 금액을 의미함. (원화,원)"
+    },
+    {
+     "nameEn": "bssamt",
+     "nameKo": "기초금액",
+     "size": "21",
+     "desc": "예정가격 작성 과정에서 거래실례가격, 원가계산가격 등에 의하여 조사한 가격이나 설계가격에 대하여 계약담당공무원이 그 적정여부를 검토조정한 가격(원화,원)"
+    },
+    {
+     "nameEn": "totRsrvtnPrceNum",
+     "nameKo": "총예가건수",
+     "size": "2",
+     "desc": "총예가건수"
+    },
+    {
+     "nameEn": "compnoRsrvtnPrceSno",
+     "nameKo": "복수예가순번",
+     "size": "6",
+     "desc": "복수예가순번"
+    },
+    {
+     "nameEn": "bsisPlnprc",
+     "nameKo": "기초예정가격",
+     "size": "21",
+     "desc": "기초예정가격(원화,원)"
+    },
+    {
+     "nameEn": "drwtYn",
+     "nameKo": "추첨여부",
+     "size": "1",
+     "desc": "추첨여부(Y/N)"
+    },
+    {
+     "nameEn": "drwtNum",
+     "nameKo": "추첨횟수",
+     "size": "22",
+     "desc": "추첨횟수"
+    },
+    {
+     "nameEn": "bidwinrSlctnAplBssCntnts",
+     "nameKo": "최종낙찰자선정적용기준내용",
+     "size": "200",
+     "desc": "낙찰자선정적용기준내용"
+    },
+    {
+     "nameEn": "rlOpengDt",
+     "nameKo": "실개찰일시",
+     "size": "19",
+     "desc": "실제 개찰일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "bssamtBssUpNum",
+     "nameKo": "기초금액기준상위건수",
+     "size": "2",
+     "desc": "기초금액기준상위건수"
+    },
+    {
+     "nameEn": "compnoRsrvtnPrceMkngDt",
+     "nameKo": "복수예비가격작성일시",
+     "size": "19",
+     "desc": "복수예비가격작성시각”YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "inptDt",
+     "nameKo": "입력일시",
+     "size": "19",
+     "desc": "입력일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "PrearngPrcePurcnstcst",
+     "nameKo": "예정가격순공사비",
+     "size": "22",
+     "desc": "예정가격 중 순공사 원가(재료비,노무비,경비,및 이에 대한 부가가치세 합산금액)"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getOpengResultListInfoFrgcptPreparPcDetail?inqryDiv=2&bidNtceNo=R25BK00883422&bidNtceOrd=000&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOpengResultListInfoOpengCompt",
+   "opNameKo": "개찰결과 개찰완료 목록 조회",
+   "opType": "조회(목록)",
+   "description": "물품, 공사, 용역, 외자의 개찰완료된 건에 대하여 최종낙찰업체 및 투찰업체의 개찰순위 정보를 제공하며 검색조건을 입찰공고번호하여 나라장터 개찰결과 개찰완료 목록(개찰결과구분명, 입찰공고번호, 입찰공고차수, 입찰분류번호, 재입찰번호, 개찰순위, 최종낙찰업체사업자등록번호, 최종낙찰업체명, 최종낙찰업체대표자명, 투찰금액, 투찰룰, 비고, 공종별입찰금액URL), 추첨번호1, 추첨번호2, 투찰일시 등 개찰완료 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": true,
+     "sample": "R25BK01027145",
+     "desc": "검색하고자하는 입찰공고번호"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "2",
+     "required": false,
+     "sample": "002",
+     "desc": "검색하고자하는 입찰공고차수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "required": false,
+     "sample": "0",
+     "desc": "검색하고자하는 입찰분류번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "required": false,
+     "sample": "000",
+     "desc": "검색하고자하는 재입찰번호"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "opengRsltDivNm",
+     "nameKo": "개찰결과구분명",
+     "size": "30",
+     "desc": "해당 공고건에 대한 개찰결과를 구분하는 것으로 개찰이 완료되었는지, 유찰되었는지, 재입찰 할것인지 등을 구분하는 명으로 이 오퍼레이션은 개찰완료인 정보 조회"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "opengRank",
+     "nameKo": "개찰순위",
+     "size": "7",
+     "desc": "개찰순위는 협상기술능력 평가점수와 입찰가격 평가점수의 합산하여 고득점 순에 따라 결정되는 순위로 협상에 의한 계약일 경우, 협상순위를 의미함"
+    },
+    {
+     "nameEn": "prcbdrBizno",
+     "nameKo": "투찰업체사업자등록번호",
+     "size": "10",
+     "desc": "협상이 완료 후 투찰업체의 사업자등록번호임"
+    },
+    {
+     "nameEn": "prcbdrNm",
+     "nameKo": "투찰업체명",
+     "size": "200",
+     "desc": "투찰업체의 명으로 개찰결과구분명이 “개찰완료”일 경우 필수 입력 항목임"
+    },
+    {
+     "nameEn": "prcbdrCeoNm",
+     "nameKo": "투찰업체대표자명",
+     "size": "35",
+     "desc": "투찰업체의 대표자명으로 개찰결과구분명이 “개찰완료”일 경우 필수 입력 항목임"
+    },
+    {
+     "nameEn": "bidprcAmt",
+     "nameKo": "투찰금액",
+     "size": "21",
+     "desc": "투찰한 금액(원화,원)"
+    },
+    {
+     "nameEn": "bidprcrt",
+     "nameKo": "투찰률",
+     "size": "18",
+     "desc": "예정가격에 대한 투찰금액의 비율로 투찰금액/예정가격 *100 임(%)"
+    },
+    {
+     "nameEn": "rmrk",
+     "nameKo": "비고",
+     "size": "200",
+     "desc": "개찰완료내역의 비고"
+    },
+    {
+     "nameEn": "cnsttyAccotBidAmtUrl",
+     "nameKo": "공종별입찰금액URL",
+     "size": "150",
+     "desc": "*차세대 나라장터 개편 이후 제공 불가"
+    },
+    {
+     "nameEn": "drwtNo1",
+     "nameKo": "추첨번호1",
+     "size": "3",
+     "desc": "추첨번호1"
+    },
+    {
+     "nameEn": "drwtNo2",
+     "nameKo": "추첨번호2",
+     "size": "3",
+     "desc": "추첨번호2"
+    },
+    {
+     "nameEn": "bidprcDt",
+     "nameKo": "투찰일시",
+     "size": "19",
+     "desc": "투찰일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "bidPrceEvlVal",
+     "nameKo": "입찰가격점수",
+     "size": "25",
+     "desc": "낙찰방법이 협상에 의한 계약의 입찰가격평가점수"
+    },
+    {
+     "nameEn": "techEvlNaturVal",
+     "nameKo": "기술평가원점수",
+     "size": "25",
+     "desc": "낙찰방법이 협상에 의한 계약의 차등점수제적용의 기술평가 원점수"
+    },
+    {
+     "nameEn": "techEvlVal",
+     "nameKo": "기술평가점수",
+     "size": "25",
+     "desc": "낙찰방법이 협상에 의한 계약의 기술평가점수 * 차등점수제적용의 경우 기술평가총점수"
+    },
+    {
+     "nameEn": "totalEvlAmtVal",
+     "nameKo": "종합평가점수",
+     "size": "25",
+     "desc": "낙찰방법이 협상에 의한 계약의 종합평가점수"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getOpengResultListInfoOpengCompt?bidNtceNo=R25BK01027145&bidNtceOrd=002&bidClsfcNo=0&rbidNo=000&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOpengResultListInfoFailing",
+   "opNameKo": "개찰결과 유찰 목록 조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 입찰공고번호 입력하여 물품, 공사, 용역, 외자의 나라장터 개찰결과 유찰 목록(개찰결과구분명, 입찰공고번호, 입찰공고차수, 입찰분류번호, 재입찰번호, 유찰사유)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": true,
+     "sample": "R25BK00936962",
+     "desc": "검색하고자하는 입찰공고번호"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "required": false,
+     "sample": "000",
+     "desc": "검색하고자하는 입찰공고차수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 입찰분류번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "required": false,
+     "sample": "000",
+     "desc": "검색하고자하는 재입찰번호"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "opengRsltDivNm",
+     "nameKo": "개찰결과구분명",
+     "size": "30",
+     "desc": "해당 공고건에 대한 개찰결과를 구분하는 것으로 개찰이 완료되었는지, 유찰되었는지, 재입찰 할것인지 등을 구분하는 명으로 이 오퍼레이션은 유찰인 정보 조회"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "nobidRsn",
+     "nameKo": "유찰사유",
+     "size": "200",
+     "desc": "유찰사유"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getOpengResultListInfoFailing?bidNtceNo=R25BK00936962&bidNtceOrd=000&bidClsfcNo=1&rbidNo=000&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOpengResultListInfoRebid",
+   "opNameKo": "개찰결과 재입찰 목록 조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 입찰공고번호 입력하여 물품, 공사, 용역, 외자의 나라장터 개찰결과 재입찰 목록(개찰결과구분명, 입찰공고번호, 입찰공고차수, 입찰분류번호, 재입찰번호, 입찰마감일시, 개찰일시, 재입찰사유, 공동수급협정마감일시)을 조회.",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": true,
+     "sample": "R25BK00922094",
+     "desc": "검색하고자하는 입찰공고번호"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "2",
+     "required": false,
+     "sample": "000",
+     "desc": "검색하고자하는 입찰공고차수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 입찰분류번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "required": false,
+     "sample": "000",
+     "desc": "검색하고자하는 재입찰번호"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "opengRsltDivNm",
+     "nameKo": "개찰결과구분명",
+     "size": "30",
+     "desc": "해당 공고건에 대한 개찰결과를 구분하는 것으로 개찰이 완료되었는지, 유찰되었는지, 재입찰 할것인지 등을 구분하는 명으로 이 오퍼레이션은 재입찰인 정보 조회"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "2",
+     "desc": "재입찰이 발생되었을 경우 증가되는 재입찰번호"
+    },
+    {
+     "nameEn": "bidClseDt",
+     "nameKo": "입찰마감일시",
+     "size": "19",
+     "desc": "입찰마감일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "rbidRsn",
+     "nameKo": "재입찰사유",
+     "size": "200",
+     "desc": "재입찰사유"
+    },
+    {
+     "nameEn": "cmmnSpldmdAgrmntClseDt",
+     "nameKo": "공동수급혐정마감일시",
+     "size": "19",
+     "desc": "공동수급혐정마감일시 “YYYY-MM-DD HH:MM:SS”"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getOpengResultListInfoRebid?bidNtceNo=R25BK00922094&bidNtceOrd=000&bidClsfcNo=1&rbidNo=000&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getScsbidListSttusThngPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 낙찰된 목록 현황 물품조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 공고일시, 개찰일시, 입찰공고번호, 입찰공고명, 공고기관코드, 공고기관명, 수요기관코드, 수요기관명, 참조번호, 참가제한지역코드, 참가제한지역명, 업종코드, 업종명, 추정가격시작, 추정가격종료, 세부품명번호, 다수공급경쟁자여부, 조달요청번호, 국제구분코드로 물품에 대한 나라장터 최종낙찰자 목록(입찰공고번호, 입찰공고명, 참가업체수, 최종낙찰업체명, 사업자번호, 최종낙찰률, 실개찰일시, 수요기관)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:공고게시일시, 2:개찰일시, 3:입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자 하는 조회시작일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자 하는 조회종료일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "required": false,
+     "sample": "R25BK00965123",
+     "desc": "검색하고자하는 입찰공고번호 조회구분이 '3'인 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "required": false,
+     "sample": "혁신육아복합센터 건립공사(기계) 관급자재(간접가열보일러)",
+     "desc": "검색하고자하는 공고명 ※ 공고명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "6280147",
+     "desc": "검색하고자하는 공고기관코드"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "required": false,
+     "sample": "인천광역시 종합건설본부",
+     "desc": "검색하고자하는 공고기관명 ※ 공고기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "6280147",
+     "desc": "검색하고자하는 수요기관코드 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드 입력 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드 입력"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "인천광역시 종합건설본부",
+     "desc": "검색하고자하는 수요기관명 ※ 수요기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "required": false,
+     "sample": "제2025",
+     "desc": "검색하고자하는 참조번호"
+    },
+    {
+     "nameEn": "prtcptLmtRgnCd",
+     "nameKo": "참가제한지역코드",
+     "size": "2",
+     "required": false,
+     "sample": "00",
+     "desc": "검색하고자하는 참가제한지역코드 11 : 서울특별시 26 : 부산광역시 27 : 대구광역시 28 : 인천광역시 29 : 광주광역시 30 : 대전광역시 31 : 울산광역시 36 : 세종특별자치시 41 : 경기도 42 : 강원도 43 : 충청북도 44 : 충청남도 45 : 전라북도 46 : 전라남도 47 : 경상북도 48 : 경상남도 50 : 제주도 51 : 강원특별자치도 52 : 전북특별자치도 99 : 기타 00: 전국 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "prtcptLmtRgnNm",
+     "nameKo": "참가제한지역명",
+     "size": "100",
+     "required": false,
+     "sample": "전국",
+     "desc": "검색하고자하는 참가제한지역명 ※ 참가제한지역명 일부 입력시에도 조회 가능 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "indstrytyCd",
+     "nameKo": "업종코드",
+     "size": "100",
+     "required": false,
+     "sample": "4119",
+     "desc": "검색하고자하는 업종코드"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "100",
+     "required": false,
+     "sample": "토목공사업",
+     "desc": "검색하고자하는 업종명 ※ 업종명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "presmptPrceBgn",
+     "nameKo": "추정가격시작",
+     "size": "25",
+     "required": false,
+     "sample": "77409000",
+     "desc": "검색하고자하는 추정가격범위시작금액이상(원화,원)"
+    },
+    {
+     "nameEn": "presmptPrceEnd",
+     "nameKo": "추정가격종료",
+     "size": "25",
+     "required": false,
+     "sample": "77410000",
+     "desc": "검색하고자하는 추정가격범위종료금액이하(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "required": false,
+     "sample": "4010209501",
+     "desc": "검색하고자하는 세부품명번호"
+    },
+    {
+     "nameEn": "masYn",
+     "nameKo": "다수공급경쟁자여부",
+     "size": "1",
+     "required": false,
+     "sample": "N",
+     "desc": "검색하고자하는 다수공급경쟁자여부"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "제2025",
+     "desc": "검색하고자하는 조달요청번호"
+    },
+    {
+     "nameEn": "intrntnlDivCd",
+     "nameKo": "국제구분코드",
+     "size": "1",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 국제구분코드 국내:1, 국제:2"
+    },
+    {
+     "nameEn": "bizno",
+     "nameKo": "사업자번호",
+     "size": "10",
+     "required": false,
+     "sample": "1408121883",
+     "desc": "검색하고자 하는 업체의 사업자번호"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 수"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "ntceDivCd",
+     "nameKo": "공고구분코드",
+     "size": "7",
+     "desc": "공고구분 통050001 : 조달청 또는 나라장터 자체 공고건"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "bidwinnrNm",
+     "nameKo": "최종낙찰업체명",
+     "size": "200",
+     "desc": "최종낙찰된 업체의 명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrBizno",
+     "nameKo": "최종낙찰업체사업자등록번호",
+     "size": "10",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 사업자등록번호임"
+    },
+    {
+     "nameEn": "bidwinnrCeoNm",
+     "nameKo": "최종낙찰업체대표자명",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 대표자명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrAdrs",
+     "nameKo": "최종낙찰업체주소",
+     "size": "200",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 주소임"
+    },
+    {
+     "nameEn": "bidwinnrTelNo",
+     "nameKo": "최종낙찰업체전화번호",
+     "size": "25",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 연락 전화번호임 핸드폰번호는 “*”로 표기"
+    },
+    {
+     "nameEn": "sucsfbidAmt",
+     "nameKo": "최종낙찰금액",
+     "size": "21",
+     "desc": "최종낙찰은 개찰순위 순서대로 협상등을 통해 최종 낙찰된정보를 의미하며 최종낙찰금액은 최종낙찰된 금액 (원화,원)으로 개찰완료된건에 대하여 제공"
+    },
+    {
+     "nameEn": "sucsfbidRate",
+     "nameKo": "최종낙찰률",
+     "size": "18",
+     "desc": "예정가격대비 최종낙찰금액으로 최종낙찰금액/예정가격 * 100 으로 계산되며 개찰완료된 건에 대하여 제공 (%)"
+    },
+    {
+     "nameEn": "rlOpengDt",
+     "nameKo": "실개찰일시",
+     "size": "19",
+     "desc": "실제 개찰일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "fnlSucsfDate",
+     "nameKo": "최종낙찰일자",
+     "size": "10",
+     "desc": "최종낙찰된 일자로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "fnlSucsfCorpOfcl",
+     "nameKo": "최종낙찰업체담당자",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 담당자명으로 개찰완료된 건에 대하여 제공"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getScsbidListSttusThngPPSSrch?inqryDiv=1&inqryBgnDt=202507010000&inqryEndDt=202507012359&bidNtceNm=혁신육아복합센터건립공사(기계)관급자재(간접가열보일러)&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getScsbidListSttusCnstwkPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 낙찰된 목록 현황 공사조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 공고일시, 개찰일시, 입찰공고번호, 입찰공고명, 공고기관코드, 공고기관명, 수요기관코드, 수요기관명, 참조번호, 참가제한지역코드, 참가제한지역명, 업종코드, 업종명, 추정가격시작, 추정가격종료, 세부품명번호, 다수공급경쟁자여부, 조달요청번호, 국제구분코드로 공사에대한 나라장터 최종낙찰자 목록(입찰공고번호, 입찰공고명, 참가업체수, 최종낙찰업체명, 사업자번호, 최종낙찰률, 실개찰일시, 수요기관)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:공고게시일시, 2:개찰일시, 3:입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자 하는 조회시작일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자 하는 조회종료일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "required": false,
+     "sample": "R25BK00922727",
+     "desc": "검색하고자하는 입찰공고번호 조회구분이 '3'인 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "required": false,
+     "sample": "(입찰대행)신활력플러스 군지정형 어르신영농단 지원사업",
+     "desc": "검색하고자하는 공고명 ※ 공고명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "4791000",
+     "desc": "검색하고자하는 공고기관코드"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "required": false,
+     "sample": "전북특별자치도 부안군",
+     "desc": "검색하고자하는 공고기관명 ※ 공고기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "4791000",
+     "desc": "검색하고자하는 수요기관코드 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드 입력 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드 입력"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "전북특별자치도 부안군",
+     "desc": "검색하고자하는 수요기관명 ※ 수요기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "required": false,
+     "sample": "부안군 공고 제2025-1121호",
+     "desc": "검색하고자하는 참조번호"
+    },
+    {
+     "nameEn": "prtcptLmtRgnCd",
+     "nameKo": "참가제한지역코드",
+     "size": "2",
+     "required": false,
+     "sample": "11",
+     "desc": "검색하고자하는 참가제한지역코드 11 : 서울특별시 26 : 부산광역시 27 : 대구광역시 28 : 인천광역시 29 : 광주광역시 30 : 대전광역시 31 : 울산광역시 36 : 세종특별자치시 41 : 경기도 42 : 강원도 43 : 충청북도 44 : 충청남도 45 : 전라북도 46 : 전라남도 47 : 경상북도 48 : 경상남도 50 : 제주도 51 : 강원특별자치도 52 : 전북특별자치도 99 : 기타 00: 전국 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "prtcptLmtRgnNm",
+     "nameKo": "참가제한지역명",
+     "size": "100",
+     "required": false,
+     "sample": "서울특별시",
+     "desc": "검색하고자하는 참가제한지역명 ※ 참가제한지역명 일부 입력시에도 조회 가능 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "indstrytyCd",
+     "nameKo": "업종코드",
+     "size": "100",
+     "required": false,
+     "sample": "4991",
+     "desc": "검색하고자하는 업종코드"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "100",
+     "required": false,
+     "sample": "금속창호ㆍ지붕건축물조립공사업",
+     "desc": "검색하고자하는 업종명 ※ 업종명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "presmptPrceBgn",
+     "nameKo": "추정가격시작",
+     "size": "25",
+     "required": false,
+     "sample": "59090900",
+     "desc": "검색하고자하는 추정가격범위시작금액이상(원화,원)"
+    },
+    {
+     "nameEn": "presmptPrceEnd",
+     "nameKo": "추정가격종료",
+     "size": "25",
+     "required": false,
+     "sample": "59091000",
+     "desc": "검색하고자하는 추정가격범위종료금액이하(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "required": false,
+     "sample": "1012159801",
+     "desc": "검색하고자하는 세부품명번호"
+    },
+    {
+     "nameEn": "masYn",
+     "nameKo": "다수공급경쟁자여부",
+     "size": "1",
+     "required": false,
+     "sample": "N",
+     "desc": "검색하고자하는 다수공급경쟁자여부"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "부안군 공고 제2025-1121호",
+     "desc": "검색하고자하는 조달요청번호"
+    },
+    {
+     "nameEn": "intrntnlDivCd",
+     "nameKo": "국제구분코드",
+     "size": "1",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 국제구분코드 국내:1, 국제:2"
+    },
+    {
+     "nameEn": "bizno",
+     "nameKo": "사업자번호",
+     "size": "10",
+     "required": false,
+     "sample": "4188124255",
+     "desc": "검색하고자 하는 업체의 사업자번호"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 수"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "ntceDivCd",
+     "nameKo": "공고구분코드",
+     "size": "7",
+     "desc": "공고구분 통050001 : 조달청 또는 나라장터 자체 공고건"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "bidwinnrNm",
+     "nameKo": "최종낙찰업체명",
+     "size": "200",
+     "desc": "최종낙찰된 업체의 명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrBizno",
+     "nameKo": "최종낙찰업체사업자등록번호",
+     "size": "10",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 사업자등록번호임"
+    },
+    {
+     "nameEn": "bidwinnrCeoNm",
+     "nameKo": "최종낙찰업체대표자명",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 대표자명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrAdrs",
+     "nameKo": "최종낙찰업체주소",
+     "size": "200",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 주소임"
+    },
+    {
+     "nameEn": "bidwinnrTelNo",
+     "nameKo": "최종낙찰업체전화번호",
+     "size": "25",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 연락 전화번호임 핸드폰번호는 “*”로 표기"
+    },
+    {
+     "nameEn": "sucsfbidAmt",
+     "nameKo": "최종낙찰금액",
+     "size": "21",
+     "desc": "최종낙찰은 개찰순위 순서대로 협상등을 통해 최종 낙찰된정보를 의미하며 최종낙찰금액은 최종낙찰된 금액 (원화,원)으로 개찰완료된건에 대하여 제공"
+    },
+    {
+     "nameEn": "sucsfbidRate",
+     "nameKo": "최종낙찰률",
+     "size": "18",
+     "desc": "예정가격대비 최종낙찰금액으로 최종낙찰금액/예정가격 * 100 으로 계산되며 개찰완료된 건에 대하여 제공 (%)"
+    },
+    {
+     "nameEn": "rlOpengDt",
+     "nameKo": "실개찰일시",
+     "size": "19",
+     "desc": "실제 개찰일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "fnlSucsfDate",
+     "nameKo": "최종낙찰일자",
+     "size": "10",
+     "desc": "최종낙찰된 일자로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "fnlSucsfCorpOfcl",
+     "nameKo": "최종낙찰업체담당자",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 담당자명으로 개찰완료된 건에 대하여 제공"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getScsbidListSttusCnstwkPPSSrch?inqryDiv=1&inqryBgnDt=202507010000&inqryEndDt=202507012359&bidNtceNm=(입찰대행)신활력플러스군지정형어르신영농단지원사업&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getScsbidListSttusServcPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 낙찰된 목록 현황 용역조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 공고일시, 개찰일시, 입찰공고번호, 입찰공고명, 공고기관코드, 공고기관명, 수요기관코드, 수요기관명, 참조번호, 참가제한지역코드, 참가제한지역명, 업종코드, 업종명, 추정가격시작, 추정가격종료, 세부품명번호, 다수공급경쟁자여부, 조달요청번호, 국제구분코드로 용역에 대한 나라장터 최종낙찰자 목록(입찰공고번호, 입찰공고명, 참가업체수, 최종낙찰업체명, 사업자번호, 최종낙찰률, 실개찰일시, 수요기관)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:공고게시일시, 2:개찰일시, 3:입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자 하는 조회시작일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자 하는 조회종료일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "required": false,
+     "sample": "R25BK00927163",
+     "desc": "검색하고자하는 입찰공고번호 조회구분이 '3'인 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "required": false,
+     "sample": "동물원(해양관, 남미관) 종합안내판 변경 제작 시행",
+     "desc": "검색하고자하는 공고명 ※ 공고명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "6112581",
+     "desc": "검색하고자하는 공고기관코드"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "required": false,
+     "sample": "서울특별시 서울대공원",
+     "desc": "검색하고자하는 공고기관명 ※ 공고기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "6112581",
+     "desc": "검색하고자하는 수요기관코드 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드 입력 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드 입력"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "서울특별시 서울대공원",
+     "desc": "검색하고자하는 수요기관명 ※ 수요기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "required": false,
+     "sample": "전략기획실-4945",
+     "desc": "검색하고자하는 참조번호"
+    },
+    {
+     "nameEn": "prtcptLmtRgnCd",
+     "nameKo": "참가제한지역코드",
+     "size": "2",
+     "required": false,
+     "sample": "11",
+     "desc": "검색하고자하는 참가제한지역코드 11 : 서울특별시 26 : 부산광역시 27 : 대구광역시 28 : 인천광역시 29 : 광주광역시 30 : 대전광역시 31 : 울산광역시 36 : 세종특별자치시 41 : 경기도 42 : 강원도 43 : 충청북도 44 : 충청남도 45 : 전라북도 46 : 전라남도 47 : 경상북도 48 : 경상남도 50 : 제주도 51 : 강원특별자치도 52 : 전북특별자치도 99 : 기타 00: 전국 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "prtcptLmtRgnNm",
+     "nameKo": "참가제한지역명",
+     "size": "100",
+     "required": false,
+     "sample": "서울특별시",
+     "desc": "검색하고자하는 참가제한지역명 ※ 참가제한지역명 일부 입력시에도 조회 가능 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "indstrytyCd",
+     "nameKo": "업종코드",
+     "size": "100",
+     "required": false,
+     "sample": "4119",
+     "desc": "검색하고자하는 업종코드"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "100",
+     "required": false,
+     "sample": "토목공사업",
+     "desc": "검색하고자하는 업종명 ※ 업종명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "presmptPrceBgn",
+     "nameKo": "추정가격시작",
+     "size": "25",
+     "required": false,
+     "sample": "37150000",
+     "desc": "검색하고자하는 추정가격범위시작금액이상(원화,원)"
+    },
+    {
+     "nameEn": "presmptPrceEnd",
+     "nameKo": "추정가격종료",
+     "size": "25",
+     "required": false,
+     "sample": "37170000",
+     "desc": "검색하고자하는 추정가격범위종료금액이하(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "required": false,
+     "sample": "1012159801",
+     "desc": "검색하고자하는 세부품명번호"
+    },
+    {
+     "nameEn": "masYn",
+     "nameKo": "다수공급경쟁자여부",
+     "size": "1",
+     "required": false,
+     "sample": "N",
+     "desc": "검색하고자하는 다수공급경쟁자여부"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "800",
+     "desc": "검색하고자하는 조달요청번호"
+    },
+    {
+     "nameEn": "intrntnlDivCd",
+     "nameKo": "국제구분코드",
+     "size": "1",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 국제구분코드 국내:1, 국제:2"
+    },
+    {
+     "nameEn": "bizno",
+     "nameKo": "사업자번호",
+     "size": "10",
+     "required": false,
+     "sample": "1238640842",
+     "desc": "검색하고자 하는 업체의 사업자번호"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 수"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "ntceDivCd",
+     "nameKo": "공고구분코드",
+     "size": "7",
+     "desc": "공고구분 통050001 : 조달청 또는 나라장터 자체 공고건"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "bidwinnrNm",
+     "nameKo": "최종낙찰업체명",
+     "size": "200",
+     "desc": "최종낙찰된 업체의 명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrBizno",
+     "nameKo": "최종낙찰업체사업자등록번호",
+     "size": "10",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 사업자등록번호임"
+    },
+    {
+     "nameEn": "bidwinnrCeoNm",
+     "nameKo": "최종낙찰업체대표자명",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 대표자명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrAdrs",
+     "nameKo": "최종낙찰업체주소",
+     "size": "200",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 주소임"
+    },
+    {
+     "nameEn": "bidwinnrTelNo",
+     "nameKo": "최종낙찰업체전화번호",
+     "size": "25",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 연락 전화번호임 핸드폰번호는 “*”로 표기"
+    },
+    {
+     "nameEn": "sucsfbidAmt",
+     "nameKo": "최종낙찰금액",
+     "size": "21",
+     "desc": "최종낙찰은 개찰순위 순서대로 협상등을 통해 최종 낙찰된정보를 의미하며 최종낙찰금액은 최종낙찰된 금액 (원화,원)으로 개찰완료된건에 대하여 제공"
+    },
+    {
+     "nameEn": "sucsfbidRate",
+     "nameKo": "최종낙찰률",
+     "size": "18",
+     "desc": "예정가격대비 최종낙찰금액으로 최종낙찰금액/예정가격 * 100 으로 계산되며 개찰완료된 건에 대하여 제공 (%)"
+    },
+    {
+     "nameEn": "rlOpengDt",
+     "nameKo": "실개찰일시",
+     "size": "19",
+     "desc": "실제 개찰일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "fnlSucsfDate",
+     "nameKo": "최종낙찰일자",
+     "size": "10",
+     "desc": "최종낙찰된 일자로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "fnlSucsfCorpOfcl",
+     "nameKo": "최종낙찰업체담당자",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 담당자명으로 개찰완료된 건에 대하여 제공"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/getScsbidListSttusServcPPSSrch?inqryDiv=1&inqryBgnDt=202507010000&inqryEndDt=202507012359&bidNtceNm동물원(해양관,남미관)종합안내판변경제작시행&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getScsbidListSttusFrgcptPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 낙찰된 목록 현황 외자조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 공고일시, 개찰일시, 입찰공고번호, 입찰공고명, 공고기관코드, 공고기관명, 수요기관코드, 수요기관명, 참조번호, 참가제한지역코드, 참가제한지역명, 업종코드, 업종명, 추정가격시작, 추정가격종료, 세부품명번호, 다수공급경쟁자여부, 조달요청번호, 국제구분코드로 외자에 대한 나라장터 최종낙찰자 목록(입찰공고번호, 입찰공고명, 참가업체수, 최종낙찰업체명, 사업자번호, 최종낙찰률, 실개찰일시, 수요기관)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1:공고게시일시, 2:개찰일시, 3:입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자 하는 조회시작일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507102359",
+     "desc": "검색하고자 하는 조회종료일시 \"YYYYMMDDHHMM\" 조회구분이 '1'인 경우 공고게시일시 필수, '2'인 경우 개찰일시 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "required": false,
+     "sample": "R25BK00857114",
+     "desc": "검색하고자하는 입찰공고번호 조회구분이 '3'인 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "required": false,
+     "sample": "가스크로마토그래프-질량분석기",
+     "desc": "검색하고자하는 공고명 ※ 공고명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "1482021",
+     "desc": "검색하고자하는 공고기관코드"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "required": false,
+     "sample": "환경부 국립환경과학원",
+     "desc": "검색하고자하는 공고기관명 ※ 공고기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "1482021",
+     "desc": "검색하고자하는 수요기관코드 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드 입력 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드 입력"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "환경부 국립환경과학원",
+     "desc": "검색하고자하는 수요기관명 ※ 수요기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "required": false,
+     "sample": "R25DC00044773",
+     "desc": "검색하고자하는 참조번호"
+    },
+    {
+     "nameEn": "prtcptLmtRgnCd",
+     "nameKo": "참가제한지역코드",
+     "size": "2",
+     "required": false,
+     "sample": "00",
+     "desc": "검색하고자하는 참가제한지역코드 11 : 서울특별시 26 : 부산광역시 27 : 대구광역시 28 : 인천광역시 29 : 광주광역시 30 : 대전광역시 31 : 울산광역시 36 : 세종특별자치시 41 : 경기도 42 : 강원도 43 : 충청북도 44 : 충청남도 45 : 전라북도 46 : 전라남도 47 : 경상북도 48 : 경상남도 50 : 제주도 51 : 강원특별자치도 52 : 전북특별자치도 99 : 기타 00: 전국 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "prtcptLmtRgnNm",
+     "nameKo": "참가제한지역명",
+     "size": "100",
+     "required": false,
+     "sample": "전국",
+     "desc": "검색하고자하는 참가제한지역명 ※ 참가제한지역명 일부 입력시에도 조회 가능 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "indstrytyCd",
+     "nameKo": "업종코드",
+     "size": "100",
+     "required": false,
+     "sample": "4119",
+     "desc": "검색하고자하는 업종코드"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "100",
+     "required": false,
+     "sample": "토목공사업",
+     "desc": "검색하고자하는 업종명 ※ 업종명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "presmptPrceBgn",
+     "nameKo": "추정가격시작",
+     "size": "25",
+     "required": false,
+     "sample": "0",
+     "desc": "검색하고자하는 추정가격범위시작금액이상(원화,원)"
+    },
+    {
+     "nameEn": "presmptPrceEnd",
+     "nameKo": "추정가격종료",
+     "size": "25",
+     "required": false,
+     "sample": "0",
+     "desc": "검색하고자하는 추정가격범위종료금액이하(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "required": false,
+     "sample": "4111540401",
+     "desc": "검색하고자하는 세부품명번호"
+    },
+    {
+     "nameEn": "masYn",
+     "nameKo": "다수공급경쟁자여부",
+     "size": "1",
+     "required": false,
+     "sample": "N",
+     "desc": "검색하고자하는 다수공급경쟁자여부"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "R25DC00044773",
+     "desc": "검색하고자하는 조달요청번호"
+    },
+    {
+     "nameEn": "intrntnlDivCd",
+     "nameKo": "국제구분코드",
+     "size": "1",
+     "required": false,
+     "sample": "2",
+     "desc": "검색하고자하는 국제구분코드 국내:1, 국제:2"
+    },
+    {
+     "nameEn": "bizno",
+     "nameKo": "사업자번호",
+     "size": "10",
+     "required": false,
+     "sample": "3078701124",
+     "desc": "검색하고자 하는 업체의 사업자번호"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 수"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "40",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "ntceDivCd",
+     "nameKo": "공고구분코드",
+     "size": "7",
+     "desc": "공고구분 통050001 : 조달청 또는 나라장터 자체 공고건"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "bidwinnrNm",
+     "nameKo": "최종낙찰업체명",
+     "size": "200",
+     "desc": "최종낙찰된 업체의 명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrBizno",
+     "nameKo": "최종낙찰업체사업자등록번호",
+     "size": "10",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 사업자등록번호임"
+    },
+    {
+     "nameEn": "bidwinnrCeoNm",
+     "nameKo": "최종낙찰업체대표자명",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 대표자명으로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "bidwinnrAdrs",
+     "nameKo": "최종낙찰업체주소",
+     "size": "200",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 주소임"
+    },
+    {
+     "nameEn": "bidwinnrTelNo",
+     "nameKo": "최종낙찰업체전화번호",
+     "size": "25",
+     "desc": "협상이 완료 후 최종낙찰된 업체의 연락 전화번호임 핸드폰번호는 “*”로 표기"
+    },
+    {
+     "nameEn": "sucsfbidAmt",
+     "nameKo": "최종낙찰금액",
+     "size": "21",
+     "desc": "최종낙찰은 개찰순위 순서대로 협상등을 통해 최종 낙찰된정보를 의미하며 최종낙찰금액은 최종낙찰된 금액 (원화,원)으로 개찰완료된건에 대하여 제공"
+    },
+    {
+     "nameEn": "sucsfbidRate",
+     "nameKo": "최종낙찰률",
+     "size": "18",
+     "desc": "예정가격대비 최종낙찰금액으로 최종낙찰금액/예정가격 * 100 으로 계산되며 개찰완료된 건에 대하여 제공 (%)"
+    },
+    {
+     "nameEn": "rlOpengDt",
+     "nameKo": "실개찰일시",
+     "size": "19",
+     "desc": "실제 개찰일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "rgstDt",
+     "nameKo": "등록일시",
+     "size": "19",
+     "desc": "등록일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "FnlSucsfDate",
+     "nameKo": "최종낙찰일자",
+     "size": "10",
+     "desc": "최종낙찰된 일자로 개찰완료된 건에 대하여 제공"
+    },
+    {
+     "nameEn": "fnlSucsfCorpOfcl",
+     "nameKo": "최종낙찰업체담당자",
+     "size": "35",
+     "desc": "최종낙찰된 업체의 담당자명으로 개찰완료된 건에 대하여 제공"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getScsbidListSttusFrgcptPPSSrch?inqryDiv=1&inqryBgnDt=202507010000&inqryEndDt=202507012359&bidNtceNm=(외자)가스크로마토그래프-질량분석기&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOpengResultListInfoThngPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 개찰결과 물품 목록 조회",
+   "opType": "조회(목록)",
+   "description": "유찰, 개찰완료, 재입찰건에 대한 개찰결과를 제공하며 검색조건을 공고일시, 개찰일시, 입찰공고번호, 입찰공고명, 공고기관코드, 공고기관명, 수요기관코드, 수요기관명, 참조번호, 참가제한지역코드, 참가제한지역명, 업종코드, 업종명, 추정가격시작, 추정가격종료, 세부품명번호, 다수공급경쟁자여부, 조달요청번호, 국제구분코드로 하여 물품에 대한 나라장터 개찰결과 목록(입찰공고번호, 입찰공고명, 개찰일시, 참가업체수, 개찰업체정보, 진행구분코드명, 입력일시, 예비가격파일존재여부, 공고기관명, 수요기관명)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1..공고일시, 2.개찰일시, 3.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분 1,2일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분 1,2일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "R25BK00840922",
+     "desc": "검색하고자하는 입찰공고번호 조회구분이 '3'인 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "required": false,
+     "sample": "근접전자기장 내성 시험 시스템 구축",
+     "desc": "검색하고자하는 공고명 ※ 공고명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "1230137",
+     "desc": "검색하고자하는 공고기관코드"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "required": false,
+     "sample": "조달청 대구지방조달청",
+     "desc": "검색하고자하는 공고기관명 ※ 공고기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "Z021943",
+     "desc": "검색하고자하는 수요기관코드 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드 입력 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드 입력"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "대구경북첨단의료산업진흥재단",
+     "desc": "검색하고자하는 수요기관명 ※ 수요기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "required": false,
+     "sample": "곡성군 공고 2019- 1955호",
+     "desc": "검색하고자하는 참조번호"
+    },
+    {
+     "nameEn": "prtcptLmtRgnCd",
+     "nameKo": "참가제한지역코드",
+     "size": "2",
+     "required": false,
+     "sample": "11",
+     "desc": "검색하고자하는 참가제한지역코드 11 : 서울특별시 26 : 부산광역시 27 : 대구광역시 28 : 인천광역시 29 : 광주광역시 30 : 대전광역시 31 : 울산광역시 36 : 세종특별자치시 41 : 경기도 42 : 강원도 43 : 충청북도 44 : 충청남도 45 : 전라북도 46 : 전라남도 47 : 경상북도 48 : 경상남도 50 : 제주도 51 : 강원특별자치도 52 : 전북특별자치도 99 : 기타 00: 전국 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "prtcptLmtRgnNm",
+     "nameKo": "참가제한지역명",
+     "size": "100",
+     "required": false,
+     "sample": "서울특별시",
+     "desc": "검색하고자하는 참가제한지역명 ※ 참가제한지역명 일부 입력시에도 조회 가능 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "indstrytyCd",
+     "nameKo": "업종코드",
+     "size": "100",
+     "required": false,
+     "sample": "4119",
+     "desc": "검색하고자하는 업종코드"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "100",
+     "required": false,
+     "sample": "토목공사업",
+     "desc": "검색하고자하는 업종명 ※ 업종명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "presmptPrceBgn",
+     "nameKo": "추정가격시작",
+     "size": "25",
+     "required": false,
+     "sample": "171750000",
+     "desc": "검색하고자하는 추정가격범위시작금액이상(원화,원)"
+    },
+    {
+     "nameEn": "presmptPrceEnd",
+     "nameKo": "추정가격종료",
+     "size": "25",
+     "required": false,
+     "sample": "171770000",
+     "desc": "검색하고자하는 추정가격범위종료금액이하(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "required": false,
+     "sample": "1112170101",
+     "desc": "검색하고자하는 세부품명번호"
+    },
+    {
+     "nameEn": "masYn",
+     "nameKo": "다수공급경쟁자여부",
+     "size": "1",
+     "required": false,
+     "sample": "N",
+     "desc": "검색하고자하는 다수공급경쟁자여부"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "R25DC00058294",
+     "desc": "검색하고자하는 조달요청번호"
+    },
+    {
+     "nameEn": "intrntnlDivCd",
+     "nameKo": "국제구분코드",
+     "size": "1",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 국제구분코드 국내:1, 국제:2"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "opengCorpInfo",
+     "nameKo": "개찰업체정보",
+     "size": "500",
+     "desc": "개찰업체정보 다수 낙찰자의 경우 ”낙찰예정자 다수”와 개찰순위 1위의 투찰금액과 투찰율 을 보여줌 단일 낙찰자 의 경우 업체명과 사업자번호, 대표자명, 투찰금액, 투찰율을 보여줌 단, 협상에 의한 계약일 경우는 투찰금액,투찰율 안나옴"
+    },
+    {
+     "nameEn": "progrsDivCdNm",
+     "nameKo": "진행구분코드명",
+     "size": "4",
+     "desc": "진행구분이 유찰, 개찰완료, 재입찰로 구분 됨"
+    },
+    {
+     "nameEn": "inptDt",
+     "nameKo": "입력일시",
+     "size": "19",
+     "desc": "입력일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "rsrvtnPrceFileExistnceYn",
+     "nameKo": "예비가격파일존재여부",
+     "size": "1",
+     "desc": "예비가격파일존재여부(Y/N)"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "desc": "공고를 하는 기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "수요기관의 의뢰를 받아 공고하는 기관의 명"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "opengRsltNtcCntnts",
+     "nameKo": "개찰결과공지내용",
+     "size": "4000",
+     "desc": "입찰공고번호, 입찰공고차수, 입찰분류번호, 재입찰번호에 해당하는 공지사항 내용"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getOpengResultListInfoThngPPSSrch?inqryDiv=1&inqryBgnDt=201605010000&inqryEndDt=201605052359&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOpengResultListInfoCnstwkPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 개찰결과 공사 목록 조회",
+   "opType": "조회(목록)",
+   "description": "유찰, 개찰완료, 재입찰건에 대한 개찰결과를 제공하며 검색조건을 공고일시, 개찰일시, 입찰공고번호, 입찰공고명, 공고기관코드, 공고기관명, 수요기관코드, 수요기관명, 참조번호, 참가제한지역코드, 참가제한지역명, 업종코드, 업종명, 추정가격시작, 추정가격종료, 세부품명번호, 다수공급경쟁자여부, 조달요청번호, 국제구분코드로 하여 공사에 대한 나라장터 개찰결과 목록(입찰공고번호, 입찰공고명, 개찰일시, 참가업체수, 개찰업체정보, 진행구분코드명, 입력일시, 예비가격파일존재여부, 공고기관명, 수요기관명)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1.공고일시,2.개찰일시,3.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분 1,2일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분 1,2일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "R25BK00926014",
+     "desc": "검색하고자하는 입찰공고번호 조회구분이 '3'인 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "required": false,
+     "sample": "낭주중학교 인조 잔디 조성 및 담장 교체 공사 입찰 공고[긴급]",
+     "desc": "검색하고자하는 공고명 ※ 공고명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "8462058",
+     "desc": "검색하고자하는 공고기관코드"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "required": false,
+     "sample": "전북특별자치도교육청 전북특별자치도부안교육지원청 낭주중학교",
+     "desc": "검색하고자하는 공고기관명 ※ 공고기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "8462058",
+     "desc": "검색하고자하는 수요기관코드 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드 입력 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드 입력"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "전북특별자치도교육청 전북특별자치도부안교육지원청 낭주중학교",
+     "desc": "검색하고자하는 수요기관명 ※ 수요기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "required": false,
+     "sample": "전북특별자치도부안교육지원청 낭주중학교 공고 제2025 - 11호",
+     "desc": "검색하고자하는 참조번호"
+    },
+    {
+     "nameEn": "prtcptLmtRgnCd",
+     "nameKo": "참가제한지역코드",
+     "size": "2",
+     "required": false,
+     "sample": "50",
+     "desc": "검색하고자하는 참가제한지역코드 11 : 서울특별시 26 : 부산광역시 27 : 대구광역시 28 : 인천광역시 29 : 광주광역시 30 : 대전광역시 31 : 울산광역시 36 : 세종특별자치시 41 : 경기도 42 : 강원도 43 : 충청북도 44 : 충청남도 45 : 전라북도 46 : 전라남도 47 : 경상북도 48 : 경상남도 50 : 제주도 51 : 강원특별자치도 52 : 전북특별자치도 99 : 기타 00: 전국 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "prtcptLmtRgnNm",
+     "nameKo": "참가제한지역명",
+     "size": "100",
+     "required": false,
+     "sample": "제주",
+     "desc": "검색하고자하는 참가제한지역명 ※ 참가제한지역명 일부 입력시에도 조회 가능 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "indstrytyCd",
+     "nameKo": "업종코드",
+     "size": "100",
+     "required": false,
+     "sample": "0006",
+     "desc": "검색하고자하는 업종코드"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "100",
+     "required": false,
+     "sample": "실내건축공사업",
+     "desc": "검색하고자하는 업종명 ※ 업종명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "presmptPrceBgn",
+     "nameKo": "추정가격시작",
+     "size": "25",
+     "required": false,
+     "sample": "475700000",
+     "desc": "검색하고자하는 추정가격범위시작금액이상(원화,원)"
+    },
+    {
+     "nameEn": "presmptPrceEnd",
+     "nameKo": "추정가격종료",
+     "size": "25",
+     "required": false,
+     "sample": "475800000",
+     "desc": "검색하고자하는 추정가격범위종료금액이하(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "required": false,
+     "sample": "1012159801",
+     "desc": "검색하고자하는 세부품명번호"
+    },
+    {
+     "nameEn": "masYn",
+     "nameKo": "다수공급경쟁자여부",
+     "size": "1",
+     "required": false,
+     "sample": "Y",
+     "desc": "검색하고자하는 다수공급경쟁자여부"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "800",
+     "desc": "검색하고자하는 조달요청번호"
+    },
+    {
+     "nameEn": "intrntnlDivCd",
+     "nameKo": "국제구분코드",
+     "size": "1",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 국제구분코드 국내:1, 국제:2"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "opengCorpInfo",
+     "nameKo": "개찰업체정보",
+     "size": "500",
+     "desc": "개찰업체정보 다수 낙찰자의 경우 ”낙찰예정자 다수”와 개찰순위 1위의 투찰금액과 투찰율 을 보여줌 단일 낙찰자 의 경우 업체명과 사업자번호, 대표자명, 투찰금액, 투찰율을 보여줌 단, 협상에 의한 계약일 경우는 투찰금액,투찰율 안나옴"
+    },
+    {
+     "nameEn": "progrsDivCdNm",
+     "nameKo": "진행구분코드명",
+     "size": "4",
+     "desc": "진행구분이 유찰, 개찰완료, 재입찰로 구분 됨"
+    },
+    {
+     "nameEn": "inptDt",
+     "nameKo": "입력일시",
+     "size": "19",
+     "desc": "입력일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "rsrvtnPrceFileExistnceYn",
+     "nameKo": "예비가격파일존재여부",
+     "size": "1",
+     "desc": "예비가격파일존재여부(Y/N)"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "desc": "공고를 하는 기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "수요기관의 의뢰를 받아 공고하는 기관의 명"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "opengRsltNtcCntnts",
+     "nameKo": "개찰결과공지내용",
+     "size": "4000",
+     "desc": "입찰공고번호, 입찰공고차수, 입찰분류번호, 재입찰번호에 해당하는 공지사항 내용"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getOpengResultListInfoCnstwkPPSSrch?inqryDiv=1&inqryBgnDt=201605010000&inqryEndDt=201605052359&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOpengResultListInfoServcPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 개찰결과 용역 목록 조회",
+   "opType": "조회(목록)",
+   "description": "유찰, 개찰완료, 재입찰건에 대한 개찰결과를 제공하며 검색조건을 공고일시, 개찰일시, 입찰공고번호, 입찰공고명, 공고기관코드, 공고기관명, 수요기관코드, 수요기관명, 참조번호, 참가제한지역코드, 참가제한지역명, 업종코드, 업종명, 추정가격시작, 추정가격종료, 세부품명번호, 다수공급경쟁자여부, 조달요청번호, 국제구분코드로하여 용역에 대한 나라장터 개찰결과 목록(입찰공고번호, 입찰공고명, 개찰일시, 참가업체수, 개찰업체정보, 진행구분코드명, 입력일시, 예비가격파일존재여부, 공고기관명, 수요기관명)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1.공고일시,2.개찰일시,3.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "20250701000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분 1,2일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분 1,2일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "R25BK00882586",
+     "desc": "검색하고자하는 입찰공고번호 조회구분이 '3'인 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "required": false,
+     "sample": "한국생명공학연구원 지역조직 중기 발전전략 수립",
+     "desc": "검색하고자하는 공고명 ※ 공고명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "Z004836",
+     "desc": "검색하고자하는 공고기관코드"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "required": false,
+     "sample": "한국생명공학연구원",
+     "desc": "검색하고자하는 공고기관명 ※ 공고기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "Z004836",
+     "desc": "검색하고자하는 수요기관코드 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드 입력 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드 입력"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "한국생명공학연구원",
+     "desc": "검색하고자하는 수요기관명 ※ 수요기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "required": false,
+     "sample": "제20250602-용-1호",
+     "desc": "검색하고자하는 참조번호"
+    },
+    {
+     "nameEn": "prtcptLmtRgnCd",
+     "nameKo": "참가제한지역코드",
+     "size": "2",
+     "required": false,
+     "sample": "00",
+     "desc": "검색하고자하는 참가제한지역코드 11 : 서울특별시 26 : 부산광역시 27 : 대구광역시 28 : 인천광역시 29 : 광주광역시 30 : 대전광역시 31 : 울산광역시 36 : 세종특별자치시 41 : 경기도 42 : 강원도 43 : 충청북도 44 : 충청남도 45 : 전라북도 46 : 전라남도 47 : 경상북도 48 : 경상남도 50 : 제주도 51 : 강원특별자치도 52 : 전북특별자치도 99 : 기타 00: 전국 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "prtcptLmtRgnNm",
+     "nameKo": "참가제한지역명",
+     "size": "100",
+     "required": false,
+     "sample": "전국",
+     "desc": "검색하고자하는 참가제한지역명 ※ 참가제한지역명 일부 입력시에도 조회 가능 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "indstrytyCd",
+     "nameKo": "업종코드",
+     "size": "100",
+     "required": false,
+     "sample": "1261",
+     "desc": "검색하고자하는 업종코드"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "100",
+     "required": false,
+     "sample": "종합여행업",
+     "desc": "검색하고자하는 업종명 ※ 업종명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "presmptPrceBgn",
+     "nameKo": "추정가격시작",
+     "size": "25",
+     "required": false,
+     "sample": "72550000",
+     "desc": "검색하고자하는 추정가격범위시작금액이상(원화,원)"
+    },
+    {
+     "nameEn": "presmptPrceEnd",
+     "nameKo": "추정가격종료",
+     "size": "25",
+     "required": false,
+     "sample": "72590000",
+     "desc": "검색하고자하는 추정가격범위종료금액이하(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "required": false,
+     "sample": "1012159801",
+     "desc": "검색하고자하는 세부품명번호"
+    },
+    {
+     "nameEn": "masYn",
+     "nameKo": "다수공급경쟁자여부",
+     "size": "1",
+     "required": false,
+     "sample": "Y",
+     "desc": "검색하고자하는 다수공급경쟁자여부"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "800",
+     "desc": "검색하고자하는 조달요청번호"
+    },
+    {
+     "nameEn": "intrntnlDivCd",
+     "nameKo": "국제구분코드",
+     "size": "1",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 국제구분코드 국내:1, 국제:2"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "opengCorpInfo",
+     "nameKo": "개찰업체정보",
+     "size": "500",
+     "desc": "개찰업체정보 다수 낙찰자의 경우 ”낙찰예정자 다수”와 개찰순위 1위의 투찰금액과 투찰율 을 보여줌 단일 낙찰자 의 경우 업체명과 사업자번호, 대표자명, 투찰금액, 투찰율을 보여줌 단, 협상에 의한 계약일 경우는 투찰금액,투찰율 안나옴"
+    },
+    {
+     "nameEn": "progrsDivCdNm",
+     "nameKo": "진행구분코드명",
+     "size": "4",
+     "desc": "진행구분이 유찰, 개찰완료, 재입찰로 구분 됨"
+    },
+    {
+     "nameEn": "inptDt",
+     "nameKo": "입력일시",
+     "size": "19",
+     "desc": "입력일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "rsrvtnPrceFileExistnceYn",
+     "nameKo": "예비가격파일존재여부",
+     "size": "1",
+     "desc": "예비가격파일존재여부(Y/N)"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "desc": "공고를 하는 기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "수요기관의 의뢰를 받아 공고하는 기관의 명"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "opengRsltNtcCntnts",
+     "nameKo": "개찰결과공지내용",
+     "size": "4000",
+     "desc": "입찰공고번호, 입찰공고차수, 입찰분류번호, 재입찰번호에 해당하는 공지사항 내용"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getOpengResultListInfoServcPPSSrch?inqryDiv=1&inqryBgnDt=201605010000&inqryEndDt=201605052359&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOpengResultListInfoFrgcptPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 개찰결과 외자 목록 조회",
+   "opType": "조회(목록)",
+   "description": "유찰, 개찰완료, 재입찰건에 대한 개찰결과를 제공하며 검색조건을 공고일시, 개찰일시, 입찰공고번호, 입찰공고명, 공고기관코드, 공고기관명, 수요기관코드, 수요기관명, 참조번호, 참가제한지역코드, 참가제한지역명, 업종코드, 업종명, 추정가격시작, 추정가격종료, 세부품명번호, 다수공급경쟁자여부, 조달요청번호, 국제구분코드로 하여 외자에 대한 나라장터 개찰결과 목록(입찰공고번호, 입찰공고명, 개찰일시, 참가업체수, 개찰업체정보, 진행구분코드명, 입력일시, 예비가격파일존재여부, 공고기관명, 수요기관명)을 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포털에서 받은 인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1.공고일시, 2.개찰일시, 3.입찰공고번호"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507010000",
+     "desc": "검색하고자하는 시작일시 'YYYYMMDDHHMM' 조회구분 1,2일 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202507012359",
+     "desc": "검색하고자하는 종료일시 'YYYYMMDDHHMM' 조회구분 1,2일 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "required": false,
+     "sample": "R25BK00916730",
+     "desc": "검색하고자하는 입찰공고번호 조회구분이 '3'인 경우 필수"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "required": false,
+     "sample": "외자조달요청(북부지원 유도결합플라즈마 질량분석기",
+     "desc": "검색하고자하는 공고명 ※ 공고명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "1230000",
+     "desc": "검색하고자하는 공고기관코드"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "required": false,
+     "sample": "조달청",
+     "desc": "검색하고자하는 공고기관명 ※ 공고기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "1230000",
+     "desc": "검색하고자하는 수요기관코드 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드 입력 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드 입력"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "required": false,
+     "sample": "조달청",
+     "desc": "검색하고자하는 수요기관명 ※ 수요기관명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "refNo",
+     "nameKo": "참조번호",
+     "size": "105",
+     "required": false,
+     "sample": "R25DC00054022",
+     "desc": "검색하고자하는 참조번호"
+    },
+    {
+     "nameEn": "prtcptLmtRgnCd",
+     "nameKo": "참가제한지역코드",
+     "size": "2",
+     "required": false,
+     "sample": "00",
+     "desc": "검색하고자하는 참가제한지역코드 11 : 서울특별시 26 : 부산광역시 27 : 대구광역시 28 : 인천광역시 29 : 광주광역시 30 : 대전광역시 31 : 울산광역시 36 : 세종특별자치시 41 : 경기도 42 : 강원도 43 : 충청북도 44 : 충청남도 45 : 전라북도 46 : 전라남도 47 : 경상북도 48 : 경상남도 50 : 제주도 51 : 강원특별자치도 52 : 전북특별자치도 99 : 기타 00: 전국 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "prtcptLmtRgnNm",
+     "nameKo": "참가제한지역명",
+     "size": "100",
+     "required": false,
+     "sample": "전국",
+     "desc": "검색하고자하는 참가제한지역명 ※ 참가제한지역명 일부 입력시에도 조회 가능 *전국 : 지역제한을 설정하지 않은 공고"
+    },
+    {
+     "nameEn": "indstrytyCd",
+     "nameKo": "업종코드",
+     "size": "100",
+     "required": false,
+     "sample": "4119",
+     "desc": "검색하고자하는 업종코드"
+    },
+    {
+     "nameEn": "indstrytyNm",
+     "nameKo": "업종명",
+     "size": "100",
+     "required": false,
+     "sample": "토목공사업",
+     "desc": "검색하고자하는 업종명 ※ 업종명 일부 입력시에도 조회 가능"
+    },
+    {
+     "nameEn": "presmptPrceBgn",
+     "nameKo": "추정가격시작",
+     "size": "25",
+     "required": false,
+     "sample": "0",
+     "desc": "검색하고자하는 추정가격범위시작금액이상(원화,원)"
+    },
+    {
+     "nameEn": "presmptPrceEnd",
+     "nameKo": "추정가격종료",
+     "size": "25",
+     "required": false,
+     "sample": "0",
+     "desc": "검색하고자하는 추정가격범위종료금액이하(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "required": false,
+     "sample": "4111540401",
+     "desc": "검색하고자하는 세부품명번호"
+    },
+    {
+     "nameEn": "masYn",
+     "nameKo": "다수공급경쟁자여부",
+     "size": "1",
+     "required": false,
+     "sample": "Y",
+     "desc": "검색하고자하는 다수공급경쟁자여부"
+    },
+    {
+     "nameEn": "prcrmntReqNo",
+     "nameKo": "조달요청번호",
+     "size": "13",
+     "required": false,
+     "sample": "R25DC00054022",
+     "desc": "검색하고자하는 조달요청번호"
+    },
+    {
+     "nameEn": "intrntnlDivCd",
+     "nameKo": "국제구분코드",
+     "size": "1",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 국제구분코드 국내:1, 국제:2"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총 개수"
+    },
+    {
+     "nameEn": "bidNtceNo",
+     "nameKo": "입찰공고번호",
+     "size": "11",
+     "desc": "입찰공고 관리번호이며 조달청나라장터 공고건의 형식은 년도(4)+월(2)+순번(5)이며 자체전자조달시스템 보유기관은 각 기관별 형식 별도 사용 *차세대나라장터 번호체계 개편 : R+년도(2)+단계구분(2)+순번(8) 총 13자리 구성 - 단계구분: BK(입찰), TA(계약), DD:(발주계획), BD(사전규격), BK(통합입찰)"
+    },
+    {
+     "nameEn": "bidNtceOrd",
+     "nameKo": "입찰공고차수",
+     "size": "3",
+     "desc": "입찰공고차수는 해당 입찰공고에 대한 재공고 및 재입찰 등이 발생되었을 경우 증가되는 수"
+    },
+    {
+     "nameEn": "bidClsfcNo",
+     "nameKo": "입찰분류번호",
+     "size": "5",
+     "desc": "동일한 입찰공고번호에 대한 집행일련번호"
+    },
+    {
+     "nameEn": "rbidNo",
+     "nameKo": "재입찰번호",
+     "size": "3",
+     "desc": "재입찰번호"
+    },
+    {
+     "nameEn": "bidNtceNm",
+     "nameKo": "입찰공고명",
+     "size": "1000",
+     "desc": "공사명 또는 사업명이라고도 하며 입찰공고 내용을 요약한 이름"
+    },
+    {
+     "nameEn": "opengDt",
+     "nameKo": "개찰일시",
+     "size": "19",
+     "desc": "조달업체가 제출한 입찰서를 개찰하는 일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "prtcptCnum",
+     "nameKo": "참가업체수",
+     "size": "6",
+     "desc": "참가업체수"
+    },
+    {
+     "nameEn": "opengCorpInfo",
+     "nameKo": "개찰업체정보",
+     "size": "500",
+     "desc": "개찰업체정보 다수 낙찰자의 경우 ”낙찰예정자 다수”와 개찰순위 1위의 투찰금액과 투찰율 을 보여줌 단일 낙찰자 의 경우 업체명과 사업자번호, 대표자명, 투찰금액, 투찰율을 보여줌 단, 협상에 의한 계약일 경우는 투찰금액,투찰율 안나옴"
+    },
+    {
+     "nameEn": "progrsDivCdNm",
+     "nameKo": "진행구분코드명",
+     "size": "4",
+     "desc": "진행구분이 유찰, 개찰완료, 재입찰로 구분 됨"
+    },
+    {
+     "nameEn": "inptDt",
+     "nameKo": "입력일시",
+     "size": "19",
+     "desc": "입력일시 “YYYY-MM-DD HH:MM:SS”"
+    },
+    {
+     "nameEn": "rsrvtnPrceFileExistnceYn",
+     "nameKo": "예비가격파일존재여부",
+     "size": "1",
+     "desc": "예비가격파일존재여부(Y/N)"
+    },
+    {
+     "nameEn": "ntceInsttCd",
+     "nameKo": "공고기관코드",
+     "size": "7",
+     "desc": "공고를 하는 기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "ntceInsttNm",
+     "nameKo": "공고기관명",
+     "size": "200",
+     "desc": "수요기관의 의뢰를 받아 공고하는 기관의 명"
+    },
+    {
+     "nameEn": "dminsttCd",
+     "nameKo": "수요기관코드",
+     "size": "7",
+     "desc": "실제 수요기관의 코드로 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 수요기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "dminsttNm",
+     "nameKo": "수요기관명",
+     "size": "200",
+     "desc": "중앙조달인 경우 조달사업에 관한 법률 제2조(정의)에 따라 수요물자의 구매 공급 또는 시설공사 계약의 체결을 조달청장에게 요청할 수 있도록 조달청장이 인정하여 등록한 기관 또는 자체전자조달시스템을 이용하는 기관인 경우 계약을 의뢰한 기관의 명으로 공고기관과 수요기관이 동일할 수 있음"
+    },
+    {
+     "nameEn": "opengRsltNtcCntnts",
+     "nameKo": "개찰결과공지내용",
+     "size": "4000",
+     "desc": "입찰공고번호, 입찰공고차수, 입찰분류번호, 재입찰번호에 해당하는 공지사항 내용"
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/as/ScsbidInfoService/getOpengResultListInfoFrgcptPPSSrch?inqryDiv=1&inqryBgnDt=201605010000&inqryEndDt=201605052359&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  }
+ ]
+}

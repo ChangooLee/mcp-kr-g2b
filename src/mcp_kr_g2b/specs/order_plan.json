@@ -1,0 +1,3954 @@
+{
+ "module": "order_plan",
+ "serviceId": "OrderPlanSttusService",
+ "serviceNameKo": "나라장터 발주계획현황서비스",
+ "baseUrl": "http://apis.data.go.kr/1230000/ao/OrderPlanSttusService",
+ "description": "발주기관들이 나라장터에 등록한 발주계획정보를 제공하는 서비스로, 각 발주기관이 당해 회계연도에 조달할 공사, 물품, 용역, 외자에 대한 분기별 발주계획(조달대상, 예산액, 발주예정시기, 발주방법, 발주기관 주소, 연락처 등) 공고 내역을 제공한다.",
+ "updateCycle": "수시",
+ "operations": [
+  {
+   "opNameEn": "getOrderPlanSttusListThng",
+   "opNameKo": "발주계획현황에 대한 물품조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 조회구분, 발주년월범위, 게시일자범위, 발주기관코드, 발주기관명, 발주계획통합번호로 하여 발주년도, 발주기관, 소관기관, 계약방법, 발주도급금액, 물품분류 정보, 규격항목정보 등 물품에 대한 발주계획현황 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포탈에서 받은 인증키",
+     "desc": "공공데이터포탈에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1. 발주년월, 게시일시 2. 발주계획통합번호"
+    },
+    {
+     "nameEn": "orderBgnYm",
+     "nameKo": "발주시작년월",
+     "size": "6",
+     "required": false,
+     "sample": "201606",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회시작 'YYYYMM' * 입력값이 없을 경우 현재일로부터 한달기준 조회. 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "orderEndYm",
+     "nameKo": "발주종료년월",
+     "size": "6",
+     "required": false,
+     "sample": "201608",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회종료 'YYYYMM' *입력값이 없을 경우 현재일로부터 한달기준 조회. 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201606010000",
+     "desc": "검색하고자하는 게시일시 기준 조회시작 'YYYYMMDDHHmm' *입력값이 없을 경우 현재일로부터 하루기준 조회. 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201606282359",
+     "desc": "검색하고자하는 게시일시 기준 조회종료 'YYYYMMDDHHmm' *입력값이 없을 경우 현재일로부터 하루기준 조회. 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "30",
+     "required": false,
+     "sample": "1-1-2016-7000126-000009",
+     "desc": "검색하고자하는 업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주계획순번(6) 로 구성됨. 조회구분이 2인 경우 필수"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "7000126",
+     "desc": "검색하고자하는 발주기관코드. 조회구분이 1인 경우 선택"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "required": false,
+     "sample": "경북대학교",
+     "desc": "검색하고자하는 발주기관명. 조회구분이 1인 경우 선택"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총개수"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "업무구분코드가1이면 물품, 2면 외자, 3이면 공사, 5면 용역"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "20",
+     "desc": "업무구분명"
+    },
+    {
+     "nameEn": "bsnsTyCd",
+     "nameKo": "업무유형코드",
+     "size": "3",
+     "desc": "업무유형코드 1이면 신규, 2면 장기 나머지는 \"해당없음\""
+    },
+    {
+     "nameEn": "bsnsTyNm",
+     "nameKo": "업무유형명",
+     "size": "20",
+     "desc": "업무유형명"
+    },
+    {
+     "nameEn": "orderYear",
+     "nameKo": "발주년도",
+     "size": "4",
+     "desc": "발주년도"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "desc": "발주기관코드는행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 발주기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "totlmngInsttNm",
+     "nameKo": "총괄기관명",
+     "size": "200",
+     "desc": "총괄기관명"
+    },
+    {
+     "nameEn": "jrsdctnDivCd",
+     "nameKo": "소관구분코드",
+     "size": "2",
+     "desc": "소관구분코드 01 : 국가기관 02 : 지자체 03 : 교육기관 51 : 공기업 52 : 준정부기관 53 : 기타공공기관 71 : 지방공기업 72 : 기타기관 81 : 지자체 출자출연기관"
+    },
+    {
+     "nameEn": "jrsdctnDivNm",
+     "nameKo": "소관구분명",
+     "size": "100",
+     "desc": "소관구분명"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "desc": "발주기관명"
+    },
+    {
+     "nameEn": "orderPlanSno",
+     "nameKo": "발주계획순번",
+     "size": "6",
+     "desc": "발주계획순번"
+    },
+    {
+     "nameEn": "prcrmntMethd",
+     "nameKo": "조달방식",
+     "size": "20",
+     "desc": "조달방식은 중앙조달과 자체조달로 구분됨"
+    },
+    {
+     "nameEn": "orderMnth",
+     "nameKo": "발주월",
+     "size": "8",
+     "desc": "발주월 \"MM\""
+    },
+    {
+     "nameEn": "bizNm",
+     "nameKo": "사업명",
+     "size": "400",
+     "desc": "발주계획의 사업명"
+    },
+    {
+     "nameEn": "cnstwkRgnNm",
+     "nameKo": "공사지역명",
+     "size": "100",
+     "desc": "발주계획의 공사지역명"
+    },
+    {
+     "nameEn": "cnsttyDivNm",
+     "nameKo": "공종구분명",
+     "size": "20",
+     "desc": "발주계획의 공종구분명"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "20",
+     "desc": "발주계획의 계약방법명"
+    },
+    {
+     "nameEn": "orderContrctAmt",
+     "nameKo": "발주도급금액",
+     "size": "30",
+     "desc": "발주도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderGovsplyMtrcst",
+     "nameKo": "발주관급자재비",
+     "size": "30",
+     "desc": "발주관급자재비(원화,원)"
+    },
+    {
+     "nameEn": "orderEtcAmt",
+     "nameKo": "발주기타금액",
+     "size": "30",
+     "desc": "발주기타금액(원화,원)"
+    },
+    {
+     "nameEn": "sumOrderAmt",
+     "nameKo": "합계발주금액",
+     "size": "30",
+     "desc": "합계발주금액(원화,원)"
+    },
+    {
+     "nameEn": "deptNm",
+     "nameKo": "부서명",
+     "size": "50",
+     "desc": "발주계획의 담당부서명"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "20",
+     "desc": "발주계획의 담당자명"
+    },
+    {
+     "nameEn": "telNo",
+     "nameKo": "전화번호",
+     "size": "20",
+     "desc": "발주계획의 담당자 전화번호"
+    },
+    {
+     "nameEn": "agrmntYn",
+     "nameKo": "협정여부",
+     "size": "1",
+     "desc": "발주계획의 협정여부"
+    },
+    {
+     "nameEn": "usgCntnts",
+     "nameKo": "용도내용",
+     "size": "50",
+     "desc": "발주계획의 용도내용"
+    },
+    {
+     "nameEn": "qtyCntnts",
+     "nameKo": "수량내용",
+     "size": "12",
+     "desc": "발주계획의 수량내용"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "30",
+     "desc": "발주계획의 수량단위"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "11",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "desc": "품명에 대한 분류번호로서 10자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "200",
+     "desc": "물품분류번호 8자리에 해당하는 물품의 한글이름"
+    },
+    {
+     "nameEn": "ntceNticeYn",
+     "nameKo": "공고게시여부",
+     "size": "1",
+     "desc": "발주계획의 공고게시여부"
+    },
+    {
+     "nameEn": "sumOrderDolAmt",
+     "nameKo": "합계발주미화금액",
+     "size": "16",
+     "desc": "발주계획의 합계발주미화금액(달러)"
+    },
+    {
+     "nameEn": "rcritRgstNo",
+     "nameKo": "모집등록번호",
+     "size": "12",
+     "desc": "발주계획의 모집등록번호"
+    },
+    {
+     "nameEn": "specItemNm1",
+     "nameKo": "규격항목명1",
+     "size": "200",
+     "desc": "발주계획의 규격항목명1"
+    },
+    {
+     "nameEn": "specItemNm2",
+     "nameKo": "규격항목명2",
+     "size": "200",
+     "desc": "발주계획의 규격항목명2"
+    },
+    {
+     "nameEn": "specItemNm3",
+     "nameKo": "규격항목명3",
+     "size": "200",
+     "desc": "발주계획의 규격항목명3"
+    },
+    {
+     "nameEn": "specItemNm4",
+     "nameKo": "규격항목명4",
+     "size": "200",
+     "desc": "발주계획의 규격항목명4"
+    },
+    {
+     "nameEn": "specItemNm5",
+     "nameKo": "규격항목명5",
+     "size": "200",
+     "desc": "발주계획의 규격항목명5"
+    },
+    {
+     "nameEn": "specItemCntnts1",
+     "nameKo": "규격항목내용1",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용1"
+    },
+    {
+     "nameEn": "specItemCntnts2",
+     "nameKo": "규격항목내용2",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용2"
+    },
+    {
+     "nameEn": "specItemCntnts3",
+     "nameKo": "규격항목내용3",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용3"
+    },
+    {
+     "nameEn": "specItemCntnts4",
+     "nameKo": "규격항목내용4",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용4"
+    },
+    {
+     "nameEn": "specItemCntnts5",
+     "nameKo": "규격항목내용5",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용5"
+    },
+    {
+     "nameEn": "bdgtDivCd",
+     "nameKo": "예산구분코드",
+     "size": "25",
+     "desc": "발주계획의 예산구분코드"
+    },
+    {
+     "nameEn": "cnstwkPrdCntnts",
+     "nameKo": "공사기간내용",
+     "size": "30",
+     "desc": "발주계획의 공사기간내용"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "발주계획의 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "orderThtmContrctAmt",
+     "nameKo": "발주금차도급금액",
+     "size": "25",
+     "desc": "발주계획의 발주금차도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderNtntrsAuxAmt",
+     "nameKo": "발주국고보조금액",
+     "size": "25",
+     "desc": "발주계획의 발주국고보조금액(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNoNm",
+     "nameKo": "세부품명",
+     "size": "200",
+     "desc": "세부품명번호 10자리에 대한 한글명"
+    },
+    {
+     "nameEn": "specCntnts",
+     "nameKo": "규격내용",
+     "size": "100",
+     "desc": "발주계획의 규격내용"
+    },
+    {
+     "nameEn": "dsgnDocRdngPlceNm",
+     "nameKo": "설계문서열람장소명",
+     "size": "100",
+     "desc": "발주계획의 설계서열람장소명"
+    },
+    {
+     "nameEn": "dsgnDocRdngPrdCntnts",
+     "nameKo": "설계문서열람기간내용",
+     "size": "100",
+     "desc": "발주계획의 설계서열람기간내용"
+    },
+    {
+     "nameEn": "rmrkCntnts",
+     "nameKo": "비고내용",
+     "size": "4000",
+     "desc": "발주계획의 비고내용(담당부서 정보)"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "30",
+     "desc": "업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주계획순번(6) 로 구성됨"
+    },
+    {
+     "nameEn": "bidNtceNoList",
+     "nameKo": "입찰공고번호목록",
+     "size": "1000",
+     "desc": "관련된 입찰공고번호 정보 \"입찰공고번호1,입찰공고번호2\""
+    },
+    {
+     "nameEn": "chgDt",
+     "nameKo": "변경일시",
+     "size": "19",
+     "desc": "발주계획의 변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/OrderPlanSttusService/getOrderPlanSttusListThng?inqryDiv=1&orderBgnYm=201606&orderEndYm=201606&inqryBgnDt=201606010000&inqryEndDt=201606282359&orderInsttCd=7000126&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOrderPlanSttusListCnstwk",
+   "opNameKo": "발주계획현황에 대한 공사조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 조회구분, 발주년월범위, 게시일자범위, 발주기관코드, 발주기관명, 발주계획통합번호로 하여 발주년도, 발주기관, 소관기관, 계약방법, 발주도급금액, 물품분류 정보, 규격항목정보 등 공사에 대한 발주계획현황 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포탈에서 받은 인증키",
+     "desc": "공공데이터포탈에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1. 발주년월, 게시일시 2. 발주계획통합번호"
+    },
+    {
+     "nameEn": "orderBgnYm",
+     "nameKo": "발주시작년월",
+     "size": "6",
+     "required": false,
+     "sample": "201606",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회시작 'YYYYMM', *입력값이 없을 경우 현재일로부터 한달기준 조회. 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "orderEndYm",
+     "nameKo": "발주종료년월",
+     "size": "6",
+     "required": false,
+     "sample": "201608",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회종료 'YYYYMM', *입력값이 없을 경우 현재일로부터 한달기준 조회, 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201606010000",
+     "desc": "검색하고자하는 게시일시 기준 조회시작 'YYYYMMDDHHmm' * 입력값이 없을 경우 현재일로부터 하루기준 조회. 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201606282359",
+     "desc": "검색하고자하는 게시일시 기준 조회종료 'YYYYMMDDHHmm' *입력값이 없을 경우 현재일로부터 하루기준 조회. 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "30",
+     "required": false,
+     "sample": "3-1-2016-8781000- 000051",
+     "desc": "검색하고자하는 업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주계획순번(6) 로 구성됨. 조회구분이 2인 경우 필수"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "7000126",
+     "desc": "검색하고자하는 발주기관코드, 조회구분이 1인 경우 선택"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "required": false,
+     "sample": "경북대학교",
+     "desc": "검색하고자하는 발주기관명, 조회구분이 1인 경우 선택"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총개수"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "업무구분코드가1이면 물품, 2면 외자, 3이면 공사, 5면 용역"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "20",
+     "desc": "업무구분명"
+    },
+    {
+     "nameEn": "bsnsTyCd",
+     "nameKo": "업무유형코드",
+     "size": "3",
+     "desc": "업무유형코드 1이면 신규, 2면 장기 나머지는 \"해당없음\""
+    },
+    {
+     "nameEn": "bsnsTyNm",
+     "nameKo": "업무유형명",
+     "size": "20",
+     "desc": "업무유형명"
+    },
+    {
+     "nameEn": "orderYear",
+     "nameKo": "발주년도",
+     "size": "4",
+     "desc": "발주년도"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "desc": "발주기관코드는행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 발주기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "totlmngInsttNm",
+     "nameKo": "총괄기관명",
+     "size": "200",
+     "desc": "총괄기관명"
+    },
+    {
+     "nameEn": "jrsdctnDivCd",
+     "nameKo": "소관구분코드",
+     "size": "2",
+     "desc": "소관구분코드 01 : 국가기관 02 : 지자체 03 : 교육기관 51 : 공기업 52 : 준정부기관 53 : 기타공공기관 71 : 지방공기업 72 : 기타기관 81 : 지자체 출자출연기관"
+    },
+    {
+     "nameEn": "jrsdctnDivNm",
+     "nameKo": "소관구분명",
+     "size": "100",
+     "desc": "소관구분명"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "desc": "발주기관명"
+    },
+    {
+     "nameEn": "orderPlanSno",
+     "nameKo": "발주계획순번",
+     "size": "6",
+     "desc": "발주계획순번"
+    },
+    {
+     "nameEn": "prcrmntMethd",
+     "nameKo": "조달방식",
+     "size": "20",
+     "desc": "조달방식은 중앙조달과 자체조달로 구분됨"
+    },
+    {
+     "nameEn": "orderMnth",
+     "nameKo": "발주월",
+     "size": "8",
+     "desc": "발주월 \"MM\""
+    },
+    {
+     "nameEn": "bizNm",
+     "nameKo": "사업명",
+     "size": "400",
+     "desc": "발주계획의 사업명"
+    },
+    {
+     "nameEn": "cnstwkRgnNm",
+     "nameKo": "공사지역명",
+     "size": "100",
+     "desc": "발주계획의 공사지역명"
+    },
+    {
+     "nameEn": "cnsttyDivNm",
+     "nameKo": "공종구분명",
+     "size": "20",
+     "desc": "발주계획의 공종구분명"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "20",
+     "desc": "발주계획의 계약방법명"
+    },
+    {
+     "nameEn": "orderContrctAmt",
+     "nameKo": "발주도급금액",
+     "size": "30",
+     "desc": "발주도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderGovsplyMtrcst",
+     "nameKo": "발주관급자재비",
+     "size": "30",
+     "desc": "발주관급자재비(원화,원)"
+    },
+    {
+     "nameEn": "orderEtcAmt",
+     "nameKo": "발주기타금액",
+     "size": "30",
+     "desc": "발주기타금액(원화,원)"
+    },
+    {
+     "nameEn": "sumOrderAmt",
+     "nameKo": "합계발주금액",
+     "size": "30",
+     "desc": "합계발주금액(원화,원)"
+    },
+    {
+     "nameEn": "deptNm",
+     "nameKo": "부서명",
+     "size": "50",
+     "desc": "발주계획의 담당부서명"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "20",
+     "desc": "발주계획의 담당자명"
+    },
+    {
+     "nameEn": "telNo",
+     "nameKo": "전화번호",
+     "size": "20",
+     "desc": "발주계획의 담당자 전화번호"
+    },
+    {
+     "nameEn": "agrmntYn",
+     "nameKo": "협정여부",
+     "size": "1",
+     "desc": "발주계획의 협정여부"
+    },
+    {
+     "nameEn": "usgCntnts",
+     "nameKo": "용도내용",
+     "size": "50",
+     "desc": "발주계획의 용도내용"
+    },
+    {
+     "nameEn": "qtyCntnts",
+     "nameKo": "수량내용",
+     "size": "12",
+     "desc": "발주계획의 수량내용"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "30",
+     "desc": "발주계획의 수량단위"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "11",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "desc": "품명에 대한 분류번호로서 10자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "200",
+     "desc": "물품분류번호 8자리에 해당하는 물품의 한글이름"
+    },
+    {
+     "nameEn": "ntceNticeYn",
+     "nameKo": "공고게시여부",
+     "size": "1",
+     "desc": "발주계획의 공고게시여부"
+    },
+    {
+     "nameEn": "sumOrderDolAmt",
+     "nameKo": "합계발주미화금액",
+     "size": "16",
+     "desc": "발주계획의 합계발주미화금액(달러)"
+    },
+    {
+     "nameEn": "rcritRgstNo",
+     "nameKo": "모집등록번호",
+     "size": "12",
+     "desc": "발주계획의 모집등록번호"
+    },
+    {
+     "nameEn": "specItemNm1",
+     "nameKo": "규격항목명1",
+     "size": "200",
+     "desc": "발주계획의 규격항목명1"
+    },
+    {
+     "nameEn": "specItemNm2",
+     "nameKo": "규격항목명2",
+     "size": "200",
+     "desc": "발주계획의 규격항목명2"
+    },
+    {
+     "nameEn": "specItemNm3",
+     "nameKo": "규격항목명3",
+     "size": "200",
+     "desc": "발주계획의 규격항목명3"
+    },
+    {
+     "nameEn": "specItemNm4",
+     "nameKo": "규격항목명4",
+     "size": "200",
+     "desc": "발주계획의 규격항목명4"
+    },
+    {
+     "nameEn": "specItemNm5",
+     "nameKo": "규격항목명5",
+     "size": "200",
+     "desc": "발주계획의 규격항목명5"
+    },
+    {
+     "nameEn": "specItemCntnts1",
+     "nameKo": "규격항목내용1",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용1"
+    },
+    {
+     "nameEn": "specItemCntnts2",
+     "nameKo": "규격항목내용2",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용2"
+    },
+    {
+     "nameEn": "specItemCntnts3",
+     "nameKo": "규격항목내용3",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용3"
+    },
+    {
+     "nameEn": "specItemCntnts4",
+     "nameKo": "규격항목내용4",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용4"
+    },
+    {
+     "nameEn": "specItemCntnts5",
+     "nameKo": "규격항목내용5",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용5"
+    },
+    {
+     "nameEn": "bdgtDivCd",
+     "nameKo": "예산구분코드",
+     "size": "25",
+     "desc": "발주계획의 예산구분코드"
+    },
+    {
+     "nameEn": "cnstwkPrdCntnts",
+     "nameKo": "공사기간내용",
+     "size": "30",
+     "desc": "발주계획의 공사기간내용"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "발주계획의 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "orderThtmContrctAmt",
+     "nameKo": "발주금차도급금액",
+     "size": "25",
+     "desc": "발주계획의 발주금차도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderNtntrsAuxAmt",
+     "nameKo": "발주국고보조금액",
+     "size": "25",
+     "desc": "발주계획의 발주국고보조금액(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNoNm",
+     "nameKo": "세부품명",
+     "size": "200",
+     "desc": "세부품명번호 10자리에 대한 한글명"
+    },
+    {
+     "nameEn": "specCntnts",
+     "nameKo": "규격내용",
+     "size": "100",
+     "desc": "발주계획의 규격내용"
+    },
+    {
+     "nameEn": "dsgnDocRdngPlceNm",
+     "nameKo": "설계문서열람장소명",
+     "size": "100",
+     "desc": "발주계획의 설계서열람장소명"
+    },
+    {
+     "nameEn": "dsgnDocRdngPrdCntnts",
+     "nameKo": "설계문서열람기간내용",
+     "size": "100",
+     "desc": "발주계획의 설계서열람기간내용"
+    },
+    {
+     "nameEn": "rmrkCntnts",
+     "nameKo": "비고내용",
+     "size": "4000",
+     "desc": "발주계획의 비고내용(담당부서 정보)"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "30",
+     "desc": "업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주계획순번(6) 로 구성됨"
+    },
+    {
+     "nameEn": "bidNtceNoList",
+     "nameKo": "입찰공고번호목록",
+     "size": "1000",
+     "desc": "관련된 입찰공고번호 정보 \"입찰공고번호1,입찰공고번호2\""
+    },
+    {
+     "nameEn": "chgDt",
+     "nameKo": "변경일시",
+     "size": "19",
+     "desc": "발주계획의 변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/OrderPlanSttusService/getOrderPlanSttusListCnstwk?inqryDiv=1&orderBgnYm=201606&orderEndYm=201608&inqryBgnDt=201606250000&inqryEndDt=201606282359&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOrderPlanSttusListServc",
+   "opNameKo": "발주계획현황에 대한 용역조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 조회구분, 발주년월범위, 게시일자범위, 발주기관코드, 발주기관명으로 하여 발주년도, 발주기관, 소관기관, 계약방법, 발주도급금액, 물품분류 정보, 규격항목정보 등 용역에 대한 발주계획현황 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포탈에서 받은 인증키",
+     "desc": "공공데이터포탈에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분 1. 발주년월, 게시일시 2. 발주계획통합번호"
+    },
+    {
+     "nameEn": "orderBgnYm",
+     "nameKo": "발주시작년월",
+     "size": "6",
+     "required": false,
+     "sample": "201606",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회시작 'YYYYMM', *입력값이 없을 경우 현재일로부터 한달기준 조회. 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "orderEndYm",
+     "nameKo": "발주종료년월",
+     "size": "6",
+     "required": false,
+     "sample": "201608",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회종료 'YYYYMM', *입력값이 없을 경우 현재일로부터 한달기준 조회. 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201606010000",
+     "desc": "검색하고자하는 게시일시 기준 조회시작'YYYYMMDDHHmm', *입력값이 없을 경우 현재일로 부터 하루기준 조회. 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201606282359",
+     "desc": "검색하고자하는 게시일시 기준 조회종료 'YYYYMMDDHHmm', *입력값이 없을 경우 현재일로부터 하루기준 조회. 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "30",
+     "required": false,
+     "sample": "5-1-2016-7391000-000033",
+     "desc": "검색하고자하는 업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주계획순번(6) 로 구성됨. 조회구분이 2인 경우 필수"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "7000126",
+     "desc": "검색하고자하는 발주기관코드, 조회구분이 1인 경우 선택"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "required": false,
+     "sample": "경북대학교",
+     "desc": "검색하고자하는 발주기관명, 조회구분이 1인 경우 선택"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총개수"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "업무구분코드가 1이면 물품, 2면 외자, 3이면 공사, 5면 용역"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "20",
+     "desc": "업무구분명"
+    },
+    {
+     "nameEn": "bsnsTyCd",
+     "nameKo": "업무유형코드",
+     "size": "3",
+     "desc": "업무유형코드 1이면 신규, 2면 장기 나머지는 \"해당없음\""
+    },
+    {
+     "nameEn": "bsnsTyNm",
+     "nameKo": "업무유형명",
+     "size": "20",
+     "desc": "업무유형명"
+    },
+    {
+     "nameEn": "orderYear",
+     "nameKo": "발주년도",
+     "size": "4",
+     "desc": "발주년도"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "desc": "발주기관코드는 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 발주기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "totlmngInsttNm",
+     "nameKo": "총괄기관명",
+     "size": "200",
+     "desc": "총괄기관명"
+    },
+    {
+     "nameEn": "jrsdctnDivCd",
+     "nameKo": "소관구분코드",
+     "size": "2",
+     "desc": "소관구분코드 01 : 국가기관 02 : 지자체 03 : 교육기관 51 : 공기업 52 : 준정부기관 53 : 기타공공기관 71 : 지방공기업 72 : 기타기관 81 : 지자체 출자출연기관"
+    },
+    {
+     "nameEn": "jrsdctnDivNm",
+     "nameKo": "소관구분명",
+     "size": "100",
+     "desc": "소관구분명"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "desc": "발주기관명"
+    },
+    {
+     "nameEn": "orderPlanSno",
+     "nameKo": "발주계획순번",
+     "size": "6",
+     "desc": "발주계획순번"
+    },
+    {
+     "nameEn": "prcrmntMethd",
+     "nameKo": "조달방식",
+     "size": "20",
+     "desc": "조달방식은 중앙조달과 자체조달로 구분됨"
+    },
+    {
+     "nameEn": "orderMnth",
+     "nameKo": "발주월",
+     "size": "8",
+     "desc": "발주월 \"MM\""
+    },
+    {
+     "nameEn": "bizNm",
+     "nameKo": "사업명",
+     "size": "400",
+     "desc": "발주계획의 사업명"
+    },
+    {
+     "nameEn": "cnstwkRgnNm",
+     "nameKo": "공사지역명",
+     "size": "100",
+     "desc": "발주계획의 공사지역명"
+    },
+    {
+     "nameEn": "cnsttyDivNm",
+     "nameKo": "공종구분명",
+     "size": "20",
+     "desc": "발주계획의 공종구분명"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "20",
+     "desc": "발주계획의 계약방법명"
+    },
+    {
+     "nameEn": "orderContrctAmt",
+     "nameKo": "발주도급금액",
+     "size": "30",
+     "desc": "발주도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderGovsplyMtrcst",
+     "nameKo": "발주관급자재비",
+     "size": "30",
+     "desc": "발주관급자재비(원화,원)"
+    },
+    {
+     "nameEn": "orderEtcAmt",
+     "nameKo": "발주기타금액",
+     "size": "30",
+     "desc": "발주기타금액(원화,원)"
+    },
+    {
+     "nameEn": "sumOrderAmt",
+     "nameKo": "합계발주금액",
+     "size": "30",
+     "desc": "합계발주금액(원화,원)"
+    },
+    {
+     "nameEn": "deptNm",
+     "nameKo": "부서명",
+     "size": "50",
+     "desc": "발주계획의 담당부서명"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "20",
+     "desc": "발주계획의 담당자명"
+    },
+    {
+     "nameEn": "telNo",
+     "nameKo": "전화번호",
+     "size": "20",
+     "desc": "발주계획의 담당자전화번호"
+    },
+    {
+     "nameEn": "agrmntYn",
+     "nameKo": "협정여부",
+     "size": "1",
+     "desc": "발주계획의 협정여부"
+    },
+    {
+     "nameEn": "usgCntnts",
+     "nameKo": "용도내용",
+     "size": "50",
+     "desc": "발주계획의 용도내용"
+    },
+    {
+     "nameEn": "qtyCntnts",
+     "nameKo": "수량내용",
+     "size": "12",
+     "desc": "발주계획의 수량내용"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "30",
+     "desc": "발주계획의 수량단위"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "desc": "품명에 대한 분류번호로서 10자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "200",
+     "desc": "물품분류번호 8자리에 해당하는 물품의 한글이름"
+    },
+    {
+     "nameEn": "ntceNticeYn",
+     "nameKo": "공고게시여부",
+     "size": "1",
+     "desc": "발주계획의 공고게시여부"
+    },
+    {
+     "nameEn": "sumOrderDolAmt",
+     "nameKo": "합계발주미화금액",
+     "size": "16",
+     "desc": "발주계획의 합계발주미화금액(달러)"
+    },
+    {
+     "nameEn": "rcritRgstNo",
+     "nameKo": "모집등록번호",
+     "size": "12",
+     "desc": "발주계획의 모집등록번호"
+    },
+    {
+     "nameEn": "specItemNm1",
+     "nameKo": "규격항목명1",
+     "size": "200",
+     "desc": "발주계획의 규격항목명1"
+    },
+    {
+     "nameEn": "specItemNm2",
+     "nameKo": "규격항목명2",
+     "size": "200",
+     "desc": "발주계획의 규격항목명2"
+    },
+    {
+     "nameEn": "specItemNm3",
+     "nameKo": "규격항목명3",
+     "size": "200",
+     "desc": "발주계획의 규격항목명3"
+    },
+    {
+     "nameEn": "specItemNm4",
+     "nameKo": "규격항목명4",
+     "size": "200",
+     "desc": "발주계획의 규격항목명4"
+    },
+    {
+     "nameEn": "specItemNm5",
+     "nameKo": "규격항목명5",
+     "size": "200",
+     "desc": "발주계획의 규격항목명5"
+    },
+    {
+     "nameEn": "specItemCntnts1",
+     "nameKo": "규격항목내용1",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용1"
+    },
+    {
+     "nameEn": "specItemCntnts2",
+     "nameKo": "규격항목내용2",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용2"
+    },
+    {
+     "nameEn": "specItemCntnts3",
+     "nameKo": "규격항목내용3",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용3"
+    },
+    {
+     "nameEn": "specItemCntnts4",
+     "nameKo": "규격항목내용4",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용4"
+    },
+    {
+     "nameEn": "specItemCntnts5",
+     "nameKo": "규격항목내용5",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용5"
+    },
+    {
+     "nameEn": "bdgtDivCd",
+     "nameKo": "예산구분코드",
+     "size": "25",
+     "desc": "발주계획의 예산구분코드"
+    },
+    {
+     "nameEn": "cnstwkPrdCntnts",
+     "nameKo": "공사기간내용",
+     "size": "30",
+     "desc": "발주계획의 공사기간내용"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "발주계획의 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "orderThtmContrctAmt",
+     "nameKo": "발주금차도급금액",
+     "size": "25",
+     "desc": "발주계획의 발주금차도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderNtntrsAuxAmt",
+     "nameKo": "발주국고보조금액",
+     "size": "25",
+     "desc": "발주계획의 발주국고보조금액(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNoNm",
+     "nameKo": "세부품명",
+     "size": "200",
+     "desc": "세부품명번호 10자리에 대한 한글명"
+    },
+    {
+     "nameEn": "specCntnts",
+     "nameKo": "규격내용",
+     "size": "100",
+     "desc": "발주계획의 규격내용"
+    },
+    {
+     "nameEn": "dsgnDocRdngPlceNm",
+     "nameKo": "설계문서열람장소명",
+     "size": "100",
+     "desc": "발주계획의 설계서열람장소명"
+    },
+    {
+     "nameEn": "dsgnDocRdngPrdCntnts",
+     "nameKo": "설계문서열람기간내용",
+     "size": "100",
+     "desc": "발주계획의 설계서열람기간내용"
+    },
+    {
+     "nameEn": "rmrkCntnts",
+     "nameKo": "비고내용",
+     "size": "4000",
+     "desc": "발주계획의 비고내용(담당부서 정보)"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "30",
+     "desc": "업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주계획순번(6) 로 구성됨"
+    },
+    {
+     "nameEn": "bidNtceNoList",
+     "nameKo": "입찰공고번호목록",
+     "size": "1000",
+     "desc": "관련된 입찰공고번호 정보 \"입찰공고번호1,입찰공고번호2\""
+    },
+    {
+     "nameEn": "chgDt",
+     "nameKo": "변경일시",
+     "size": "19",
+     "desc": "발주계획의 변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/OrderPlanSttusService/getOrderPlanSttusListServc?inqryDiv=1&orderBgnYm=201606&orderEndYm=201608&inqryBgnDt=201606010000&inqryEndDt=201606282359&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOrderPlanSttusListFrgcpt",
+   "opNameKo": "발주계획현황에 대한 외자조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 조회구분, 발주년월범위, 게시일자범위, 발주기관코드, 발주기관명으로 하여 발주년도, 발주기관, 소관기관, 계약방법, 발주도급금액, 물품분류 정보, 규격항목정보 등 외자에 대한 발주계획현황 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": true,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": true,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포탈에서 받은 인증키",
+     "desc": "공공데이터포탈에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "inqryDiv",
+     "nameKo": "조회구분",
+     "size": "1",
+     "required": true,
+     "sample": "1",
+     "desc": "검색하고자하는 조회구분, 1. 발주년월, 게시일시, 2. 발주계획통합번호"
+    },
+    {
+     "nameEn": "orderBgnYm",
+     "nameKo": "발주시작년월",
+     "size": "6",
+     "required": false,
+     "sample": "202007",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회시작 'YYYYMM', *입력값이 없을 경우 현재일로부터 한달기준 조회. 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "orderEndYm",
+     "nameKo": "발주종료년월",
+     "size": "6",
+     "required": false,
+     "sample": "202007",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회종료 'YYYYMM', *입력값이 없을 경우 현재일로부터 한달기준 조회. 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "202007010000",
+     "desc": "검색하고자하는 게시일시 기준 조회시작 'YYYYMMDDHHmm', *입력값이 없을 경우 현재일로부터 하루기준 조회. 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "202007302359",
+     "desc": "검색하고자하는 게시일시 기준 조회종료 'YYYYMMDDHHmm', *입력값이 없을 경우 현재일로부터 하루기준 조회. 조회구분이 1인 경우 필수"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "30",
+     "required": false,
+     "sample": "2-1-2020-1371810-000002",
+     "desc": "검색하고자하는 업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주계획순번(6) 로 구성됨. 조회구분이 2인 경우 필수"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "1371810",
+     "desc": "검색하고자하는 발주기관코드, 조회구분이 1인 경우 선택"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "required": false,
+     "sample": "문화체육관광부",
+     "desc": "검색하고자하는 발주기관명, 조회구분이 1인 경우 선택"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총개수"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "업무구분코드가 1이면 물품, 2면 외자, 3이면 공사, 5면 용역"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "20",
+     "desc": "업무구분명"
+    },
+    {
+     "nameEn": "bsnsTyCd",
+     "nameKo": "업무유형코드",
+     "size": "3",
+     "desc": "업무유형코드 1이면 신규, 2면 장기 나머지는 \"해당없음\""
+    },
+    {
+     "nameEn": "bsnsTyNm",
+     "nameKo": "업무유형명",
+     "size": "20",
+     "desc": "업무유형명"
+    },
+    {
+     "nameEn": "orderYear",
+     "nameKo": "발주년도",
+     "size": "4",
+     "desc": "발주년도"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "desc": "발주기관코드는 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 발주기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "totlmngInsttNm",
+     "nameKo": "총괄기관명",
+     "size": "200",
+     "desc": "총괄기관명"
+    },
+    {
+     "nameEn": "jrsdctnDivCd",
+     "nameKo": "소관구분코드",
+     "size": "2",
+     "desc": "소관구분코드 01 : 국가기관 02 : 지자체 03 : 교육기관 51 : 공기업 52 : 준정부기관 53 : 기타공공기관 71 : 지방공기업 72 : 기타기관 81 : 지자체 출자출연기관"
+    },
+    {
+     "nameEn": "jrsdctnDivNm",
+     "nameKo": "소관구분명",
+     "size": "100",
+     "desc": "소관구분명"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "desc": "발주기관명"
+    },
+    {
+     "nameEn": "orderPlanSno",
+     "nameKo": "발주계획순번",
+     "size": "6",
+     "desc": "발주계획순번"
+    },
+    {
+     "nameEn": "prcrmntMethd",
+     "nameKo": "조달방식",
+     "size": "20",
+     "desc": "조달방식은 중앙조달과 자체조달로 구분됨"
+    },
+    {
+     "nameEn": "orderMnth",
+     "nameKo": "발주월",
+     "size": "8",
+     "desc": "발주월 \"MM\""
+    },
+    {
+     "nameEn": "bizNm",
+     "nameKo": "사업명",
+     "size": "400",
+     "desc": "발주계획의 사업명"
+    },
+    {
+     "nameEn": "cnstwkRgnNm",
+     "nameKo": "공사지역명",
+     "size": "100",
+     "desc": "발주계획의 공사지역명"
+    },
+    {
+     "nameEn": "cnsttyDivNm",
+     "nameKo": "공종구분명",
+     "size": "20",
+     "desc": "발주계획의 공종구분명"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "20",
+     "desc": "발주계획의 계약방법명"
+    },
+    {
+     "nameEn": "orderContrctAmt",
+     "nameKo": "발주도급금액",
+     "size": "30",
+     "desc": "발주도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderGovsplyMtrcst",
+     "nameKo": "발주관급자재비",
+     "size": "30",
+     "desc": "발주관급자재비(원화,원)"
+    },
+    {
+     "nameEn": "orderEtcAmt",
+     "nameKo": "발주기타금액",
+     "size": "30",
+     "desc": "발주기타금액(원화,원)"
+    },
+    {
+     "nameEn": "sumOrderAmt",
+     "nameKo": "합계발주금액",
+     "size": "30",
+     "desc": "합계발주금액(원화,원)"
+    },
+    {
+     "nameEn": "deptNm",
+     "nameKo": "부서명",
+     "size": "50",
+     "desc": "발주계획의 담당부서명"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "20",
+     "desc": "발주계획의 담당자명"
+    },
+    {
+     "nameEn": "telNo",
+     "nameKo": "전화번호",
+     "size": "20",
+     "desc": "발주계획의 담당자전화번호"
+    },
+    {
+     "nameEn": "agrmntYn",
+     "nameKo": "협정여부",
+     "size": "1",
+     "desc": "발주계획의 협정여부"
+    },
+    {
+     "nameEn": "usgCntnts",
+     "nameKo": "용도내용",
+     "size": "50",
+     "desc": "발주계획의 용도내용"
+    },
+    {
+     "nameEn": "qtyCntnts",
+     "nameKo": "수량내용",
+     "size": "12",
+     "desc": "발주계획의 수량내용"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "30",
+     "desc": "발주계획의 수량단위"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "desc": "품명에 대한 분류번호로서 10자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "200",
+     "desc": "물품분류번호 8자리에 해당하는 물품의 한글이름"
+    },
+    {
+     "nameEn": "ntceNticeYn",
+     "nameKo": "공고게시여부",
+     "size": "1",
+     "desc": "발주계획의 공고게시여부"
+    },
+    {
+     "nameEn": "sumOrderDolAmt",
+     "nameKo": "합계발주미화금액",
+     "size": "16",
+     "desc": "발주계획의 합계발주미화금액(달러)"
+    },
+    {
+     "nameEn": "rcritRgstNo",
+     "nameKo": "모집등록번호",
+     "size": "12",
+     "desc": "발주계획의 모집등록번호"
+    },
+    {
+     "nameEn": "specItemNm1",
+     "nameKo": "규격항목명1",
+     "size": "200",
+     "desc": "발주계획의 규격항목명1"
+    },
+    {
+     "nameEn": "specItemNm2",
+     "nameKo": "규격항목명2",
+     "size": "200",
+     "desc": "발주계획의 규격항목명2"
+    },
+    {
+     "nameEn": "specItemNm3",
+     "nameKo": "규격항목명3",
+     "size": "200",
+     "desc": "발주계획의 규격항목명3"
+    },
+    {
+     "nameEn": "specItemNm4",
+     "nameKo": "규격항목명4",
+     "size": "200",
+     "desc": "발주계획의 규격항목명4"
+    },
+    {
+     "nameEn": "specItemNm5",
+     "nameKo": "규격항목명5",
+     "size": "200",
+     "desc": "발주계획의 규격항목명5"
+    },
+    {
+     "nameEn": "specItemCntnts1",
+     "nameKo": "규격항목내용1",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용1"
+    },
+    {
+     "nameEn": "specItemCntnts2",
+     "nameKo": "규격항목내용2",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용2"
+    },
+    {
+     "nameEn": "specItemCntnts3",
+     "nameKo": "규격항목내용3",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용3"
+    },
+    {
+     "nameEn": "specItemCntnts4",
+     "nameKo": "규격항목내용4",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용4"
+    },
+    {
+     "nameEn": "specItemCntnts5",
+     "nameKo": "규격항목내용5",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용5"
+    },
+    {
+     "nameEn": "bdgtDivCd",
+     "nameKo": "예산구분코드",
+     "size": "25",
+     "desc": "발주계획의 예산구분코드"
+    },
+    {
+     "nameEn": "cnstwkPrdCntnts",
+     "nameKo": "공사기간내용",
+     "size": "30",
+     "desc": "발주계획의 공사기간내용"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "발주계획의 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "orderThtmContrctAmt",
+     "nameKo": "발주금차도급금액",
+     "size": "25",
+     "desc": "발주계획의 발주금차도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderNtntrsAuxAmt",
+     "nameKo": "발주국고보조금액",
+     "size": "25",
+     "desc": "발주계획의 발주국고보조금액(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNoNm",
+     "nameKo": "세부품명",
+     "size": "200",
+     "desc": "세부품명번호 10자리에 대한 한글명"
+    },
+    {
+     "nameEn": "specCntnts",
+     "nameKo": "규격내용",
+     "size": "100",
+     "desc": "발주계획의 규격내용"
+    },
+    {
+     "nameEn": "dsgnDocRdngPlceNm",
+     "nameKo": "설계문서열람장소명",
+     "size": "100",
+     "desc": "발주계획의 설계서열람장소명"
+    },
+    {
+     "nameEn": "dsgnDocRdngPrdCntnts",
+     "nameKo": "설계문서열람기간내용",
+     "size": "100",
+     "desc": "발주계획의 설계서열람기간내용"
+    },
+    {
+     "nameEn": "rmrkCntnts",
+     "nameKo": "비고내용",
+     "size": "4000",
+     "desc": "발주계획의 비고내용(담당부서 정보)"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "30",
+     "desc": "업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주계획순번(6) 로 구성됨"
+    },
+    {
+     "nameEn": "bidNtceNoList",
+     "nameKo": "입찰공고번호목록",
+     "size": "1000",
+     "desc": "관련된 입찰공고번호 정보 \"입찰공고번호1,입찰공고번호2\""
+    },
+    {
+     "nameEn": "chgDt",
+     "nameKo": "변경일시",
+     "size": "19",
+     "desc": "발주계획의 변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/OrderPlanSttusService/getOrderPlanSttusListFrgcpt?inqryDiv=1&orderBgnYm=201606&orderEndYm=201608&inqryBgnDt=201606010000&inqryEndDt=201606282359&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOrderPlanSttusListThngPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 발주계획현황에 대한 물품조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 발주시작년월, 발주종료년월, 게시일시, 발주기관코드, 발주기관명, 협정여부, 조달방식, 기관소재지, 세부품명번호, 사업명으로 하여 발주년도, 발주기관, 소관기관, 계약방법, 발주도급금액, 물품분류 정보, 규격항목정보 등 물품에 대한 발주계획현황 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": false,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": false,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포탈에서 받은 인증키",
+     "desc": "공공데이터포탈에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "Json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "orderBgnYm",
+     "nameKo": "발주시작년월",
+     "size": "6",
+     "required": false,
+     "sample": "201606",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회시작 'YYYYMM' * 입력값이 없을 경우 현재일로부터 한달기준 조회"
+    },
+    {
+     "nameEn": "orderEndYm",
+     "nameKo": "발주종료년월",
+     "size": "6",
+     "required": false,
+     "sample": "201608",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회종료 'YYYYMM' * 입력값이 없을 경우 현재일로부터 한달기준 조회"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201606010000",
+     "desc": "검색하고자하는 게시일시 기준 조회시작 'YYYYMMDDHHmm' * 입력값이 없을 경우 현재일로 부터 하루기준 조회"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201606282359",
+     "desc": "검색하고자하는 게시일시 기준 조회종료 'YYYYMMDDHHmm' * 입력값이 없을 경우 현재일로부터 하루기준 조회"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "7000126",
+     "desc": "검색하고자하는 발주기관코드"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "required": false,
+     "sample": "경북대학교",
+     "desc": "검색하고자하는 발주기관명"
+    },
+    {
+     "nameEn": "agrmntYn",
+     "nameKo": "협정여부",
+     "size": "1",
+     "required": false,
+     "sample": "Y",
+     "desc": "검색하고자하는 발주계획 협정여부"
+    },
+    {
+     "nameEn": "prcrmntMethd",
+     "nameKo": "조달방식",
+     "size": "20",
+     "required": false,
+     "sample": "자체조달",
+     "desc": "검색하고자하는 조달방식 (중앙조달, 자체조달)"
+    },
+    {
+     "nameEn": "insttLctNm",
+     "nameKo": "기관소재지명",
+     "size": "100",
+     "required": false,
+     "sample": "서울특별시",
+     "desc": "검색하고자 하는 기관의 소재지"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "required": false,
+     "sample": "4110350201",
+     "desc": "검색하고자하는 품명 분류번호"
+    },
+    {
+     "nameEn": "bizNm",
+     "nameKo": "사업명",
+     "size": "400",
+     "required": false,
+     "sample": "경북대학교 생물안전작업대(중소기업자간 경쟁물품) 구매 [재공고]",
+     "desc": "검색하고자하는 발주계획의 사업명"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총개수"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "업무구분코드가 1이면 물품 2면 외자 3이면 공사 5면 용역"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "20",
+     "desc": "업무구분명"
+    },
+    {
+     "nameEn": "bsnsTyCd",
+     "nameKo": "업무유형코드",
+     "size": "3",
+     "desc": "업무유형코드 1이면 신규, 2면 장기 나머지는 \"해당없음\""
+    },
+    {
+     "nameEn": "bsnsTyNm",
+     "nameKo": "업무유형명",
+     "size": "20",
+     "desc": "업무유형명"
+    },
+    {
+     "nameEn": "orderYear",
+     "nameKo": "발주년도",
+     "size": "4",
+     "desc": "발주년도"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "desc": "발주기관코드는 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 발주기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "totlmngInsttNm",
+     "nameKo": "총괄기관명",
+     "size": "200",
+     "desc": "총괄기관명"
+    },
+    {
+     "nameEn": "jrsdctnDivCd",
+     "nameKo": "소관구분코드",
+     "size": "2",
+     "desc": "소관구분코드 01 : 국가기관 02 : 지자체 03 : 교육기관 51 : 공기업 52 : 준정부기관 53 : 기타공공기관 71 : 지방공기업 72 : 기타기관 81 : 지자체 출자출연기관"
+    },
+    {
+     "nameEn": "jrsdctnDivNm",
+     "nameKo": "소관구분명",
+     "size": "100",
+     "desc": "소관구분명"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "desc": "발주기관명"
+    },
+    {
+     "nameEn": "orderPlanSno",
+     "nameKo": "발주계획순번",
+     "size": "6",
+     "desc": "발주계획순번"
+    },
+    {
+     "nameEn": "prcrmntMethd",
+     "nameKo": "조달방식",
+     "size": "20",
+     "desc": "조달방식은 중앙조달과 자체조달로 구분됨"
+    },
+    {
+     "nameEn": "orderMnth",
+     "nameKo": "발주월",
+     "size": "8",
+     "desc": "발주월 \"MM\""
+    },
+    {
+     "nameEn": "bizNm",
+     "nameKo": "사업명",
+     "size": "400",
+     "desc": "발주계획의 사업명"
+    },
+    {
+     "nameEn": "cnstwkRgnNm",
+     "nameKo": "공사지역명",
+     "size": "100",
+     "desc": "발주계획의 공사지역명"
+    },
+    {
+     "nameEn": "cnsttyDivNm",
+     "nameKo": "공종구분명",
+     "size": "20",
+     "desc": "발주계획의 공종구분명"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "20",
+     "desc": "발주계획의 계약방법명"
+    },
+    {
+     "nameEn": "orderContrctAmt",
+     "nameKo": "발주도급금액",
+     "size": "30",
+     "desc": "발주도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderGovsplyMtrcst",
+     "nameKo": "발주관급자재비",
+     "size": "30",
+     "desc": "발주관급자재비(원화,원)"
+    },
+    {
+     "nameEn": "orderEtcAmt",
+     "nameKo": "발주기타금액",
+     "size": "30",
+     "desc": "발주기타금액(원화,원)"
+    },
+    {
+     "nameEn": "sumOrderAmt",
+     "nameKo": "합계발주금액",
+     "size": "30",
+     "desc": "합계발주금액(원화,원)"
+    },
+    {
+     "nameEn": "deptNm",
+     "nameKo": "부서명",
+     "size": "50",
+     "desc": "발주계획의 담당부서명"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "20",
+     "desc": "발주계획의 담당자명"
+    },
+    {
+     "nameEn": "telNo",
+     "nameKo": "전화번호",
+     "size": "20",
+     "desc": "발주계획의 담당자 전화번호"
+    },
+    {
+     "nameEn": "agrmntYn",
+     "nameKo": "협정여부",
+     "size": "1",
+     "desc": "발주계획의 협정여부"
+    },
+    {
+     "nameEn": "usgCntnts",
+     "nameKo": "용도내용",
+     "size": "50",
+     "desc": "발주계획의 용도내용"
+    },
+    {
+     "nameEn": "qtyCntnts",
+     "nameKo": "수량내용",
+     "size": "12",
+     "desc": "발주계획의 수량내용"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "30",
+     "desc": "발주계획의 수량단위"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "desc": "품명에 대한 분류번호로서 10자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "200",
+     "desc": "물품분류번호 8자리에 해당하는 물품의 한글이름"
+    },
+    {
+     "nameEn": "ntceNticeYn",
+     "nameKo": "공고게시여부",
+     "size": "1",
+     "desc": "발주계획의 공고게시여부"
+    },
+    {
+     "nameEn": "sumOrderDolAmt",
+     "nameKo": "합계발주미화금액",
+     "size": "16",
+     "desc": "발주계획의 합계발주미화금액(달러)"
+    },
+    {
+     "nameEn": "rcritRgstNo",
+     "nameKo": "모집등록번호",
+     "size": "12",
+     "desc": "발주계획의 모집등록번호"
+    },
+    {
+     "nameEn": "specItemNm1",
+     "nameKo": "규격항목명1",
+     "size": "200",
+     "desc": "발주계획의 규격항목명1"
+    },
+    {
+     "nameEn": "specItemNm2",
+     "nameKo": "규격항목명2",
+     "size": "200",
+     "desc": "발주계획의 규격항목명2"
+    },
+    {
+     "nameEn": "specItemNm3",
+     "nameKo": "규격항목명3",
+     "size": "200",
+     "desc": "발주계획의 규격항목명3"
+    },
+    {
+     "nameEn": "specItemNm4",
+     "nameKo": "규격항목명4",
+     "size": "200",
+     "desc": "발주계획의 규격항목명4"
+    },
+    {
+     "nameEn": "specItemNm5",
+     "nameKo": "규격항목명5",
+     "size": "200",
+     "desc": "발주계획의 규격항목명5"
+    },
+    {
+     "nameEn": "specItemCntnts1",
+     "nameKo": "규격항목내용1",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용1"
+    },
+    {
+     "nameEn": "specItemCntnts2",
+     "nameKo": "규격항목내용2",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용2"
+    },
+    {
+     "nameEn": "specItemCntnts3",
+     "nameKo": "규격항목내용3",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용3"
+    },
+    {
+     "nameEn": "specItemCntnts4",
+     "nameKo": "규격항목내용4",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용4"
+    },
+    {
+     "nameEn": "specItemCntnts5",
+     "nameKo": "규격항목내용5",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용5"
+    },
+    {
+     "nameEn": "bdgtDivCd",
+     "nameKo": "예산구분코드",
+     "size": "25",
+     "desc": "발주계획의 예산구분코드"
+    },
+    {
+     "nameEn": "cnstwkPrdCntnts",
+     "nameKo": "공사기간내용",
+     "size": "30",
+     "desc": "발주계획의 공사기간내용"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "발주계획의 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "orderThtmContrctAmt",
+     "nameKo": "발주금차도급금액",
+     "size": "25",
+     "desc": "발주계획의 발주금차도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderNtntrsAuxAmt",
+     "nameKo": "발주국고보조금액",
+     "size": "25",
+     "desc": "발주계획의 발주국고보조금액(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNoNm",
+     "nameKo": "세부품명",
+     "size": "200",
+     "desc": "세부품명번호 10자리에 대한 한글명"
+    },
+    {
+     "nameEn": "specCntnts",
+     "nameKo": "규격내용",
+     "size": "100",
+     "desc": "발주계획의 규격내용"
+    },
+    {
+     "nameEn": "dsgnDocRdngPlceNm",
+     "nameKo": "설계문서열람장소명",
+     "size": "100",
+     "desc": "발주계획의 설계서열람장소명"
+    },
+    {
+     "nameEn": "dsgnDocRdngPrdCntnts",
+     "nameKo": "설계문서열람기간내용",
+     "size": "100",
+     "desc": "발주계획의 설계서열람기간내용"
+    },
+    {
+     "nameEn": "rmrkCntnts",
+     "nameKo": "비고내용",
+     "size": "4000",
+     "desc": "발주계획의 비고내용(담당부서 정보)"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "30",
+     "desc": "업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주계획순번(6) 로 구성됨"
+    },
+    {
+     "nameEn": "bidNtceNoList",
+     "nameKo": "입찰공고번호목록",
+     "size": "1000",
+     "desc": "관련된 입찰공고번호 정보 \"입찰공고번호1,입찰공고번호2\""
+    },
+    {
+     "nameEn": "chgDt",
+     "nameKo": "변경일시",
+     "size": "19",
+     "desc": "발주계획의 변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/OrderPlanSttusService/getOrderPlanSttusListThngPPSSrch?orderBgnYm=201606&orderEndYm=201606&inqryBgnDt=201606010000&inqryEndDt=201606282359&orderInsttCd=1270460&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOrderPlanSttusListCnstwkPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 발주계획현황에 대한 공사조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 발주시작년월, 발주종료년월, 게시일시, 발주기관코드, 발주기관명, 업무유형, 조달방식, 기관소재지, 공종, 사업명으로 하여 발주년도, 발주기관, 소관기관, 계약방법, 발주도급금액, 물품분류 정보, 규격항목정보 등 공사에 대한 발주계획현황 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": false,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": false,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포탈에서 받은 인증키",
+     "desc": "공공데이터포탈에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "orderBgnYm",
+     "nameKo": "발주시작년월",
+     "size": "6",
+     "required": false,
+     "sample": "201606",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회시작 'YYYYMM' * 입력값이 없을 경우 현재일로부터 한달기준 조회"
+    },
+    {
+     "nameEn": "orderEndYm",
+     "nameKo": "발주종료년월",
+     "size": "6",
+     "required": true,
+     "sample": "201608",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회종료 'YYYYMM' * 입력값이 없을 경우 현재일로부터 한달기준 조회"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201606010000",
+     "desc": "검색하고자하는 게시일시 기준 조회시작'YYYYMMDDHHmm' * 입력값이 없을 경우 현재일로 부터 하루기준 조회"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201606282359",
+     "desc": "검색하고자하는 게시일시 기준 조회종료 'YYYYMMDDHHmm' * 입력값이 없을 경우 현재일로부터 하루기준 조회"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "8781000",
+     "desc": "검색하고자하는 발주기관코드"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "required": false,
+     "sample": "경상북도교육청",
+     "desc": "검색하고자하는 발주기관명"
+    },
+    {
+     "nameEn": "bsnsTyCd",
+     "nameKo": "업무유형코드",
+     "size": "3",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 업무유형명 업무유형코드 1이면 신규, 2면 장기 나머지는 \"해당없음\""
+    },
+    {
+     "nameEn": "bsnsTyNm",
+     "nameKo": "업무유형명",
+     "size": "20",
+     "required": false,
+     "sample": "신규",
+     "desc": "검색하고자하는 업무유형명 업무유형코드 1이면 신규, 2면 장기 나머지는 \"해당없음\""
+    },
+    {
+     "nameEn": "prcrmntMethd",
+     "nameKo": "조달방식",
+     "size": "20",
+     "required": false,
+     "sample": "자체조달",
+     "desc": "검색하고자하는 조달방식 (중앙조달, 자체조달)"
+    },
+    {
+     "nameEn": "insttLctNm",
+     "nameKo": "기관소재지명",
+     "size": "100",
+     "required": false,
+     "sample": "서울특별시",
+     "desc": "검색하고자 하는 기관의 소재지"
+    },
+    {
+     "nameEn": "cnsttyDivNm",
+     "nameKo": "공종구분명",
+     "size": "20",
+     "required": false,
+     "sample": "전문",
+     "desc": "검색하고자하는 발주계획의 공종구분명"
+    },
+    {
+     "nameEn": "bizNm",
+     "nameKo": "사업명",
+     "size": "400",
+     "required": false,
+     "sample": "지례초등학교 옹벽 및 배수로 설치공사",
+     "desc": "검색하고자하는 발주계획의 사업명"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총개수"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "업무구분코드가 1이면 물품 2면 외자 3이면 공사5면 용역"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "20",
+     "desc": "업무구분명"
+    },
+    {
+     "nameEn": "bsnsTyCd",
+     "nameKo": "업무유형코드",
+     "size": "3",
+     "desc": "업무유형코드 1이면 신규, 2면 장기 나머지는 \"해당없음\""
+    },
+    {
+     "nameEn": "bsnsTyNm",
+     "nameKo": "업무유형명",
+     "size": "20",
+     "desc": "업무유형명"
+    },
+    {
+     "nameEn": "orderYear",
+     "nameKo": "발주년도",
+     "size": "4",
+     "desc": "발주년도"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "desc": "발주기관코드는행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 발주기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "totlmngInsttNm",
+     "nameKo": "총괄기관명",
+     "size": "200",
+     "desc": "총괄기관명"
+    },
+    {
+     "nameEn": "jrsdctnDivCd",
+     "nameKo": "소관구분코드",
+     "size": "2",
+     "desc": "소관구분코드 01 : 국가기관 02 : 지자체 03 : 교육기관 51 : 공기업 52 : 준정부기관 53 : 기타공공기관 71 : 지방공기업 72 : 기타기관 81 : 지자체 출자출연기관"
+    },
+    {
+     "nameEn": "jrsdctnDivNm",
+     "nameKo": "소관구분명",
+     "size": "100",
+     "desc": "소관구분명"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "desc": "발주기관명"
+    },
+    {
+     "nameEn": "orderPlanSno",
+     "nameKo": "발주계획순번",
+     "size": "6",
+     "desc": "발주계획순번"
+    },
+    {
+     "nameEn": "prcrmntMethd",
+     "nameKo": "조달방식",
+     "size": "20",
+     "desc": "조달방식은 중앙조달과 자체조달로 구분됨"
+    },
+    {
+     "nameEn": "orderMnth",
+     "nameKo": "발주월",
+     "size": "8",
+     "desc": "발주월 \"MM\""
+    },
+    {
+     "nameEn": "bizNm",
+     "nameKo": "사업명",
+     "size": "400",
+     "desc": "발주계획의 사업명"
+    },
+    {
+     "nameEn": "cnstwkRgnNm",
+     "nameKo": "공사지역명",
+     "size": "100",
+     "desc": "발주계획의 공사지역명"
+    },
+    {
+     "nameEn": "cnsttyDivNm",
+     "nameKo": "공종구분명",
+     "size": "20",
+     "desc": "발주계획의 공종구분명"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "20",
+     "desc": "발주계획의 계약방법명"
+    },
+    {
+     "nameEn": "orderContrctAmt",
+     "nameKo": "발주도급금액",
+     "size": "30",
+     "desc": "발주도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderGovsplyMtrcst",
+     "nameKo": "발주관급자재비",
+     "size": "30",
+     "desc": "발주관급자재비(원화,원)"
+    },
+    {
+     "nameEn": "orderEtcAmt",
+     "nameKo": "발주기타금액",
+     "size": "30",
+     "desc": "발주기타금액(원화,원)"
+    },
+    {
+     "nameEn": "sumOrderAmt",
+     "nameKo": "합계발주금액",
+     "size": "30",
+     "desc": "합계발주금액(원화,원)"
+    },
+    {
+     "nameEn": "deptNm",
+     "nameKo": "부서명",
+     "size": "50",
+     "desc": "발주계획의 담당부서명"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "20",
+     "desc": "발주계획의 담당자명"
+    },
+    {
+     "nameEn": "telNo",
+     "nameKo": "전화번호",
+     "size": "20",
+     "desc": "발주계획의 담당자 전화번호"
+    },
+    {
+     "nameEn": "agrmntYn",
+     "nameKo": "협정여부",
+     "size": "1",
+     "desc": "발주계획의 협정여부"
+    },
+    {
+     "nameEn": "usgCntnts",
+     "nameKo": "용도내용",
+     "size": "50",
+     "desc": "발주계획의 용도내용"
+    },
+    {
+     "nameEn": "qtyCntnts",
+     "nameKo": "수량내용",
+     "size": "12",
+     "desc": "발주계획의 수량내용"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "30",
+     "desc": "발주계획의 수량단위"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "desc": "품명에 대한 분류번호로서 10자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "200",
+     "desc": "물품분류번호 8자리에 해당하는 물품의 한글이름"
+    },
+    {
+     "nameEn": "ntceNticeYn",
+     "nameKo": "공고게시여부",
+     "size": "1",
+     "desc": "발주계획의 공고게시여부"
+    },
+    {
+     "nameEn": "sumOrderDolAmt",
+     "nameKo": "합계발주미화금액",
+     "size": "16",
+     "desc": "발주계획의 합계발주미화금액(달러)"
+    },
+    {
+     "nameEn": "rcritRgstNo",
+     "nameKo": "모집등록번호",
+     "size": "12",
+     "desc": "발주계획의 모집등록번호"
+    },
+    {
+     "nameEn": "specItemNm1",
+     "nameKo": "규격항목명1",
+     "size": "200",
+     "desc": "발주계획의 규격항목명1"
+    },
+    {
+     "nameEn": "specItemNm2",
+     "nameKo": "규격항목명2",
+     "size": "200",
+     "desc": "발주계획의 규격항목명2"
+    },
+    {
+     "nameEn": "specItemNm3",
+     "nameKo": "규격항목명3",
+     "size": "200",
+     "desc": "발주계획의 규격항목명3"
+    },
+    {
+     "nameEn": "specItemNm4",
+     "nameKo": "규격항목명4",
+     "size": "200",
+     "desc": "발주계획의 규격항목명4"
+    },
+    {
+     "nameEn": "specItemNm5",
+     "nameKo": "규격항목명5",
+     "size": "200",
+     "desc": "발주계획의 규격항목명5"
+    },
+    {
+     "nameEn": "specItemCntnts1",
+     "nameKo": "규격항목내용1",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용1"
+    },
+    {
+     "nameEn": "specItemCntnts2",
+     "nameKo": "규격항목내용2",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용2"
+    },
+    {
+     "nameEn": "specItemCntnts3",
+     "nameKo": "규격항목내용3",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용3"
+    },
+    {
+     "nameEn": "specItemCntnts4",
+     "nameKo": "규격항목내용4",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용4"
+    },
+    {
+     "nameEn": "specItemCntnts5",
+     "nameKo": "규격항목내용5",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용5"
+    },
+    {
+     "nameEn": "bdgtDivCd",
+     "nameKo": "예산구분코드",
+     "size": "25",
+     "desc": "발주계획의 예산구분코드"
+    },
+    {
+     "nameEn": "cnstwkPrdCntnts",
+     "nameKo": "공사기간내용",
+     "size": "30",
+     "desc": "발주계획의 공사기간내용"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "발주계획의 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "orderThtmContrctAmt",
+     "nameKo": "발주금차도급금액",
+     "size": "25",
+     "desc": "발주계획의 발주금차도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderNtntrsAuxAmt",
+     "nameKo": "발주국고보조금액",
+     "size": "25",
+     "desc": "발주계획의 발주국고보조금액(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNoNm",
+     "nameKo": "세부품명",
+     "size": "200",
+     "desc": "세부품명번호 10자리에 대한 한글명"
+    },
+    {
+     "nameEn": "specCntnts",
+     "nameKo": "규격내용",
+     "size": "100",
+     "desc": "발주계획의 규격내용"
+    },
+    {
+     "nameEn": "dsgnDocRdngPlceNm",
+     "nameKo": "설계문서열람장소명",
+     "size": "100",
+     "desc": "발주계획의 설계서열람장소명"
+    },
+    {
+     "nameEn": "dsgnDocRdngPrdCntnts",
+     "nameKo": "설계문서열람기간내용",
+     "size": "100",
+     "desc": "발주계획의 설계서열람기간내용"
+    },
+    {
+     "nameEn": "rmrkCntnts",
+     "nameKo": "비고내용",
+     "size": "4000",
+     "desc": "발주계획의 비고내용(담당부서 정보)"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "30",
+     "desc": "업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주계획순번(6) 로 구성됨"
+    },
+    {
+     "nameEn": "bidNtceNoList",
+     "nameKo": "입찰공고번호목록",
+     "size": "1000",
+     "desc": "관련된 입찰공고번호 정보 \"입찰공고번호1,입찰공고번호2\""
+    },
+    {
+     "nameEn": "chgDt",
+     "nameKo": "변경일시",
+     "size": "19",
+     "desc": "발주계획의 변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/OrderPlanSttusService/getOrderPlanSttusListCnstwkPPSSrch?orderBgnYm=201606&orderEndYm=201606&inqryBgnDt=201606010000&inqryEndDt=201606282359&bizNm=한천수계도심하천생태복원사업전기공사&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOrderPlanSttusListServcPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 발주계획현황에 대한 용역조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 발주시작년월, 발주종료년월, 게시일시, 발주기관코드, 발주기관명, 업무유형, 조달방식, 기관소재지, 공종, 사업명으로 하여 발주년도, 발주기관, 소관기관, 계약방법, 발주도급금액, 물품분류 정보, 규격항목정보 등 용역에 대한 발주계획현황 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": false,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": false,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포탈에서 받은 인증키",
+     "desc": "공공데이터포탈에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "orderBgnYm",
+     "nameKo": "발주시작년월",
+     "size": "6",
+     "required": false,
+     "sample": "201606",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회시작 'YYYYMM' * 입력값이 없을 경우 현재일로부터 한달기준 조회"
+    },
+    {
+     "nameEn": "orderEndYm",
+     "nameKo": "발주종료년월",
+     "size": "6",
+     "required": false,
+     "sample": "201608",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회종료 'YYYYMM' * 입력값이 없을 경우 현재일로부터 한달기준 조회"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": false,
+     "sample": "201606010000",
+     "desc": "검색하고자하는 게시일시 기준 조회시작'YYYYMMDDHHmm' * 입력값이 없을 경우 현재일로 부터 하루기준 조회"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201606282359",
+     "desc": "검색하고자하는 게시일시 기준 조회종료 'YYYYMMDDHHmm' * 입력값이 없을 경우 현재일로부터 하루기준 조회"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "B551505",
+     "desc": "검색하고자하는 발주기관코드"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "required": false,
+     "sample": "한국인터넷진흥원",
+     "desc": "검색하고자하는 발주기관명"
+    },
+    {
+     "nameEn": "bsnsTyCd",
+     "nameKo": "업무유형코드",
+     "size": "3",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 업무유형코드 업무유형코드 1이면 신규, 2면 장기 나머지는 \"해당없음\""
+    },
+    {
+     "nameEn": "bsnsTyNm",
+     "nameKo": "업무유형명",
+     "size": "20",
+     "required": false,
+     "sample": "신규",
+     "desc": "검색하고자하는 업무유형명 업무유형코드 1이면 신규, 2면 장기 나머지는 \"해당없음\""
+    },
+    {
+     "nameEn": "prcrmntMethd",
+     "nameKo": "조달방식",
+     "size": "20",
+     "required": false,
+     "sample": "자체조달",
+     "desc": "검색하고자하는 조달방식 (중앙조달, 자체조달)"
+    },
+    {
+     "nameEn": "insttLctNm",
+     "nameKo": "기관소재지명",
+     "size": "100",
+     "required": false,
+     "sample": "서울특별시",
+     "desc": "검색하고자 하는 기관의 소재지"
+    },
+    {
+     "nameEn": "cnsttyDivNm",
+     "nameKo": "공종구분명",
+     "size": "20",
+     "required": false,
+     "sample": "일반용역",
+     "desc": "검색하고자하는 발주계획의 공종구분명"
+    },
+    {
+     "nameEn": "bizNm",
+     "nameKo": "사업명",
+     "size": "400",
+     "required": false,
+     "sample": "HTML5 모바일 웹 취약점 탐지 및 시각화 도구 시제품 제작 개발 용역",
+     "desc": "검색하고자하는 발주계획의 사업명"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총개수"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "업무구분코드가 1이면 물품, 2면 외자, 3이면 공사, 5면 용역"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "20",
+     "desc": "업무구분명"
+    },
+    {
+     "nameEn": "bsnsTyCd",
+     "nameKo": "업무유형코드",
+     "size": "3",
+     "desc": "업무유형코드 1이면 신규, 2면 장기 나머지는 \"해당없음\""
+    },
+    {
+     "nameEn": "bsnsTyNm",
+     "nameKo": "업무유형명",
+     "size": "20",
+     "desc": "업무유형명"
+    },
+    {
+     "nameEn": "orderYear",
+     "nameKo": "발주년도",
+     "size": "4",
+     "desc": "발주년도"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "desc": "발주기관코드는 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 발주기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "totlmngInsttNm",
+     "nameKo": "총괄기관명",
+     "size": "200",
+     "desc": "총괄기관명"
+    },
+    {
+     "nameEn": "jrsdctnDivCd",
+     "nameKo": "소관구분코드",
+     "size": "2",
+     "desc": "소관구분코드 01 : 국가기관 02 : 지자체 03 : 교육기관 51 : 공기업 52 : 준정부기관 53 : 기타공공기관 71 : 지방공기업 72 : 기타기관 81 : 지자체 출자출연기관"
+    },
+    {
+     "nameEn": "jrsdctnDivNm",
+     "nameKo": "소관구분명",
+     "size": "100",
+     "desc": "소관구분명"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "desc": "발주기관명"
+    },
+    {
+     "nameEn": "orderPlanSno",
+     "nameKo": "발주계획순번",
+     "size": "6",
+     "desc": "발주계획순번"
+    },
+    {
+     "nameEn": "prcrmntMethd",
+     "nameKo": "조달방식",
+     "size": "20",
+     "desc": "조달방식은 중앙조달과 자체조달로 구분됨"
+    },
+    {
+     "nameEn": "orderMnth",
+     "nameKo": "발주월",
+     "size": "8",
+     "desc": "발주월 \"MM\""
+    },
+    {
+     "nameEn": "bizNm",
+     "nameKo": "사업명",
+     "size": "400",
+     "desc": "발주계획의 사업명"
+    },
+    {
+     "nameEn": "cnstwkRgnNm",
+     "nameKo": "공사지역명",
+     "size": "100",
+     "desc": "발주계획의 공사지역명"
+    },
+    {
+     "nameEn": "cnsttyDivNm",
+     "nameKo": "공종구분명",
+     "size": "20",
+     "desc": "발주계획의 공종구분명"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "20",
+     "desc": "발주계획의 계약방법명"
+    },
+    {
+     "nameEn": "orderContrctAmt",
+     "nameKo": "발주도급금액",
+     "size": "30",
+     "desc": "발주도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderGovsplyMtrcst",
+     "nameKo": "발주관급자재비",
+     "size": "30",
+     "desc": "발주관급자재비(원화,원)"
+    },
+    {
+     "nameEn": "orderEtcAmt",
+     "nameKo": "발주기타금액",
+     "size": "30",
+     "desc": "발주기타금액(원화,원)"
+    },
+    {
+     "nameEn": "sumOrderAmt",
+     "nameKo": "합계발주금액",
+     "size": "30",
+     "desc": "합계발주금액(원화,원)"
+    },
+    {
+     "nameEn": "deptNm",
+     "nameKo": "부서명",
+     "size": "50",
+     "desc": "발주계획의 담당부서명"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "20",
+     "desc": "발주계획의 담당자명"
+    },
+    {
+     "nameEn": "telNo",
+     "nameKo": "전화번호",
+     "size": "20",
+     "desc": "발주계획의 담당자 전화번호"
+    },
+    {
+     "nameEn": "agrmntYn",
+     "nameKo": "협정여부",
+     "size": "1",
+     "desc": "발주계획의 협정여부"
+    },
+    {
+     "nameEn": "usgCntnts",
+     "nameKo": "용도내용",
+     "size": "50",
+     "desc": "발주계획의 용도내용"
+    },
+    {
+     "nameEn": "qtyCntnts",
+     "nameKo": "수량내용",
+     "size": "12",
+     "desc": "발주계획의 수량내용"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "30",
+     "desc": "발주계획의 수량단위"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "desc": "품명에 대한 분류번호로서 10자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "200",
+     "desc": "물품분류번호 8자리에 해당하는 물품의 한글이름"
+    },
+    {
+     "nameEn": "ntceNticeYn",
+     "nameKo": "공고게시여부",
+     "size": "1",
+     "desc": "발주계획의 공고게시여부"
+    },
+    {
+     "nameEn": "sumOrderDolAmt",
+     "nameKo": "합계발주미화금액",
+     "size": "16",
+     "desc": "발주계획의 합계발주미화금액(달러)"
+    },
+    {
+     "nameEn": "rcritRgstNo",
+     "nameKo": "모집등록번호",
+     "size": "12",
+     "desc": "발주계획의 모집등록번호"
+    },
+    {
+     "nameEn": "specItemNm1",
+     "nameKo": "규격항목명1",
+     "size": "200",
+     "desc": "발주계획의 규격항목명1"
+    },
+    {
+     "nameEn": "specItemNm2",
+     "nameKo": "규격항목명2",
+     "size": "200",
+     "desc": "발주계획의 규격항목명2"
+    },
+    {
+     "nameEn": "specItemNm3",
+     "nameKo": "규격항목명3",
+     "size": "200",
+     "desc": "발주계획의 규격항목명3"
+    },
+    {
+     "nameEn": "specItemNm4",
+     "nameKo": "규격항목명4",
+     "size": "200",
+     "desc": "발주계획의 규격항목명4"
+    },
+    {
+     "nameEn": "specItemNm5",
+     "nameKo": "규격항목명5",
+     "size": "200",
+     "desc": "발주계획의 규격항목명5"
+    },
+    {
+     "nameEn": "specItemCntnts1",
+     "nameKo": "규격항목내용1",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용1"
+    },
+    {
+     "nameEn": "specItemCntnts2",
+     "nameKo": "규격항목내용2",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용2"
+    },
+    {
+     "nameEn": "specItemCntnts3",
+     "nameKo": "규격항목내용3",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용3"
+    },
+    {
+     "nameEn": "specItemCntnts4",
+     "nameKo": "규격항목내용4",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용4"
+    },
+    {
+     "nameEn": "specItemCntnts5",
+     "nameKo": "규격항목내용5",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용5"
+    },
+    {
+     "nameEn": "bdgtDivCd",
+     "nameKo": "예산구분코드",
+     "size": "25",
+     "desc": "발주계획의 예산구분코드"
+    },
+    {
+     "nameEn": "cnstwkPrdCntnts",
+     "nameKo": "공사기간내용",
+     "size": "30",
+     "desc": "발주계획의 공사기간내용"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "발주계획의 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "orderThtmContrctAmt",
+     "nameKo": "발주금차도급금액",
+     "size": "25",
+     "desc": "발주계획의 발주금차도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderNtntrsAuxAmt",
+     "nameKo": "발주국고보조금액",
+     "size": "25",
+     "desc": "발주계획의 발주국고보조금액(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNoNm",
+     "nameKo": "세부품명",
+     "size": "200",
+     "desc": "세부품명번호 10자리에 대한 한글명"
+    },
+    {
+     "nameEn": "specCntnts",
+     "nameKo": "규격내용",
+     "size": "100",
+     "desc": "발주계획의 규격내용"
+    },
+    {
+     "nameEn": "dsgnDocRdngPlceNm",
+     "nameKo": "설계문서열람장소명",
+     "size": "100",
+     "desc": "발주계획의 설계서열람장소명"
+    },
+    {
+     "nameEn": "dsgnDocRdngPrdCntnts",
+     "nameKo": "설계문서열람기간내용",
+     "size": "100",
+     "desc": "발주계획의 설계서열람기간내용"
+    },
+    {
+     "nameEn": "rmrkCntnts",
+     "nameKo": "비고내용",
+     "size": "4000",
+     "desc": "발주계획의 비고내용(담당부서 정보)"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "30",
+     "desc": "업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주계획순번(6) 로 구성됨"
+    },
+    {
+     "nameEn": "bidNtceNoList",
+     "nameKo": "입찰공고번호목록",
+     "size": "1000",
+     "desc": "관련된 입찰공고번호 정보 \"입찰공고번호1,입찰공고번호2\""
+    },
+    {
+     "nameEn": "chgDt",
+     "nameKo": "변경일시",
+     "size": "19",
+     "desc": "발주계획의 변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/OrderPlanSttusService/getOrderPlanSttusListServcPPSSrch?orderBgnYm=201606&orderEndYm=201606&inqryBgnDt=201606010000&inqryEndDt=201606282359&bizNm=무림지구배수개선사업세부설계용역&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  },
+  {
+   "opNameEn": "getOrderPlanSttusListFrgcptPPSSrch",
+   "opNameKo": "나라장터 검색조건에 의한 발주계획현황에 대한 외자조회",
+   "opType": "조회(목록)",
+   "description": "검색조건을 발주시작년월, 발주종료년월, 게시일시, 발주기관코드, 발주기관명, 업무유형, 조달방식, 기관소재지, 사업명으로 하여 발주년도, 발주기관, 소관기관, 계약방법, 발주도급금액, 물품분류 정보, 규격항목정보 등 외자에 대한 발주계획현황 조회",
+   "requestParams": [
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "required": false,
+     "sample": "10",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "required": false,
+     "sample": "1",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
+     "required": true,
+     "sample": "공공데이터포탈에서 받은 인증키",
+     "desc": "공공데이터포탈에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정함"
+    },
+    {
+     "nameEn": "orderBgnYm",
+     "nameKo": "발주시작년월",
+     "size": "6",
+     "required": false,
+     "sample": "201606",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회시작 'YYYYMM' * 입력값이 없을 경우 현재일로부터 한달기준 조회"
+    },
+    {
+     "nameEn": "orderEndYm",
+     "nameKo": "발주종료년월",
+     "size": "6",
+     "required": false,
+     "sample": "201608",
+     "desc": "검색하고자하는 발주년도, 발주월 기준 조회종료 'YYYYMM' * 입력값이 없을 경우 현재일로부터 한달기준 조회"
+    },
+    {
+     "nameEn": "inqryBgnDt",
+     "nameKo": "조회시작일시",
+     "size": "12",
+     "required": true,
+     "sample": "201606010000",
+     "desc": "검색하고자하는 게시일시 기준 조회시작'YYYYMMDDHHmm' * 입력값이 없을 경우 현재일로 부터 하루기준 조회"
+    },
+    {
+     "nameEn": "inqryEndDt",
+     "nameKo": "조회종료일시",
+     "size": "12",
+     "required": false,
+     "sample": "201606282359",
+     "desc": "검색하고자하는 게시일시 기준 조회종료 'YYYYMMDDHHmm' * 입력값이 없을 경우 현재일로부터 하루기준 조회"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "required": false,
+     "sample": "B350021",
+     "desc": "검색하고자하는 발주기관코드"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "required": false,
+     "sample": "한국과학기술원",
+     "desc": "검색하고자하는 발주기관명"
+    },
+    {
+     "nameEn": "bsnsTyCd",
+     "nameKo": "업무유형코드",
+     "size": "3",
+     "required": false,
+     "sample": "1",
+     "desc": "검색하고자하는 업무유형명 업무유형코드 1이면 신규, 2면 장기 나머지는 \"해당없음\""
+    },
+    {
+     "nameEn": "bsnsTyNm",
+     "nameKo": "업무유형명",
+     "size": "20",
+     "required": false,
+     "sample": "신규",
+     "desc": "검색하고자하는 업무유형명 업무유형코드 1이면 신규, 2면 장기 나머지는 \"해당없음\""
+    },
+    {
+     "nameEn": "prcrmntMethd",
+     "nameKo": "조달방식",
+     "size": "20",
+     "required": false,
+     "sample": "자체조달",
+     "desc": "검색하고자하는 조달방식 (중앙조달, 자체조달)"
+    },
+    {
+     "nameEn": "insttLctNm",
+     "nameKo": "기관소재지명",
+     "size": "100",
+     "required": false,
+     "sample": "서울특별시",
+     "desc": "검색하고자 하는 기관의 소재지"
+    },
+    {
+     "nameEn": "bizNm",
+     "nameKo": "사업명",
+     "size": "400",
+     "required": false,
+     "sample": "고온 고압 증기 멸균기",
+     "desc": "검색하고자하는 발주계획의 사업명"
+    }
+   ],
+   "responseFields": [
+    {
+     "nameEn": "resultCode",
+     "nameKo": "결과코드",
+     "size": "2",
+     "desc": "결과코드"
+    },
+    {
+     "nameEn": "resultMsg",
+     "nameKo": "결과메세지",
+     "size": "50",
+     "desc": "결과메세지"
+    },
+    {
+     "nameEn": "numOfRows",
+     "nameKo": "한 페이지 결과 수",
+     "size": "4",
+     "desc": "한 페이지 결과 수"
+    },
+    {
+     "nameEn": "pageNo",
+     "nameKo": "페이지 번호",
+     "size": "4",
+     "desc": "페이지 번호"
+    },
+    {
+     "nameEn": "totalCount",
+     "nameKo": "데이터 총 개수",
+     "size": "4",
+     "desc": "데이터 총개수"
+    },
+    {
+     "nameEn": "bsnsDivCd",
+     "nameKo": "업무구분코드",
+     "size": "2",
+     "desc": "업무구분코드가 1이면 물품, 2면 외자, 3이면 공사, 5면 용역"
+    },
+    {
+     "nameEn": "bsnsDivNm",
+     "nameKo": "업무구분명",
+     "size": "20",
+     "desc": "업무구분명"
+    },
+    {
+     "nameEn": "bsnsTyCd",
+     "nameKo": "업무유형코드",
+     "size": "3",
+     "desc": "업무유형코드 1이면 신규, 2면 장기 나머지는 \"해당없음\""
+    },
+    {
+     "nameEn": "bsnsTyNm",
+     "nameKo": "업무유형명",
+     "size": "20",
+     "desc": "업무유형명"
+    },
+    {
+     "nameEn": "orderYear",
+     "nameKo": "발주년도",
+     "size": "4",
+     "desc": "발주년도"
+    },
+    {
+     "nameEn": "orderInsttCd",
+     "nameKo": "발주기관코드",
+     "size": "7",
+     "desc": "발주기관코드는 행자부코드(행정자치부에서 부여한 기관코드)가 있는 경우 행자부코드가 행자부코드가 없는 경우 조달청에서 부여한 발주기관 코드가 표기됨"
+    },
+    {
+     "nameEn": "totlmngInsttNm",
+     "nameKo": "총괄기관명",
+     "size": "200",
+     "desc": "총괄기관명"
+    },
+    {
+     "nameEn": "jrsdctnDivCd",
+     "nameKo": "소관구분코드",
+     "size": "2",
+     "desc": "소관구분코드 01 : 국가기관 02 : 지자체 03 : 교육기관 51 : 공기업 52 : 준정부기관 53 : 기타공공기관 71 : 지방공기업 72 : 기타기관 81 : 지자체 출자출연기관"
+    },
+    {
+     "nameEn": "jrsdctnDivNm",
+     "nameKo": "소관구분명",
+     "size": "100",
+     "desc": "소관구분명"
+    },
+    {
+     "nameEn": "orderInsttNm",
+     "nameKo": "발주기관명",
+     "size": "200",
+     "desc": "발주기관명"
+    },
+    {
+     "nameEn": "orderPlanSno",
+     "nameKo": "발주계획순번",
+     "size": "6",
+     "desc": "발주계획순번"
+    },
+    {
+     "nameEn": "prcrmntMethd",
+     "nameKo": "조달방식",
+     "size": "20",
+     "desc": "조달방식은 중앙조달과 자체조달로 구분됨"
+    },
+    {
+     "nameEn": "orderMnth",
+     "nameKo": "발주월",
+     "size": "8",
+     "desc": "발주월 \"MM\""
+    },
+    {
+     "nameEn": "bizNm",
+     "nameKo": "사업명",
+     "size": "400",
+     "desc": "발주계획의 사업명"
+    },
+    {
+     "nameEn": "cnstwkRgnNm",
+     "nameKo": "공사지역명",
+     "size": "100",
+     "desc": "발주계획의 공사지역명"
+    },
+    {
+     "nameEn": "cnsttyDivNm",
+     "nameKo": "공종구분명",
+     "size": "20",
+     "desc": "발주계획의 공종구분명"
+    },
+    {
+     "nameEn": "cntrctMthdNm",
+     "nameKo": "계약방법명",
+     "size": "20",
+     "desc": "발주계획의 계약방법명"
+    },
+    {
+     "nameEn": "orderContrctAmt",
+     "nameKo": "발주도급금액",
+     "size": "30",
+     "desc": "발주도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderGovsplyMtrcst",
+     "nameKo": "발주관급자재비",
+     "size": "30",
+     "desc": "발주관급자재비(원화,원)"
+    },
+    {
+     "nameEn": "orderEtcAmt",
+     "nameKo": "발주기타금액",
+     "size": "30",
+     "desc": "발주기타금액(원화,원)"
+    },
+    {
+     "nameEn": "sumOrderAmt",
+     "nameKo": "합계발주금액",
+     "size": "30",
+     "desc": "합계발주금액(원화,원)"
+    },
+    {
+     "nameEn": "deptNm",
+     "nameKo": "부서명",
+     "size": "50",
+     "desc": "발주계획의 담당부서명"
+    },
+    {
+     "nameEn": "ofclNm",
+     "nameKo": "담당자명",
+     "size": "20",
+     "desc": "발주계획의 담당자명"
+    },
+    {
+     "nameEn": "telNo",
+     "nameKo": "전화번호",
+     "size": "20",
+     "desc": "발주계획의 담당자 전화번호"
+    },
+    {
+     "nameEn": "agrmntYn",
+     "nameKo": "협정여부",
+     "size": "1",
+     "desc": "발주계획의 협정여부"
+    },
+    {
+     "nameEn": "usgCntnts",
+     "nameKo": "용도내용",
+     "size": "50",
+     "desc": "발주계획의 용도내용"
+    },
+    {
+     "nameEn": "qtyCntnts",
+     "nameKo": "수량내용",
+     "size": "12",
+     "desc": "발주계획의 수량내용"
+    },
+    {
+     "nameEn": "unit",
+     "nameKo": "단위",
+     "size": "30",
+     "desc": "발주계획의 수량단위"
+    },
+    {
+     "nameEn": "prdctClsfcNo",
+     "nameKo": "물품분류번호",
+     "size": "8",
+     "desc": "품명에 대한 분류번호로서 8자리로 표시"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNo",
+     "nameKo": "세부품명번호",
+     "size": "10",
+     "desc": "품명에 대한 분류번호로서 10자리로 표시"
+    },
+    {
+     "nameEn": "prdctClsfcNoNm",
+     "nameKo": "품명",
+     "size": "200",
+     "desc": "물품분류번호 8자리에 해당하는 물품의 한글이름"
+    },
+    {
+     "nameEn": "ntceNticeYn",
+     "nameKo": "공고게시여부",
+     "size": "1",
+     "desc": "발주계획의 공고게시여부"
+    },
+    {
+     "nameEn": "sumOrderDolAmt",
+     "nameKo": "합계발주미화금액",
+     "size": "16",
+     "desc": "발주계획의 합계발주미화금액(달러)"
+    },
+    {
+     "nameEn": "rcritRgstNo",
+     "nameKo": "모집등록번호",
+     "size": "12",
+     "desc": "발주계획의 모집등록번호"
+    },
+    {
+     "nameEn": "specItemNm1",
+     "nameKo": "규격항목명1",
+     "size": "200",
+     "desc": "발주계획의 규격항목명1"
+    },
+    {
+     "nameEn": "specItemNm2",
+     "nameKo": "규격항목명2",
+     "size": "200",
+     "desc": "발주계획의 규격항목명2"
+    },
+    {
+     "nameEn": "specItemNm3",
+     "nameKo": "규격항목명3",
+     "size": "200",
+     "desc": "발주계획의 규격항목명3"
+    },
+    {
+     "nameEn": "specItemNm4",
+     "nameKo": "규격항목명4",
+     "size": "200",
+     "desc": "발주계획의 규격항목명4"
+    },
+    {
+     "nameEn": "specItemNm5",
+     "nameKo": "규격항목명5",
+     "size": "200",
+     "desc": "발주계획의 규격항목명5"
+    },
+    {
+     "nameEn": "specItemCntnts1",
+     "nameKo": "규격항목내용1",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용1"
+    },
+    {
+     "nameEn": "specItemCntnts2",
+     "nameKo": "규격항목내용2",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용2"
+    },
+    {
+     "nameEn": "specItemCntnts3",
+     "nameKo": "규격항목내용3",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용3"
+    },
+    {
+     "nameEn": "specItemCntnts4",
+     "nameKo": "규격항목내용4",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용4"
+    },
+    {
+     "nameEn": "specItemCntnts5",
+     "nameKo": "규격항목내용5",
+     "size": "200",
+     "desc": "발주계획의 규격항목내용5"
+    },
+    {
+     "nameEn": "bdgtDivCd",
+     "nameKo": "예산구분코드",
+     "size": "25",
+     "desc": "발주계획의 예산구분코드"
+    },
+    {
+     "nameEn": "cnstwkPrdCntnts",
+     "nameKo": "공사기간내용",
+     "size": "30",
+     "desc": "발주계획의 공사기간내용"
+    },
+    {
+     "nameEn": "nticeDt",
+     "nameKo": "게시일시",
+     "size": "19",
+     "desc": "발주계획의 게시일시 \"YYYY-MM-DD HH:MM:SS\""
+    },
+    {
+     "nameEn": "orderThtmContrctAmt",
+     "nameKo": "발주금차도급금액",
+     "size": "25",
+     "desc": "발주계획의 발주금차도급금액(원화,원)"
+    },
+    {
+     "nameEn": "orderNtntrsAuxAmt",
+     "nameKo": "발주국고보조금액",
+     "size": "25",
+     "desc": "발주계획의 발주국고보조금액(원화,원)"
+    },
+    {
+     "nameEn": "dtilPrdctClsfcNoNm",
+     "nameKo": "세부품명",
+     "size": "200",
+     "desc": "세부품명번호 10자리에 대한 한글명"
+    },
+    {
+     "nameEn": "specCntnts",
+     "nameKo": "규격내용",
+     "size": "100",
+     "desc": "발주계획의 규격내용"
+    },
+    {
+     "nameEn": "dsgnDocRdngPlceNm",
+     "nameKo": "설계문서열람장소명",
+     "size": "100",
+     "desc": "발주계획의 설계서열람장소명"
+    },
+    {
+     "nameEn": "dsgnDocRdngPrdCntnts",
+     "nameKo": "설계문서열람기간내용",
+     "size": "100",
+     "desc": "발주계획의 설계서열람기간내용"
+    },
+    {
+     "nameEn": "rmrkCntnts",
+     "nameKo": "비고내용",
+     "size": "4000",
+     "desc": "발주계획의 비고내용(담당부서 정보)"
+    },
+    {
+     "nameEn": "orderPlanUntyNo",
+     "nameKo": "발주계획통합번호",
+     "size": "30",
+     "desc": "업무구분코드(1)-업무유형코드(3)-발주년도(4)-기관코드(7)-발주계획순번(6) 로 구성됨"
+    },
+    {
+     "nameEn": "bidNtceNoList",
+     "nameKo": "입찰공고번호목록",
+     "size": "1000",
+     "desc": "관련된 입찰공고번호 정보 \"입찰공고번호1,입찰공고번호2\""
+    },
+    {
+     "nameEn": "chgDt",
+     "nameKo": "변경일시",
+     "size": "19",
+     "desc": "발주계획의 변경일시 \"YYYY-MM-DD HH:MM:SS\""
+    }
+   ],
+   "sampleUri": "http://apis.data.go.kr/1230000/ao/OrderPlanSttusService/getOrderPlanSttusListFrgcptPPSSrch?orderBgnYm=201606&orderEndYm=201606&inqryBgnDt=201606010000&inqryEndDt=201606282359&bizNm=심장활동전위분석프로그램[GLPAPD(ActionPotentialDuration)Softwaresystem]&pageNo=1&numOfRows=10&ServiceKey=인증키"
+  }
+ ]
+}
