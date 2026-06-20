@@ -67,6 +67,24 @@ AI 어시스턴트에게 다음과 같은 요청을 할 수 있습니다:
 
 대량 결과는 LLM 컨텍스트를 보호하기 위해 **요약 + 미리보기 5건 + 캐시 파일 경로**만 반환하며, 전체 데이터는 캐시 파일에 저장되어 `get_g2b_cache_data` 로 탐색합니다.
 
+### 키워드 정밀도 보정 & 의미 기반 리랭커
+
+조달청 검색 API의 공고명(`bidNtceNm`) 필터는 **단순 부분일치**라 노이즈가 섞입니다 — 예: `재활` → `재활용`(폐기물), `투자` → `투자유치/투자설명회`. `get_g2b_cache_data` 가 이를 보정합니다.
+
+```text
+# 1) 어휘 필터 (의존성 없음, 기본 제공)
+get_g2b_cache_data(cache_file, field_name="bidNtceNm",
+                   exclude_substrings=["재활용","직업재활시설"])      # 노이즈 제거
+get_g2b_cache_data(cache_file, field_value_regex="재활(?!용)")        # 정밀 매칭
+
+# 2) 의미 기반 재정렬 (선택 설치: pip install "mcp-kr-g2b[ml]")
+get_g2b_cache_data(cache_file,
+                   rerank_query="디지털 헬스케어 AI 근골격계 재활 동작분석")
+#  → 회사/사업 설명문과의 유사도(ko-sroberta 임베딩)로 적합도 순 정렬 + _relevance 점수
+```
+
+> 리랭커는 `sentence-transformers`(torch 포함)가 필요해 기본 설치에서 제외했습니다. 미설치 시 `rerank_query` 호출은 설치 안내를 반환하고, 그 외 기능은 정상 동작합니다. 모델은 `G2B_RERANK_MODEL`(기본 `jhgan/ko-sroberta-multitask`)로 변경할 수 있습니다.
+
 ## 빠른 시작 가이드
 
 ### 1. 인증 설정 (서비스키 발급)

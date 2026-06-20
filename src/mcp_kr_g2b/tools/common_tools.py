@@ -170,18 +170,27 @@ def get_g2b_operation_info(
 @mcp.tool(
     name="get_g2b_cache_data",
     description=(
-        "get_<module>_data 호출로 저장된 캐시 파일(cache_file)에서 전체 결과를 필드 필터/페이지 단위로 조회합니다. "
-        "대량 조회 결과를 미리보기 이후 상세 탐색할 때 사용합니다."
+        "get_<module>_data 가 저장한 캐시 파일에서 전체 결과를 정제/탐색합니다. "
+        "키워드 정밀도 보정: 검색 API는 단순 부분일치라 '재활'이 '재활용'을, '투자'가 '투자유치'를 끌어옵니다. "
+        "→ exclude_substrings 로 노이즈 제거(예: ['재활용','직업재활']), field_value_regex 로 정밀 매칭(예: '재활(?!용)'), "
+        "rerank_query 로 의미 기반 재정렬(회사/사업 설명문과의 유사도, [ml] 설치 시)을 사용하세요."
     ),
-    tags={"조달청", "나라장터", "캐시", "필터", "조회"},
+    tags={"조달청", "나라장터", "캐시", "필터", "정밀도", "리랭크"},
 )
 def get_g2b_cache_data(
     cache_file: Annotated[str, Field(description="get_<module>_data 가 반환한 cache_file 경로")],
-    field_name: Annotated[Optional[str], Field(description="필터링할 응답 필드명")] = None,
-    field_value_substring: Annotated[Optional[str], Field(description="필드 값에 포함될 부분 문자열")] = None,
-    offset: Annotated[int, Field(description="시작 인덱스(0부터)")] = 0,
+    field_name: Annotated[Optional[str], Field(description="필터 대상 응답 필드명(미지정 시 텍스트 필터는 bidNtceNm 기준)")] = None,
+    field_value_substring: Annotated[Optional[str], Field(description="포함(AND) 조건: 필드 값에 이 부분 문자열이 있어야 통과")] = None,
+    exclude_substrings: Annotated[Optional[List[str]], Field(description="제외 조건: 필드 값에 이 중 하나라도 포함되면 제거(예: ['재활용','직업재활시설'])")] = None,
+    field_value_regex: Annotated[Optional[str], Field(description="정밀 포함 조건: 정규식 매칭(예: '재활(?!용)' = 재활이지만 재활용은 제외)")] = None,
+    rerank_query: Annotated[Optional[str], Field(description="의미 기반 재정렬 질의문(예: '디지털 헬스케어 AI 근골격계 재활 동작분석'). [ml] 설치 필요")] = None,
+    rerank_field: Annotated[str, Field(description="rerank 시 임베딩할 텍스트 필드(기본 bidNtceNm)")] = "bidNtceNm",
+    offset: Annotated[int, Field(description="시작 인덱스(0부터). rerank 시에는 무시")] = 0,
     limit: Annotated[int, Field(description="반환 최대 건수")] = 20,
 ) -> TextContent:
+    import re
+    from mcp_kr_g2b.utils import reranker
+
     path = Path(cache_file)
     if not path.exists():
         return as_json_text({"error": f"캐시 파일이 존재하지 않습니다: {cache_file}"})
@@ -191,36 +200,82 @@ def get_g2b_cache_data(
     except Exception as e:
         return as_json_text({"error": f"캐시 파일 로드 실패: {e}"})
 
-    items: List[Dict[str, Any]] = data.get("items", [])
-    if field_name and field_value_substring:
+    items: List[Dict[str, Any]] = [it for it in data.get("items", []) if isinstance(it, dict)]
+    total_cached = len(items)
+    # 텍스트 필터 기준 필드(미지정 시 공고명)
+    tfield = field_name or "bidNtceNm"
+
+    # 1) 포함(substring)
+    if field_value_substring:
+        items = [it for it in items if field_value_substring in str(it.get(tfield, ""))]
+    # 2) 포함(정규식)
+    if field_value_regex:
+        try:
+            pat = re.compile(field_value_regex)
+            items = [it for it in items if pat.search(str(it.get(tfield, "")))]
+        except re.error as e:
+            return as_json_text({"error": f"정규식 오류: {e}"})
+    # 3) 제외
+    if exclude_substrings:
         items = [
-            it
-            for it in items
-            if isinstance(it, dict) and field_value_substring in str(it.get(field_name, ""))
+            it for it in items
+            if not any(ex and ex in str(it.get(tfield, "")) for ex in exclude_substrings)
         ]
 
+    filtered_count = len(items)
+
+    # 4) 의미 기반 재정렬(opt-in)
+    if rerank_query:
+        if not reranker.is_available():
+            return as_json_text({
+                "error": "RERANKER_UNAVAILABLE",
+                "message": "의미 기반 재정렬은 선택 의존성이 필요합니다. `pip install \"mcp-kr-g2b[ml]\"` 후 사용하세요.",
+                "hint": "어휘 필터(exclude_substrings/field_value_regex)만으로도 노이즈를 줄일 수 있습니다.",
+                "filtered_count": filtered_count,
+            })
+        try:
+            scored = reranker.rerank(rerank_query, items, text_field=rerank_field, top_k=limit)
+        except Exception as e:
+            return as_json_text({"error": "RERANK_FAILED", "message": str(e)})
+        ranked = []
+        for it, score in scored:
+            row = dict(it)
+            row["_relevance"] = round(float(score), 4)
+            ranked.append(row)
+        return as_json_text({
+            "operation": data.get("operation"),
+            "cache_file": cache_file,
+            "total_cached": total_cached,
+            "filtered_count": filtered_count,
+            "rerank_query": rerank_query,
+            "rerank_model": reranker.model_name(),
+            "returned": len(ranked),
+            "items": ranked,
+        })
+
+    # 5) 페이지 슬라이스 + 필드 고유값
     sliced = items[offset : offset + limit]
-    unique_values = []
+    unique_values: List[Any] = []
     if field_name:
-        seen = []
+        seen: List[Any] = []
         for it in items:
-            if isinstance(it, dict):
-                v = it.get(field_name)
-                if v is not None and v not in seen:
-                    seen.append(v)
+            v = it.get(field_name)
+            if v is not None and v not in seen:
+                seen.append(v)
             if len(seen) >= 50:
                 break
         unique_values = seen
 
-    return as_json_text(
-        {
-            "operation": data.get("operation"),
-            "cache_file": cache_file,
-            "matched_count": len(items),
-            "offset": offset,
-            "limit": limit,
-            "returned": len(sliced),
-            "unique_values_for_field": unique_values,
-            "items": sliced,
-        }
-    )
+    return as_json_text({
+        "operation": data.get("operation"),
+        "cache_file": cache_file,
+        "total_cached": total_cached,
+        "filtered_count": filtered_count,
+        "matched_count": filtered_count,
+        "offset": offset,
+        "limit": limit,
+        "returned": len(sliced),
+        "filter_field": tfield,
+        "unique_values_for_field": unique_values,
+        "items": sliced,
+    })

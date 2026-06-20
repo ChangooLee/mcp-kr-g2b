@@ -37,6 +37,11 @@ dev = [
     "mypy",
     "pytest>=8.0.0",
 ]
+# 의미 기반 리랭커(선택): get_g2b_cache_data 의 rerank_query 사용 시 필요
+# pip install "mcp-kr-g2b[ml]"  — torch/transformers 가 함께 설치되어 용량이 큽니다.
+ml = [
+    "sentence-transformers>=2.2.0",
+]
 
 [project.scripts]
 mcp-kr-g2b = "mcp_kr_g2b.server:main"

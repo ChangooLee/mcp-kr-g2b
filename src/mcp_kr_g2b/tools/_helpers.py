@@ -50,6 +50,12 @@ def build_service_tool_description(module: str) -> str:
         "기간이 길면 월 단위로 나눠 호출하세요. 'PPSSrch' 오퍼레이션은 bidNtceNm(공고명 일부)/"
         "indstrytyNm/추정가격 범위 등 상세 검색조건을 지원합니다."
     )
+    lines.append(
+        "🎯 키워드 정밀도: bidNtceNm 등은 단순 부분일치라 '재활'이 '재활용'을, '투자'가 '투자유치'를 끌어옵니다. "
+        "넓게 검색해 캐시한 뒤 get_g2b_cache_data 의 exclude_substrings/field_value_regex 로 노이즈를 제거하고, "
+        "rerank_query(의미 기반 재정렬, [ml] 설치 시)로 회사/사업 적합도 순 정렬하세요. "
+        "참가 가능 여부는 getBidPblancListInfoLicenseLimit(면허제한)으로 반드시 확인하세요."
+    )
     return "\n".join(lines)
 
 
