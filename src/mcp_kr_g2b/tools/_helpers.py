@@ -105,7 +105,9 @@ def dispatch_service_fetch(
         logger.error(f"{module}.{operation} 호출 실패: {e}", exc_info=True)
         return as_json_text({"error": "UNEXPECTED", "message": str(e), "operation": operation})
 
-    saved = save_result(operation, params, result)
+    # 호출 변형을 캐시 키에 반영(전체조회 vs 특정 페이지가 서로 덮어쓰지 않도록)
+    variant = "all" if (fetch_all and page_no is None) else f"p{page_no or 1}_n{num_of_rows}"
+    saved = save_result(operation, params, result, variant=variant)
     summary = summarize_result(result, saved)
     summary["service"] = module
     if result.get("warning"):

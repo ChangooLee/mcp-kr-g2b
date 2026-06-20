@@ -42,10 +42,15 @@ def as_json_text(payload: Any) -> TextContent:
     if isinstance(payload, (dict, list)):
         txt = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
     elif isinstance(payload, str):
+        # 이미 JSON '객체/배열'이면 그대로 통과(이중 인코딩 방지). 단, 'true'/'123'/'null'/
+        # 'NaN' 같은 스칼라·비표준 토큰은 사람이 읽을 메시지일 수 있으므로 래핑한다.
         try:
-            json.loads(payload)
-            txt = payload
-        except json.JSONDecodeError:
+            parsed = json.loads(payload, parse_constant=lambda _c: None)
+            if isinstance(parsed, (dict, list)):
+                txt = payload
+            else:
+                txt = json.dumps({"raw": payload}, ensure_ascii=False, separators=(",", ":"))
+        except (json.JSONDecodeError, ValueError):
             txt = json.dumps({"raw": payload}, ensure_ascii=False, separators=(",", ":"))
     else:
         def _default(o: Any) -> Any:

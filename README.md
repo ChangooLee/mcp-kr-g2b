@@ -221,10 +221,10 @@ src/mcp_kr_g2b/
 │   ├── <module>_tools.py  # 서비스별 get_<module>_data 도구 (14개, 코드 생성)
 │   ├── common_tools.py    # list_g2b_services / get_g2b_operation_info / get_g2b_cache_data
 │   └── _helpers.py        # 디스패치·요약·설명 생성 공통 로직
-├── registry/              # 156개 오퍼레이션 카탈로그(ToolRegistry)
 ├── specs/                 # 조달청 OpenAPI 명세(JSON, 원본 .docx 파싱 결과)
 └── utils/
-    ├── cache.py           # 조회 결과 캐싱(raw → JSON 파일) + 요약
+    ├── cache.py           # 조회 결과 캐싱(raw → JSON 파일, 원자적 기록) + 요약
+    ├── reranker.py        # (선택) 의미 기반 리랭커 — sentence-transformers 지연 임포트
     └── ctx_helper.py      # 컨텍스트 폴백, as_json_text
 ```
 

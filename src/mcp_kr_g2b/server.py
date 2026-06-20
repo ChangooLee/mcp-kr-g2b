@@ -119,12 +119,15 @@ for _mod in _TOOL_MODULES:
 
 def main() -> None:
     logger.info("✅ Initializing KR-G2B FastMCP server...")
-    if mcp_config.transport in ("streamable-http", "sse", "http"):
-        logger.info(
-            f"Starting streamable-http on http://{mcp_config.host}:{mcp_config.port}/mcp"
-        )
+    transport = mcp_config.transport
+    if transport == "sse":
+        logger.info(f"Starting SSE on http://{mcp_config.host}:{mcp_config.port}")
+        mcp.run(transport="sse", host=mcp_config.host, port=mcp_config.port)
+    elif transport in ("streamable-http", "http"):
+        logger.info(f"Starting streamable-http on http://{mcp_config.host}:{mcp_config.port}/mcp")
         mcp.run(transport="streamable-http", host=mcp_config.host, port=mcp_config.port)
-    else:
+    else:  # stdio (기본)
+        logger.info("Starting stdio transport")
         mcp.run()
 
 

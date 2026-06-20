@@ -64,10 +64,19 @@ def spec_path(module: str) -> Path:
     return SPECS_DIR / f"{module}.json"
 
 
+_SPEC_CACHE: Dict[str, Dict[str, Any]] = {}
+
+
 def load_spec(module: str) -> Dict[str, Any]:
+    """번들 명세 로드(읽기 전용 메모이즈). 호출자는 반환 dict 를 변경하지 않는다."""
+    cached = _SPEC_CACHE.get(module)
+    if cached is not None:
+        return cached
     path = spec_path(module)
     with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+        spec = json.load(f)
+    _SPEC_CACHE[module] = spec
+    return spec
 
 
 def load_all_specs() -> Dict[str, Dict[str, Any]]:
@@ -143,10 +152,22 @@ class G2BService:
             result = self.client.fetch_all(self.base_url, operation, params, num_of_rows)
         else:
             result = self.client.fetch_page(self.base_url, operation, params, num_of_rows, page_no or 1)
-            # fetch_page 결과를 fetch_all 과 동일한 형태로 보정
+            # fetch_page 결과를 fetch_all 과 동일한 형태로 보정(절단/페이지 메타 포함)
             result.setdefault("base_url", self.base_url)
-            result["fetchedCount"] = len(result.get("items", []))
+            fetched = len(result.get("items", []))
+            tc = result.get("totalCount")
+            rows = result.get("numOfRows") or num_of_rows or self.client.config.default_num_of_rows
+            result["fetchedCount"] = fetched
             result["request_params"] = params
+            result["pagesFetched"] = 1
+            result["maxPagesReached"] = False
+            if result.get("totalCountPresent") and isinstance(tc, int):
+                result["missingCount"] = max(0, tc - fetched)
+                result["truncated"] = tc > fetched
+            else:
+                result["missingCount"] = None
+                # 단일 페이지가 가득 찼으면 더 있을 가능성 → 절단으로 표기
+                result["truncated"] = fetched >= int(rows)
 
         result["service"] = self.module
         result["serviceName"] = self.service_name

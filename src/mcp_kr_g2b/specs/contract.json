@@ -1809,22 +1809,6 @@
    "description": "검색조건에 통합계약번호를 입력하여 공사서비스정보(통합계약번호, 대표여부,업종명, 공사현장지역명, 공사금액) 조회",
    "requestParams": [
     {
-     "nameEn": "resultCode",
-     "nameKo": "결과코드",
-     "size": "2",
-     "required": true,
-     "sample": "00",
-     "desc": "결과코드"
-    },
-    {
-     "nameEn": "resultMsg",
-     "nameKo": "결과메세지",
-     "size": "50",
-     "required": true,
-     "sample": "정상",
-     "desc": "결과메세지"
-    },
-    {
      "nameEn": "numOfRows",
      "nameKo": "한 페이지 결과 수",
      "size": "4",
@@ -1841,68 +1825,28 @@
      "desc": "페이지 번호"
     },
     {
-     "nameEn": "totalCount",
-     "nameKo": "전체 결과 수",
-     "size": "4",
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
      "required": true,
-     "sample": "1",
-     "desc": "전체 결과 수"
+     "sample": "인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
     },
     {
      "nameEn": "untyCntrctNo",
      "nameKo": "통합계약번호",
      "size": "13",
      "required": true,
-     "sample": "2016090002306",
-     "desc": "연계 데이터 입력시 등록되는 계약번호로 계약현황 데이터의 식별자"
-    },
-    {
-     "nameEn": "srvceSno",
-     "nameKo": "서비스순번",
-     "size": "4",
-     "required": true,
-     "sample": "1",
-     "desc": "계약현황 서비스정보의 순번"
-    },
-    {
-     "nameEn": "rprsntYn",
-     "nameKo": "대표여부",
-     "size": "1",
-     "required": true,
-     "sample": "Y",
-     "desc": "업종 중 대표여부"
-    },
-    {
-     "nameEn": "indstrytyNm",
-     "nameKo": "업종명",
-     "size": "300",
-     "required": false,
-     "sample": "철근.콘크리트공사업",
-     "desc": "업종명"
-    },
-    {
-     "nameEn": "cnstrtsiteRgnNm",
-     "nameKo": "공사현장지역명",
-     "size": "256",
-     "required": false,
-     "sample": "인천광역시 강화군",
-     "desc": "공사현장지역명 나라장터 화면에서 “지역”"
-    },
-    {
-     "nameEn": "cnstwkAmt",
-     "nameKo": "공사금액",
-     "size": "25",
-     "required": false,
-     "sample": "14234970",
-     "desc": "공사금액(원,원화) 나라장터 화면에서 “금액”"
-    },
-    {
-     "nameEn": "rltnCorpNm",
-     "nameKo": "관련업체명",
-     "size": "100",
-     "required": false,
-     "sample": "(주)리스템",
-     "desc": "관련 업체명"
+     "sample": "",
+     "desc": "검색하고자 하는 통합계약번호"
     }
    ],
    "responseFields": [
@@ -3276,22 +3220,6 @@
    "description": "검색조건에 통합계약번호를 입력하여 일반용역서비스정보(통합계약번호, 대표여부, 품명및규격, 지역명, 공사금액) 조회",
    "requestParams": [
     {
-     "nameEn": "resultCode",
-     "nameKo": "결과코드",
-     "size": "2",
-     "required": true,
-     "sample": "00",
-     "desc": "결과코드"
-    },
-    {
-     "nameEn": "resultMsg",
-     "nameKo": "결과메세지",
-     "size": "50",
-     "required": true,
-     "sample": "정상",
-     "desc": "결과메세지"
-    },
-    {
      "nameEn": "numOfRows",
      "nameKo": "한 페이지 결과 수",
      "size": "4",
@@ -3308,68 +3236,28 @@
      "desc": "페이지 번호"
     },
     {
-     "nameEn": "totalCount",
-     "nameKo": "전체 결과 수",
-     "size": "4",
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
      "required": true,
-     "sample": "1",
-     "desc": "전체 결과 수"
+     "sample": "인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
     },
     {
      "nameEn": "untyCntrctNo",
      "nameKo": "통합계약번호",
      "size": "13",
      "required": true,
-     "sample": "2015010000230",
-     "desc": "연계 데이터 입력시 등록되는 계약번호로 계약현황 데이터의 식별자"
-    },
-    {
-     "nameEn": "srvceSno",
-     "nameKo": "서비스순번",
-     "size": "4",
-     "required": true,
-     "sample": "1",
-     "desc": "계약현황 서비스정보의 순번"
-    },
-    {
-     "nameEn": "rprsntYn",
-     "nameKo": "대표여부",
-     "size": "1",
-     "required": true,
-     "sample": "Y",
-     "desc": "계약현황 서비스정보의 대표여부"
-    },
-    {
-     "nameEn": "prdctClsfcNoNmNdSpec",
-     "nameKo": "품명및규격",
-     "size": "300",
-     "required": false,
-     "sample": "소프트웨어유지및지원서비스-소프트웨어유지및지원서비스, 휴메인시스템, DB암호화소프트웨어 HEDES V1.0, 1CPU, 유지관리-A Type",
-     "desc": "계약현황 서비스정보의 물품분류명와 한글물품식별명의 조합"
-    },
-    {
-     "nameEn": "cnstrtsiteRgnNm",
-     "nameKo": "공사현장지역명",
-     "size": "256",
-     "required": false,
-     "sample": "수요기관 희망장소",
-     "desc": "공사현장지역명 나라장터 화면에서 “지역”"
-    },
-    {
-     "nameEn": "srvceAmt",
-     "nameKo": "용역금액",
-     "size": "25",
-     "required": false,
-     "sample": "4116000",
-     "desc": "용역금액(원,원화) 나라장터 화면에서 “금액”"
-    },
-    {
-     "nameEn": "rltnCorpNm",
-     "nameKo": "관련업체명",
-     "size": "100",
-     "required": false,
-     "sample": "주식회사 휴메인시스템",
-     "desc": "관련 업체명"
+     "sample": "",
+     "desc": "검색하고자 하는 통합계약번호"
     }
    ],
    "responseFields": [
@@ -3455,22 +3343,6 @@
    "description": "검색조건에 통합계약번호를 입력하여 기술용역서비스정보(통합계약번호, 대표여부, 업종명, 공사현장지역명, 공사금액) 조회",
    "requestParams": [
     {
-     "nameEn": "resultCode",
-     "nameKo": "결과코드",
-     "size": "2",
-     "required": true,
-     "sample": "00",
-     "desc": "결과코드"
-    },
-    {
-     "nameEn": "resultMsg",
-     "nameKo": "결과메세지",
-     "size": "50",
-     "required": true,
-     "sample": "정상",
-     "desc": "결과메세지"
-    },
-    {
      "nameEn": "numOfRows",
      "nameKo": "한 페이지 결과 수",
      "size": "4",
@@ -3487,68 +3359,28 @@
      "desc": "페이지 번호"
     },
     {
-     "nameEn": "totalCount",
-     "nameKo": "전체 결과 수",
-     "size": "4",
+     "nameEn": "ServiceKey",
+     "nameKo": "서비스키",
+     "size": "400",
      "required": true,
-     "sample": "1",
-     "desc": "전체 결과 수"
+     "sample": "인증키",
+     "desc": "공공데이터포털에서 받은 인증키"
+    },
+    {
+     "nameEn": "type",
+     "nameKo": "타입",
+     "size": "4",
+     "required": false,
+     "sample": "json",
+     "desc": "오픈API 리턴 타입을 JSON으로 받고 싶을 경우 'json' 으로 지정"
     },
     {
      "nameEn": "untyCntrctNo",
      "nameKo": "통합계약번호",
      "size": "13",
      "required": true,
-     "sample": "2016010000003",
-     "desc": "연계 데이터 입력시 등록되는 계약번호로 계약현황 데이터의 식별자"
-    },
-    {
-     "nameEn": "srvceSno",
-     "nameKo": "서비스순번",
-     "size": "4",
-     "required": true,
-     "sample": "1",
-     "desc": "계약현황 서비스정보의 순번"
-    },
-    {
-     "nameEn": "rprsntYn",
-     "nameKo": "대표여부",
-     "size": "1",
-     "required": true,
-     "sample": "N",
-     "desc": "계약현황 서비스정보의 대표여부"
-    },
-    {
-     "nameEn": "indstrytyNm",
-     "nameKo": "업종명",
-     "size": "300",
-     "required": false,
-     "sample": "엔지니어링사업(도시계획)",
-     "desc": "계약현황 서비스정보의 업종명"
-    },
-    {
-     "nameEn": "cnstrtsiteRgnNm",
-     "nameKo": "공사현장지역명",
-     "size": "256",
-     "required": false,
-     "sample": "서울특별시",
-     "desc": "공사현장지역명 나라장터 화면에서 “지역”"
-    },
-    {
-     "nameEn": "srvceAmt",
-     "nameKo": "용역금액",
-     "size": "25",
-     "required": false,
-     "sample": "139000000",
-     "desc": "용역금액(원,원화) 나라장터 화면에서 “금액”"
-    },
-    {
-     "nameEn": "rltnCorpNm",
-     "nameKo": "관련업체명",
-     "size": "100",
-     "required": false,
-     "sample": "(주)동해종합기술공사",
-     "desc": "관련 업체명"
+     "sample": "",
+     "desc": "검색하고자 하는 통합계약번호"
     }
    ],
    "responseFields": [

@@ -58,8 +58,8 @@ Thumbs.db
 Desktop.ini
 
 # Cache / data (런타임 생성물)
-src/mcp_kr_g2b/utils/cache/raw_data/*
-!src/mcp_kr_g2b/utils/cache/raw_data/.gitkeep
+src/mcp_kr_g2b/utils/_cache_store/raw_data/*
+!src/mcp_kr_g2b/utils/_cache_store/raw_data/.gitkeep
 src/mcp_kr_g2b/utils/data/*
 !src/mcp_kr_g2b/utils/data/.gitkeep
 
