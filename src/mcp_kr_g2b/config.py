@@ -33,7 +33,7 @@ class G2BConfig:
     api_key: str
     base_host: str = "http://apis.data.go.kr/1230000"
     request_timeout: int = 60
-    default_num_of_rows: int = 100
+    default_num_of_rows: int = 500
     max_pages: int = 50
     log_format: str = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     log_file: str = "g2b.log"
@@ -57,7 +57,7 @@ class G2BConfig:
             api_key=api_key,
             base_host=os.getenv("G2B_BASE_HOST", "http://apis.data.go.kr/1230000"),
             request_timeout=int(os.getenv("G2B_REQUEST_TIMEOUT", "60")),
-            default_num_of_rows=int(os.getenv("G2B_NUM_OF_ROWS", "100")),
+            default_num_of_rows=int(os.getenv("G2B_NUM_OF_ROWS", "500")),
             max_pages=int(os.getenv("G2B_MAX_PAGES", "50")),
             log_format=os.getenv("LOG_FORMAT", "%(asctime)s - %(name)s - %(levelname)s - %(message)s"),
             log_file=os.getenv("LOG_FILE", "g2b.log"),

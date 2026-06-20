@@ -58,7 +58,7 @@ def dispatch_service_fetch(
     operation: str,
     params: Optional[Dict[str, Any]] = None,
     fetch_all: bool = True,
-    num_of_rows: int = 100,
+    num_of_rows: int = 500,
     page_no: Optional[int] = None,
 ) -> TextContent:
     """서비스 오퍼레이션을 호출하고 결과를 캐시한 뒤 요약을 반환."""

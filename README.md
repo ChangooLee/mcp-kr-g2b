@@ -156,7 +156,7 @@ cp .env.example .env
 | 변수 | 설명 | 기본값 |
 |------|------|--------|
 | `PUBLIC_DATA_API_KEY_ENCODED` | 공공데이터포털 서비스키(Encoding). `G2B_SERVICE_KEY` 로도 지정 가능 | (필수) |
-| `G2B_NUM_OF_ROWS` | 페이지당 결과 수(최대 999) | 100 |
+| `G2B_NUM_OF_ROWS` | 페이지당 결과 수(최대 999) | 500 |
 | `G2B_MAX_PAGES` | 전체 조회 시 최대 페이지 수 | 50 |
 | `G2B_REQUEST_TIMEOUT` | 요청 타임아웃(초) | 60 |
 | `MCP_G2B_CACHE_DIR` | 캐시 디렉토리 | 패키지 내부 |
