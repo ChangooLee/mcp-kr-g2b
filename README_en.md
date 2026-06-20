@@ -36,7 +36,7 @@ Each service is called via a single `get_<module>_data` tool; the `operation` ar
 | | Private successful bids | `get_nuri_scsbid_data` | 7 |
 | | Private contracts | `get_nuri_contract_data` | 4 |
 
-Discovery/cache helpers: `list_g2b_services`, `get_g2b_operation_info`, `get_g2b_cache_data`.
+Discovery/cache helpers: `list_g2b_services`, `get_g2b_operation_info`, `get_g2b_cache_data`. **17 tools total** (14 service dispatchers + 3 helpers).
 
 ## Recommended flow
 
@@ -49,6 +49,20 @@ Discovery/cache helpers: `list_g2b_services`, `get_g2b_operation_info`, `get_g2b
 
 Large results return a **summary + 5-row preview + cache file path** to protect LLM context; the full data is stored in the cache file.
 
+### Keyword precision & semantic reranker
+
+The procurement search API matches `bidNtceNm` as a plain substring, so noise creeps in (e.g. `재활`/rehab also matches `재활용`/recycling). `get_g2b_cache_data` corrects this:
+
+```text
+# Lexical filters (no extra deps)
+get_g2b_cache_data(cache_file, field_name="bidNtceNm", exclude_substrings=["재활용"])
+get_g2b_cache_data(cache_file, field_value_regex="재활(?!용)")
+
+# Semantic rerank (optional: pip install "mcp-kr-g2b[ml]")
+get_g2b_cache_data(cache_file, rerank_query="digital healthcare AI musculoskeletal rehab")
+#  → ranks by cosine similarity (ko-sroberta) with a _relevance score
+```
+
 ## Quick start
 
 ```bash
@@ -56,8 +70,8 @@ git clone https://github.com/ChangooLee/mcp-kr-g2b.git
 cd mcp-kr-g2b
 python3 -m venv .venv && source .venv/bin/activate
 python3 -m pip install --upgrade pip
-pip install -e .
-cp .env.example .env   # set PUBLIC_DATA_API_KEY_ENCODED (Encoding key from data.go.kr)
+pip install -e .            # or: pip install -e ".[ml]"  (adds the semantic reranker; large)
+cp .env.example .env        # set PUBLIC_DATA_API_KEY_ENCODED (Encoding key from data.go.kr)
 ```
 
 ### Claude Desktop
@@ -85,7 +99,18 @@ cp .env.example .env   # set PUBLIC_DATA_API_KEY_ENCODED (Encoding key from data
 
 ## Architecture
 
-Combines `mcp-opendart`'s modular structure (per-service modules, global context, registry, ctx helpers) with `mcp-kr-realestate`'s data.go.kr calling/caching strategy (curl-first + requests fallback, pagination, raw→cache files). See [README.md](README.md) for the full diagram.
+Combines `mcp-opendart`'s modular structure (per-service modules, global context, ctx helpers) with `mcp-kr-realestate`'s data.go.kr calling/caching strategy (curl-first + requests fallback, pagination, raw→cache files). See [README.md](README.md) for the full diagram.
+
+## Reliability & quality
+
+Hardened for public use (validated live across all 156 operations):
+
+- **Retry + exponential backoff** on transient 5xx/timeout/4xx; `curl --fail` so error bodies aren't mistaken for data.
+- **Automatic service-key form failover** (Encoding/Decoding), with `resultCode`-first detection to avoid false positives on normal responses.
+- **Correct pagination** even when `totalCount` is absent (stops on a non-full page); truncation surfaced via `truncated`/`missingCount`.
+- **Robust cache**: call-variant-aware keys, `cachedAt` freshness, atomic writes, concurrency lock.
+- **Clear errors**: HTML maintenance pages / broken responses handled gracefully; filtering a missing field returns `FIELD_NOT_FOUND` instead of a silent 0 results.
+- **Tests**: 40 `pytest` cases (spec integrity, client parsing, cache, tools), no network required — `pip install -e ".[dev]" && pytest -q`.
 
 ## License
 

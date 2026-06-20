@@ -47,7 +47,9 @@ AI 어시스턴트에게 다음과 같은 요청을 할 수 있습니다:
 |------|------|
 | `list_g2b_services` | 14개 서비스와 오퍼레이션 개요 목록 (탐색 시작점) |
 | `get_g2b_operation_info` | 특정 오퍼레이션의 요청 파라미터·필수여부·응답 필드·예제 URL |
-| `get_g2b_cache_data` | 저장된 조회 결과 캐시를 필드 필터/페이지 단위로 상세 조회 |
+| `get_g2b_cache_data` | 캐시 결과를 필드 필터/제외/정규식/**의미 기반 재정렬**/페이지로 상세 조회 |
+
+> **총 17개 MCP 도구** = 서비스 디스패처 14개 + 디스커버리/캐시 3개. 오퍼레이션이 156개로 많아, "서비스당 도구 1개 + `operation` 파라미터" 방식으로 설계해 도구 수를 안정적으로 유지합니다.
 
 ## 권장 사용 흐름
 
@@ -112,6 +114,9 @@ source .venv/bin/activate
 # 패키지 설치
 python3 -m pip install --upgrade pip
 pip install -e .
+
+# (선택) 의미 기반 리랭커까지 설치하려면 — torch 포함, 용량 큼
+pip install -e ".[ml]"
 ```
 
 ### 3. 환경변수 설정
@@ -177,10 +182,17 @@ cp .env.example .env
 | `G2B_NUM_OF_ROWS` | 페이지당 결과 수(최대 999) | 500 |
 | `G2B_MAX_PAGES` | 전체 조회 시 최대 페이지 수 | 50 |
 | `G2B_REQUEST_TIMEOUT` | 요청 타임아웃(초) | 60 |
-| `MCP_G2B_CACHE_DIR` | 캐시 디렉토리 | 패키지 내부 |
+| `G2B_MAX_RETRIES` | 일시적 오류(타임아웃/5xx/4xx) 재시도 횟수 | 3 |
+| `G2B_RETRY_BACKOFF` | 재시도 지수 백오프 기준(초) | 0.6 |
+| `G2B_TLS_VERIFY` | https 호스트 사용 시 TLS 인증서 검증 | true |
+| `MCP_G2B_CACHE_DIR` | 캐시 디렉토리 | 패키지 내부(`utils/_cache_store/raw_data`) |
+| `G2B_RERANK_MODEL` | (선택) 리랭커 임베딩 모델 | jhgan/ko-sroberta-multitask |
+| `G2B_RERANK_MAX_CANDIDATES` | (선택) 리랭크 평가 후보 상한 | 2000 |
 | `HOST` / `PORT` | 서버 호스트/포트 | 0.0.0.0 / 8002 |
-| `TRANSPORT` | `stdio` 또는 `streamable-http` | stdio |
+| `TRANSPORT` | `stdio` / `streamable-http` / `sse` | stdio |
 | `LOG_LEVEL` | 로깅 레벨 | INFO |
+
+> 잘못된 값(예: 숫자 환경변수에 문자)이 들어와도 서버가 죽지 않고 경고 후 기본값으로 폴백합니다.
 
 ## Docker로 실행하기
 
@@ -259,7 +271,23 @@ graph TD
 export LOG_LEVEL=DEBUG
 ```
 
-> **인증키 인코딩**: 본 서버는 **Encoding(URL 인코딩) 키**를 그대로 사용하도록 설계되었습니다. `%2B`, `%2F`, `%3D` 등이 포함된 키를 그대로 환경변수에 넣으세요.
+> **인증키 인코딩**: 본 서버는 어떤 키(Encoding/Decoding)를 넣어도 정규 인코딩 형식으로 변환해 사용하며, 서비스별로 동작하는 키 형식을 자동 탐지·캐시합니다. `%2B`, `%2F`, `%3D` 등이 포함된 Encoding 키를 그대로 넣는 것을 권장합니다.
+
+## 신뢰성 & 품질
+
+공용 배포를 위해 다음을 보강했습니다(라이브 156개 오퍼레이션 전수 검증 기반).
+
+- **재시도 + 지수 백오프**: 게이트웨이의 일시적 5xx/타임아웃/4xx 를 자동 재시도. 4xx 본문을 데이터로 오인하지 않도록 `curl --fail` 적용.
+- **키 형식 자동 페일오버**: Encoding/Decoding 차이를 흡수하고, 정상 응답 본문의 우연한 문자열에 오탐하지 않도록 `resultCode` 우선 판정.
+- **정확한 페이지네이션**: `totalCount` 미제공 시에도 "가득 찬 페이지" 기준으로 끝까지 수집(1페이지 조용한 종료 방지). 상한(`max_pages`) 도달 시 `truncated`/`missingCount` 로 절단을 명시.
+- **캐시 견고성**: 호출 변형(전체조회 vs 페이지)을 키에 반영해 덮어쓰기 충돌 방지, `cachedAt`(신선도) 기록, 임시파일+`os.replace` 원자적 기록, 동시성 락.
+- **명확한 에러**: HTML 점검페이지/깨진 응답을 graceful 처리하고, 비-bid 캐시에 없는 필드로 필터하면 무음 0건 대신 `FIELD_NOT_FOUND` 를 반환.
+- **테스트**: `pytest` 40종(명세 무결성·클라이언트 파싱·캐시·도구). 네트워크 없이 실행됩니다.
+
+```bash
+pip install -e ".[dev]"
+pytest -q
+```
 
 ## 보안
 
